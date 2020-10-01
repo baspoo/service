@@ -1,0 +1,15 @@
+isEnable	DurableID	Name	Description	DurableType	Formula	Available
+TRUE	finish_0	Grave		FinishingShot		TRUE
+TRUE	finish_1	Helmet		FinishingShot		TRUE
+TRUE	finish_2	Doll		FinishingShot		TRUE
+TRUE	finish_3	Burn		FinishingShot		TRUE
+TRUE	finish_4	Firework		FinishingShot		TRUE
+TRUE	shovel_0	Shovel		Shovel		TRUE
+TRUE	shovel_1	Shovel Apple		Shovel	type:'action',actionID:'act_4',percent:0.15	FALSE
+TRUE	shovel_2	Shovel Energy		Shovel	type:'energy',percent:0.20	FALSE
+TRUE	shovel_3	Shovel Rampage		Shovel	type:'rampage',percent:0.1	FALSE
+TRUE	shovel_4	Shovel Coin		Shovel	type:'resource',resourceType:'CO',percent:0.1	FALSE
+TRUE	shovel_5	Shovel x2		Shovel	type:'multiply',percent:0.05	FALSE
+TRUE	shovel_6	Shovel Lengthen		Shovel	type:'area',value:2	FALSE
+TRUE	shovel_7	Shovel Weapons of War		Shovel	type:'action',actionID:'act_9',actionID:'act_10',actionID:'act_12',actionID:'act_13',actionID:'act_15',actionID:'act_16',percent:0.1	FALSE
+TRUE	parachute_0	Parachute		Parachute		TRUE

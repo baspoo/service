@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1987202243962562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4088518436626248}
+  - component: {fileID: 114348150855228010}
+  m_Layer: 0
+  m_Name: _loader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4088518436626248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987202243962562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114348150855228010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987202243962562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51acaf2db84b7364da76adf544d61caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  path: Assets\TheLastBug\Resources\Database\
+  GoogleSheetID: 1mPQqrj2ctK_6nqvhRQg0X_-JOECMAU8mei5GlYLowqk
+  FileDatas:
+  - Name: AbilityData
+    GID: 1005133101
+    finish: 0
+  - Name: ActionData
+    GID: 0
+    finish: 0
+  - Name: CharacterData
+    GID: 1053231196
+    finish: 0
+  - Name: BuffData
+    GID: 1539664876
+    finish: 0
+  - Name: GameActivityData
+    GID: 1074424473
+    finish: 0
+  - Name: EnvironmentData
+    GID: 815271516
+    finish: 0
+  - Name: MergeActionData
+    GID: 1099586549
+    finish: 0
+  - Name: PlayModeData
+    GID: 79713779
+    finish: 0
+  - Name: MapDisplayData
+    GID: 657061701
+    finish: 0
+  - Name: BlockData
+    GID: 792336483
+    finish: 0
+  - Name: PlayerProgressData
+    GID: 2054798476
+    finish: 0
+  - Name: CharacterProgressData
+    GID: 1575683033
+    finish: 0
+  - Name: RampageData
+    GID: 522009091
+    finish: 0
+  - Name: TutorialData
+    GID: 746465854
+    finish: 0
+  - Name: CostumeData
+    GID: 1284759508
+    finish: 0
+  - Name: ItemBagData
+    GID: 1341095613
+    finish: 0
+  - Name: WeaponSkinData
+    GID: 1301903987
+    finish: 0
+  - Name: ConfigData
+    GID: 992327095
+    finish: 0
+  - Name: GachaData
+    GID: 1313906487
+    finish: 0
+  - Name: ShopItemData
+    GID: 1502777243
+    finish: 0
+  - Name: DealData
+    GID: 2104964579
+    finish: 0
+  - Name: ExchangeData
+    GID: 1793810538
+    finish: 0
+  - Name: CashShopItemData
+    GID: 165374913
+    finish: 0
+  - Name: CashShopDealData
+    GID: 618356345
+    finish: 0
+  - Name: MissionData
+    GID: 911989771
+    finish: 0
+  - Name: AchievementData
+    GID: 256396314
+    finish: 0
+  - Name: DailyLoginData
+    GID: 576685859
+    finish: 0
+  - Name: AbilityUnlockData
+    GID: 1419206735
+    finish: 0
+  - Name: ManualData
+    GID: 653629842
+    finish: 0
+  - Name: LanguageData_TH
+    GID: 57206449
+    finish: 0
+  - Name: LanguageData_EN
+    GID: 1980243692
+    finish: 0
+  - Name: FeatureUnlockData
+    GID: 1529264316
+    finish: 0
+  - Name: DurableData
+    GID: 598368920
+    finish: 0
+  - Name: FestivalData
+    GID: 1923570988
+    finish: 0

@@ -1,0 +1,7 @@
+isEnable	CashShopItemID	ItemID	Price	Currency	LimitPerDay	UnlockLevel
+TRUE	cashshop_01	com.goodmood.lastbug.gem.01	1.00	RealMoney	0	0
+TRUE	cashshop_02	com.goodmood.lastbug.gem.02	5.00	RealMoney	0	0
+TRUE	cashshop_03	com.goodmood.lastbug.gem.03	10.00	RealMoney	0	0
+TRUE	cashshop_04	com.goodmood.lastbug.gem.04	27.00	RealMoney	0	0
+TRUE	cashshop_05	com.goodmood.lastbug.gem.05	50.00	RealMoney	0	0
+TRUE	cashshop_06	com.goodmood.lastbug.gem.06	100.00	RealMoney	0	0

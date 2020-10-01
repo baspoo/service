@@ -1,0 +1,14 @@
+isEnable	WeaponSkinID	Name	ActionID	Formula
+TRUE	machete	Machete	act_0	
+TRUE	axe	Rescue Axe	act_0	
+TRUE	cleaver	Cleaver Knife	act_0	
+TRUE	shovel	Shovel	act_0	
+TRUE	baseball	BaseBall	act_1	
+TRUE	landmine	Landmine	act_9	
+TRUE	doll	Doll	act_9	
+TRUE	mk-7	MK-7	act_9	
+TRUE	timebomb	Timebomb	act_9	
+TRUE	rocket	Rocket	act_10	
+TRUE	bomb-molotovcocktail	Molotov	act_11	
+TRUE	coke	Coke	act_11	
+TRUE	flat	Flat	act_11	

@@ -1,0 +1,59 @@
+AbilityID	Name	Description (For dev)	AbilityType	ActionID	AbilityEffect	Formula	EnergyCharge	isCostumeOption	isEnable	TierData
+ab_pass_0	Hidden Energy	เพิ่มโอกาศ n%  ที่จะได้รับ Energy เพิ่ม 1 หน่วย จากการ BreakBlock 	Passive		BreakBlockEnergy	value:0.5,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_1	Recycle Mastery	มีโอกาศ n%  ที่จะได้รับ Energy เพิ่ม 1 หน่วย จากการ ย่อยไอเท็มที่มีในกระเป๋า	Passive		RecycleBonus	value:0.50,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_2	Scavenging Mastery	Increase the chances of receiving more items, when your champion rummages for items.	Passive		BreakBlockItem	value:0.35,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_3	Energy Saver	มีโอกาศ n%  ที่จะลดการใช้ Energy ลง 1 หน่วย ทุกครั้งเมื่อมีการใช้ Ability	Passive		EnergyRepel	value:0.50,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_4	Rampage Sparks	Gain a little energy, when you gaining rampage point	Passive		RampageSpark	value:0.15,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_5	Hidden Sweets	Increase the chances of receiving Sweet Candy, when your champion rummages for items.	Passive		BreakBlockCandy	value:0.15,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_6	Rampage Bonus	Gain more Rampage Point at the end of the competition.	Passive		RampageBonus	value:0.1,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_7	Coin Bonus	Gain more Coin at the end of the competition.	Passive		CoinBonus	value:0.15,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_8	Exp. Bonus	Gain more Exp at the end of the competition.	Passive		ExpBonus	value:0.15,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_9	Rampage Coin Drop	Increase the chances of receiving 1 Rampage Coin bonus at the end of the competition.	Passive		GiftCoinBonus	value:0.20,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_pass_10	Shovel Mastery	ขยายพื้นที่ขุดบล็อก 1 ช่วง	Passive		DigArea	value:1,standard:true,maxvalue:1	0	FALSE	TRUE	
+ab_pass_11	Spring Water	มีโอกาศ n%  ที่จะได้รับ Energy เพิ่ม 1 หน่วย จากการ กินน้ำ	Passive		PowerSupply	value:0.5,standard:true,maxvalue:1	0	TRUE	TRUE	
+ab_mike_0	Dyna-Mike	Mike’s signature bomb. Can be thrown really far and it can cause widespread damage in the selected area.	Active	act_mike_0			3	FALSE	TRUE	
+ab_mike_1	Bug Bomber	Basically, Bug Bomber is a landmine on steroid. Simply place it anywhere and waiting for someone to step on!	Active	act_mike_1			4	FALSE	TRUE	
+ab_mike_2	Landmine Mastery	Add more ranges to set up all types of traps on the block. Now it's time to enjoy with trapping!	Passive		LandmineArea	value:2	0	FALSE	TRUE	
+ab_mike_3	Fiery Shrapnels		Passive		FireSplit		0	FALSE	TRUE	
+ab_mike_4	Bouncing Bomb		Passive		DoubleBounce	value:0.5	0	FALSE	TRUE	
+ab_mike_5	Kamikaze		Active	act_mike_5			6	FALSE	TRUE	
+ab_jam_0	Heal	Secret medical practice, exclusively use in Moth species. Heal will immediately restore Life Point.	Active	act_jam_0			5	FALSE	TRUE	
+ab_jam_1	Silent Powder	Sprinkle this strange powder to your target area. It’ll burn your enemy's eyes and your enemy will lose the ability to use Action Item.	Active	act_jam_1			3	FALSE	TRUE	
+ab_jam_2	Blessing	Calling blessings from heaven! Add buff to get an energy every end of turn. For a period of time. Or until received damage. This ability affects to all team members.	Active	act_jam_2			3	FALSE	TRUE	
+ab_jam_3	EMP		Active	act_jam_3			3	FALSE	TRUE	
+ab_jam_4	Cleansing Pollen		Active	act_jam_4			3	FALSE	TRUE	
+ab_jam_5	Wonder Guard		Active	act_jam_5			3	FALSE	TRUE	
+ab_jam_6	Siphoning Blast		Passive		PullbackEmp	value:0.5	0	FALSE	TRUE	
+ab_yip_0	One-shot	Random one shot in the arena! Yes, it's hard to make damage but, luck is a skill of the winner.	Active	act_yip_0			2	FALSE	TRUE	
+ab_yip_1	Leaf Armor	Create an armor with leaves to protect yourself from one attack for a period of time.. 	Active	act_yip_1			2	FALSE	TRUE	
+ab_yip_2	Mimicry		Passive		LeafHide		0	FALSE	TRUE	
+ab_yip_3	Toadstool		Active	act_yip_3			3	FALSE	TRUE	
+ab_yip_4	Bombard	One shot, three bullets just for one target! Combine with Missile Gun to create scatter damages from the selected area.	Passive		AccidentallyShots	splitcount:3	0	FALSE	TRUE	
+ab_rock_0	Excavate	Rockko is going to use his horn to dig the ground and destroy everything on the block! Make him mad and he'll destroy you.	Active	act_rock_0			3	FALSE	TRUE	
+ab_rock_1	Quick Dash	Dash to another block. Speed Dash will reveal other players location when he dashes through their block.	Active	act_rock_1		chargeCount:4,charge:'ab_rock_3'	5	FALSE	TRUE	
+ab_rock_2	Landscaping	Just passing through it won't hurt! Increases the coolness of Speed Dash, dealing damage to enemies in the dashed area.	Passive		EnergyOfDestroyer		0	FALSE	TRUE	
+ab_rock_3	Seismic Dash		Passive		SpeedDashLandslide		0	FALSE	TRUE	tierID:'t_ab_3',isExclusive:true
+ab_rock_4	Beetle Bump		Passive		BeetleBump	value:0.65	0	FALSE	TRUE	
+ab_rock_5	Shockwave		Active	act_rock_5			3	FALSE	TRUE	
+ab_spo_0	Turret Machine	Set up a turret, and wait until it ready to work! The capability of the turret machine is up to the mood of Spood.	Active	act_spood_0		chargeOnuse:'SpiderbotEvolution'	2	FALSE	TRUE	
+ab_spo_1	Web Trap	Build a spider web on a target area, for locking the enemy. Don't let anyone go out for a period of time.	Active	act_spood_1		chargeOnuse:'SpiderbotEvolution'	2	FALSE	TRUE	
+ab_spo_2	SpiderBot	Spread some spider bots out, to reveal all enemy position that's around with you!	Active	act_spood_2		chargeCount:3,charge:'ab_spo_3',chargeOnuse:'SpiderbotEvolution'	2	FALSE	TRUE	
+ab_spo_3	Artificial Intelligence		Passive		SpiderbotEvolution	evo:'env_act_6'	0	FALSE	TRUE	
+ab_spo_4	Fail-Safe Mechanism		Passive		SplitSpiderbot	value:0.5		FALSE	TRUE	
+ab_spo_5	Spider Swarm		Passive		Multicast	value:0.5		FALSE	TRUE	
+ab_kirov_0	Pounce	Dash for attacking the target with the sharp front legs, and back to a current position with the cool!	Active	act_kirov_0			4	FALSE	TRUE	
+ab_kirov_1	Hunter Instinct	Concentrate on the movement of the surrounding enemies for a period of time.	Active	act_kirov_1			2	FALSE	TRUE	
+ab_kirov_2	Cleave		Passive		SplashDagger	value:3	0	FALSE	TRUE	
+ab_kirov_3	Furious Slashes	Blow up enraged, randomly crushing the entire arena like crazy! But will it hit? That's not something Kirov needs to care about.	Active	act_kirov_3			4	FALSE	TRUE	
+ab_kirov_4	Boomerang Blade		Active	act_kirov_4			4	FALSE	TRUE	
+ab_jzi_0	Life Leech	ดูดกลืนพลังชีวิตของศัตรูเพื่อสร้างความเสียหายและนำมาเพิ่มเป็นพลังชีวิตของตนเอง 	Active	act_jzi_0		chargeOnuse:'WardIllusion'	5	FALSE	TRUE	
+ab_jzi_1	Demon Ward	ทำพิธีลงเสาอาคมไว้บนพื้นที่เป้าหมาย หากศัตรูสร้างความเสียหายในพื้นที่อาคมนั้น ผู้โจมตีจะถูกสาปด้วยอาคมย้อนกลับทำให้ได้รับความเสียหายเช่นกัน	Active	act_jzi_1		chargeCount:2,charge:'ab_jzi_3',chargeOnuse:'WardIllusion'	2	FALSE	TRUE	
+ab_jzi_2	Essence Thief	ใช้อำนาจมืดที่ร่ำเรียนมาดึงจิตวิญญาณและกายหยาบของศัตรูเข้ามาเมื่อขโมยบัฟที่ส่งเสริมความสามารถของศัตรูมาเป็นของตนเอง	Active	act_jzi_2		chargeOnuse:'WardIllusion'	3	FALSE	TRUE	
+ab_jzi_3	Shadow Image		Passive		WardIllusion		0	FALSE	TRUE	
+ab_jzi_4	Voodoo Doll		Active	act_jzi_4		chargeOnuse:'WardIllusion'	3	FALSE	TRUE	
+ab_wp_0	Fan of Knives	สะบัดมัดสั้นอาวุธลับประจำตัวของเธอไปรอบๆตัวด้วยความเกรี้ยวกราด สร้างความเสียหายในพื้นที่โดยรอบทั้งหมด	Active	act_wp_0			3	FALSE	TRUE	
+ab_wp_1	Stinger	ใช้ทักษะที่ว่องไวพุ่งเข้าโจมตีเป้าหมายเดี่ยวในระยะไกลเพื่อรอบสังหารเหยื่อ จากนั้นบินกลับมาที่จุดเดิมด้วยความรวดเร็ว	Active	act_wp_1			2	FALSE	TRUE	
+ab_wp_2	Feint	ใช้จิตสังหารรับรู้ถึงอันตรายที่จะเข้ามา ทำให้ wespe อยู่สภาวะพร้อมจะโต้กลับด้วยมีดสั้นตลอดเวลาหากได้รับการโจมตีจากศัตรู	Active	act_wp_2			2	FALSE	TRUE	
+ab_wp_3	Heartpiercer		Passive		FurySting		0	FALSE	TRUE	
+ab_wp_4	Envenom		Passive		FuriousSpray	buffID:'bf_2'	0	FALSE	TRUE	
+ab_wp_5	Fly		Active	act_wp_5			2	FALSE	TRUE	

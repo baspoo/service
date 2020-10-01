@@ -1,0 +1,3 @@
+MergeActionID	Material_ActionIDs	Output_ActionID	isEnable
+mac_0	act_0,act_0,act_0	act_6	TRUE
+mac_1	act_3,act_3,act_3	act_6	TRUE

@@ -1,0 +1,576 @@
+ID	Name	Description	Option
+ActionData			
+act_idle	Supply	Water bottle for every bug! Keep them hydrated and give energy charge.	
+act_0	Machete	Ordinary knife for melee attack or destroy an obstacle. Handle with care and don’t cut yourself!	
+act_10	Missile Gun	Tiny missile gun for long range attack, but be careful because your location is going to be revealed to other players.	
+act_13	Lightning Control	Lightning remote controller. Make a lightning strikes anywhere you want. No one will know where it comes from, how awesome!	
+act_12	Grenade	This hand grenade will cause widespread damage in the area you select. Don’t throw it close to your block.	
+act_16	RKG-3	A bottle? Nope, it's a bomb! You can throw it really far and cause widespread damage randomly.	
+act_15	Airstrike	Drop bombs anywhere you want and cause widespread damage to your enemies. So don’t drop those bombs on yourself!	
+act_2	Bugs Scanner	Scan any area to see if there any bug wondering around there. No one would know who use this item!	
+act_1	Baseball Bat	Looking for trouble? Swing this baseball bat around to hit everyone around you.	
+act_9	Landmine	Place it anywhere in the arena and casually wait for someone to step on it. The explosion is going to be beautiful!	
+act_4	Apple	You’ll feel like you’ve been born again after a bite of this delicious apple and gain a Life Point! 	
+act_3	Turbo Jump	The most popular energy drink among the bugs. Drink up and jump further!	
+act_6	Shield	This strong shield will protect you from any attack. But be wise, you can only use it once.	
+act_14	Boomerang	Throw this badass boomerang to enemies within its reaching range. Your enemies might know your location.	
+act_11	Molotov Cocktail	Powerful bottle bomb! Throw in on to the ground, and the fire will burn the block for a period of time. Don’t foolishly walk into the fire!	
+act_17	Bugs Tracker	Know every movement of the players nearby for a couple of turns by using this item.	
+act_18	Beer	Throw it to your enemies, they’ll get drunk and can’t walk properly!	
+act_19	Scarecrow	Place it on the block, use it as a decoy to trick other bugs! Scarecrow’s location will be revealed if attacked.	
+act_20	Honey 	Increase Energy Charge after your turn every time until the sweetness got watched away or someone attacks you.	
+act_21	Whirlwind Vacuum	Use this before you gonna get hit. When an enemy attacks you with a specific target weapon, Vacuum will add the weapon that hurts you!	
+act_22	Spring Trap	This trap will bounce the bug that steps on it to anywhere in the arena!	
+act_23	Wooden Cage	Set wooden cage on a block and wait for someone to get trap inside there for a couple of turns.	
+act_24	Sweet Candy	The miraculous lollipop of bugs! Recycle it to get a lot of energy!	
+act_25	Wing	If this place is not worth living. Then use this magical wing to randomly go somewhere else!	
+act_26	TNT	TNT barrel, a very very dangerous weapon. Try to place and trigger it to explode... Use it carefully!	
+act_5	Shovel	Ordinary shovel, but work fine. Use it to dig for destroying a block around you. May help you hinder enemy plans!	
+act_29	Smoke	Create a large smoke curtain. Anyone who has been in the area, will not be able to use an Action.	
+act_mike_0	{@ab_mike_0}	{d@ab_mike_0}	
+act_mike_1	{@ab_mike_1}	{d@ab_mike_1}	
+act_mike_2	{@ab_mike_2}	{d@ab_mike_2}	
+act_jam_0	{@ab_jam_0}	{d@ab_jam_0}	
+act_jam_1	{@ab_jam_1}	{d@ab_jam_1}	
+act_jam_2	{@ab_jam_2}	{d@ab_jam_2}	
+act_yip_0	{@ab_yip_0}	{d@ab_yip_0}	
+act_yip_1	{@ab_yip_1}	{d@ab_yip_1}	
+ab_yip_4	{@ab_yip_4}	{d@ab_yip_4}	
+act_rock_0	{@ab_rock_0}	{d@ab_rock_0}	
+act_rock_1	{@ab_rock_1}	{d@ab_rock_1}	
+act_rock_2	{@ab_rock_2}	{d@ab_rock_2}	
+act_spood_0	{@ab_spo_0}	{d@ab_spo_0}	
+act_spood_1	{@ab_spo_1}	{d@ab_spo_1}	
+act_spood_2	{@ab_spo_2}	{d@ab_spo_2}	
+act_kirov_0	{@ab_kirov_0}	{d@ab_kirov_0}	
+act_kirov_1	{@ab_kirov_1}	{d@ab_kirov_1}	
+act_kirov_3	{@ab_kirov_3}	{d@ab_kirov_3}	
+act_kirov_4	{@ab_kirov_4}	{d@ab_kirov_4}	
+act_jzi_0	{@ab_jzi_0}	{d@ab_jzi_0}	
+act_jzi_1	{@ab_jzi_1}	{d@ab_jzi_1}	
+act_jzi_2	{@ab_jzi_2}	{d@ab_jzi_2}	
+act_wp_0	{@ab_wp_0}	{d@ab_wp_0}	
+act_wp_1	{@ab_wp_1}	{d@ab_wp_1}	
+act_wp_2	{@ab_wp_2}	{d@ab_wp_2}	
+			
+			
+			
+			
+CharacterData			
+cha_0	Yippo	A chubby caterpillar from the countryside. Always eager to prove himself, but he’s still too timid and clumsy. However, his clumsiness often leads him into unexpected situations. Everyone was surprised by this ordinary farm boy. [n][n] “Hi! I’m Yippo! I don’t sure how I end up here.”	
+cha_1	Jamie	A generous military nurse. Gifted with healing skills that inherit from the Moth clan. Being hate to see violence, Jamie decided to join the competition and make sure no one has lost their life. However, with a twist of situation, she may have to put down her medkit and wield weapons instead! [n][n] “It’s only a game. So may we have a friendly competition!”	
+cha_2	Mike	Former top tier EOD who spends his whole life with bombs. Despite his playfulness and easygoing manner, this ladybug is far more crazy than you think. Mike doesn’t expect things from the competition more than his own fun and prize. [n][n] “Wanna survive? Nothing! Just run into the field and make everything explode!”	
+cha_3	Rockko	One of the high rank officers of The Savior. He’s not only gentle but also a powerful fighter. With his warrior instinct of the Beetle clan, Rockko devotes his life to protect the innocent bugs. He will show no mercy to anyone who disturb this peaceful town. [n][n] “Rockko, at your service!”	
+cha_4	Spood	The genius middle aged inventor, who is ready to flood the arena with machines. It’s a rare occasion to see this spider steps outside his workshop. This time, Spood proudly presents his brand-new inventions to everyone! [n][n] “Alright! Applaud to my masterpiece that took me for 30 hours 8 minute and 3.25 seconds due 1 week.”	
+cha_5	Kirov	The mysterious assassin, inside this nimble mantis’ shell is full of murderous aura. If you are the one on his list, don’t think to escape from his claw. Likewise, Although it’s just a competition, give up to hope he won’t be serious! [n][n] “No need to know me.”	
+cha_6	Jezzika	An elder mosquito, the master of dark art from the pond. She may look aged and fragile, but don’t underestimate her. Her life-leeching spell made her live this long! Wherever you hide, if she catches a smell of your blood, be prepared for a curse! [n][n] “I can sense it in your blood...you are scared, aren’t you?”	
+cha_7	Wespe	A fierce wasp mercenary. She is always ready to counter the attack with her painful sting. Beware of her bewitching smile that will melt your heart. Because next time when you know, you’ll realize she’s stolen your heart, your property, your secrets or even your life...  [n][n] “Hey! Lil’ cutie bug over there! Please go easy on me. ~”	
+CharacterData (Role)			
+role_cha_0	Fighter / Jungler	With his trusty musket gun and leaf armor that protect him when he's scared, now he's ready to step in the arena.	
+role_cha_1	Support / Disabler 	With power of healing, also causing trouble to enemies, anyone wants to join her team.	
+role_cha_2	Nuker / AOE	Explosion is a passion. He can make a raging battlefield out of anywhere and anytime.	
+role_cha_3	Nuker / AOE / Initiator	Damage wild spread area by lifting the earth. He is ready to rush through anything in the way with his strongest armor.	
+role_cha_4	Disabler / Ganker	Bulding an attack turret is his speciality. Even if it take a chance to hit or miss, it's still a good troblemaker.	
+role_cha_5	Carry / Escape	Detect movement of enemies by predator instinct, but to execute, he must wait until the right time.	
+role_cha_6	Roamer / Ganker	Even without touching them, she can steal life force from enemies. It requires magic and good strategy.	
+role_cha_7	Semi-Carry / Escape 	Attack all around furiously. She won't let someone attack her and walk away without fighting back.	
+AbilityData			
+ab_pass_0	Rummage Energy	Increase the chances of earning Energy, when your champion rummages for items.	
+ab_pass_1	Recycle Bonus	Gain more energy when you recycle the item.	
+ab_pass_2	Break Block Item	Increase the chances of receiving more items, when your champion rummages for items.	
+ab_pass_3	Energy Repel	Reduce energy costs, when your champion use ability.	
+ab_pass_4	Rampage Spark	Gain a little energy, when you gaining rampage point	
+ab_pass_5	Rummage Candy	Increase the chances of receiving Sweet Candy, when your champion rummages for items.	
+ab_pass_6	Rampage Bonus	Gain more Rampage Point at the end of the competition.	
+ab_pass_7	Coin Bonus	Gain more Coin at the end of the competition.	
+ab_pass_8	Exp Bonus	Gain more Exp at the end of the competition.	
+ab_pass_9	Rampage Coin Bonus	Increase the chances of receiving 1 Rampage Coin bonus at the end of the competition.	
+ab_mike_0	Dyna-Mike	Mike’s signature bomb. Can be thrown really far and it can cause widespread damage in the selected area.	
+ab_mike_1	Bug Bomber	Basically, Bug Bomber is a landmine on steroid. Simply place it anywhere and waiting for someone to step on!	
+ab_mike_2	Landmine Area	Add more ranges to set up Landmine on the block. Now it's time to enjoy with trapping!	
+ab_jam_0	Heal	Secret medical practice, exclusively use in Moth species. Heal will immediately restore Life Point.	
+ab_jam_1	Silent Powder	Sprinkle this strange powder to your target area. It’ll burn your enemy's eyes and your enemy will lose the ability to use Action Item.	
+ab_jam_2	Blessing	Calling blessings from heaven! Add buff to get more energy. For a period of time. This ability affects to all team members.	
+ab_yip_0	One Shot	Shoot one shot for long range, be careful because your location is going to be revealed to other players.	
+ab_yip_1	Leaf Armor	Create an armor with leaves to protect yourself from one attack for a period of time.. 	
+ab_yip_4	Accidentally Shots	One shot, three bullets just for one target! Combine with Missile Gun to create scatter damages from the selected area.	
+ab_rock_0	Deep impact	Rockko is going to use his horn to dig the ground and destroy everything on the block! Make him mad and he'll destroy you.	
+ab_rock_1	Speed Dash	Dash to another block. Speed Dash will reveal other players location when he dashes through their block.	
+ab_rock_2	Speed Dash Power	Just passing through it won't hurt! Increases the coolness of Speed Dash, dealing damage to enemies in the dashed area.	
+ab_spo_0	Turret Machine	Set up a turret, and wait until it ready to work! The capability of the turret machine is up to the mood of Spood.	
+ab_spo_1	Web Trap	Build a spider web on a target area, for locking the enemy. Don't let anyone go out for a period of time.	
+ab_spo_2	Spider Autobot	Spread some spider bots out, to reveal all enemy position that's around with you!	
+ab_kirov_0	Cut Strike	Dash for attacking the target with the sharp front legs, and stop at that position with the cool!	
+ab_kirov_1	Spirit of the Killer	Concentrate on the movement of the surrounding enemies for a period of time.	
+ab_kirov_3	Sonic Strike	Blow up enraged, randomly crushing the entire arena like crazy! But will it hit? That's not something Kirov needs to care about.	
+ab_kirov_4	Boomerang Strike		
+ab_jzi_0	Life Steal	Steals one life point of the enemy at the target, and bring it to your Jezzika!	
+ab_jzi_1	Demon Ward 	Set the hidden Demon Ward on the floor. When anyone attacks the ward, Will be cursed and receive damage!	
+ab_jzi_2	Buff Steal	Randomly steals 1 buff from an enemy. But you should observe and increase your luck to get the buff not a debuff!	
+ab_wp_0	Spray	Throwing daggers with Wespe's anger mood to attack the enemy around.	
+ab_wp_1	Sting	Dash for attacking the target with the stinger, and back to the current position with charming!	
+ab_wp_2	Counter Spray	Awaken the fury of Wespe, she will readily counter-attack with Spray to the enemy that hit her!	
+GameActivityData			
+gact_0	Dead Area	Get inside if you wanna live! The outer area is about to explode randomly!	
+gact_1	Air Drop	Hey, what’s inside the Air Drop? Let’s check it!	
+gact_2	Sun Flower	It's a flower of the sun, not to be confused with sunflower. Sun Flower will increase Life Point for those who have found it.	
+gact_3	Moon Flower	Flower of the moon. The bugs like to around this flower because it will feel powerful. Moon Flower will increase Energy Charge.	
+gact_4	Flag Transfer	The flag is about to move! If you are close to the flag, then collect it or regret your decision and pray that it’ll move closer to you.	
+gact_5	Cannon Bomb	No one know when the arena is gonna get hit by cannonballs! May luck be with you. Hopefully, the cannonball won’t land on your block.	
+gact_6	Earthquake	An earthquake in the random area of the arena. If you are in the area during the earthquake, your position is going to be revealed to other players.	
+ItemBagData			
+Material			
+material_0	Branch	Just the branch that fell from a tree. Still don't know what to use to do with it.	
+material_1	Fabric	Low-quality material, a piece of cloth. It may be useful.	
+material_2	Wire	Low-quality material, old wire. One day probably uses.	
+material_3	Nail	Low-quality material, old nails. It should be useful someday.	
+material_4	Gunpowder	Medium-quality material, gunpowder. Try to imagine what you can use it to do.	
+material_5	Hex Nut	Medium-quality material, hex nut for use in craftsmanship.	
+material_6	Gear	High-quality material, brand new gears. One day you must use it!	
+material_7	Bullet Shell	High-quality material, the delicate shell casings. It can definitely be used!	
+material_8	Coupon Shard	Piece of invitation letter. Collect and exchange it to completely letter. And use it for inviting the new champion to join your team!	
+material_9	Sachet Shard	Piece of fashion sachet. Collect and exchange it to completely sachet. And open it to get the new costume for your champion!	
+material_10	Pocket Watch	Luxurious pocket watch. Invaluable for all of the bugs at The Last Bug village. You should keep it that good!	
+material_gift	Rampage Coin	The coin from Rampage points received after the end of the competition. You can use it to open the Rampage Chest.	
+material_flag	Winner Flag	The flag symbol is a reward for the challenger who grab the flag. You can use it to open the Winner Chest!	
+Inapp			
+com.goodmood.lastbug.gem.01	Bundle of Gems	The smallest pack of gems, take it and go shopping at The Last Bug village.	
+com.goodmood.lastbug.gem.02	Pile of Gems	The small pile of gems, take it and go shopping at The Last Bug village.	
+com.goodmood.lastbug.gem.03	Line up of Gems	The line up of gems, take it and go shopping at The Last Bug village.	
+com.goodmood.lastbug.gem.04	Bag of Gems	The bag of gems, take it and go shopping at The Last Bug village.	
+com.goodmood.lastbug.gem.05	Chest of Gems	The chest of gems, take it and go shopping at The Last Bug village.	
+com.goodmood.lastbug.gem.06	Extra Chest of Gems	The extra chest of gems, take it and go shopping at The Last Bug village.	
+Gacha			
+chest_gift	Rampage Chest	Use Rampage Coin to open it.	
+chest_time	Time Chest	Wait the right time to open it.	
+chest_winner	Winner Chest	Use Winner Flag to open it.	
+gacha_box1	Wooden Box	Plain wooden box, it is not clear what is inside. But would be normal... If you are lucky, it may be rare items.	
+gacha_box2	Military Box	General military box, in the box there are many items. What will be inside!? Try to open is. Hope you are lucky.	
+gacha_box3	Rare Military Box	A strong military box, with many special items, is waiting for you! That cannot be found in the wooden box for sure! You have the opportunity to get more rare items.	
+gacha_box4	Epic Military Box	The strongest military box, You will find many special items. Rare items are not far away. Open it to make dream come true. Good luck awaits you!	
+gacha_pack1	Fashion Pack	A sachet of bugs costume. There is a skin for your champion inside! 	
+gacha_pack2	High-Fashion Pack	A high-level sachet of bugs costume. Believe in your destiny. It's time to show off a rare costume to friends!	
+PocketItem			
+pocket_1	Healthy Box	Recommend for the healthy challenger. In a difficult situation, let your champion eat this Apple to increase 1 life point.	
+pocket_2	Sweety Box	Recommend for the champion's abilities lover. Not sure what is inside, but it can boost your champion energy. Good luck to you!	
+pocket_3	Hunter Box	Recommended for the hunter! Inside of pocket, there is an item for finding the enemy. After that, it's up to you what to do with them!	
+pocket_4	Trapper Box	Recommended for the trapper. There is a trap inside. Try to guess what you get. Wish you have fun with trapping!	
+pocket_5	TNT Box	Recommended for the hyperactive challenger. Take TNT, a rare item to the arena, it can explode to damage and destroy the blocks around!	
+pocket_6	Laser Gun Box	Laser Gun Box	
+Recipe			
+character_recipe	Champion Letter	Invitation letter for recruiting the champion to join the team. Regardless of which bug is the one to accept it. Just believe in your fate!	
+blueprint_recipe	Blueprint Recipe		
+finishhim_recipe	Finish Him Recipe		
+character_rent	Champion Rent	The temporary contract letter, you can use it to rent a champion you want to your team for 1 day.	
+Booster			
+booster_player	Exp Bonus	Exp bonus booster. You will be able to use it someday.	
+booster_char	Expertise Bonus	Expertise bonus booster. You will be able to use it someday.	
+booster_coin	Coin Bonus	Coin Bonus booster. You will be able to use it someday.	
+booster_rampage	Rampage Bonus	Rampage bonus booster. You will be able to use it someday.	
+booster_clear_stamina	Refresh Stamina	The item to refres champion stamina. You will be able to use it someday.	
+booster_protect_rank	Rank Protection	The item to protect your rank. You will be able to use it someday.	
+booster_player_x2	Double Exp Bonus	Double Exp bonus booster. You will be able to use it one someday.	
+booster_giftcoin	Rampage Coin Bonus	Rampage Coin bonus booster. You will be able to use it one someday.	
+			
+			
+			
+MissionData			
+ms_daily_endgame	End 3 matches	End the competition 3 matches	
+ms_daily_win	Daily First Win	Daily First Win	
+ms_daily_hit	Hit enemy 5 times	Hit enemy 5 times	
+ms_daily_hit2	Double hits	Double hits	
+ms_daily_firstblood	First blood	First blood	
+ms_daily_trap	Trap Work	The trap is working	
+ms_daily_airdrop	Get all on the way	Collect Air Drop	
+ms_daily_flag	Collect 3 flags	Collect 3 flags	
+ms_daily_kill	Kill an enemy	Kill an enemy	
+ms_daily_aoe	AOE Attack	AOE Attack!	
+ms_daily_shot	Hawkeye Attack	Hawkeye Attack	
+ms_daily_scanner	Stealth Scanner!	Stealth Scanner!	
+ms_daily_win_duel	The Winner of Duel	The Winner of Duel	
+ms_daily_win_ffa	The Winner of Free For All	The Winner of Free For All	
+AchievementData			
+acm_mvp_perfectwin	Perfect Win!	Gain MVP Perfect Win	
+acm_mvp_arsenal	The Annihilation	Gain MVP Annihilation	
+acm_mvp_hawkeye	The Hawk Eye	Gain MVP Hawk Eye	
+acm_mvp_activist	The Activist	Gain MVP Activist	
+acm_mvp_hunter	The Hunter	Gain MVP Hunter	
+acm_mvp_deep	The Deep	Gain MVP Deep	
+acm_mvp_noob	The Noob	Gain MVP Noob	
+acm_win	I'm the Winner!	I'm the Winner!	
+acm_win_duel	The Winner of Duel	The Winner of Duel	
+acm_win_ffa	The Winner of Free For All	The Winner of Free For All	
+acm_lose	Lost but Keep Fighting	Lost but Keep Fighting	
+acm_endgame	End of the match	End of the match	
+acm_flag	Flag Collector	Collect the flag	
+acm_flag_lucky	Flag of a lucky man	Flag of a lucky man	
+acm_flag_missing	Missing Flag	Missing Flag	
+acm_firstblood	First Blood Champion	First Blood Champion	
+acm_hit_1	Hit the enemy 	Hit the enemy 	
+acm_hit_2	Double hits in one turn	Double hits in one turn	
+acm_hit_3	Triple hits  in one turn	Triple hits  in one turn	
+acm_kill	Kill The Enemy	Kill The Enemy	
+acm_kill_2	Double Kills	Double Kills	
+acm_kill_3	Triple Kills	Triple Kills	
+acm_kill_all	Kill Them All	Kill Them All	
+acm_hitshot	Hawkeye Attack	Hawkeye Attack	
+acm_scanner	Stealth Scanner	Stealth Scanner	
+acm_recycle	Recycling	Recycling	
+acm_use_trap	Trapper	Trapper	
+acm_trap	Trap Work!	Trap Work!	
+acm_env_collect	Get all on the way	Get all on the way	
+acm_env_destroy	Environment Destroyer	Environment Destroyer	
+acm_use_dig	Dig to Find Items	Dig to Find Items	
+acm_use_action	Use Item	Use Item	
+acm_use_ability	Use Ability	Use Ability	
+acm_use_aoe	AOE Attack	AOE Attack	
+acm_use_supply	Drinks for Energy	Drinks for Energy	
+acm_env_hide	Hide in Nature	Hide in Nature	
+acm_perfectsurvivor	Healthy	Healthy	
+acm_gact_damage	Unlucky Man	Unlucky Man	
+acm_betrapped	Be trapped	Be trapped	
+acm_rank_1	Reach Rank Silver	Reach Rank Silver	
+acm_rank_2	Reach Rank Gold	Reach Rank Gold	
+acm_rank_3	Reach Rank Platinum	Reach Rank Platinum	
+acm_rank_4	Reach Rank Diamond	Reach Rank Diamond	
+acm_rank_5	Reach Rank Master	Reach Rank Master	
+acm_rampage	Best Rampage	Best Rampage	
+acm_gacha_gift	Open Rampage Chest	Open Rampage Chest	
+acm_playerlv	Player Level-up!	Player Level-up!	
+acm_character	Unlock New Champion	Unlock New Champion	
+acm_character_rent	Rent The Champion	Rent The Champion	
+acm_character_repeat	My champion love me..	My champion love me..	
+acm_ability	Unlock Champion's Ability	Unlock Champion's Ability	
+acm_ability_full	Unlock Full Abilities	Unlock Full Abilities	
+acm_character_lv3	Champion Reach Level 3 	Champion Reach Level 4	
+acm_character_lv5	Champion Reach Level 5	Champion Reach Level 6	
+acm_character_lv10	Champion Reach Max Level	Champion Reach Level 10	
+acm_costume_skin	Unlock Skin	Unlock Skin	
+acm_costume_accessory	Unlock Accessory	Unlock Accessory	
+acm_costumeEquip	Equip Costume	Equip Costume	
+acm_gacha_sachet	Open Sachet	Open Sachet	
+acm_get_coin	Get Coin	Get Coin	
+acm_get_gem	Get Gem	Get Gem	
+acm_get_jigsaw	Get Jigsaw	Get Jigsaw	
+acm_get_leaf	Get Leafpoint	Get Leafpoint	
+acm_get_material	Get Material	Get Material	
+acm_login	Daily Login 	Continue Login	
+acm_mission	Complete the mission	Complete the mission	
+acm_blessing	Use Blessing Bonus	Use Blessing Bonus	
+acm_spend_coin	Spend Coin	Spend Coin	
+acm_spend_gem	Spend Gem	Spend Gem	
+acm_spend_jigsaw	Spend Jigsaw	Spend Jigsaw	
+acm_exchange	Exchange	Exchange	
+acm_buypocket	Buy Pocket Item	Buy Pocket Item	
+acm_addfriend	Add friend	Add friend	
+acm_playprivate	Play with friend	Play with friend	
+acm_chat	Chat	Chat	
+acm_sticker	Sticker	Sticker	
+Environment			
+env_0	Sapling	Sprout that grows up in the middle of arena. Blocks champion's path and space. 	
+env_1	Rock	A huge bolder, an obstacle. Blocks champion's path and space. 	
+env_2	Log	A large log, an obstacle. Blocks champion's path and space. 	
+env_3	Grass	Just a normal grass	
+env_4	Bush	A shaggy bush in the arena. Can be used for hiding despite it isn't a grass. Helps champions cover up their location. 	
+env_5	Ramp	A tall watchtower that can be used to observe all enemies, but being up on the tower, it reveals your location and you can be targeted	
+env_6	Pepsi	A durable bottle cap. Can be used for hiding. It also blocks damage from enemies' weapons ,but hiding in there the champions can't attack the outside.	
+env_7	Tree 1	A tree that grows up in the middle of arena. Can be used for hiding from all harm. It will block damage from all kind of enemies' weapons ,as long as it still stands there.	
+env_8	Tree 2	A tree that grows up in the middle of arena. Can be used for hiding from all harm. It will block damage from all kind of enemies' weapons ,as long as it still stands there.	
+env_9	Bridge	A wooden bridge. You can cross to the other side area.	
+env_10	Flytrap 	Carnivorous plant is an arch-enemy of insectkind. When the bug comes nearby, It will randomly bite. You'll be damaged when get bitten.	
+env_11	Oil	Barrel of oil. Sensitive to weapons that make sparks. Cause widespread damage.	
+env_12	What Box	Mysterious box. Things inside are still unknown.	
+env_flag_0	Flag	Flag of victory, the greatest goal of all champions. Only collect 3 of these victory flags and  you'll be the winner.	
+env_act_0	Landmine	Exploding trap, ready to detonate when someone careless step on. It'll be hidden to enemies, only owner can see it on the arena.	
+env_act_1	Firewall	Flames lit by explosion fragments. This burning blaze isn't friendly to insects ,and no one wants to see it closer for sure.	
+env_act_2	TrapSplit	Wide radius exploding trap, ready to detonate when someone careless step on. It'll be hidden to enemies, only owner can see it on the arena.	
+env_act_3	Scarecrow	Farmer's scarecrow. Put on the arena to blocks champion's path and space. 	
+env_act_4	Sping	Jumbo spring that can made you soar to the most unexpected place.	
+env_act_5	Prison	Cage trap, ready to trigger when someone careless step on. It'll be hidden to enemies, only owner can see it on the arena.	
+env_act_6	Turret Machine	A machine made out of junk in the arena. Can transfrom into a deadly turret but it takes quite long time to build.	
+env_act_7	Web	Spider web trap, ready to trigger when someone careless step on. It'll be hidden to enemies, only owner can see it on the arena.	
+env_act_8	Smoke	Smoke that spread over area. Cause visibility loss.	
+env_act_9	TNT	The enormous explosive on the arena. It's impact is destructive that even destroy terrain around.	
+env_act_10	Demon Ward 	An enchanted staff. If enemies damage this magical area, they'll be cursed by the spell, makeing them take a damage too.	
+env_air_0	Air Drop	Mysterious box falling form the sky. Things inside are still unknown.	
+env_gact_0	Sun Flower	It's a flower of the sun, not to be confused with sunflower. Sun Flower will increase Life Point for those who have found it.	
+env_gact_1	Moon Flower	Flower of the moon. The bugs like to around this flower because it will feel powerful. Moon Flower will increase Energy Charge.	
+BlockData			
+block_0	Empty	Empty	
+block_1	Grass	Tall grass area. Can be used for hiding. Choosing to stay hidden in these areas is a good choice for every situation.	
+block_2	Ground	Open ground area. You'll show yourself to the enemies, you can be targeted.	
+block_3	Quicksand	Quicksand area. It reduces movement, making you unable to go around freely. 	
+block_4	Pond	Pond area. Can be used for slipping away from chasing. Water can put out a dangerous flame. Being in the water can't attack enemies on the land, and vice versa.	
+block_5	Rock	Sturdy rock area. No weapon damages can destroy it.	
+block_6	Smoke	Smoke that spread over area. Cause visibility loss.	
+block_7	Lawn	Open field area, You'll show yourself to the enemies. If it catchs some raindrops, the area will grow a tall grass.	
+BuffData			
+bf_0	Barrier	Protect champion from all damage one time!	
+bf_1	Speed	Expand walking area	
+bf_2	Poison	Cannot use all action items and abilities	
+bf_3	Silent	Cannot use all action items and abilities	
+bf_4	Leaf Armor	Protect you from all damage! 1 round turn	
+bf_5	Speed Cross	Expand walking area	
+bf_6	Hunt	You are marked to be a prey	
+bf_7	Beer	Drunken by alcohol. Cause confuesd movment.	
+bf_8	Honey 	Increase Energy every trun.	
+bf_9	Absorb Armor	Absorb attack weapons to the user.	
+bf_10	Prison	Caged. Unable to move	
+bf_11	Web	Caged. Unable to move	
+bf_12	Counter Spray	Prepare to counter attack.	
+bf_b_0	QuickSand	You're in the quick sand	
+bf_b_1	Pond	You're in the water	
+RampageData			
+rp_0	Hit	One damage in one turn	
+rp_1	Double Hits	Double damage in one turn	
+rp_2	Triple Hits	Triple damage in one turn	
+rp_3	Killing Spree	Knock enemy out	
+rp_4	Get The Flag	Collect flag(s)	
+rp_5	Bullseye	Spot the enemy	
+rp_6	Taunt	Successfully taunt	
+rp_7	Bet	Correctly guess if the taunt will be successful or not	
+rp_8	Victory	The last bug standing!	
+rp_9	Endgame	Now you see who’s the winner of this match	
+rp_10	Defeat	It’s okay. You lose, but you will live	
+rp_11	Airdrop	Risking your life for the airdrop	
+rp_12	Merge	Make your item better than ever	
+rp_13	Trap	Strategically placing a trap	
+rp_14	Destroy	Destroy obstacle in arena	
+rp_15	Hiding	Remain hidden the whole match	
+rp_16	Healthy	Didn’t lose health the whole match	
+rp_17	Bonus	Collect the bonus item at the edge of the arena	
+rp_18	Grab	Destroy the block that has an enemy's bonus item	
+rp_19	FirstBlood	First Blood	
+rp_20	Immortal	Kill them all!	
+rp_21	Recycle	Recycle unused item	
+rp_22	Collector	Get all on the way	
+rp_23	Scanner	Use the Bugs Scanner and found the eneny's position	
+rp_24	Double Kills	Knock 2 enemies out in one turn	
+rp_25	Triple Kills	Knock 3 enemies out in one turn	
+MapDisplayData			
+training2	Training Ground		
+random	Random		
+duel_freestyle	Playground		
+duel_water	Small Pool		
+duel_sand	Starfield		
+freestyle	Greensward		
+break	2 Caps		
+2sides	2 Sides		
+woodland	Woodland		
+swamp	Wetland		
+x-cross	X-cross		
+orchid	Orchid		
+desert	Badland		
+jungle	Jungle		
+battle cry	Battle Cry		
+driftwood	Driftwood		
+summer	Summer		
+classic_survival	Classic Survival		
+PlayModeData			
+mode_train	Training Ground	For newbie training, before enter The Last Bug competition	
+mode_duel	Duel	Duel is 1 VS 1 match mode of The Last Bug competition. For practicing before entering the real arena!	
+mode_ffa	Free For All	Free For All is a challenge mode of The Last Bug competition. Only experienced 4 challengers can enter the arena!	
+mode_team	Team Mode	Coming soon	
+mode_arcade	Arcade	Coming soon	
+mode_creator	Creator	Coming soon	
+GameActivityData			
+gact_0	Dead Area	Get inside if you wanna live! The outer area is about to explode randomly!	
+gact_1	Air Drop	Hey, what’s inside the Air Drop? Let’s check it!	
+gact_2	Sun Flower	It's a flower of the sun, not to be confused with sunflower. Sun Flower will increase Life Point for those who have found it.	
+gact_3	Moon Flower	Flower of the moon. The bugs like to around this flower because it will feel powerful. Moon Flower will increase Energy Charge.	
+gact_4	Flag Transfer	The flag is about to move! If you are close to the flag, then collect it or regret your decision and pray that it’ll move closer to you.	
+gact_5	Cannon Bomb	No one know when the arena is gonna get hit by cannonballs! May luck be with you. Hopefully, the cannonball won’t land on your block.	
+gact_6	Earthquake	An earthquake in the random area of the arena. If you are in the area during the earthquake, your position is going to be revealed to other players.	
+gact_7	Rainy	Rain in the arena. Aside from it changed the arena atmosphere. in addition, it random regenerate the grasses on lawn blocks. 	
+gact_8	Mmushroom	สุ่มเกิดเห็ด ( สุ่มเกิดเห็ด 2Wlak / 2Action )	
+gact_9	Shuffle	 สลับตำแหน่งผู้เล่นทุกคนในเกม	
+gact_10	Ice Age	หิมะตกเป็นเวลา 4 เทริน เมื่อหิมะหยุดทุกธงจะถูกปกคลุมด้วยหิมะ ทำให้ไม่สามารถซ้อนตัวบนพื้นหญ้าได้ 4 เทริน	
+CostumeData			
+yp_normal	Default		
+yp_common_1	Small Seal		
+yp_common_2	Tortilla		
+yp_common_3	Tiny Iris		
+yp_common_4	Camouflage		
+yp_uncommon_1	Little Boy		
+yp_uncommon_2	Farmer		
+yp_uncommon_3	Cool Guy		
+yp_rare_1	Legendary		
+jm_normal	Default		
+jm_common_1	Brick		
+jm_common_2	Carmine		
+jm_common_3	Taffy Pink		
+jm_common_4	Noir		
+jm_uncommon_1	Healer Maid		
+jm_uncommon_2	Little Girl		
+jm_rare_1	Holy Priest		
+mk_normal	Default		
+mk_common_1	Pumpkin		
+mk_common_2	Blue Nature		
+mk_common_3	Crimson		
+mk_common_4	Ranger		
+mk_uncommon_1	Firework		
+mk_uncommon_2	Private		
+mk_rare_1	True Bloodline		
+rk_normal	Default		
+rk_common_1	Lava Shadow		
+rk_common_2	Iron Crocodile		
+rk_common_3	Star Iris		
+rk_common_4	Chocolate		
+rk_uncommon_1	Old Time		
+rk_uncommon_2	Sky Wing		
+rk_rare_1	Space		
+sp_normal	Default		
+sp_common_1	Cinnamon		
+sp_common_2	Poison		
+sp_common_3	Monochrome		
+sp_common_4	Golden Silk		
+sp_uncommon_1	Blacksmith		
+sp_uncommon_2	Toy Maker		
+sp_rare_1	Sp-00D		
+kr_normal	Default		
+kr_common_1	Cocoa		
+kr_common_2	Thunder		
+kr_common_3	Bloody		
+kr_common_4	Blue Kill		
+kr_uncommon_1	Death Row		
+kr_uncommon_2	Killer In Suit		
+kr_rare_1	Bounty Hunter		
+jz_normal	Default		
+jz_common_1	Cherry		
+jz_common_2	Lady in White		
+jz_common_3	Tropical		
+jz_common_4	Autumn		
+jz_uncommon_1	Spite		
+jz_uncommon_2	Witch		
+jz_rare_1	Shaman		
+wp_normal	Default		
+wp_common_1	Emerald		
+wp_common_2	Hawk		
+wp_common_3	Velvet		
+wp_common_4	Citrus		
+wp_uncommon_1	Secret Agent		
+wp_uncommon_2	Wespe Rock		
+wp_rare_1	Countess		
+acc_angel_1	Aura		
+acc_aura_1	Aura		
+acc_balloon_1	Balloon		
+acc_beard_1	Beard		
+acc_bodylightning_1	Body Lightning		
+acc_bugwing_1	Wing		
+acc_fairy_1	Fairy		
+acc_glasses_1	Glasses 1		
+acc_glasses_2	Glasses 2		
+acc_glasses_3	Glasses 3		
+acc_face_1	Red Blush		
+acc_glove_1	Glove		
+acc_punchlightning_1	Punch Lightning		
+MVPData			
+m_none	In-Game	This player still alive in the match.	
+m_0	Noob	The game ends before doing anything	
+m_1	Hunter	Highly attack and kill the enemy.	
+m_2	Activist	Highly do activities for Rampage points	
+m_3	Deep	Always hide and avoid being attacked.	
+m_4	Perfect Win	Win by collecting 3 flags.	
+m_5	Annihilation	Highly use action item and ability.	
+m_6	Hawk Eye	Highly count of accurate attacking.	
+FinishHim			
+Grave	Grave		
+Helmet	Helmet		
+Doll	Doll		
+Burn	Burn		
+Firework	Firework		
+TutorialData			
+Tutorial Dialog                                                                                                                                                                                                        			
+intro_welcome		Welcome to the Arena of Bugs. This is [[Yippo]], your champion. Tell him what to do!	
+intro_shovel		Let's [[dig]] for an [[item]].	
+intro_seebot		Pay attention to what's going on.	
+intro_holditem		[[Hold down]] on an item for details, try it out!	
+intro_missile		Time to [[fight back!]]	
+intro_timer		Always check your [[time]] and spend it wisely!	
+intro_energy		Good job! You got bonus energy from the flag. Let's try to use an ability.	
+intro_ability		Time to use [[ability!]]	
+intro_letfree		Now you can continue the training by yourself. Go ahead!	
+intro_damage		Oops! Your Life Point remains only 2 points, take care of yourself!	
+Tutorial Infographic                         			
+intro_info_win	How to win	Collect 3 flags. OR Survive through the game and be the last bug standing.	
+intro_info_idle	Idle Items	Supply[n] Drink to fill up energy safely and remain [[hidden]].[n] Shovel[n] Dig for [[something good]] (hopefully). This reveals where you are.[n]	
+intro_info_hide	Hide	Hide and stay out of sight by moving onto a grassy block.[n] Grass[n] Bush[n] Tree	
+intro_info_edge	Move Inward	Stay away from the edges, the champion takes damage from collapsing blocks.	
+intro_info_hint	Hint	When a champion reveals itself, it left a [[Hint]] behind for a while.[n] Since champions could move 1 tile at a time, they must be next to a hint.	
+Tutorial Objective			
+intro_chapter1	What to do		
+intro_chapter2	How to win!		
+tt_obj_dig	Find an Item		
+tt_obj_hide	Move to Hide		
+tt_obj_fight	Fight Back		
+tt_obj_flag	Get The Flag		
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+Others			
+ok	OK!		
+cancel	Cancel		
+timestack	Time Stack		
+notenough_time		Please take a time and comeback to open this chest later.	
+notenough_gacha		Collect {$material} to open this chest!	
+notenough_gift		Let's go to collect the {$item} by joining the competition.	
+summon_confirm		Are you sure to use {$item} for inviting the champion?	
+rent_confirm_inuse		The rental will {@rent_expire}. Are you sure to start renting again?	
+rent_expire		expire in {$time}	
+rent_confirm		Are you sure to rent {$character} now?	
+exchange_confirm	Exchange	Are you sure to exchange your things to the {$item}?	
+deal_confirm	Deal	Are you sure accept this deal to get the {$item}?	
+room_exit_confirm	Exit Room	Are you sure to exit from this matchmaking?	
+tutorial_skip_confirm		Are you sure you want to skip the tutorial?	
+logout_confirm		Are you sure you want to log out?	
+leave_confirm		Are you sure you want to leave the match?	
+quit_confirm		Are you sure you want to quit the game?	
+language_confirm	Language	Are you sure you want to switch the language to  {$language}?	
+popup_newcharacter		The new champion is here for you!	
+popup_reward	Reward	You got the {$item}.	
+popup_rewards	Rewards	You got {$amount} {$item}s.	
+Information			
+info_blessing	Blessing Bonus	Golden clovers are blessings from heaven. Every champion will receive it and grants more rewards!	
+info_mvp	Role Playing Style	Role playing style that you got from end of the match is relate with your behavior in the arena. 	
+info_permission	Private Room	The private room will allow only your friends to join and play together, The game rewards are don't similar to the public room.	
+info_finishhim	Finishing Shot	Finishing shot is the cool shot that will appear when you kill someone! Choose one that you want to show off.	
+info_state_move	Move	Select a block to move.	
+info_state_use	Use Something	Use an item or ability.	
+			
+			
+			
+			
+			
+			
+			
+			
+Error Handle			
+error_notenough			
+error_roomclosed		Room is closed!	
+error_inroom	Can't Join!	You are in matchmaking, cannot join to another room.	
+room_kicked		The host has kicked you from the matchmaking. Keep calm, just find new!	
+login_empty		Please enter your user name and password.	
+login_incorrect		Please enter the correct password.	
+login_fb_fail		Facebook login failed, please try again.	

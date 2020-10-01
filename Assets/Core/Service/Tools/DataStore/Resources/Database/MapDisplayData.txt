@@ -1,0 +1,21 @@
+isEnable	MapID	Name	Description	Background	FeatureBlocks	FeatureEnvironments	LevelUnlock	isDefaultMaps	isDisplayOnPage	Acquirement
+TRUE	training2	Training Ground		Background - YippoHome			0	FALSE	FALSE	Free
+TRUE	random	Random		Background - YippoHome			0	FALSE	TRUE	Free
+TRUE	duel_freestyle	Playground		Background - YippoHome			0	TRUE	TRUE	Free
+TRUE	greenfield	Green Field		Background - YippoHome			2	FALSE	TRUE	Free
+TRUE	greener_gardens	Greener Garden		Background - YippoHome			2	FALSE	TRUE	Free
+TRUE	x-cross	X-cross		Background - YippoHome			5	FALSE	TRUE	Free
+TRUE	duel_water	Small Pool		Background - YippoHome			5	FALSE	TRUE	Free
+TRUE	duel_sand	Starfield		Background - Mikehome			7	FALSE	TRUE	Free
+TRUE	freestyle	Greensward		Background - LogStadium	block_1	env_0	0	TRUE	TRUE	Free
+TRUE	break	2 Caps		Background - LogStadium		env_6	5	FALSE	TRUE	Free
+TRUE	2sides	2 Sides		Background - LogStadium		env_9	5	FALSE	TRUE	Free
+TRUE	woodland	Woodland		Background - LogStadium			5	FALSE	TRUE	Free
+TRUE	swamp	Wetland		Background - LogStadium	block_4	env_10,env_5	10	FALSE	TRUE	Free
+TRUE	orchid	Orchid		Background - LogStadium			10	FALSE	TRUE	Free
+TRUE	desert	Badland		Background - Mikehome	block_3,block_2		7	FALSE	TRUE	Free
+TRUE	jungle	Jungle		Background - LogStadium			10	FALSE	TRUE	Free
+TRUE	battlecry	Battle Cry		Background - LogStadium			10	FALSE	TRUE	Free
+TRUE	driftwood	Driftwood		Background - LogStadium			0	FALSE	TRUE	Free
+TRUE	summer	Summer		Background - LogStadium			0	FALSE	TRUE	Free
+TRUE	classic_survival	Classic Survival		Background - LogStadium			5	FALSE	TRUE	Free

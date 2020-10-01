@@ -1,0 +1,9 @@
+isEnable	CharacterID	Name	Description	Species	Party	Roles	AbilityIDs	RentPrice	BuyPrice	EnergyCharge	isAvailable
+TRUE	cha_0	Yippo		Caterpillar	savior	Fighter / Jungler	ab_yip_0,ab_pass_2,ab_yip_1,ab_pass_0,ab_yip_2,ab_pass_10,ab_yip_4,ab_yip_3	1	2	9	TRUE
+TRUE	cha_1	Jamie		Moth	savior	Support / Disabler 	ab_jam_0,ab_jam_2,ab_jam_3,ab_pass_11,ab_jam_6,ab_jam_4,ab_jam_5,ab_jam_1	1	2	9	TRUE
+TRUE	cha_2	Mike		Ladybug(?)	savior	Nuker / AOE	ab_mike_1,ab_mike_0,ab_mike_2,ab_pass_1,ab_mike_3,ab_pass_6,ab_mike_4,ab_mike_5	1	2	9	TRUE
+TRUE	cha_3	Rockko		Rhino Beetle	savior	Nuker / AOE / Initiator	ab_rock_1,ab_rock_0,ab_pass_0,ab_rock_2,ab_pass_6,ab_rock_3,ab_rock_4,ab_rock_5	1	2	9	TRUE
+TRUE	cha_4	Spood		Spider	alpha	Disabler / Ganker	ab_spo_0,ab_spo_1,ab_spo_2,ab_pass_1,ab_pass_0,ab_spo_3,ab_spo_4,ab_spo_5	1	5	9	TRUE
+TRUE	cha_5	Kirov		Mantis	alpha	Carry / Escape	ab_kirov_0,ab_kirov_1,ab_pass_7,ab_pass_6,ab_pass_9,ab_kirov_2,ab_kirov_3,ab_kirov_4	1	5	9	TRUE
+TRUE	cha_6	Jezzika		Mosquito	alpha	Roamer / Ganker	ab_jzi_0,ab_jzi_1,ab_jzi_2,ab_pass_1,ab_pass_0,ab_pass_3,ab_jzi_3,ab_jzi_4	1	5	9	TRUE
+TRUE	cha_7	Wespe		Waspe	alpha	Semi-Carry / Escape 	ab_wp_0,ab_wp_1,ab_wp_2,ab_pass_7,ab_pass_8,ab_wp_5,ab_wp_3,ab_wp_4	1	5	9	TRUE

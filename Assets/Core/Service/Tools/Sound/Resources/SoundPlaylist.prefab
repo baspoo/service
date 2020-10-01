@@ -1,0 +1,1142 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1398398809376732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4857783173461736}
+  - component: {fileID: 5746758883339821206}
+  - component: {fileID: 114227688766174296}
+  m_Layer: 0
+  m_Name: SoundPlaylist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4857783173461736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398398809376732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &5746758883339821206
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398398809376732}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &114227688766174296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398398809376732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ff8152ec8c62c4390fce29910dd30f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundmusic:
+    bgm_mainmenu:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E1E\u0E37\u0E49\u0E19\u0E2B\u0E25\u0E31\u0E07
+        \u0E40\u0E21\u0E19\u0E40\u0E21\u0E19\u0E39"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 9b944d4be03e03c4aa10b78f19e9da93, type: 3}
+      message: "\u0E40\u0E1E\u0E25\u0E07\u0E1E\u0E37\u0E49\u0E19\u0E2B\u0E25\u0E31\u0E07\u0E2A\u0E33\u0E2B\u0E23\u0E31\u0E1A\u0E2B\u0E19\u0E49\u0E32\u0E40\u0E21\u0E19\u0E40\u0E21\u0E19\u0E39\n\n\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E40\u0E14\u0E35\u0E48\u0E22\u0E27\u0E44\u0E21\u0E48\u0E21\u0E35\u0E41\u0E22\u0E01\u0E42\u0E17\u0E19\n"
+      tag: 
+  playlist:
+    sfx_click:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: c72957dce2ba9bc4ea10b6f2214aee15, type: 3}
+      message: 
+      tag: 
+    sfx_select:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: e8ff66603c9117d4f966dc6777de9744, type: 3}
+      message: 'gfdgfd
+
+        fdgdfg
+
+        fdgdfg
+
+        dfgfdg
+
+        dfgfdg
+
+        dfgfdg'
+      tag: 
+    sfx_onTurn:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8d7f7487296f3184a973d8337efb9c71, type: 3}
+      message: 
+      tag: 
+    sfx_onEndTurn:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 144c8d13dc86c2f408bb27bf827ad9b1, type: 3}
+      message: 
+      tag: 
+    sfx_onChangeState:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 390410c7b62684248aa1a98bee3c61b4, type: 3}
+      message: 
+      tag: 
+    sfx_timeout:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 47676bde1f08f48499c5d8c12e7970e2, type: 3}
+      message: 
+      tag: 
+    sfx_timeWarning:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 39bb5073eefbb440b83f6815fb32470e, type: 3}
+      message: 
+      tag: 
+    sfx_welcome:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ad9dfe57ccc9b2e4693fef8454880fb4, type: 3}
+      message: 
+      tag: 
+    sfx_room_matching:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ecd58f0559527a44c9b66aaf540c8753, type: 3}
+      message: 
+      tag: 
+    sfx_room_letgo_onReady:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_room_letgo_onAllReady:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: c54781eeffd1805488001c3f332496af, type: 3}
+      message: 
+      tag: 
+    sfx_room_letgo_startEffect:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8f3ef63a3508af5489ee39c7a0753975, type: 3}
+      message: 
+      tag: 
+    sfx_room_letgo_stayEffect:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: cf08a4e46c460e3489b901b34b78e3c2, type: 3}
+      message: 
+      tag: 
+    sfx_room_letgo_numbercountdown:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E41\u0E15\u0E4A\u0E01\u0E46\u0E46 \u0E15\u0E2D\u0E19\u0E19\u0E31\u0E1A\u0E40\u0E04\u0E49\u0E32\u0E14\u0E32\u0E27"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 4442bd67c88441847851d1b1fb4ff6c1, type: 3}
+      message: 
+      tag: 
+    sfx_room_letgo_startgame:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19 goodluck"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 4e83a2cf9afbc92429b77fd24722cfc4, type: 3}
+      message: 
+      tag: 
+    sfx_runingPoints:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 6baba3909218f8e42b05bb15c4816831, type: 3}
+      message: 
+      tag: 
+    sfx_movepage:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 03fffb15c587078438f2037e64f6e201, type: 3}
+      message: 
+      tag: 
+    sfx_openBag:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 408d158e1e28aaf40afc907b1e59ab67, type: 3}
+      message: 
+      tag: 
+    sfx_get_lvup:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 9689a3b7a323b5746a1253759ccd6bd1, type: 3}
+      message: 
+      tag: 
+    sfx_get_characterlvup:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: fa2dd444e555cd1488120fc25695dfd8, type: 3}
+      message: 
+      tag: 
+    sfx_reward_lvup:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25
+        lvup \u0E40\u0E14\u0E49\u0E07\u0E02\u0E36\u0E49\u0E19\u0E21\u0E32"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_claim_lvup:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19 Claim \u0E1B\u0E31\u0E4A\u0E21\u0E25\u0E07\u0E44\u0E1B"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 5cdf9be8d10e34c51afbf155285bbc82, type: 3}
+      message: 
+      tag: 
+    sfx_reward_small:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25 \u0E40\u0E25\u0E47\u0E01"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: fa2dd444e555cd1488120fc25695dfd8, type: 3}
+      message: 
+      tag: 
+    sfx_reward_medium:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25 \u0E01\u0E25\u0E32\u0E07"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: c778cefaf64a4274d98293c25f8bf3c7, type: 3}
+      message: 
+      tag: 
+    sfx_reward_big:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25 \u0E43\u0E2B\u0E0D\u0E48"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1a877b100fc5f7644a7d48e4e085144a, type: 3}
+      message: 
+      tag: 
+    sfx_get_reward:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25\u0E1E\u0E38\u0E48\u0E07\u0E02\u0E36\u0E49\u0E19\u0E21\u0E32"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 3e70061cc1265f441a18b745f94363d0, type: 3}
+      message: 
+      tag: 
+    sfx_get_gem:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: f082224217da6ac48b481901806cafb1, type: 3}
+      message: 
+      tag: 
+    sfx_buy:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_reward_exp_update_pilot:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19 exp \u0E02\u0E36\u0E49\u0E19\u0E42\u0E0A\u0E27\u0E4C\u0E19\u0E33"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8383df3d39f88b044ba713da3e183448, type: 3}
+      message: 
+      tag: 
+    sfx_reward_exp_update_real:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19 exp \u0E08\u0E23\u0E34\u0E07\u0E44\u0E2B\u0E25\u0E02\u0E36\u0E49\u0E19\u0E15\u0E32\u0E21"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_rankShowup:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1fe5a4d20cbc0d84599f8f11359d59eb, type: 3}
+      message: 
+      tag: 
+    sfx_rankRunning:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 767a0ee7ab4fa2342bc3a7338d2e88f8, type: 3}
+      message: 
+      tag: 
+    sfx_rankUp:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1a877b100fc5f7644a7d48e4e085144a, type: 3}
+      message: 
+      tag: 
+    sfx_mvpShowup:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_open_longdialog:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 03fffb15c587078438f2037e64f6e201, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_open_shortdialog:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 5cdf9be8d10e34c51afbf155285bbc82, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_next:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: f728d17bba393c548b21b7ab4a7d1be0, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_objective_open:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 0b73e599352dc344792ee45a6cae7238, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_objective_active:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 02f7eb433da6e174faa934960d9454fb, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_objective_complete:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_tutorial_objective_completeall:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: fa2dd444e555cd1488120fc25695dfd8, type: 3}
+      message: 
+      tag: 
+    sfx_message_onchatbar:
+      name: "message \u0E43\u0E19\u0E2B\u0E49\u0E2D\u0E07\u0E41\u0E0A\u0E17"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: c54781eeffd1805488001c3f332496af, type: 3}
+      message: 
+      tag: 
+    sfx_message_onchatbox:
+      name: "message \u0E01\u0E25\u0E48\u0E2D\u0E07\u0E02\u0E49\u0E2D\u0E04\u0E27\u0E32\u0E21
+        \u0E1A\u0E31\u0E25\u0E40\u0E1A\u0E34\u0E25"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8be6fc64cbd0f5444ad169766870a8c1, type: 3}
+      message: 
+      tag: 
+    sfx_ping:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 06e3b290552e4cd4097e39b520ea982b, type: 3}
+      message: 
+      tag: 
+    sfx_pin:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 0a10de4cf06fb62449b812ba55626afc, type: 3}
+      message: 
+      tag: 
+    sfx_notif:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: b55fb7f7225810948801f3e1b355e19d, type: 3}
+      message: 
+      tag: 
+    sfx_loginfinish:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 0}
+      message: 
+      tag: 
+    sfx_loginfail:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 0}
+      message: 
+      tag: 
+    sfx_disconnect:
+      name: "\u0E15\u0E2D\u0E19\u0E04\u0E19\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E40\u0E01\u0E21\u0E44\u0E1B
+        \u0E23\u0E30\u0E2B\u0E27\u0E48\u0E32\u0E07\u0E40\u0E25\u0E48\u0E19"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 053d07589cfe63e47842eff4c0e05b34, type: 3}
+      message: 
+      tag: 
+    sfx_error_network:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 053d07589cfe63e47842eff4c0e05b34, type: 3}
+      message: 
+      tag: 
+    sfx_player_join_room:
+      name: "\u0E15\u0E2D\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E25\u0E48\u0E19\u0E40\u0E02\u0E49\u0E32\u0E21\u0E32\u0E43\u0E19\u0E2B\u0E49\u0E2D\u0E07
+        waitingroom"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: da6495147c1ff3d468e745f0bf9fb00e, type: 3}
+      message: 
+      tag: 
+    sfx_player_exit_room:
+      name: "\u0E15\u0E2D\u0E19\u0E1C\u0E39\u0E49\u0E40\u0E25\u0E48\u0E19\u0E2D\u0E2D\u0E01\u0E08\u0E32\u0E01\u0E2B\u0E49\u0E2D\u0E07
+        waitingroom"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8f3ef63a3508af5489ee39c7a0753975, type: 3}
+      message: 
+      tag: 
+    sfx_hits:
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1a94ebf191532ad4586252a67c9d2b75, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8cc9b673884ca8e43883ed906cb88872, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: be22ca49ff885d246861b750e0b0a0ef, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: abd68c537b1ed6e43a2634d03d00d2fd, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 2fcc203a9d991534bbaf8f4659660c41, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 9cf3f67d14a5b2c44a2df13044778222, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: edda817eb7c27284dbe529396ec2bb71, type: 3}
+      message: 
+      tag: 
+    sfx_hitOpenblocks:
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1a94ebf191532ad4586252a67c9d2b75, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8cc9b673884ca8e43883ed906cb88872, type: 3}
+      message: 
+      tag: 
+    sfx_hitShocks:
+    - name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E01\u0E43\u0E08\u0E40\u0E27\u0E25\u0E32
+        \u0E42\u0E14\u0E19\u0E42\u0E08\u0E21\u0E15\u0E35\u0E41\u0E1A\u0E1A\u0E44\u0E21\u0E48\u0E21\u0E35\u0E14\u0E23\u0E32\u0E40\u0E21\u0E08"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: f914b229e90405246b0e823f1b306bf3, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 435269676326dcc4e9c532e136b56fe1, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ab8c93347d1ac0d4885eb85155524285, type: 3}
+      message: 
+      tag: 
+    sfx_rea_CrowdApplauseOnHits:
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 102dd536e0a19014b80f62dbf1c516d2, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ea7bd131af67e0a41833693379ba54d8, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1d8f15498e302844ab2eb4ded044bef0, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 2d587b9156562d5419dd1bfd67d2443e, type: 3}
+      message: 
+      tag: 
+    sfx_papers:
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 02f7eb433da6e174faa934960d9454fb, type: 3}
+      message: 
+      tag: 
+    - name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 0b73e599352dc344792ee45a6cae7238, type: 3}
+      message: 
+      tag: 
+    sfx_openBlocks:
+    - name: Default
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ce6b54c77bf24684ca011e074640806b, type: 3}
+      message: 
+      tag: 
+    - name: Grass
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 4556d42ed9ab2424dbca272270559f18, type: 3}
+      message: 
+      tag: block_1
+    - name: Ground
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ce6b54c77bf24684ca011e074640806b, type: 3}
+      message: 
+      tag: block_2
+    - name: Quicksand
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 504c3fb7466c2ca44b52505179b63c17, type: 3}
+      message: 
+      tag: block_3
+    - name: Pond
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 6d6f988c7f90bca4bbeef30b86705ea6, type: 3}
+      message: 
+      tag: block_4
+    - name: Rock
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ce6b54c77bf24684ca011e074640806b, type: 3}
+      message: 
+      tag: block_5
+    sfx_openBlockGetReward:
+      name: "\u0E40\u0E1B\u0E34\u0E14\u0E1A\u0E25\u0E4A\u0E2D\u0E01\u0E44\u0E14\u0E49\u0E23\u0E32\u0E07\u0E27\u0E31\u0E25"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: e1c749ab61d143948a7232d975c98f3c, type: 3}
+      message: 
+      tag: 
+    sfx_movebody:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 4287f10ecb9e2844ca1b9553f0231b74, type: 3}
+      message: 
+      tag: 
+    sfx_throl:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 9890f3a2f5b07104ba9c0975928b2e0b, type: 3}
+      message: 
+      tag: 
+    sfx_blockselect:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: f728d17bba393c548b21b7ab4a7d1be0, type: 3}
+      message: 
+      tag: 
+    sfx_gameActivitys:
+    - name: "\u0E40\u0E2A\u0E35\u0E22\u0E07 danger \u0E15\u0E2D\u0E19 event"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8a83020a358c4fe43b511c04f6f97718, type: 3}
+      message: 
+      tag: danger
+    - name: "\u0E40\u0E2A\u0E35\u0E22\u0E07 spawn \u0E15\u0E2D\u0E19 event"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ff9a629087c66544087592f243cc23ec, type: 3}
+      message: 
+      tag: spawn
+    sfx_rampagepoint:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ab954d0507040e44583934b68985f23b, type: 3}
+      message: 
+      tag: 
+    sfx_flagwin:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19\u0E40\u0E23\u0E32\u0E40\u0E01\u0E47\u0E1A\u0E18\u0E07\u0E44\u0E14\u0E49"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 0}
+      message: 
+      tag: 
+    sfx_flaglose:
+      name: "\u0E40\u0E2A\u0E35\u0E22\u0E07\u0E15\u0E2D\u0E19\u0E04\u0E19\u0E2D\u0E37\u0E48\u0E19\u0E40\u0E01\u0E47\u0E1A\u0E18\u0E07\u0E44\u0E14\u0E49"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 0}
+      message: 
+      tag: 
+    sfx_winner:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: da42d71457cab468f8c08184d955073f, type: 3}
+      message: 
+      tag: 
+    sfx_loser:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: a1895c95fa0ea40ada1f0447b7c1ba99, type: 3}
+      message: 
+      tag: 
+    sfx_energyChange:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: f700d9db99ab74b408dd2682aad20e2a, type: 3}
+      message: 
+      tag: 
+    sfx_energyAccept:
+      name: "\u0E01\u0E14\u0E23\u0E31\u0E1A energy"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 0056af43c800f6c499db1d0b9c9d5e91, type: 3}
+      message: 
+      tag: 
+    sfx_energyMovefinish:
+      name: "\u0E15\u0E2D\u0E19 energy \u0E25\u0E07\u0E44\u0E1B\u0E16\u0E36\u0E07\u0E2B\u0E25\u0E2D\u0E14\u0E41\u0E25\u0E49\u0E27"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1fe5a4d20cbc0d84599f8f11359d59eb, type: 3}
+      message: 
+      tag: 
+    sfx_skillReady:
+      name: "\u0E40\u0E21\u0E37\u0E48\u0E2D\u0E2A\u0E01\u0E34\u0E25\u0E1E\u0E23\u0E49\u0E2D\u0E21"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ea810c0fbdfbda64891f152bbe9b664f, type: 3}
+      message: 
+      tag: 
+    sfx_combatSchema:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 1f2cf07aaf188e04d8535efd3f65b55a, type: 3}
+      message: 
+      tag: 
+    sfx_combatAnimation:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 0}
+      message: 
+      tag: 
+    sfx_leaf:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 6b5e14b6447b4b74e9ea72b6bf8fd154, type: 3}
+      message: 
+      tag: 
+    sfx_starttaunt:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: af6f8e5dfc241a344bd80eb23f22fda7, type: 3}
+      message: 
+      tag: 
+    sfx_readyGo:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 42119d44e060b6049a97715120f9903e, type: 3}
+      message: 
+      tag: 
+    sfx_groundUp:
+      name: "\u0E1E\u0E37\u0E49\u0E19\u0E22\u0E01\u0E02\u0E36\u0E49\u0E19\u0E15\u0E2D\u0E19\u0E40\u0E23\u0E34\u0E48\u0E21\u0E40\u0E01\u0E21"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: d894f26b9f01b93479ed2adb9436bcbf, type: 3}
+      message: 
+      tag: 
+    sfx_openPocket:
+      name: "\u0E15\u0E2D\u0E19\u0E40\u0E1B\u0E34\u0E14\u0E01\u0E23\u0E30\u0E40\u0E1B\u0E4B\u0E32Pocket\u0E23\u0E31\u0E1A\u0E02\u0E2D\u0E07"
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: fa2dd444e555cd1488120fc25695dfd8, type: 3}
+      message: 
+      tag: 
+    sfx_unhide:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: c54781eeffd1805488001c3f332496af, type: 3}
+      message: 
+      tag: 
+    sfx_baseballhit:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 5a259fa85853d9d429b36551eeb4b5a7, type: 3}
+      message: 
+      tag: 
+    sfx_boom:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 05b0ed93d11ce11498f40c51fd904fd2, type: 3}
+      message: 
+      tag: 
+    sfx_airbooming:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: d4a6bef3ecb9c174b90af224276c019c, type: 3}
+      message: 
+      tag: 
+    sfx_gunatk:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 642d4e3e3431f8c4089af3edfb5089e5, type: 3}
+      message: 
+      tag: 
+    sfx_meleeHit:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 2c94d7dafa3d5644ea734c2e31f09806, type: 3}
+      message: 
+      tag: 
+    sfx_meleeSword:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ba977d0158382c847a1fda3217d3dd27, type: 3}
+      message: 
+      tag: 
+    sfx_heal:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 767a0ee7ab4fa2342bc3a7338d2e88f8, type: 3}
+      message: 
+      tag: 
+    sfx_powerup:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: ce67e1c2115f7854d9835f9853b0f954, type: 3}
+      message: 
+      tag: 
+    sfx_lighting:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 17aaffda3f2c46e4899c22aab3510c27, type: 3}
+      message: 
+      tag: 
+    sfx_scaner:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 3470c949f150ca443a25b398ac0add9b, type: 3}
+      message: 
+      tag: 
+    sfx_armor:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: fee9b76c70cd4cc48998e92d0e29a301, type: 3}
+      message: 
+      tag: 
+    sfx_armorDis:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: abda21de5e4b5294f8752cd1d2054e10, type: 3}
+      message: 
+      tag: 
+    sfx_trapBoom:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 08d39b74ebd365d4389386c26aaabbb7, type: 3}
+      message: 
+      tag: 
+    sfx_dig:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 85d5004700521124184b45c81d983f2b, type: 3}
+      message: 
+      tag: 
+    sfx_earthquake:
+      name: 
+      isEnable: 0
+      isPlay: 0
+      clip: {fileID: 8300000, guid: 8a327b0a41f2a1742aff036c9ab541a0, type: 3}
+      message: 
+      tag: 
+  SoundOther:
+  - groupname: Background
+    Refs:
+    - name: Background - TrainingGround
+      refobject: {fileID: 3304101891184138518, guid: 762c455a38446894b95b8d5a50abe25e,
+        type: 3}
+    - name: Background - LogStadium
+      refobject: {fileID: 8958687332933376369, guid: 40f078df435d51d419f8c14dcb7f71fd,
+        type: 3}
+  - groupname: Action
+    Refs:
+    - name: baseball
+      refobject: {fileID: 1195369140799404, guid: 483cc9fff3ddc514ea1ae0f894089974,
+        type: 3}
+    - name: beer-head
+      refobject: {fileID: 1368766288421804, guid: 43b1b3afd59229a4e850dddf0a0c5cce,
+        type: 3}
+    - name: bomb-airstrike
+      refobject: {fileID: 1852981090165994, guid: 5d2e3f9d6e4ba144bb5c96efab5c2c0d,
+        type: 3}
+    - name: bomb-grenade
+      refobject: {fileID: 1303459917988314, guid: a6c92053875609145841719436794a80,
+        type: 3}
+    - name: bomb-missile
+      refobject: {fileID: 1191735131463390, guid: 48ed375b6b71b9743abdbba14d7e5d73,
+        type: 3}
+    - name: bomb-missile-canon
+      refobject: {fileID: 1931658135554370, guid: 4c20e25a5339db94baf199f2340cad19,
+        type: 3}
+    - name: bomb-missile-canon-act
+      refobject: {fileID: 1931658135554370, guid: 486a238bc40d2dd4195eeff45c41554d,
+        type: 3}
+    - name: bomb-molotovcocktail
+      refobject: {fileID: 1704934565622156, guid: 75ce5e000bb91124bbbd105b983ad86b,
+        type: 3}
+    - name: bomb-rkg
+      refobject: {fileID: 1027835500181614, guid: 379671471cb76294e890036622b4781a,
+        type: 3}
+    - name: bomb-rkg-split
+      refobject: {fileID: 1584126463733004, guid: 1962d0f8ad025cc48ba69ee1960fb232,
+        type: 3}
+    - name: bomb-silent
+      refobject: {fileID: 1382708196522310, guid: f99a0db713d72b64d8c3e9d309fa9ef0,
+        type: 3}
+    - name: boomerang
+      refobject: {fileID: 1019257573897020, guid: 2db944ffcd6a70949bd8b8022d7473a5,
+        type: 3}
+    - name: buff-armor-absorb
+      refobject: {fileID: 1352643704529960, guid: b717baf9faaa3dd46b6147841cdb07fd,
+        type: 3}
+    - name: buff-armor-prison
+      refobject: {fileID: 1280354320494664, guid: cfc9f2741a580264b8991581f9ef1b6f,
+        type: 3}
+    - name: buff-armor-shield
+      refobject: {fileID: 1287992944575636, guid: 44fb3348d2e74c04c97775df37d5be41,
+        type: 3}
+    - name: canonBomb
+      refobject: {fileID: 1443327379528062, guid: 30c2cc9f6d3168b42ba5046efb3939c6,
+        type: 3}
+    - name: dig
+      refobject: {fileID: 1227226749190710, guid: 3389587c1c9e0974fbf13140662fbe15,
+        type: 3}
+    - name: energybooster
+      refobject: {fileID: 1616362431412500, guid: 4d48a181443d4ee489519a0a7d87bca2,
+        type: 3}
+    - name: heal-apple
+      refobject: {fileID: 1022387516792314, guid: 8c422e0e03741ad4482493699f5348c9,
+        type: 3}
+    - name: hunt-scaner
+      refobject: {fileID: 1128739462212028, guid: ba59addca4ac4da4285cd1307b2b7494,
+        type: 3}
+    - name: lightning
+      refobject: {fileID: 1456240420788760, guid: 678143e0633fd2645944907399c07596,
+        type: 3}
+    - name: scaner
+      refobject: {fileID: 1823515828972464, guid: 08ee5b66c109e744ebacce294e951cda,
+        type: 3}
+    - name: sword-impact
+      refobject: {fileID: 1475702927451740, guid: 5b5f559588fab3342aa4a2b246e4bcf8,
+        type: 3}
+    - name: sword-machete
+      refobject: {fileID: 1254952718658788, guid: 4b58d3dd22e448d4eb9e1278f7b3e3a1,
+        type: 3}
+    - name: caster-turbo
+      refobject: {fileID: 1467009808581508, guid: e780170bf8e2e3743a5a2653552e5c5c,
+        type: 3}
+  - groupname: Environment
+    Refs:
+    - name: firewall
+      refobject: {fileID: 1709990730100802, guid: 9a8b6505db0bb964bb48445a6c51146d,
+        type: 3}
+    - name: landmine
+      refobject: {fileID: 1005420314080562, guid: a054425a1e35a2045b392ff6bec31e45,
+        type: 3}
+    - name: landmine - split
+      refobject: {fileID: 1005420314080562, guid: fef58673f404ab348a32ceee41e24a27,
+        type: 3}
+    - name: prison
+      refobject: {fileID: 1324146257882464, guid: b83861e0fca6c8048bc4d126189bce1f,
+        type: 3}
+    - name: scarecrow
+      refobject: {fileID: 1106070196665162, guid: 517366150a7c8b741ba50ffccdc3f127,
+        type: 3}
+    - name: sping
+      refobject: {fileID: 1295835271820724, guid: 0eb6b468b5fa82748896f174bcc45de0,
+        type: 3}
+    - name: airDrop
+      refobject: {fileID: 1178480388839736, guid: eeb94e1426d82554c98ebc6f1b49ec0f,
+        type: 3}
+    - name: Rune-Rampage
+      refobject: {fileID: 1994212926807970, guid: d549d415cd62ea54d92b27c104d9922f,
+        type: 3}
+    - name: moonFlower
+      refobject: {fileID: 1217832475268144, guid: 7a3b744a8c797714d9b69d17f4f6d85c,
+        type: 3}
+    - name: sunFlower
+      refobject: {fileID: 1611652459065524, guid: e4b2314f44e76a6489f12a035746fb89,
+        type: 3}
+    - name: bridge
+      refobject: {fileID: 1887104560993928, guid: f944c01dd65d72a44b09cd8343c92a80,
+        type: 3}
+    - name: bush
+      refobject: {fileID: 1311348091311718, guid: 373cd98bbbab7f94b8fc35e4c3ebf3c2,
+        type: 3}
+    - name: flytrap
+      refobject: {fileID: 1535777706167478, guid: 1fef14fe728a9ad4c8c8c1b694008701,
+        type: 3}
+    - name: grass
+      refobject: {fileID: 1592263901372144, guid: fb0032f05b5e44f4e892f2bcdc6622f3,
+        type: 3}
+    - name: log
+      refobject: {fileID: 1556745622682074, guid: 6780c0949b3264e44b428143e958331e,
+        type: 3}
+    - name: pepsi
+      refobject: {fileID: 1288159061357424, guid: ac2cb291b90cac343afd379e49b90f83,
+        type: 3}
+    - name: ramp
+      refobject: {fileID: 1933948574380926, guid: 5b74bec8b70586b4786596072b553628,
+        type: 3}
+    - name: rock1
+      refobject: {fileID: 1054265984794814, guid: 2c32370a135ca834a85ff6c2c6cb8fa9,
+        type: 3}
+    - name: rock2
+      refobject: {fileID: 1944773510001932, guid: add7838c4d867324a96f3daae8b66ed0,
+        type: 3}
+    - name: rock3
+      refobject: {fileID: 1205048789295864, guid: 9976005a735f9464eae449324f131f2b,
+        type: 3}
+    - name: sapling
+      refobject: {fileID: 1538128391952462, guid: 10dce4441cba5ed4ba50b3161efd129d,
+        type: 3}
+    - name: tank
+      refobject: {fileID: 1652554543197172, guid: 5522724b1f8669543a1978deb8956109,
+        type: 3}
+    - name: tree 1
+      refobject: {fileID: 1440063437167342, guid: 18174264ffd4955429e43acae05ebb27,
+        type: 3}
+    - name: tree 2
+      refobject: {fileID: 1018562082910654, guid: 8c9cbb3a8dc026a4dbad626f809b8770,
+        type: 3}
+    - name: winner
+      refobject: {fileID: 1410716668923010, guid: 800517de4f1c42d46a4d286efe256c50,
+        type: 3}
+  - groupname: Taunt
+    Refs:
+    - name: Taunt-Ball
+      refobject: {fileID: 1617497885920586, guid: 127c17a8e1fb8934d90e9262ee4e3f48,
+        type: 3}
+    - name: Taunt-Chicken
+      refobject: {fileID: 1034859271385598, guid: 07b854efd505d5940bc5db97e0c0ad38,
+        type: 3}
+    - name: Taunt-CrossRip
+      refobject: {fileID: 1393900514590548, guid: 4efb1a4115e15e8449f5987d08208a5d,
+        type: 3}
+    - name: Taunt-fuck
+      refobject: {fileID: 1491546079777430, guid: d995822195b9335479cf0776eaeab81b,
+        type: 3}
+  - groupname: Arena Intro Sound
+    Refs:
+    - name: Arena-Intro
+      refobject: {fileID: 4968546663474140245, guid: dbb6bdf607919534587fe0305684d4e4,
+        type: 3}
+  - groupname: Loading
+    Refs:
+    - name: Loading-Page
+      refobject: {fileID: 1106539364123512, guid: 7530dc9e1326f1d40abec4c37950d95f,
+        type: 3}
+  - groupname: Gacha
+    Refs:
+    - name: (Obj) - GachaOpeningScene
+      refobject: {fileID: 7054634675137001802, guid: 9266c3865187fb7488a98f45057d94e3,
+        type: 3}
+    - name: (Obj) - CharacterOpeningScene
+      refobject: {fileID: 6252523749469421440, guid: ac122d1cd7427b740946ccc3388e78f3,
+        type: 3}

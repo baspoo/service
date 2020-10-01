@@ -1,0 +1,58 @@
+isEnable	LessonType	TutorialID	Description	DialogStyle	DialogAnchor	FocusTargetID	FocusStyle	FixLocation	FixSequence	TimeWaiting	TimeNext	Formula	isNextByDialog	isMarkConsole	isCheckPoint
+TRUE	intro	intro_00	-	none	none		none		intro_arena	0	0		FALSE	FALSE	FALSE
+TRUE	intro	intro_welcome	Welcome to the Arena of Bugs. This is [[Yippo]], your champion. Tell him what to do!	longText	bottom		none		none	1	0		TRUE	FALSE	FALSE
+TRUE	intro	intro_info_win	Display Info: Ways to wins	infoGraphic	center		black		none	0.4	0	name:'Ways-Content',style:'basic'	TRUE	FALSE	FALSE
+TRUE	intro	intro_03	-	none	none		none		intro_startfirstturn	0	2	action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_chapter1	What to do	objectives	center		black		objective_display	0.2	0	objective:'dig,hide'	FALSE	FALSE	FALSE
+TRUE	intro	intro_05	Active Objective: Find Items	objectives	center		black		objective_active	0	0	objective:'dig'	TRUE	FALSE	FALSE
+TRUE	intro	intro_info_idle	Display Info: Supply and Shovel	infoGraphic	center		black		none	2	0	name:'Stay-Content',style:'content_idle'	TRUE	FALSE	FALSE
+TRUE	intro	intro_shovel	Let's [[dig]] for an [[item]]. 	shortText	#(-190,206,0)	intro_shovel	none		intro_useitem	1.4	0	action:'act_5'	FALSE	FALSE	FALSE
+TRUE	intro	intro_08	-	none	none	intro_dig	follow		intro_selecttarget	0.2	0	blockID:34	FALSE	TRUE	FALSE
+TRUE	intro	intro_09	-	none	none	intro_confirm	none		intro_confirm	0.4	0	isMultiple:'true'	FALSE	TRUE	FALSE
+TRUE	intro	intro_10	-	none	none		none		intro_endaction	0.2	1		FALSE	FALSE	FALSE
+TRUE	intro	intro_11	Complete Objective: Stay HIdden	objectives	center		black		objective_complete	1.2	2	objective:'dig'	TRUE	FALSE	FALSE
+TRUE	intro	intro_12	Active Objective:  Hide in Grass	objectives	center		black		objective_active	0	0	objective:'hide'	TRUE	FALSE	FALSE
+TRUE	intro	intro_info_hide	Display Info: Hide	infoGraphic	center		black		none	0.4	0	name:'Hide-Content',style:'content_hide'	TRUE	FALSE	FALSE
+TRUE	intro	intro_14	-	none	none	intro_move	follow		intro_move	1	0	blockID:26	FALSE	TRUE	FALSE
+TRUE	intro	intro_15	-	none	none	intro_confirm	none		intro_confirm	0.4	0	isMultiple:'true'	FALSE	TRUE	FALSE
+TRUE	intro	intro_16	Complete Objective: Hide in Grass	objectives	center		black		objective_complete	1	1.2	objective:'hide'	TRUE	FALSE	FALSE
+TRUE	intro	intro_17	-	none	none		none		intro_endturn	1	0		FALSE	FALSE	FALSE
+TRUE	intro	intro_seebot	Pay attention to what's going on.	longText	#(0,-480,0)		center		none	3	0	vignette:3.2	TRUE	FALSE	FALSE
+TRUE	intro	intro_19	-	none	none		none		intro_botaction	0.2	5	blockID:24,action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_20	-	none	none		none		intro_botmove	1	2	blockID:21	FALSE	FALSE	FALSE
+TRUE	intro	intro_21	-	none	none		none		intro_startturn	2	2	action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_info_edge	Display Info: Move Inward	infoGraphic	center		black		none	0.2	0	name:'Move-Content',style:'basic'	TRUE	FALSE	FALSE
+TRUE	intro	intro_23	-	none	none	intro_breakblock	follow		intro_breakblock	1	3.5	blockID:6	FALSE	FALSE	FALSE
+TRUE	intro	intro_chapter2	How to win!	objectives	center		black		objective_display	1	0	objective:'fight,flag'	FALSE	FALSE	FALSE
+TRUE	intro	intro_26	Active Objective: Fight Back	objectives	center		black		objective_active	1	0	objective:'fight'	TRUE	FALSE	FALSE
+TRUE	intro	intro_holditem	[[Hold down]] on an item for details, try it out!	shortText	#(0,400,0)	intro_hold	none		intro_hold	1	0	action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_28	-	none	none		none		autonext	2	0		TRUE	FALSE	FALSE
+TRUE	intro	intro_missile	Time to [[fight back!]]	shortText	#(0,400,0)	intro_missile	none		intro_useitem	1	0	action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_info_hint	Display Info: Hint	infoGraphic	center		black		none	1	0	name:'Hint-Content',style:'basic_foot'	TRUE	FALSE	FALSE
+TRUE	intro	intro_31	-	none	none	intro_attack	follow		intro_selecttarget	0.6	0	blockID:21	FALSE	TRUE	FALSE
+TRUE	intro	intro_32	-	none	none	intro_confirm	none		intro_confirm	0.4	0	isMultiple:'true'	FALSE	TRUE	FALSE
+TRUE	intro	intro_33	Complete Objective: Fight Back	objectives	center		black		objective_complete	3.6	1.2	objective:'fight'	TRUE	FALSE	FALSE
+TRUE	intro	intro_34	Active Objective: Grab the flag	objectives	center		black		objective_active	0	0	objective:'flag'	TRUE	FALSE	FALSE
+TRUE	intro	intro_35	-	none	none	intro_move2	follow		intro_move	1	0	blockID:14	FALSE	TRUE	FALSE
+TRUE	intro	intro_36	-	none	none	intro_confirm	none		intro_confirm	0.4	0	isMultiple:'true'	FALSE	TRUE	FALSE
+TRUE	intro	intro_37	-	none	none		none		intro_endturn	1	0		FALSE	FALSE	FALSE
+TRUE	intro	intro_38	-	none	none		none		intro_botaction	1	5	blockID:16,action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_39	-	none	none		none		intro_botmove	1	0	blockID:11	FALSE	FALSE	FALSE
+TRUE	intro	intro_40	-	none	none		none		intro_startturn	0	0	action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_timer	Always check your [[time]] and spend it wisely!	shortText	#(212,-188,0)	intro_timer	none		intro_timer	1	5		TRUE	FALSE	FALSE
+TRUE	intro	intro_42	-	none	none	intro_move3	follow		intro_move	1	0	blockID:3,value:5	FALSE	TRUE	FALSE
+TRUE	intro	intro_43	-	none	none	intro_confirm	none		intro_confirm	1	0	isMultiple:'true'	FALSE	TRUE	FALSE
+TRUE	intro	intro_44	Complete Objective: Grab the flag	objectives	center		black		objective_complete	4	2	objective:'flag'	TRUE	FALSE	FALSE
+TRUE	intro	intro_energy	Good job! You got bonus energy from the flag. Let's try to use an ability.	longText	#(0,-480,0)		black		none	1	5		TRUE	FALSE	FALSE
+TRUE	intro	intro_ability	Time to use [[ability!]]	shortText	#(-220,280,0)	intro_ability	follow		intro_useability	1	0	action:'ab_yip_0'	FALSE	FALSE	FALSE
+TRUE	intro	intro_letfree	Now you can continue the training by yourself. Go ahead!	longText	#(0,-480,0)		black		none	1	0		TRUE	FALSE	FALSE
+TRUE	intro	intro_46	-	none	none		none		intro_letaction	0	0	ignoremask:'true',	FALSE	FALSE	FALSE
+TRUE	intro	intro_47	-	none	none		none		intro_botaction	1	4.6	blockID:3,action:'act_0'	FALSE	FALSE	FALSE
+TRUE	intro	intro_damage	Oops! Your Life Point remains only 2 points, take care of yourself!	longText	#(0,-480,0)		none		intro_stoptime	1	5	isUseTween:'true'	TRUE	FALSE	FALSE
+TRUE	intro	intro_49	-	none	none		none		intro_starttime	1	0		FALSE	FALSE	FALSE
+TRUE	intro	intro_50	-	none	none		none		intro_botmove	1	0	blockID:13	FALSE	FALSE	FALSE
+TRUE	intro	intro_51	-	none	none		none		intro_startturn	2	2	action:'act_10'	FALSE	FALSE	FALSE
+TRUE	intro	intro_54	-	none	none		none		intro_letfree	0	0	ignoremask:'true',blockID:26	FALSE	FALSE	FALSE
+TRUE	unlock_compete	tt_compete_0	-	infoGraphic	none		black	mainmenu	none	1	0	name:'Ways-Content',style:'basic'	TRUE	FALSE	FALSE
+TRUE	unlock_compete	tt_compete_1	-	infoText	none	unlock_compete	follow	mainmenu	none	1	0		FALSE	FALSE	FALSE
+TRUE	preparing_tomain	preparing_tomain_0		longText	bottom	prepare_close	follow	preparing	none	1	0		FALSE	FALSE	FALSE

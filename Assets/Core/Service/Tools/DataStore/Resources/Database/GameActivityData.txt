@@ -1,0 +1,12 @@
+isEnable	GActID	Name	Description	GActEffect	Duration	Percent	Cooldown	WaitingTime	Type	Value	Formula
+TRUE	gact_0	Dead Area	Get inside if you wanna live! The outer area is about to explode randomly!	deadarea	4	20	3	2	danger	12	maxCount:10,model:'bomb-airstrike-deadarea',limit-blockcount:12
+TRUE	gact_1	Air Drop	Hey, what’s inside the Air Drop? Let’s check it!	airdrop	3	25	3	2	spawn	1	environmentID:'env_air_0'
+TRUE	gact_2	Sun Flower	It's a flower of the sun, not to be confused with sunflower. Sun Flower will increase Life Point for those who have found it.	sunflower	2	15	3	1.5	spawn	1	environmentID:'env_gact_0'
+TRUE	gact_3	Moon Flower	Flower of the moon. The bugs like to around this flower because it will feel powerful. Moon Flower will increase Energy Charge.	moonflower	2	15	3	1.5	spawn	1	environmentID:'env_gact_1'
+TRUE	gact_4	Flag Transfer	The flag is about to move! If you are close to the flag, then collect it or regret your decision and pray that it’ll move closer to you.	changeflag	3	10	3	2	spawn	1	limit-blockcount:6
+TRUE	gact_5	Cannon Bomb	No one know when the arena is gonna get hit by cannonballs! May luck be with you. Hopefully, the cannonball won’t land on your block.	canonbomb	4	15	3	2	danger	12	maxCount:8,model:'canonBomb',genEnvironment:'env_act_1',limit-blockcount:12
+TRUE	gact_6	Earthquake	An earthquake in the random area of the arena. If you are in the area during the earthquake, your position is going to be revealed to other players.	earthquake	4	15	3	2	danger	20	min:-1,max:2,limit-blockcount:6
+TRUE	gact_7	Rainy	Rain in the arena. Aside from it changed the arena atmosphere. in addition, it random regenerate the grasses on lawn blocks. 	rainy	4	20	3	2	spawn	3	model:'rain',maxCount:3,devEnvironment:'env_act_1'
+FALSE	gact_8	Mmushroom	สุ่มเกิดเห็ด ( สุ่มเกิดเห็ด 2Wlak / 2Action )	mushroom							
+FALSE	gact_9	Shuffle	 สลับตำแหน่งผู้เล่นทุกคนในเกม	shuffle							
+FALSE	gact_10	Ice Age	หิมะตกเป็นเวลา 4 เทริน เมื่อหิมะหยุดทุกธงจะถูกปกคลุมด้วยหิมะ ทำให้ไม่สามารถซ้อนตัวบนพื้นหญ้าได้ 4 เทริน	iceage							

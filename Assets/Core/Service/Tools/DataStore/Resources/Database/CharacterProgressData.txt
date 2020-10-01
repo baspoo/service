@@ -1,0 +1,11 @@
+Lv	Exp	Reward
+1	0	[]
+2	100	[{"type":"Resource","currency":"CO","value":500},{"type":"Resource","currency":"LP","value":3}]
+3	200	[{"type":"Resource","currency":"CO","value":1000},{"type":"Resource","currency":"LP","value":3}]
+4	300	[{"type":"Resource","currency":"JS","value":150},{"type":"Resource","currency":"LP","value":3}]
+5	420	[{"type":"ItemBag","ItemBagID":"gacha_pack1","value":2},{"type":"Resource","currency":"LP","value":3}]
+6	540	[{"type":"Resource","currency":"GE","value":50},{"type":"Resource","currency":"LP","value":3}]
+7	660	[{"type":"Resource","currency":"CO","value":4000},{"type":"Resource","currency":"LP","value":3}]
+8	780	[{"type":"ItemBag","ItemBagID":"gacha_box3","value":1},{"type":"Resource","currency":"LP","value":3}]
+9	900	[{"type":"Resource","currency":"GE","value":100},{"type":"Resource","currency":"LP","value":3}]
+10	1020	[{"type":"ItemBag","ItemBagID":"gacha_pack2","value":1},{"type":"Resource","currency":"LP","value":3}]

@@ -1,0 +1,16 @@
+isEnable	ID	Description (For dev)	IconID	MemoKey	Values	LevelUnlock	Rewards	ChallengeType	Formula
+TRUE	ms_daily_firstendgame	End the competition 1 match	AchievementIcon/acm_endgame	PlayEnd	1	0	[{ "type": "Resource", "currency": "CO", "value": 2000 }]	tutorial	
+TRUE	ms_daily_endgame	End the competition 3 matches	AchievementIcon/acm_endgame	PlayEnd	3	3	[{ "type": "Resource", "currency": "CO", "value": 2000 }]	daily	
+TRUE	ms_daily_win	Daily First Win	AchievementIcon/acm_win	Win	1	0	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_hit	Hit enemy 5 times	AchievementIcon/acm_hit_1	Hit_1	5	0	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_hit2	Double hits	AchievementIcon/acm_hit_2	Hit_2	1	3	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_firstblood	First blood	AchievementIcon/acm_firstblood	FirstBlood	1	3	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_trap	The trap is working	AchievementIcon/acm_trap	Trap	1	3	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_airdrop	Collect Air Drop	AchievementIcon/acm_env_collect	Airdrop	1	3	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_flag	Collect 3 flags	AchievementIcon/acm_flag	Flag	3	0	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_kill	Kill an enemy	AchievementIcon/acm_kill_1	Kill	1	0	[{ "type": "Resource", "currency": "CO", "value": 1000 }]	general	
+TRUE	ms_daily_aoe	AOE Attack!	AchievementIcon/acm_use_aoe	hitAOE	3,7,12	3	[{     "type": "Resource",     "currency": "CO",     "value": 1000 },{     "type": "Resource",     "currency": "CO",     "value": 1500 }, {     "type": "Resource",     "currency": "CO",     "value": 2000 }]	general	
+TRUE	ms_daily_shot	Hawkeye Attack	AchievementIcon/acm_hitshot	hitshottarget	3,7,12	3	[{     "type": "Resource",     "currency": "CO",     "value": 1000 },{     "type": "Resource",     "currency": "CO",     "value": 1500 }, {     "type": "Resource",     "currency": "CO",     "value": 2000 }]	general	
+TRUE	ms_daily_scanner	Stealth Scanner!	AchievementIcon/acm_scanner	Scanner	1,3,5	3	[{     "type": "Resource",     "currency": "CO",     "value": 1000 },{     "type": "Resource",     "currency": "CO",     "value": 1500 }, {     "type": "Resource",     "currency": "CO",     "value": 2000 }]	general	
+FALSE	ms_daily_win_duel	The Winner of Duel	AchievementIcon/acm_win_duel	Win_mode_duel	1,3,5	3	[{     "type": "Resource",     "currency": "CO",     "value": 1000 },{     "type": "Resource",     "currency": "CO",     "value": 1500 }, {     "type": "Resource",     "currency": "CO",     "value": 2000 }]	general	
+FALSE	ms_daily_win_ffa	The Winner of Free For All	AchievementIcon/acm_win_ffa	Win_mode_ffa	1,3,5	3	[{     "type": "Resource",     "currency": "CO",     "value": 1000 },{     "type": "Resource",     "currency": "CO",     "value": 1500 }, {     "type": "Resource",     "currency": "CO",     "value": 2000 }]	general	
