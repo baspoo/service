@@ -313,18 +313,24 @@ acm_chat	The Friendzone	Chat with friend
 acm_sticker	Got A Sticker!	Use Sticker to chat	
 Environment			
 env_0	Sapling	The sprout that grows up in the middle of the arena. Blocks the champion's path and space.	
-env_1	Rock	A huge bolder, an obstacle. Blocks the champion's path and space.	
+env_1	Rock 1	A huge bolder, an obstacle. Blocks the champion's path and space.	
 env_2	Log	A large log, an obstacle. Blocks the champion's path and space.	
 env_3	Grass	Just a normal grass	
-env_4	Bush	A shaggy bush in the arena. Can be used for hiding despite it isn't a grass. Helps champions cover up their location. 	
+env_4	Bush 1	A shaggy bush in the arena. Can be used for hiding despite it isn't a grass. Helps champions cover up their location. 	
 env_5	Ramp	A tall watchtower that can be used to observe all enemies, but being up on the tower, it reveals your location and you can be targeted	
 env_6	Bottle Cap	A durable bottle cap. Can be used for hiding. It also blocks damage from enemies' weapons, but hiding in there the champions can't attack the outside.	
 env_7	Tree 1	A tree that grows up in the middle of the arena. Can be used for hiding from all harm. It will block damage from all kinds of enemies' weapons, as long as it still stands there.	
-env_8	Tree 2	A tree that grows up in the middle of the arena. Can be used for hiding from all harm. It will block damage from all kinds of enemies' weapons, as long as it still stands there.	
+env_8	Tree 2	{d@env_7}	
 env_9	Bridge	A wooden bridge. You can cross to the other side area.	
 env_10	Flytrap 	The carnivorous plant is an arch-enemy of insectkind. When the bug comes nearby, It will randomly bite. You'll be damaged when get bitten.	
 env_11	Oil	Barrel of oil. Sensitive to weapons that make sparks. Cause widespread damage.	
 env_12	What Box	Mysterious box. Things inside are still unknown.	
+env_13	Dry Tree	A dry tree, an obstacle. Blocks the champion's path and space.	
+env_14	Fence 1	A fence, an obstacle. Blocks the champion's path and space.	
+env_15	Fence 2	{d@env_14}	
+env_16	Bush 2	{d@env_4}	
+env_17	Tree 3	{d@env_7}	
+env_18	Rock 2	{d@env_1}	
 env_flag_0	Flag	Flag of victory, the greatest goal of all champions. Only collect 3 of these victory flags and  you'll be the winner.	
 env_act_0	Landmine	Exploding trap, ready to detonate when someone careless step on. It'll be hidden to enemies, then only the owner can see it on the arena.	
 env_act_1	Firewall	Flames lit by explosion fragments. This burning blaze isn't friendly to insects, and no one wants to see it closer for sure.	
@@ -350,6 +356,8 @@ block_4	Pond	Pond area. Can be used for slipping away from chasing. Water can pu
 block_5	Rock	Sturdy rock area. No weapon damages can destroy it.	
 block_6	Smoke	The smoke spread over an area. Cause visibility loss.	
 block_7	Lawn	Open field area, You'll show yourself to the enemies. If it catches some raindrops, the area will grow a tall grass.	
+block_8	Dry Grass	Tallgrass area. Can be used for hiding. Choosing to stay hidden in these areas is a good choice for every situation.	
+block_9	Dry Lawn	Open field area, You'll show yourself to the enemies. If it catches some raindrops, the area will grow a tall grass.	
 BuffData			
 bf_0	Barrier	Protected from the next instance of damage.	
 bf_1	Quickened	Increases maximum movement distance.	
@@ -513,6 +521,15 @@ acc_halloween_mask_1	Halloween Mask	{d@category_Accessorie}
 acc_halloween_nut_1	Head Nut	{d@category_Accessorie}	
 acc_halloween_crossofgod_1	Halloween Cross	{d@category_Accessorie}	
 acc_halloween_casket_1	Halloween Coffin	{d@category_Accessorie}	
+acc_glasses_4	Brown Goggles	{d@category_Accessorie}	
+acc_glasses_5	Green Goggles	{d@category_Accessorie}	
+acc_glasses_6	Heart Glasses	{d@category_Accessorie}	
+acc_glasses_7	Star Glasses	{d@category_Accessorie}	
+acc_glove_2			
+acc_ear_1			
+acc_leaf_1			
+			
+			
 			
 MVPData			
 m_none	In Game...	This player is still alive in the match.	
@@ -560,12 +577,25 @@ intro_energy		Good job! You got bonus energy from the flag. Let's try to use an 
 intro_ability		Time to use [[ability!]]	
 intro_letfree		Now you can continue the training by yourself. Go ahead!	
 intro_damage		Oops! Your Life Point remains only 2 points, take care of yourself!	
+preparing_tomain		The new feature has appeared. Let's get to know about it!	
+tt_compete_start		Let’s get started!	
+tt_compete_prepare		This is the preparing room, you can custom your champion here in later. Now it’s time to press [[READY]].	
+tt_compete_wait		Please wait for an enemy to join the competition with you. it will take some time. Take a deep breath!	
+tt_compete_end		The enemy has appeared! Hope you have a good time in this competition!	
+			
+			
+			
 Tutorial Infographic                         			
 intro_info_win	How to win	Collect 3 flags. OR Survive through the game and be the last bug standing.	
 intro_info_idle	Idle Items	Supply[n] Drink to fill up energy safely and remain [[hidden]].[n] Shovel[n] Dig for [[something good]] (hopefully). This reveals where you are.[n]	
 intro_info_hide	Hide	Hide and stay out of sight by moving onto a grassy block.[n] Grass[n] Bush[n] Tree	
 intro_info_edge	Move Inward	Stay away from the edges, the champion takes damage from collapsing blocks.	
 intro_info_hint	Hint	When a champion reveals itself, it left a [[Hint]] behind for a while.[n] Since champions could move 1 tile at a time, they must be next to a hint.	
+tt_info_compete	Join the Competition!	Random match to defeat the enemy in [[Compete mode.]][n] Receive [[many rewards.]] After the end of competition.	
+			
+			
+			
+			
 Tutorial Objective			
 intro_chapter1	What to do		
 intro_chapter2	How to win!		
@@ -653,9 +683,15 @@ option	Costume Ability	Special ability for {@costume} .Besides dressing up to sh
 none	None		
 custom	Custom		
 dressup	Dress Up		
-enhance	Enhance	Enhance a special ability to champions' {@costume} , to have advantage over your enemies or support your strategy. Each type of ore gives difference ability values. 	
+enhance	Enhance	Enhance a special ability to the champion {@costume}, to have an advantage over your enemies or support your strategy.	
 enhanced	Enhanced	Warning. This {@costume} is already enhanced.	
 enhance_defaultcostume	Default Costume	Default {@costume} can't be enhanced.	
+enhance_only	Highlight!	Can get this ability by enhancing only this costume.	
+enhance_basic	Standard		
+enhance_passivelist	Costume Ability List		
+enhance_select	Select an iron ore		
+chance	Chance		
+increase	Increase		
 PlayMode & Matchmaking			
 mode_duration	Turn Duration		
 mode_player	Number of players		
@@ -691,7 +727,7 @@ status_Idle	Idle
 option_profile	Profile		
 option_blacklist	Blacklist		
 option_report	Report		
-option_all	All Game Mode		
+all_game_mode	All Game Mode		
 Alert			
 Wing	Auto Warp	Unable to move around.	
 OneWay	Imprisoned	Can't move to another block.	
@@ -707,7 +743,8 @@ keepbag	Auto Keep Bag
 Dead	{$name} is defeated.		
 Grant	Obtain a bonus {$item}!		
 Kill	{$name}		
-			
+Vote	{$p2} receive compliments from {$p1}		
+Gift	transfer item!	{$p2} received a gift from {$p1} 	
 			
 ShopPage + Resources			
 deal	Deals	Special Deals	

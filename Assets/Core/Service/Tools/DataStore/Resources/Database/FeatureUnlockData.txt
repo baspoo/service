@@ -1,6 +1,6 @@
 isEnable	ID	LvUnlock	Define	Formula	MatchRewards	TutorialLessons
-TRUE	unlock_0	1	compete,mail,news,playmode,arena	specificID:'mode_duel,Background - YippoHome,Background - Mikehome'	[{"type":"Resource","currency":"XP","value":250}]	unlock_compete
-TRUE	unlock_1	2	mission,casual,practice,playmode,arena,currency	specificID:'mode_ffa,Background - LogStadium'	[{"type":"Resource","currency":"XP","value":250}]	unlock_mission,unlock_casual
+TRUE	unlock_0	1	compete,mail,news,playmode	specificID:'mode_duel'	[{"type":"Resource","currency":"XP","value":250}]	unlock_compete
+TRUE	unlock_1	2	casual,practice,mission,currency,playmode	specificID:'mode_ffa'	[{"type":"Resource","currency":"XP","value":250}]	unlock_mission,unlock_casual
 TRUE	unlock_2	3	champions,chest	specificID:'chest_gift,chest_event'	[{"type":"Resource","currency":"XP","value":250}]	unlock_champions,unlock_chest
 TRUE	unlock_3	4	inventory,chest	specificID:'chest_time'	[{"type":"Resource","currency":"XP","value":200}]	
 TRUE	unlock_4	5	market,pocket,chest	specificID:'chest_winner'	[{"type":"Resource","currency":"XP","value":200}]	

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51acaf2db84b7364da76adf544d61caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: Assets\TheLastBug\Resources\Database\
+  loadAssetType: 0
   GoogleSheetID: 1mPQqrj2ctK_6nqvhRQg0X_-JOECMAU8mei5GlYLowqk
   FileDatas:
   - Name: AbilityData

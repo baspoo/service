@@ -65,7 +65,7 @@ FALSE	Environment
 TRUE	env_0	Unmove	texture	Environments/Sapling
 TRUE	env_1	Unmove	texture	Environments/Rock
 TRUE	env_2	Unmove	texture	Environments/Log
-TRUE	env_3	Hide	texture	Environments/Grass
+FALSE	env_3		texture	Environments/Grass
 TRUE	env_4	Hide,NotMovement	texture	Environments/Bush
 TRUE	env_5	Show	texture	Environments/Ramp
 TRUE	env_6	Def,NotMovement	texture	Environments/Pepsi
@@ -75,6 +75,12 @@ TRUE	env_9	Show	texture	Environments/Bridge
 TRUE	env_10	Warning	texture	Environments/Flytrap
 TRUE	env_11	Warning	texture	Environments/Oil
 TRUE	env_12	Reward	texture	Environments/Whatbox
+TRUE	env_13	Unmove	texture	Environments/DeadTree
+TRUE	env_14	Unmove	texture	Environments/Fence1
+TRUE	env_15	Unmove	texture	Environments/Fence2
+TRUE	env_16	Hide,NotMovement	texture	Environments/Bush2
+TRUE	env_17	Def,Hide,NotMovement	texture	Environments/Tree3
+TRUE	env_18	Unmove	texture	Environments/Rock2
 TRUE	env_flag_0	Flag	texture	Environments/Flag
 TRUE	env_act_0	Warning	texture	Environments/Landmine
 TRUE	env_act_1	Warning	texture	Environments/Fire
@@ -101,6 +107,8 @@ TRUE	block_4	Water,NotMovement	texture	Environments/Water
 TRUE	block_5	Show	texture	Environments/Rockground
 FALSE	block_6		texture	
 TRUE	block_7	Show	texture	Environments/Lawn
+TRUE	block_8	Hide	texture	Environments/GrassblockDry
+TRUE	block_9	Show	texture	Environments/LawnDry
 FALSE				
 FALSE	Game Activity			
 TRUE	gact_0		movie	Activities/DeadArea

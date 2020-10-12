@@ -32,14 +32,14 @@ TRUE	act_30	Hammer		Sword	Atk	All	area:'around',min:-1,max:1	area:'single'	1	1	h
 TRUE	act_mike_0	Dyna-Mike	-	Grenade	Atk	All	area:'around',min:0,max:4	area:'around',min:-1,max:1	1	0	hitstone:true,splitcount:3,range:[1/2],splitmodel:'bomb-dynamike-split'	0	ability	bomb-dynamike	ability_0	dyna-mike	follow	ability,shottarget,fire	TRUE
 TRUE	act_mike_1	Mike Bug Bomber	-	Trap	Ward	All	area:'around',min:0,max:2	area:'single'	1	0	environmentID:'env_act_2',creatingactive:true	0	ability		hidden		around_action	ability,shottarget,fire	FALSE
 TRUE	act_mike_5	Kamikaze	-	Kamikaze	Atk	All	area:'single'	area:'around',min:-1,max:2	1	0	hitstone:true,splitcount:8,range:[2/6],splitmodel:'bomb-dynamike-split'	0	ability	bomb-dynamite-kamikaze	ability_0	dyna-mike-big	around_action	ability,fire	TRUE
-TRUE	act_jam_0	Jamie Heal	-	none	Buff	Onlyme	area:'single'	area:'single'	0	0	copy:'act_4'	0	ability	heal-apple	ability_1		none	ability	FALSE
+TRUE	act_jam_0	Jamie Heal	-	none	Buff	Onlyme	area:'single',min:-1,max:2	area:'single'	0	0	copy:'act_4'	0	ability	heal-apple	ability_1		none	ability	FALSE
 TRUE	act_jam_1	Jamie Silent	-	TossBuff	Atk	All	area:'around',min:0,max:5	area:'around',min:-1,max:1	1	0	buffID:'bf_2'	0	ability	bomb-silent	ability_2		none	ability	TRUE
 TRUE	act_jam_2	Jamie Blessing		EnergyBooster	Buff	Onlyme	area:'single'	area:'around',min:-1,max:2	1	0	buffID:'bf_8'	0	ability	energybooster-blessing	ability_0		none	ability	FALSE
 TRUE	act_jam_3	Jamie EMP	-	EMP	Atk	All	area:'around',min:0,max:5	area:'around',min:-1,max:1	3	0		0	ability	bomb-emp	ability_2		none	ability	TRUE
 TRUE	act_jam_4	Jamie Sanctuary		Sanctuary	Buff	All	area:'single'	area:'around',min:-1,max:1	1	0		0	ability	caster-sanctuary	ability_0		none	ability	TRUE
 TRUE	act_jam_5	Jamie Perfect Armor	-	Armor	Buff	Onlyme	area:'single'	area:'single'	1	1	buffID:'bf_15'	5	ability		ability_1		none	ability	TRUE
 TRUE	act_yip_0	Yippo Quick Shot	-	ManyShot	Atk	Enemy	area:'around',min:0,max:4	area:'single'	1	0	splitcount:3,range:[0/1],hitstone:true	0	ability	bomb-missile-canon	ability_0	yippogun	follow	ability,shottarget,fire	TRUE
-TRUE	act_yip_1	Yippo Leaf Armor	-	Armor	Buff	Onlyme	area:'single'	area:'single'	1	0	buffID:'bf_4'	0	ability		hidden		none	ability,shottarget	FALSE
+TRUE	act_yip_1	Yippo Leaf Armor	-	Armor	Buff	Onlyme	area:'single',min:-1,max:2	area:'single'	1	0	buffID:'bf_4'	0	ability		hidden		none	ability,shottarget	FALSE
 TRUE	act_yip_3	Poisonous Mushrooms		TossBuff	Buff	All	area:'around',min:0,max:4	area:'around',min:-1,max:1	1	0	buffID:'bf_13'	0	ability	bomb-poisonous-mushrooms	toss		none	ability,shottarget	TRUE
 TRUE	act_rock_0	Rockko Deep Impact	-	Impact	Atk	Enemy	area:'around',min:-1,max:1	area:'around',min:-1,max:1	1	0	hitstone:true	0	ability	sword-impact	ability_1		around_action	ability	TRUE
 TRUE	act_rock_1	Rockko Speed Dash	-	RocketTurbo	Buff	Onlyme	area:'around',min:2,max:4	area:'single'	1	0	walkanim:'ability_0'	0	ability	rocketturbo	idle_main		around_sky	movement,ability	TRUE

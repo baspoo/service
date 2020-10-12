@@ -44,6 +44,7 @@ public class DebugingEditorGui : MonoBehaviour
 		{
 			TSVLoaderTools.loader.Download();
 		}
+		EditorGUILayout.Space(20.0f);
 		foreach (FileData f in (Resources.Load("Database/_loader") as GameObject).GetComponent<TSVLoaderTools>().FileDatas)
 		{
 			if (GUILayout.Button(f.Name))

@@ -15,7 +15,7 @@ public class Obj : MonoBehaviour {
 	[Header("---------------------------------------------")]
 	public int index;
 	public string data;
-	public int value;
+	public double value;
 	public bool active;
 
 	public UILabel label_header;

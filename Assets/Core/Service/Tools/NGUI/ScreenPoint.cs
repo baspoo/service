@@ -12,7 +12,11 @@ public class ScreenPoint : MonoBehaviour
 		position = othercam.ScreenToWorldPoint (position);
 		return position;
 	}
-	public static Vector3 GetWorldPositionToNGUI(Camera maincam,Transform target, UIRoot root , UIAnchor anc = null){
+	public static Vector3 GetWorldPositionToNGUI(Camera maincam, Transform target, UIRoot root, UIAnchor anc = null)
+	{
+		return GetWorldPositionToNGUI(maincam, target.position, root, anc);
+	}
+	public static Vector3 GetWorldPositionToNGUI(Camera maincam, Vector3 position, UIRoot root , UIAnchor anc = null){
 
 		//** Setup Anc
 		if (anc != null) {
@@ -22,8 +26,7 @@ public class ScreenPoint : MonoBehaviour
 		}
 
 		//** Position
-		Vector3 position = Vector3.zero;
-		position = maincam.WorldToScreenPoint(target.position);
+		position = maincam.WorldToScreenPoint(position);
 
 		//** Screen Percent
 		Vector3 percent = Vector3.zero;

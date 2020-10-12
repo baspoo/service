@@ -51,9 +51,9 @@ TRUE	material_7	Bullet Shell	High-quality material, the delicate shell casings. 
 TRUE	material_8	Letter Shard	Piece of invitation letter. Collect and exchange it to completely letter. And use it for inviting the new champion to join your team!	Material	0	Coin	TRUE	consumable,available	Rate:5,tooltipsID:'tooltips_material_charecipe'	
 TRUE	material_9	Sachet Shard	Piece of fashion sachet. Collect and exchange it to completely sachet. And open it to get the new costume for your champion!	Material	0	Coin	TRUE	consumable,available	Rate:4,tooltipsID:'tooltips_material_sachet'	
 TRUE	material_10	Pocket Watch	Luxurious pocket watch. Invaluable for all of the bugs at The Last Bug village. You should keep it that good!	Material	0	Coin	TRUE	consumable,available	Rate:3,tooltipsID:'tooltips_material'	
-TRUE	material_11	Steel		Material	2000	Coin	TRUE	consumable,available	Rate:4,range:[0.1/0.4],tooltipsID:'tooltips_material'	
-TRUE	material_12	Premium Steel		Material	0	Coin	TRUE	consumable,available	Rate:5,range:[0.3/0.7],tooltipsID:'tooltips_material'	
-TRUE	material_13	Rare Steel		Material	50	Gem	TRUE	consumable,available	Rate:0,range:[0.7/1.0],tooltipsID:'tooltips_material'	
+TRUE	material_11	Steel		Material	2000	Coin	TRUE	consumable,available	Rate:4,range:[0.1/0.4],specialchance:0,tooltipsID:'tooltips_material'	
+TRUE	material_12	Premium Steel		Material	0	Coin	TRUE	consumable,available	Rate:5,range:[0.3/0.7],specialchance:0.35,tooltipsID:'tooltips_material'	
+TRUE	material_13	Rare Steel		Material	50	Gem	TRUE	consumable,available	Rate:0,range:[0.7/1.0],specialchance:1,tooltipsID:'tooltips_material'	
 TRUE	material_gift	Rampage Coin	The coin from Rampage points received after the end of the competition. You can use it to open the Rampage Chest.	Material	0	Coin	TRUE	consumable,available	Rate:0,tooltipsID:'tooltips_material_gift'	
 TRUE	material_flag	Winner Flag	The flag symbol is a reward for the challenger who grab the flag. You can use it to open the Winner Chest!	Material	0	Coin	TRUE	consumable,available	Rate:0,tooltipsID:'tooltips_material_flag'	
 TRUE	material_time	Time Stack	Time Stack	Material	0	Coin	TRUE	consumable	Rate:0	
