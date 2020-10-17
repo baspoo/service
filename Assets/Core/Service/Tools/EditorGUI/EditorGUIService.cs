@@ -7,7 +7,10 @@ using UnityEditor;
 
 public class EditorGUIService 
 {
-
+	public class ProjectPath
+	{
+		public const string header = "Core-Service";
+	}
 
 
 	public class EditorData {

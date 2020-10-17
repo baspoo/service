@@ -11,7 +11,6 @@ using System.Runtime.Serialization.Formatters.Binary;
 ///    ** Game Master Service by 'Baspoo'
 /// </summary>
 public class Service : MonoBehaviour {
-	public const string head_service = "BP-Service";
 	public static void Clear(){
 		//Clear
 		if(Tools.gameservice!=null)
@@ -241,6 +240,7 @@ public class Service : MonoBehaviour {
 		public static void ToClass( object _class , string _key , object _value ){
 			System.Reflection.FieldInfo field = _class.GetType ().GetField (_key);
 			if (field != null) {
+
 				if (field.FieldType == typeof(System.Int32)) 
 				{
 					field.SetValue (_class, System.Convert.ToInt32 (_value));
@@ -255,6 +255,39 @@ public class Service : MonoBehaviour {
 				} else if (field.FieldType == typeof(System.Boolean)) {
 					field.SetValue (_class, System.Convert.ToBoolean (_value));
 				}
+				else if (field.FieldType.IsEnum)
+				{
+					//var val = System.Enum.ToObject(field.FieldType, _value);
+					//var val = System.Convert.ChangeType( enumtype , field.FieldType);
+					int index = System.Convert.ToInt32(_value);
+					string enumname = System.Enum.GetName(field.FieldType, index );
+					var enumtype = System.Enum.Parse(field.FieldType, enumname ,false);
+					field.SetValue( _class , enumtype );
+				}
+				else if (field.FieldType == typeof(Dictionary<string,string>) && _value.GetType() == typeof(Service.Formula))
+				{
+					var f = (Service.Formula)_value;
+					var values = ServiceJson.Json.DeserializeObject<Dictionary<string, string>>(f.PassToJson());
+					field.SetValue(_class, values);
+				}
+				else if (field.FieldType == typeof(Dictionary<string, double>) && _value.GetType() == typeof(Service.Formula))
+				{
+					var f = (Service.Formula)_value;
+					var values = ServiceJson.Json.DeserializeObject<Dictionary<string, double>>(f.PassToJson());
+					field.SetValue(_class, values);
+				}
+				else if (field.FieldType == typeof(Dictionary<double, string>) && _value.GetType() == typeof(Service.Formula))
+				{
+					var f = (Service.Formula)_value;
+					var values = ServiceJson.Json.DeserializeObject<Dictionary<double, string>>(f.PassToJson());
+					field.SetValue(_class, values);
+				}
+				else if (field.FieldType == typeof(Dictionary<double, double>) && _value.GetType() == typeof(Service.Formula))
+				{
+					var f = (Service.Formula)_value;
+					var values = ServiceJson.Json.DeserializeObject<Dictionary<double, double>>(f.PassToJson());
+					field.SetValue(_class, values);
+				}
 				else if (field.FieldType == typeof(System.Double[]))
 				{
 					var listformula = (Service.Formula)_value;
@@ -266,8 +299,14 @@ public class Service : MonoBehaviour {
 					}
 					field.SetValue(_class, output );
 				}
-				else {
-					field.SetValue (_class, _value);
+				else 
+				{
+					if (!field.FieldType.IsGenericType && !field.FieldType.IsArray)
+						field.SetValue(_class, _value);
+					else 
+					{
+						Debug.LogError($"{_key} : {field.FieldType} <-> {_value.GetType()} - {field.FieldType.IsGenericType}-{field.FieldType.IsArray}");
+					}
 				}
 			}
 		}
@@ -476,13 +515,14 @@ public class Service : MonoBehaviour {
 
 		[System.Serializable]
 		public class OpenEyes  {
-
-            #region Use-For-Inspecter
-            [System.Serializable]
+			
+			#region Use-For-Inspecter
+			[System.Serializable]
 			public class OpenEyeData {
 				public string Name;
 				public Transform T;
 			}
+			[Header("Find by Name")]
 			public List<OpenEyeData> Content = new List<OpenEyeData>();
 			public void Open(string contentName)
 			{
@@ -498,7 +538,8 @@ public class Service : MonoBehaviour {
 
 
 			[SerializeField]
-            private List<Transform> trans = new List<Transform>();
+			[Header("Find by Transform")]
+			private List<Transform> trans = new List<Transform>();
 			public List<Transform> Transforms {
 				get{ return trans; }
 			}
@@ -2749,6 +2790,7 @@ public class Service : MonoBehaviour {
 				//ex1. 50100 - 50000 = 100
 				//ex2. 50100 - 50200 = -100
 				dif = (DateTimeToUnixTimeStamp(TimeServerNow) - DateTimeToUnixTimeStamp(System.DateTime.Now));
+				Debug.LogError($"TimeServerNow {TimeServerNow} - DateTime.Now {System.DateTime.Now}");
 			}
 
 			public System.DateTime Time {

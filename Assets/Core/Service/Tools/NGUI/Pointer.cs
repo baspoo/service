@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class monitor : MonoBehaviour
+public class Pointer : MonoBehaviour
 {
 
-    public Camera cam;
-    public UIRoot root;
-    public Transform tran;
-    public UIAnchor anc;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // สามารถหาตำแหน่งหน้าจอ และ ตำแหน่ง world ตลอดเวลาได้
 
-    // Update is called once per frame
+    public Vector3 WorldPosition => (tranWorld==null) ? Vector3.zero : tranWorld.position;
+    public Vector3 ScreenPosition => (tranUI == null) ? Vector3.zero : tranUI.position;
+
+    public Camera camUI;
+    public Camera camWorld;
+    public UIRoot root;
+    public Transform tranUI;
+    public Transform tranWorld;
+    public UIAnchor anc;
     void Update()
     {
         Vector3 screenPoint = Input.mousePosition;
         screenPoint.z = 10.0f;
-        var position = cam.ScreenToWorldPoint(screenPoint);
-
-        // tran.position = Input.mou;
-        tran.localPosition = ScreenPoint.GetWorldPositionToNGUI(cam, position , root, anc);
+        var position = camUI.ScreenToWorldPoint(screenPoint);
+        tranUI.localPosition = ScreenPoint.GetWorldPositionToNGUI(camUI, position , root, anc);
+        tranWorld.position = (camWorld == null)? Vector3.zero : camWorld.ScreenToWorldPoint(screenPoint);
     }
 }

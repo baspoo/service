@@ -1,9 +1,12 @@
 ﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
+
+
+
 public class DebugingEditor : EditorWindow
 {
-	[MenuItem(Service.head_service+"/Data/Update Tsv")]
+	[MenuItem( EditorGUIService.ProjectPath.header + "/Data/Update Tsv")]
 	public static void ShowWindow(){
 		EditorWindow.GetWindow(typeof(DebugingEditor));
 	}
