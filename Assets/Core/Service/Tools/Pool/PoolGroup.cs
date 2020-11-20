@@ -22,6 +22,7 @@ public class PoolGroup : MonoBehaviour {
 
 
 	public PoolObj FindAvalible(){
+		RefreshList();
 		foreach (PoolObj p in PoolObjs)
 			if ( Service.GameObj.isObjectNotNull(p) )
 			if (!p.isActive)

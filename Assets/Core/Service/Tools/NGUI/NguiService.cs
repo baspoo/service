@@ -166,6 +166,17 @@ public class NguiService : MonoBehaviour {
 				}
 				return null;
 			}
+			public UILabel GetLabel(string varName)
+			{
+				var ui = Get(varName);
+				return (ui!=null)?(UILabel)Get(varName):null;
+			}
+			public UITexture GetTexture(string varName)
+			{
+				var ui = Get(varName);
+				return (ui != null) ? (UITexture)Get(varName) : null;
+			}
+
 		}
 		#endregion
 	}

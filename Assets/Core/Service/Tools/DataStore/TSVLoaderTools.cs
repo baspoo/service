@@ -35,36 +35,44 @@ public class TSVLoaderTools : MonoBehaviour {
 			if(m_loader!=null)
 				DestroyImmediate (m_loader.gameObject);
 			m_loader = null;
-			m_loader = Instantiate ( Resources.Load("Database/_loader") as GameObject ).GetComponent<TSVLoaderTools>();
-			DontDestroyOnLoad(m_loader);
-			loadAssetTypePlaying = m_loader.loadAssetType;
+			m_loader = Instantiate (loaderData.gameObject).GetComponent<TSVLoaderTools>();
+			if(Application.isPlaying)
+				DontDestroyOnLoad(m_loader);
 			return m_loader;
 		}
 	}
-
+	public static TSVLoaderTools loaderData
+	{
+		get
+		{
+			return ((GameObject)Resources.Load("Database/_loader")).GetComponent<TSVLoaderTools>();
+		}
+	}
 	static string FullPath {
 		// ที่อยู่ของ File .Tsv == คือที่เดียวกับที่วางไฟล์  _loader.prefab
 		get
 		{
 			//Assets/Core/Service/Tools/DataStore/Resources/Database/_loader.prefab
-		#if UNITY_EDITOR
+			#if UNITY_EDITOR
 			string path = AssetDatabase.GetAssetPath(Resources.Load("Database/_loader"));
 			path = path.Replace("_loader.prefab","");
 			return path;
+			#else
+						return "";
+			#endif
 		}
-		#else
-				return "";
-		#endif
 	}
 
 	public static string LoadFile(string FileName) {
-		TextAsset mytxtData = (TextAsset)Resources.Load("Database/" + FileName);
+		string path = "Database/" + FileName;
+		Debug.Log("LoadFile Path:" + path);
+		TextAsset mytxtData = (TextAsset)Resources.Load(path);
 		string Data = mytxtData.text;
 		return Data;
 	}
 	public static string LoadContent(string FileName)
 	{
-		if (loadAssetTypePlaying == LoadAssetType.File)
+		if (loaderData.loadAssetType == LoadAssetType.File)
 		{
 			return TSVLoaderTools.LoadFile(FileName);
 		}
@@ -88,7 +96,6 @@ public class TSVLoaderTools : MonoBehaviour {
 
 
 	public enum LoadAssetType { File , PlayerPref }
-	public static LoadAssetType loadAssetTypePlaying;
 	public LoadAssetType loadAssetType;
 	public string GoogleSheetID;
 	public List<FileData> FileDatas = new List<FileData>();
@@ -118,20 +125,13 @@ public class TSVLoaderTools : MonoBehaviour {
 			else
 				DestroyImmediate(m_loader.gameObject);
 		}
+		m_loader = null;
 	}
 	IEnumerator load (FileData file , Service.Callback.callback onfinish = null ){
 
 
-
-#if !UNITY_EDITOR_WIN
-		string chPath = Path.DirectorySeparatorChar.ToString();
-		path = path.Replace ("\\",chPath);
-		Debug.Log ("path" + path);
-#endif
-		
 		isLoading = true;
 		file.finish = false;
-		//string filePath = path+file.Name+".txt";
 		string filePath = FullPath + file.Name + ".txt";
 		string URL = "https://docs.google.com/spreadsheets/d/" +  GoogleSheetID  +  "/export?gid="+  file.GID  +"&exportFormat=tsv";
 		WWW www = new WWW (URL);
@@ -171,23 +171,27 @@ public class TSVLoaderTools : MonoBehaviour {
 			isLoading = false;
 			finish = true;
 			Debug.Log ("<color=yellow> ----------- FINISH -------------</color>" + Application.isPlaying);
-			m_loader = null;
 			Stop();
 			if (onfinish!=null)
 				onfinish();
 		}
 	}
 
-	static string localkey = "TSVLoaderTools"; 
+	static string localkey = "TSVLoaderTools";
+	static string fileName(string name) {
+		return $"[GameData:{name}]";
+	}
+
+
 	public static void SaveLocal( string name , string text ) {
-		PlayerPrefs.SetString(localkey + "_" + name, text );
+		PlayerPrefs.SetString(fileName(name), text );
 	}
 	public static string LoadLocal(string name)
 	{
-		return PlayerPrefs.GetString(localkey + "_" + name);
+		return PlayerPrefs.GetString(fileName(name));
 	}
 	public static bool IsHaveLocal(string name)
 	{
-		return PlayerPrefs.HasKey(localkey + "_" + name);
+		return PlayerPrefs.HasKey(fileName(name));
 	}
 }

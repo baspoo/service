@@ -9,6 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 /// <summary>
 ///    ** Game Master Service by 'Baspoo'
+///    ** Contect Baspoogamedev@gmail.com for update & fix bug.
 /// </summary>
 public class Service : MonoBehaviour {
 	public static void Clear(){
@@ -40,6 +41,15 @@ public class Service : MonoBehaviour {
 
 	}
 
+
+
+
+	[System.Serializable]
+	public class KeyPair
+	{
+		public string Key;
+		public double Value;
+	}
 
 	public class Var{
 
@@ -227,6 +237,29 @@ public class Service : MonoBehaviour {
 				foreach (particleSystem t in _ParticleSystems) {
 					if (t.name == varName)
 						return t.particle;
+				}
+				return null;
+			}
+		}
+		#endregion
+		#region Var-Object
+		[System.Serializable]
+		public class Objects
+		{
+			[SerializeField]
+			List<objects> _Objects = new List<objects>();
+			[System.Serializable]
+			public class objects
+			{
+				public string name;
+				public object obj;
+			}
+			public object Get(string varName)
+			{
+				foreach (var t in _Objects)
+				{
+					if (t.name == varName)
+						return t.obj;
 				}
 				return null;
 			}
@@ -584,6 +617,10 @@ public class Service : MonoBehaviour {
 				public string Tag;
 			}
 			public List<FunctionCallingData> 	Functions = new List<FunctionCallingData>();
+			public void Add(FunctionCallingData data)
+			{
+				Functions.Add(data);
+			}
 			public FunctionCallingData Add(string functionName, callback function){
 				return Add(functionName, string.Empty , false, function);
 			}
@@ -1199,7 +1236,8 @@ public class Service : MonoBehaviour {
 						  "r_" + Random.Range (11111, 99999).ToString () +
 			              "d_" + Service.Time.DateTimeToUnixTimeStamp (System.DateTime.Now).ToString () +
 			              "c_";
-			for (int i = 0; i < ch; i++) {
+			for (int i = 0; i < ch; i++) 
+			{
 				key += String.RandomString (String.TypeWriter.all);
 			}
 			return key;
@@ -1302,8 +1340,12 @@ public class Service : MonoBehaviour {
 			else
 				return Str;
 		}
-		public static Service.Formula  Parse ( string Str , Service.Formula _default){  
-			return Service.Formula.Setup(Str);
+		public static Service.Formula  Parse ( string Str , Service.Formula _default , formulaToType type )
+		{
+			if (type == formulaToType.statdard)
+				return Service.Formula.Setup(Str);
+			else
+				return FormulaToolsService.Json.JsonToJFormula(Str);
 		}
 		public static Vector2 Parse(string Str ,Vector2 _default  ){  
 			return PassStringToVector2 (Str);
@@ -1329,8 +1371,10 @@ public class Service : MonoBehaviour {
 		public static void To(string Str , out string result ){  
 			result = Parse(Str,string.Empty);
 		}
-		public static void To(string Str , out Service.Formula result ){  
-			result = Parse(Str,new Service.Formula());
+		public enum formulaToType { statdard , json }
+		public static void To(string Str , out Service.Formula result , formulaToType type )
+		{  
+			result = Parse(Str,new Service.Formula(), type);
 		}
 		public static void To(string Str , out Vector2 result ){  
 			result = Parse(Str,Vector2.zero);		
@@ -2698,12 +2742,35 @@ public class Service : MonoBehaviour {
 			}
 			return null;
 		}
+		public static AddOn.Timmer Find(GameObject obj, string ID)
+		{
+			foreach (var time in obj.GetComponents<AddOn.Timmer>())
+			{
+				if (time != null)
+					if (time.ID == ID)
+					{
+						return time;
+					}
+			}
+			return null;
+		}
 		public static  void StopAndDelete(string ID){
 			AddOn.Timmer time = Find (ID);
 			if (time != null)
 				time.StopAndDelete ();
 		}
-		public static void StopAndDeleteAll(string ID)
+        public static void StopAndDelete(GameObject obj, string ID)
+        {
+            foreach (var time in obj.GetComponents<AddOn.Timmer>())
+            {
+                if (time != null)
+                    if (time.ID == ID)
+                    {
+                        time.StopAndDelete();
+                    }
+            }
+        }
+        public static void StopAndDeleteAll(string ID)
 		{
 			foreach (AddOn.Timmer time in FindObjectsOfType<AddOn.Timmer>().ToList())
 			{
@@ -2718,7 +2785,13 @@ public class Service : MonoBehaviour {
 			if (time != null)
 				time.ForceFinish ();
 		}
-
+		public static AddOn.Timmer ToBetween(float form, float to,float speed = 1.0f , TimmerCallback callback = null, bool isIgnoreTimeScale = false)
+		{
+			AddOn.Timmer addon = Tools.AddTimmer();
+			addon.isIgnoreTimeScale = isIgnoreTimeScale;
+			addon.ToBetween(form, to, speed, callback);
+			return addon;
+		}
 		public static AddOn.Timmer Wait(float waiting  , TimmerCallback callback = null , bool isIgnoreTimeScale=false){
 			AddOn.Timmer addon = Tools.AddTimmer ();
             addon.isIgnoreTimeScale = isIgnoreTimeScale;

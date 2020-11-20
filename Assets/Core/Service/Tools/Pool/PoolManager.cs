@@ -72,17 +72,22 @@ public class PoolManager : MonoBehaviour {
 
 	//** Function
 	public static PoolObj Spawn(  GameObject newObj , Transform tran , float destime = 0.0f){
-		PoolGroup pg = FindPoolGroup (newObj);
-		if (pg == null) {
-			pg = CreateNewPoolGroup (newObj);
+		return Spawn(newObj, tran.position , destime);
+	}
+	public static PoolObj Spawn(GameObject newObj, Vector3 position, float destime = 0.0f)
+	{
+		PoolGroup pg = FindPoolGroup(newObj);
+		if (pg == null)
+		{
+			pg = CreateNewPoolGroup(newObj);
 		}
-		PoolObj p = pg.FindAvalible ();
+		PoolObj p = pg.FindAvalible();
 		if (p == null)
-			p = pool.Create ( pg );
-		if(tran!=null)
-			p.transform.position = tran.position;
+			p = pool.Create(pg);
+
+		p.transform.position = position;
 		p.transform.localScale = Vector3.one;
-		p.Active (destime);
+		p.Active(destime);
 		return p;
 	}
 	public static PoolObj SpawParent(  GameObject newObj , Transform tran , float destime = 0.0f){

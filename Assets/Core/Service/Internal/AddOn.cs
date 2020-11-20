@@ -82,7 +82,7 @@ public class AddOn : MonoBehaviour {
 		public int roundRunning = 0;
 		public int roundMaximum = 0;
         public bool isIgnoreTimeScale;
-
+		public float timeSpeed = 1.0f;
 		Service.Timmer.TimmerCallback m_callback;
 		Service.Timmer.TimmerCallbackLoop m_callbackloop;
 		Service.Timmer.TimmerCallbackInfinity m_callbackinfinity;
@@ -101,9 +101,11 @@ public class AddOn : MonoBehaviour {
 
             if (isTimmerActive) {
 				realtime ();
-				if (timmerRunnig < timerMaximum) {
-					timmerRunnig += delta;
-				} else {
+				if (timmerRunnig < timerMaximum) 
+				{
+					timmerRunnig += delta * timeSpeed;
+				} 
+				else {
 					roundRunning++;
 					if (roundMaximum != 0) {
 						if (roundRunning >= roundMaximum)
@@ -162,7 +164,16 @@ public class AddOn : MonoBehaviour {
 			roundMaximum = 0;
 			isTimmerActive = true;
 		}
-
+		public void ToBetween(float form , float to , float speed , Service.Timmer.TimmerCallback callback)
+		{
+			timeSpeed = speed;
+			timmerRunnig = form;
+			timerMaximum = to;
+			m_callback = callback;
+			isLoop = false;
+			roundMaximum = 0;
+			isTimmerActive = true;
+		}
 
 
 		public void TimmerStep(){
