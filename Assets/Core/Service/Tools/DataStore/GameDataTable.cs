@@ -19,6 +19,30 @@ public class GameData {
 		Debug.LogError ("Find null value : " + key );
 		return string.Empty;
 	}
+
+	public void GetValue(string key ,out int data)=> Service.String.To(GetValue(key), out data);
+	public void GetValue(string key, out float data) => Service.String.To(GetValue(key), out data);
+	public void GetValue(string key, out double data) => Service.String.To(GetValue(key), out data);
+	public void GetValue(string key, out long data) => Service.String.To(GetValue(key), out data);
+	public void GetValue(string key, out string data) => Service.String.To(GetValue(key), out data);
+	public void GetValue(string key, out Service.Formula data) 
+	{
+		data = GetValue(key).ToFormula();
+	}
+
+
+	void GetValue( object objclass ,string key)
+	{
+		var val = GetValue(key);
+		if(!string.IsNullOrEmpty(val))Service.Var.ToClass(objclass, key, val);
+	}
+	public void GetValue(object objclass, params string[] keys)
+	{
+		foreach (var k in keys)
+			GetValue(objclass,k);
+	}
+
+
 	public bool isHave(string key){
 		foreach (GameData GD in DataLists)
 			if (GD.Key == key)

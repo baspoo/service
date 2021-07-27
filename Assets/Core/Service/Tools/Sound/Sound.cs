@@ -110,7 +110,7 @@ public class Sound : MonoBehaviour {
 		if(m_bgm==null)
 		{
 			m_bgm = gameObject.GetComponent<AudioSource>();
-			m_bgm.clip = Backgroundmusic.bgm_mainmenu.clip;
+			m_bgm.clip = Backgroundmusic.bgm_mainmenu.getclip;
 			m_bgm.Play();
 			m_bgm.loop = true;
 			m_bgm.volume = volume_Bgm;
@@ -149,10 +149,10 @@ public class Sound : MonoBehaviour {
 
 	static float lasttime_sound;
 	static AudioClip last_clip;
-	public static void Play( SoundData sd , float wait = 0.0f )
+	public static void Play(SoundData sd, float wait = 0.0f)
 	{
-		if(wait == 0.0f) Play (sd.clip);
-		else Play(sd.clip, wait);
+		if (wait == 0.0f) Play(sd.getclip);
+		else Play(sd.getclip, wait);
 	}
 	public static void Play( AudioClip clip ){
 		if(Sound.sound == null)
@@ -202,7 +202,7 @@ public class Sound : MonoBehaviour {
 		return audioSource;
 	}
 	public static AudioSource CreatedAudio(SoundData _sound , float duration , bool loop , Transform transform ){
-		var audioSource = CreatedAudio (_sound.clip,duration,loop,transform);
+		var audioSource = CreatedAudio (_sound.getclip,duration,loop,transform);
 		return audioSource;
 	}
 	static List<AudioSource> AudioSources = new List<AudioSource> ();

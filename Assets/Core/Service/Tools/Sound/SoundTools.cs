@@ -11,21 +11,50 @@ public class SoundData
 	public string name;
 	public bool isEnable;
 	public bool isPlay;
-	public AudioClip clip;
+	public string path;
 	public string message;
 	public string tag;
+	public AudioClip fill;
+	//public Avatar this[int index] { get => Avatars[index]; }
+	//public AudioClip this.clip;
 
-	public static SoundData Find(SoundData[] datas , string find  , int indexDefault = -1){
-		if (!string.IsNullOrEmpty (find)) {
-			foreach (SoundData s in datas) {
+	public static SoundData Find(SoundData[] datas, string find, int indexDefault = -1)
+	{
+		if (!string.IsNullOrEmpty(find))
+		{
+			foreach (SoundData s in datas)
+			{
 				if (s.tag == find)
 					return s;
 			}
 		}
 		if (indexDefault != -1)
-			return datas [indexDefault];
-		else 
+			return datas[indexDefault];
+		else
 			return null;
+	}
+
+	AudioClip m_clip;
+	public AudioClip getclip
+	{
+		get
+		{
+
+			if (!Application.isPlaying)
+				return reload(path);
+
+			if (m_clip == null)
+			{
+				if (!string.IsNullOrEmpty(path))
+					m_clip = reload(path);
+			}
+			return m_clip;
+		}
+	}
+
+	public static AudioClip reload(string path)
+	{
+		return Resources.Load(path) as AudioClip;
 	}
 }
 
@@ -50,13 +79,15 @@ public class SoundOther
 [CustomPropertyDrawer(typeof(SoundData))]
 public class IngredientDrawer : PropertyDrawer
 {
-	int nextwidth=0;
-	void Reposition(){ nextwidth = 0; }
-	Rect Position( Rect position , int width){
-		Rect R = new Rect(position.x	+ nextwidth	, position.y, width	, position.height);
+	int nextwidth = 0;
+	void Reposition() { nextwidth = 0; }
+	Rect Position(Rect position, int width)
+	{
+		Rect R = new Rect(position.x + nextwidth, position.y, width, position.height);
 		nextwidth += width + 5;
 		return R;
 	}
+	public string pathKeep;
 
 	public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 	{
@@ -67,34 +98,76 @@ public class IngredientDrawer : PropertyDrawer
 
 
 
-		ToolsSounds.SoundPlaylist Playlist =  ((GameObject)Selection.activeObject).GetComponent<ToolsSounds.SoundPlaylist>(); 
-		if (Playlist != null) {
-			foreach( SoundGroupOther groups in Playlist.SoundOther  ){
-				foreach( SoundOther so in groups.Refs  ){
-					if (so.refobject != null)
-						so.name = so.refobject.name;
-				}
+		ToolsSounds.SoundPlaylist Playlist = ((GameObject)Selection.activeObject).GetComponent<ToolsSounds.SoundPlaylist>();
+
+
+
+
+
+
+		Reposition();
+
+
+
+		if ((property.FindPropertyRelative("isEnable").boolValue))
+		{
+			if (GUI.Button(Position(position, 22), EditorGUIUtility.FindTexture("AudioSource Gizmo")))
+			{
+				Playlist.Play(SoundData.reload(property.FindPropertyRelative("path").stringValue));
+				EditorGUIUtility.PingObject(SoundData.reload(property.FindPropertyRelative("path").stringValue));
 			}
 		}
+		//EditorGUI.PropertyField(Position(position, 20), property.FindPropertyRelative("isPlay"), GUIContent.none);
+		else
+			EditorGUI.HelpBox(Position(position, 20), "", MessageType.Warning);
 
+		//EditorGUI.PropertyField(Position(position,10), property.FindPropertyRelative("isPlay"), GUIContent.none);
+		//EditorGUI.HelpBox(Position(position, 20), "", (property.FindPropertyRelative("isEnable").boolValue)?MessageType.None: MessageType.Warning);
 
-		Reposition ();
-		EditorGUI.PropertyField(Position(position,10), property.FindPropertyRelative("isPlay"), GUIContent.none);
-		EditorGUI.PropertyField(Position(position,200), property.FindPropertyRelative("clip"), GUIContent.none);
-		EditorGUI.PropertyField(Position(position,20), property.FindPropertyRelative("isEnable"), GUIContent.none);
-		EditorGUI.LabelField (Position(position,300),property.FindPropertyRelative("name").stringValue);
+		EditorGUI.PropertyField(Position(position, 20), property.FindPropertyRelative("fill"), GUIContent.none);
+		EditorGUI.PropertyField(Position(position, 300), property.FindPropertyRelative("path"), GUIContent.none);
+		EditorGUI.PropertyField(Position(position, 100), property.FindPropertyRelative("tag"), GUIContent.none);
 
-
-		if (property.FindPropertyRelative ("isEnable").boolValue) {
-			property.FindPropertyRelative ("isEnable").boolValue = false;
-			SoundEdit.ShowWindow (property);
+		if (property.FindPropertyRelative("path").stringValue != pathKeep)
+		{
+			var clip = SoundData.reload(property.FindPropertyRelative("path").stringValue);
+			property.FindPropertyRelative("isEnable").boolValue = clip != null;
+			pathKeep = property.FindPropertyRelative("path").stringValue;
 		}
 
 
-		if (property.FindPropertyRelative ("isPlay").boolValue) {
-			property.FindPropertyRelative ("isPlay").boolValue = false;
-			Playlist.Play ( (AudioClip) property.FindPropertyRelative ("clip").objectReferenceValue );
+		if (property.FindPropertyRelative("fill").objectReferenceValue != null)
+		{
+			var path = AssetDatabase.GetAssetPath(property.FindPropertyRelative("fill").objectReferenceValue);
+			//path = path.Replace("Assets/TheLastBug/MediaStore/Sound/Resources/sfxplaylist/", "");
+			//path = path.Split('.')[0];
+			//property.FindPropertyRelative("path").stringValue = path;
+			//property.FindPropertyRelative("fill").objectReferenceValue = null;
+
+			//var path = AssetDatabase.GetAssetPath(property.FindPropertyRelative("fill").objectReferenceValue);
+
+			string[] stringSeparators = new string[] { "Resources/" };
+			var split = path.Split(stringSeparators, System.StringSplitOptions.None);
+			if (split.Length > 1)
+				path = split[1];
+			else
+				path = string.Empty;
+			path = path.Split('.')[0];
+			property.FindPropertyRelative("path").stringValue = path;
+			property.FindPropertyRelative("fill").objectReferenceValue = null;
+
+
 		}
+
+
+
+
+		//	if (property.FindPropertyRelative ("isPlay").boolValue) 
+		//{
+		//	property.FindPropertyRelative ("isPlay").boolValue = false;
+		//	Playlist.Play(SoundData.reload(property.FindPropertyRelative("path").stringValue));
+		//	EditorGUIUtility.PingObject(SoundData.reload(property.FindPropertyRelative("path").stringValue));
+		//}
 
 
 		// Set indent back to what it was
@@ -128,56 +201,61 @@ public class IngredientDrawer : PropertyDrawer
 #if UNITY_EDITOR
 public class SoundEdit : EditorWindow
 {
-	public static void ShowWindow( SerializedProperty property ){
+	public static void ShowWindow(SerializedProperty property)
+	{
 		m_property = property;
 		EditorWindow.GetWindow(typeof(SoundEdit));
 	}
 
 	static SerializedProperty m_property;
-	void OnGUI(){
+	void OnGUI()
+	{
 
 		if (m_property == null)
 			return;
-		if ( !Service.GameObj.isObjectNotNull(m_property) )
+		if (!Service.GameObj.isObjectNotNull(m_property))
 			return;
-		
+
 		if ((GameObject)Selection.activeObject == null)
 			return;
 		else
 			if (((GameObject)Selection.activeObject).GetComponent<ToolsSounds.SoundPlaylist>() == null)
-				return;
-		
-		GUIStyle gs = new GUIStyle (GUIstylePackage.Instant.Header);;
+			return;
+
+		GUIStyle gs = new GUIStyle(GUIstylePackage.Instant.Header); ;
 		gs.alignment = TextAnchor.MiddleCenter;
 		gs.normal.textColor = Color.white;
-		EditorGUILayout.LabelField ("--------------------------------------------------------",gs);
-		EditorGUILayout.LabelField ("||                     Note!                       ||", gs);
-		EditorGUILayout.LabelField ("--------------------------------------------------------",gs);
-		EditorGUILayout.Space ();
-		EditorGUILayout.Space ();
+		EditorGUILayout.LabelField("--------------------------------------------------------", gs);
+		EditorGUILayout.LabelField("||                     Note!                       ||", gs);
+		EditorGUILayout.LabelField("--------------------------------------------------------", gs);
+		EditorGUILayout.Space();
+		EditorGUILayout.Space();
 
-		try{
-		EditorGUILayout.LabelField ("Name");
-		SerializedProperty nn = m_property.FindPropertyRelative ("name");
-		nn.stringValue =  EditorGUILayout.TextField ( nn.stringValue);
-		nn.serializedObject.ApplyModifiedProperties ();
+		try
+		{
+			EditorGUILayout.LabelField("Name");
+			SerializedProperty nn = m_property.FindPropertyRelative("name");
+			nn.stringValue = EditorGUILayout.TextField(nn.stringValue);
+			nn.serializedObject.ApplyModifiedProperties();
 
-		EditorGUILayout.Space ();
-		EditorGUILayout.Space ();
+			EditorGUILayout.Space();
+			EditorGUILayout.Space();
 
-		EditorGUILayout.LabelField ("Message");
-		SerializedProperty mm = m_property.FindPropertyRelative ("message");
-		mm.stringValue =  EditorGUILayout.TextArea ( mm.stringValue);
-		mm.serializedObject.ApplyModifiedProperties ();
+			EditorGUILayout.LabelField("Message");
+			SerializedProperty mm = m_property.FindPropertyRelative("message");
+			mm.stringValue = EditorGUILayout.TextArea(mm.stringValue);
+			mm.serializedObject.ApplyModifiedProperties();
 
 
-		EditorGUILayout.LabelField ("Tag");
-		SerializedProperty t = m_property.FindPropertyRelative ("tag");
-		t.stringValue =  EditorGUILayout.TextField ( t.stringValue);
-		t.serializedObject.ApplyModifiedProperties ();
+			EditorGUILayout.LabelField("Tag");
+			SerializedProperty t = m_property.FindPropertyRelative("tag");
+			t.stringValue = EditorGUILayout.TextField(t.stringValue);
+			t.serializedObject.ApplyModifiedProperties();
 
-		} catch{
-		
+		}
+		catch
+		{
+
 		}
 	}
 

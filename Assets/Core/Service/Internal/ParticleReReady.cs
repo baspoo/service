@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleReReady : MonoBehaviour {
+public class ParticleReReady : MonoBehaviour
+{
 	public ParticleSystem particlesystem;
 	public bool isLoop;
+	public float Delay;
 	public float MinTime;
 	public float MaxTime;
 	public float autoDes;
+	public float autoDeactive;
 
-
-	public static void RePlayAllParent(Transform root){
+	public static void RePlayAllParent(Transform root)
+	{
 		foreach (GameObject p in Service.GameObj.GetAllParent(root))
 		{
 			RePlay(p.transform);
@@ -26,8 +29,13 @@ public class ParticleReReady : MonoBehaviour {
 			{
 				Destroy(particlem.gameObject, particlem.autoDes);
 			}
+			if (particlem.autoDeactive != 0.0f)
+			{
+				Service.Timmer.Wait(particlem.autoDeactive, particlem.gameObject, () => {
+					particlem.gameObject.SetActive(false);
+				});
+			}
 		}
-
 	}
 	public static void RePlay(Transform particlesystem)
 	{
@@ -39,34 +47,48 @@ public class ParticleReReady : MonoBehaviour {
 		foreach (GameObject p in Service.GameObj.GetAllParent(root))
 		{
 			ParticleSystem particlesystem = p.GetComponent<ParticleSystem>();
-			if(particlesystem!=null)
+			if (particlesystem != null)
 				particlesystem.loop = false;
 		}
 	}
 
 	void Start()
 	{
-		RePlay(this);
+		if (Delay != 0)
+		{
+			particlesystem.Stop();
+			Delay.Wait(() => RePlay(this));
+		}
+
+		else
+			RePlay(this);
 	}
 	float time = 0.0f;
 	float maxtime = 0.0f;
-	void Update(){
-		if (isLoop) {
-			if (time < maxtime) {
+	void Update()
+	{
+		if (isLoop)
+		{
+			if (time < maxtime)
+			{
 				time += Time.deltaTime;
-			} else {
+			}
+			else
+			{
 				time = 0.0f;
-				maxtime = Random.Range (MinTime,MaxTime);
-				Start ();
+				maxtime = Random.Range(MinTime, MaxTime);
+				Start();
 			}
 		}
 	}
 
-	public void Active(){
-		gameObject.SetActive (true);
-		Start ();
+	public void Active()
+	{
+		gameObject.SetActive(true);
+		Start();
 	}
-	void OnEnable(){
-		RePlay(this);
+	void OnEnable()
+	{
+		Start();
 	}
 }

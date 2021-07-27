@@ -3,15 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Newtonsoft.Json;
+using System.Linq;
 
 
 public class EditorGUIService 
 {
+
+	//Label Style
+	public static void LableBlod(string text) => EditorGUILayout.LabelField(text, EditorStyles.boldLabel);
+	public static void LableLarge(string text) => EditorGUILayout.LabelField(text, EditorStyles.largeLabel);
+
+
+
+
 	public class ProjectPath
 	{
 		public const string header = "Core-Service";
 	}
 
+
+	[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/DeleteAll EditorPrefs")]
+	public static void ShowWindow()
+	{
+		EditorPrefs.DeleteAll();
+	}
 
 	public class EditorData {
 		string m_key;
@@ -41,11 +57,19 @@ public class EditorGUIService
 
 
 
+	public static string Copyed => EditorGUIUtility.systemCopyBuffer;
+
+
+	public static void OpenDialog(string header, string message, System.Action action)
+	{
+		if (EditorUtility.DisplayDialog(header, message, "yes", "no")) action?.Invoke();
+	}
+
 	public class Popup : EditorWindow
 	{
 		Vector2 ScrollView;
-		static Service.Callback.callback Delegate = null;
-		public static void ShowWindow(string popupname, Service.Callback.callback data)
+		static System.Action Delegate = null;
+		public static void ShowWindow(string popupname, System.Action data)
 		{
 			Delegate = data;
 			EditorWindow.GetWindow(typeof(Popup), true, popupname);
@@ -60,6 +84,19 @@ public class EditorGUIService
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public class AdjustClass {
 
@@ -390,6 +427,321 @@ public class EditorGUIService
 		EditorGUI.EndDisabledGroup();
 	}
 
+
+	public static void SimpleViewObject(object obj, HashSet<string> onlyfield = null)
+	{
+		if (obj == null)
+			return;
+
+		LableBlod(obj.GetType().Name);
+
+		string json = ServiceJson.Json.SerializeObject(obj);
+		//Debug.Log(json);
+		Dictionary<string, object> dict = ServiceJson.Json.DeserializeObject<Dictionary<string, object>>(json);
+		if (dict != null)
+			foreach (var data in dict)
+			{
+				if (onlyfield == null || onlyfield.Contains(data.Key))
+				{
+					string value = (data.Value is string) ? value = ((string)data.Value) :
+					JsonConvert.SerializeObject(data.Value, Formatting.None);
+					EditorGUILayout.TextField(data.Key, value);
+				}
+			}
+	}
+	public class SimpleViewObjectEdit : EditorWindow
+	{
+		static object m_data;
+		static string m_raw;
+		public static void ShowWindow(ref object data)
+		{
+			m_data = data;
+			EditorWindow.GetWindow(typeof(SimpleViewObjectEdit), true, "Object Edit");
+		}
+		Vector2 ScrollView;
+		void OnGUI()
+		{
+			m_raw = JsonConvert.SerializeObject(m_data, Formatting.Indented);
+			EditorStyles.textField.wordWrap = true;
+			EditorGUILayout.TextArea(m_raw, GUILayout.Height(200.0f));
+			if (GUILayout.Button("Convert"))
+			{
+				m_data = JsonConvert.DeserializeObject(m_raw);
+				Close();
+			}
+		}
+	}
+
+	public static void Dict(Dictionary<string, int> dict)
+	{
+		foreach (var d in dict)
+			EditorGUILayout.IntField(d.Key, d.Value);
+	}
+	public static void Dict(Dictionary<string, long> dict)
+	{
+		foreach (var d in dict)
+			EditorGUILayout.LongField(d.Key, d.Value);
+	}
+	public static void Dict(Dictionary<string, double> dict)
+	{
+		foreach (var d in dict)
+			EditorGUILayout.DoubleField(d.Key, d.Value);
+	}
+	public static void Dict(Dictionary<string, float> dict)
+	{
+		foreach (var d in dict)
+			EditorGUILayout.FloatField(d.Key, d.Value);
+	}
+	public static void Dict(Dictionary<string, string> dict)
+	{
+		foreach (var d in dict)
+			EditorGUILayout.TextField(d.Key, d.Value);
+	}
+
+
+
+
+
+
+
+
+
+
+
+	public class ListView 
+	{
+
+
+		static void head(string name,System.Action action , System.Action add) 
+		{
+			if (EditorGUIService.DrawHeader(name, "ListView-" + name, false, false))
+			{
+				EditorGUIService.BeginContents(false);
+				{
+					action?.Invoke();
+					if (GUILayout.Button("+"))
+					{
+						add?.Invoke();
+					}
+				}
+				EditorGUIService.EndContents();
+			}
+		}
+		static void content(System.Action content,System.Action remove)
+		{
+			EditorGUILayout.BeginHorizontal();
+			content?.Invoke();
+			GUI.backgroundColor = Color.red;
+			if (GUILayout.Button("X", GUILayout.Width(40.0f)))
+			{
+				remove?.Invoke();
+			}
+			GUI.backgroundColor = Color.white;
+			EditorGUILayout.EndHorizontal();
+		}
+
+
+
+
+		//ตัวอย่างการใช้ Other Objects
+		static void example() {
+
+			List<GameObject> list = new List<GameObject>();
+
+			EditorGUIService.ListView.Objects("test", list.Count, (i) => {
+				//ในช่องแนวนอนนั้นอยากให้เก็บฟิลอะไรบ้าง ได้มากกว่า 1 คอลลั้ม.... 
+				list[i] = (GameObject)EditorGUILayout.ObjectField(list[i], typeof(GameObject));
+			}, () => {
+				list.Add(null);
+			}, (i) => {
+				list[i] = null;
+			});
+
+		}
+
+		public static void Objects( string name , int count , System.Action<int> contentlist, System.Action add, System.Action<int> remove)
+		{
+			head(name, () => {
+				for (int i = 0; i < count ; i++)
+				{
+					content(() => {
+						contentlist?.Invoke(i);
+					}, () => { remove?.Invoke(i); });
+				}
+			}, () => { add?.Invoke(); });
+		}
+
+
+		public static void GameObjects(string name, List<GameObject> list)
+		{
+			head(name, () => {
+				if(list!=null)
+				for (int i = 0; i < list.Count; i++)
+				{
+					content(() => {
+						list[i] = (GameObject)EditorGUILayout.ObjectField(list[i], typeof(GameObject));
+					}, () => { list.Remove(list[i]); });
+				}
+			}, () => { list.Add(null); });
+		}
+		public static void Transforms(string name, List<Transform> list)
+		{
+			head(name, () => {
+				if (list != null) 
+				for (int i = 0; i < list.Count; i++)
+				{
+					content(() => {
+						list[i] = (Transform)EditorGUILayout.ObjectField(list[i], typeof(Transform));
+					}, () => { list.Remove(list[i]); });
+				}
+			}, () => { list.Add(null); });
+		}
+		public static void Ints(string name, List<int> list){
+			head(name, () => {
+				if (list != null) for (int i = 0; i < list.Count; i++){content(() => {
+						list[i] = EditorGUILayout.IntField(list[i]);
+					}, () => {list.Remove(list[i]);});}}, () => {list.Add(0);});
+		}
+		public static void Floats(string name, List<float> list)
+		{
+			head(name, () => {
+				if (list != null) for (int i = 0; i < list.Count; i++)
+				{
+					content(() => {
+						list[i] = EditorGUILayout.FloatField(list[i]);
+					}, () => { list.Remove(list[i]); });
+				}
+			}, () => { list.Add(0); });
+		}
+		public static void Doubles(string name, List<double> list)
+		{
+			head(name, () => {
+				if (list != null) for (int i = 0; i < list.Count; i++)
+				{
+					content(() => {
+						list[i] = EditorGUILayout.DoubleField(list[i]);
+					}, () => { list.Remove(list[i]); });
+				}
+			}, () => { list.Add(0); });
+		}
+		public static void Strings(string name,List<string> list)
+		{
+			head(name, () => {
+				if (list != null) for (int i = 0; i < list.Count; i++)
+				{
+					content(() => {
+						list[i] = EditorGUILayout.TextField(list[i]);
+					}, () => { list.Remove(list[i]); });
+				}
+			}, () => { list.Add(string.Empty); });
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+	static Dictionary<string, string> dict = new Dictionary<string, string>();
+	public static string Popuplist(string header, string defaultdata, string[] datas)
+	{
+		string val = defaultdata;
+		if (dict.ContainsKey(header))
+			val = dict[header];
+
+
+		var lit = datas.ToList();
+		int indexOld = lit.FindIndex(x => x == val);
+		if (indexOld == -1) indexOld = 0;
+		indexOld = EditorGUILayout.Popup(indexOld, datas);
+
+
+		val = datas[indexOld];
+		if (dict.ContainsKey(header))
+			dict[header] = val;
+		else
+			dict.Add(header, val);
+
+		return val;
+	}
+	public static string Popuplist(string header, string defaultdata, List<Object> datas)
+	{
+		string[] str = new string[datas.Count];
+		for (int i = 0; i < str.Length; i++)
+		{
+			str[i] = (datas[i] == null) ? string.Empty : datas[i].name;
+		}
+		return Popuplist(header, defaultdata, str);
+	}
+	public static string Popuplist(string header, string defaultdata, Object[] datas)
+	{
+		string[] str = new string[datas.Length];
+		for (int i = 0; i < str.Length; i++)
+		{
+			str[i] = (datas[i] == null) ? string.Empty : datas[i].name;
+		}
+		return Popuplist(header, defaultdata, str);
+	}
+
+
+
+	//ถ้าจะใช้ UserPopuplist Action ให้มันCall เช่นโหลดของจาก Resource ตลอดเวลามันหนักไป
+	//ใช้ Delay ขั้นกลางก่อนสักที จะเบาขึ้นเยอะ / หรือเอาไปขั้นกระบวนการอะไรบางอย่างที่ ไม่อยากให้ทำถี่ๆ
+	static Dictionary<string, Object[]> dictobjs = new Dictionary<string, Object[]>();
+	static Dictionary<string, System.DateTime> dicttime = new Dictionary<string, System.DateTime>();
+	public delegate Object[] callbackObjects();
+	public static bool Delay(string header) => Delay(header, 3.0f, null);
+	public static bool Delay(string header, System.Action action) => Delay(header, 3.0f, action);
+	public static bool Delay(string header, float refresh = 3, System.Action action = null)
+	{
+		if (!dicttime.ContainsKey(header))
+		{
+			action?.Invoke();
+			dicttime.Add(header, System.DateTime.Now);
+			return true;
+		}
+		else
+		{
+			var lasttime = dicttime[header];
+			bool isTimeout = System.DateTime.Now.AddSeconds(-refresh) > lasttime;
+			if (isTimeout)
+			{
+				action?.Invoke();
+				dicttime[header] = System.DateTime.Now;
+			}
+			return isTimeout;
+		}
+		return false;
+	}
+
+	public static string Popuplist(string header, string defaultdata, callbackObjects action)
+	{
+		Object[] datas = null;
+		if (Delay(header))
+		{
+			datas = action();
+
+			if (!dictobjs.ContainsKey(header))
+				dictobjs.Add(header, datas);
+			else
+				dictobjs[header] = datas;
+		}
+		else
+		{
+			datas = dictobjs[header];
+		}
+
+		string[] str = new string[datas.Length];
+		for (int i = 0; i < str.Length; i++)
+		{
+			str[i] = (datas[i] == null) ? string.Empty : datas[i].name;
+		}
+		return Popuplist(header, defaultdata, str);
+	}
 
 
 

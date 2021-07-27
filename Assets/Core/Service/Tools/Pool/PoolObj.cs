@@ -7,12 +7,15 @@ public class PoolObj : MonoBehaviour {
 	public int refID;
 	public int ID;
 	public bool isActive;
-
 	public Service.Callback.callback onActive;
 	public Service.Callback.callback onDeactive;
+	PoolGroup m_group;
 
-	public void init(  GameObject p ){
-		refID = p.GetInstanceID ();
+	public void init(  PoolGroup group )
+	{
+		ID = this.GetInstanceID();
+		refID = group.pObj.GetInstanceID ();
+		m_group = group;
 		Deactive ();
 	} 
 
@@ -30,9 +33,23 @@ public class PoolObj : MonoBehaviour {
 	public void Deactive(){
 		isActive = false;
 		gameObject.SetActive (isActive);
+
+		if (transform.parent != m_group.Transforms) 
+		{
+			ReturnToOrigin();
+		}
+
 		if (onDeactive != null)
 			onDeactive ();
 	}
+
+	public void ReturnToOrigin() 
+	{
+		gameObject.layer = m_group.Transforms.gameObject.layer;
+		transform.parent = m_group.Transforms;
+	}
+
+
 
 
 	void Update(){
@@ -43,5 +60,19 @@ public class PoolObj : MonoBehaviour {
 				Deactive ();
 		}
 	}
+
+
+
+	public void Refresh()
+	{
+		Service.Timmer.StopAndDelete(ID.ToString());
+		gameObject.SetActive(false);
+		Service.Timmer.Wait(0.05f, PoolManager.pool.gameObject ,()=> {
+			if(Service.GameObj.isObjectNotNull(this))
+				gameObject.SetActive(true);
+		}).ID = ID.ToString();
+	}
+	
+
 
 }

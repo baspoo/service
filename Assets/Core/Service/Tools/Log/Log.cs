@@ -13,18 +13,11 @@ public class Log {
 	public static bool isCanLog{
 
 		get {
-			if (Info.IsDev) 
-			{
-				#if UNITY_EDITOR || UNITY_STANDALONE
-					return true;
-				#else
-					return false;
-				#endif
-			}
-			else 
-			{
-				return false;
-			}
+			#if UNITY_EDITOR 
+						return true;
+			#else
+						return false;
+			#endif
 		}
 	}
 

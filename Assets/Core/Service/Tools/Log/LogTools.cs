@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 [CustomEditor(typeof(LogTools))]
 public class LogToolsUI : Editor{
-	[MenuItem (EditorGUIService.ProjectPath.header + "/Log/Setting")]
+	[MenuItem ("TheLastBug/Setting/Log")]
 	public static void OnSelection() {
 		Selection.activeObject = LogTools.log.gameObject;
 		AssetDatabase.OpenAsset(Selection.activeObject);
@@ -16,16 +16,22 @@ public class LogToolsUI : Editor{
 	public LogTools m_tools {get{ return ((GameObject)Selection.activeObject).GetComponent<LogTools>();  }}
 	public override void OnInspectorGUI()
 	{
-		EditorGUILayout.Space ();
-		if (m_tools != null) {
+		Display( );
+	}
+	public static void Display( )
+	{
+		EditorGUILayout.Space();
+		if (LogTools.log != null)
+		{
 			LogTools.log.DisplayGUI();
 			((GameObject)Selection.activeObject).gameObject.SetActive(true);
 			LogTools.log.gameObject.name = LogTools.log.gameObject.name;
-			serializedObject.ApplyModifiedProperties();
-			Undo.RecordObject(LogTools.log, "Log");
 			if (GUILayout.Button("Save Tag"))
 			{
-				PrefabUtility.RecordPrefabInstancePropertyModifications(m_tools);
+				Undo.RecordObject(LogTools.log, "Log");
+				PrefabUtility.RecordPrefabInstancePropertyModifications(LogTools.log);
+				EditorUtility.CopySerialized(LogTools.log, LogTools.log);
+				AssetDatabase.SaveAssets();
 			}
 		}
 	}
@@ -33,13 +39,7 @@ public class LogToolsUI : Editor{
 #endif
 
 
-public class Info
-{
-	public static bool IsDev
-	{
-		get { return true; }
-	}
-}
+
 
 [System.Serializable]
 public class TagData
@@ -75,28 +75,31 @@ public class LogTools : MonoBehaviour {
 
 
 
-
-	public void InitAdject() {
-
-		if (!Info.IsDev) 
-		{
-			IgnoreAll = true;
-			DisableUnityLog = true;
-			IgnoreNotTag = true;
-			IsReportFile = false;
-		}
-
-		Debug.unityLogger.logEnabled = !DisableUnityLog;
-		#if UNITY_EDITOR
-			LogEditor.LogEditor.Init();
-		#else
-				ClearLogStatic();
-		#endif
-
+	public void ForceOpenLogDebug()
+	{
+		IgnoreAll = false;
+		DisableUnityLog = false;
+		IgnoreNotTag = false;
+		IsReportFile = false;
+		Debug.unityLogger.logEnabled = true;
 	}
 
+    public void InitAdject()
+    {
+        Debug.unityLogger.logEnabled = !DisableUnityLog;
+#if UNITY_EDITOR
+        LogEditor.LogEditor.Init();
+#else
+			IgnoreAll = false;
+			IgnoreNotTag = false;
+			IsReportFile = false;
+			ClearLogStatic();
+#endif
 
-	string m_LogTagFind = "";
+    }
+
+
+    string m_LogTagFind = "";
 	public void DisplayGUI() {
 #if UNITY_EDITOR
 		if (EditorGUIService.DrawHeader("Advance Setting", "Log Advance Setting", false, false))
@@ -233,7 +236,7 @@ public class LogTools : MonoBehaviour {
 			if (!isInitLogStatic) 
 			{
 				isInitLogStatic = true;
-				m_isLogStatic = PlayerPrefs.GetInt("IsLogStatic") == 0;
+				m_isLogStatic = PlayerPrefs.GetInt("IsLogStatic") == 1;
 				if (!m_isLogStatic)
 					ClearLogStatic();
 			}
@@ -439,9 +442,8 @@ namespace LogEditor
 		}
 
 
-		
 
-		[MenuItem(EditorGUIService.ProjectPath.header + "/Log/LogEditor")]
+		[MenuItem("TheLastBug/LogEditor")]
 		public static void ShowWindow()
 		{
 			EditorWindow.GetWindow(typeof(LogEditor),false, "LogEditor");

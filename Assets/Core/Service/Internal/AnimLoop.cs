@@ -5,20 +5,36 @@ using UnityEngine;
 public class AnimLoop : MonoBehaviour
 {
     public Animation anim;
+
+
+    [Tooltip("loopclip : ถ้าไม่ใส่จะใช้ตัว default / ถ้าใส่ไว้จะใช้ clip อันนี้")]
+    public AnimationClip loopclip;
     public bool IsUnloop;
-    float savepoint ;
+    float savepoint;
+
+
+    string playingName
+    {
+        get
+        {
+            if (loopclip != null)
+                return loopclip.name;
+            else
+                return anim.clip.name;
+        }
+    }
+
     public void Begin()
     {
-        savepoint = anim[anim.clip.name].time;
+        savepoint = anim[playingName].time;
     }
     public void End()
     {
-        if(!IsUnloop)
-            anim[anim.clip.name].time = savepoint;
+        if (!IsUnloop)
+            anim[playingName].time = savepoint;
     }
 
 
 
 
- 
 }

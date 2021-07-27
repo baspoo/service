@@ -1,16 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 namespace ExampleService
 {
-    public class ExampleData 
+    public class ExampleData
     {
+
 
         public string ID;
         public string Name;
         public int Value;
         public List<int> Values;
+
+
+        public string m_Data;
+
 
         public Service.Formula Formula;
 
@@ -34,7 +39,7 @@ namespace ExampleService
             public int Number;
         }
 
-
+        public int PriviteValue { get; private set; }
 
 
 
@@ -43,16 +48,41 @@ namespace ExampleService
             bool isEnable = System.Convert.ToBoolean(row.GetValue("isEnable"));
             if (isEnable)
             {
-                //Var Data
-                Service.String.To(row.GetValue("ID"), out ID);
-                Service.String.To(row.GetValue("Name"), out Name);
-                Service.String.To(row.GetValue("Value"), out Value);
+
+                //Style #0
+                //Classic style manual get value.
+                m_Data = row.GetValue("Data");
+                ID      = row.GetValue("ID");
+                Name    = row.GetValue("Name");
+                Value   = row.GetValue("Value").ToInt();
+  
+
+                //Style #1
+                //assign value.  "Data" == m_Data
+                row.GetValue("Data", out m_Data);
+                row.GetValue("ID", out ID);
+                row.GetValue("Name", out Name);
+                row.GetValue("Value", out Value);
+
+                //Style #2
+                //Variable names must match only. "ID" == ID
+                row.GetValue(this, "ID");
+                row.GetValue(this, "Name");
+                row.GetValue(this, "Value");
+
+                //Style #3
+                //Variable names must match only. List{ "","" }
+                row.GetValue(this, "ID", "Name", "Value");
+
+
+
+         
 
                 //Formula
-                Service.String.To(row.GetValue("Formula"), out Formula , Service.String.formulaToType.json );
+                Formula = row.GetValue("Formula").ToFormula();
 
                 //Enum
-                Example = (ExampleType) Service.String.ToEnum(row.GetValue("Example"), ExampleType.A );
+                Example = (ExampleType) row.GetValue("Example").ToEnum(ExampleType.A);
 
                 //Class
                 ClassEx = ServiceJson.Json.DeserializeObject<ClassExData>(row.GetValue("ClassEx"));
