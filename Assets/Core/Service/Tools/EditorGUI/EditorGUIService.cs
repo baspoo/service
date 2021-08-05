@@ -58,6 +58,11 @@ public class EditorGUIService
 
 
 	public static string Copyed => EditorGUIUtility.systemCopyBuffer;
+	public static void Ping(Object ping) => EditorGUIUtility.PingObject(ping);
+	public static Texture2D BtnIcon(string str) => EditorGUIUtility.FindTexture(str);
+
+
+
 
 
 	public static void OpenDialog(string header, string message, System.Action action)
