@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using UnityEditor;
 [CustomEditor(typeof(LogTools))]
 public class LogToolsUI : Editor{
-	[MenuItem ("TheLastBug/Setting/Log")]
+
+	[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/Log/LogSetting")]
 	public static void OnSelection() {
 		Selection.activeObject = LogTools.log.gameObject;
 		AssetDatabase.OpenAsset(Selection.activeObject);
@@ -443,7 +444,7 @@ namespace LogEditor
 
 
 
-		[MenuItem("TheLastBug/LogEditor")]
+		[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/Log/LogEditor")]
 		public static void ShowWindow()
 		{
 			EditorWindow.GetWindow(typeof(LogEditor),false, "LogEditor");

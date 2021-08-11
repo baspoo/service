@@ -1961,7 +1961,7 @@ public class Service : MonoBehaviour {
 		{
 			if (serializable != null)
 			{
-				var f = Json.JsonToJFormula(serializable);
+				var f = Json.JsonToJFormula( (serializable is string) ? (string)serializable : serializable);
 				AddFormulas(f);
 			}
 		}

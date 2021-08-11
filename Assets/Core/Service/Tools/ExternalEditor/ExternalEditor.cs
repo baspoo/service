@@ -31,8 +31,7 @@ namespace ExternalEditor
 
     public class ExternalEditorInspector : EditorWindow
     {
-
-        [MenuItem("Core-Service/Editor/ExternalEditor")]
+        [MenuItem(EditorGUIService.ProjectPath.header + "/Editor/ExternalEditor")]
         public static void ShowWindow()
         {
             var wnd = GetWindow<ExternalEditorInspector>();
@@ -47,9 +46,7 @@ namespace ExternalEditor
 
         public void OnGUI()
         {
-           
-           
-            //mode = GUILayout.Toolbar(mode, new string[] { "Image", "Mesh" }, GUILayout.Height(40));
+
 
 
 
@@ -63,7 +60,8 @@ namespace ExternalEditor
             path = EditorGUILayout.TextField(path, GUILayout.Height(25));
             if (GUILayout.Button(EditorGUIService.BtnIcon("RotateTool"), GUILayout.Height(25), GUILayout.Width(25)))
             {
-                autoupdate();
+                m_imaage = null;
+                lastModified = Service.Time.DateTime1970;
             }
 
 
@@ -80,8 +78,15 @@ namespace ExternalEditor
 
                 if (GUILayout.Button("Clean"))
                 {
-                    EditorApplication.SaveScene();
                     clear();
+                    foreach (Object t in new ArrayList(Utility.store))
+                    {
+                        if (Application.isPlaying) Destroy(t);
+                        else DestroyImmediate(t);
+                    }
+                    Utility.store.Clear();
+                    EditorApplication.SaveScene();
+                    return;
                 }
 
 
@@ -189,20 +194,31 @@ namespace ExternalEditor
         static System.DateTime lastModified;
         Texture m_imaage = null;
         bool m_autoupdate = false;
+        bool m_allparent = false;
         bool islockFocus = false;
         bool isFocus = false;
         bool isDelete = false;
         List<Texture2D> m_layer = null;
         FileInfo m_fileinfo;
- 
-        Object current => (islockFocus) ? m_current : Selection.activeObject;
+
+
+
+        Object selection 
+        {
+            get 
+            {
+                return Selection.activeObject;
+            }
+        }
+
+        Object current => (islockFocus) ? m_current : selection;
         Object m_current = null;
         Utility.applytype m_applytype = Utility.applytype.none;
         
         private void focus()
         {
-
-            bool isview = Selection.activeObject != null && Selection.activeObject as GameObject;
+          
+            bool isview = selection != null;
             if (islockFocus)
             {
                 isview = current != null;
@@ -223,12 +239,12 @@ namespace ExternalEditor
                 EditorGUILayout.Space(3);
                 //GUILayout.Label(EditorGUIService.BtnIcon("Occlusion@2x"), GUILayout.Width(20), GUILayout.Height(20));
                 GUI.backgroundColor = (islockFocus) ? Color.cyan : Color.white;
-                if (GUILayout.Button(EditorGUIService.BtnIcon("AssemblyLock"), GUILayout.Height(22), GUILayout.Width(22)))
+                if (GUILayout.Button(EditorGUIService.BtnIcon("AssemblyLock"), GUILayout.Height(25), GUILayout.Width(25)))
                 {
                     islockFocus = !islockFocus;
                     if (islockFocus)
                     {
-                        m_current = Selection.activeObject;
+                        m_current = selection;
                     }
                     else 
                     {
@@ -238,25 +254,42 @@ namespace ExternalEditor
                 GUI.backgroundColor = Color.white;
 
                 var select = current;
-                EditorGUILayout.ObjectField(select, typeof(Object));
+                EditorGUILayout.ObjectField(select, typeof(Object), GUILayout.Height(25));
+
+
+                GUI.backgroundColor = (m_allparent) ? Color.cyan : Color.white;
+                if (GUILayout.Button(EditorGUIService.BtnIcon("Collab.Build"), GUILayout.Height(25), GUILayout.Width(25)))
+                {
+                    m_allparent = !m_allparent;
+                }
+                GUI.backgroundColor = Color.white;
+
+
+
                 EditorGUILayout.Space(3);
                 EditorGUILayout.EndHorizontal();
 
 
-
-                EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.Space(3);
-                var type = Utility.IsApplyType((GameObject)current);
-                if(type!=null) EditorGUILayout.HelpBox("Target Type : " + type, MessageType.None );
-                else EditorGUILayout.HelpBox("This gameobject not have a renderer. can't replece texture." , MessageType.Error);
-                EditorGUILayout.Space(3);
-                EditorGUILayout.EndHorizontal();
-
+                if (!m_allparent)
+                {
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.Space(3);
+                    var type = Utility.ApplyType(current);
+                    isFocus = type != null;
+                    if (type != null) EditorGUILayout.HelpBox("Target Type : " + type, MessageType.None);
+                    else EditorGUILayout.HelpBox("This gameobject not have a renderer. can't replece texture.", MessageType.Error);
+                    EditorGUILayout.Space(3);
+                    EditorGUILayout.EndHorizontal();
+                }
+                else 
+                {
+                    isFocus = current!=null;
+                }
 
                 EditorGUILayout.Space(10);
                 EditorGUIService.EndContents();
 
-                isFocus = type!=null;
+              
             }
             else 
             {
@@ -304,9 +337,8 @@ namespace ExternalEditor
                 lastModified = System.IO.File.GetLastWriteTime(path);
 
                 if (m_autoupdate) 
-                { 
-                    Utility.IsApplyType((GameObject)Selection.activeObject, m_imaage);
-                    Utility.RefreshMonitor();
+                {
+                    applyTexture(current, m_imaage);
                 }
             }
 
@@ -316,8 +348,7 @@ namespace ExternalEditor
             EditorGUI.BeginDisabledGroup(!isFocus);
             if (GUILayout.Button( "Apply" , GUILayout.Height(62)))
             {
-                Utility.IsApplyType((GameObject)current, m_imaage);
-                Utility.RefreshMonitor();
+                applyTexture(current, m_imaage);
             }
             EditorGUI.EndDisabledGroup();
             GUI.backgroundColor = (m_autoupdate)?Color.cyan :Color.white;
@@ -343,16 +374,19 @@ namespace ExternalEditor
                 if (tex == null)
                     return;
 
-                if (isdone || !m_autoupdate)
-                {
-                    m_imaage = tex;
-                    lastModified = System.IO.File.GetLastWriteTime(path);
-                }
+                //if (isdone || !m_autoupdate)
+                //{
+                //    m_imaage = tex;
+                //    lastModified = System.IO.File.GetLastWriteTime(path);
+                //}
+
+
+                m_imaage = tex;
+                lastModified = System.IO.File.GetLastWriteTime(path);
 
                 if (m_autoupdate)
                 {
-                    Utility.IsApplyType((GameObject)Selection.activeObject, tex);
-                    Utility.RefreshMonitor();
+                    applyTexture(current, tex);
                 }
 
             }
@@ -363,8 +397,7 @@ namespace ExternalEditor
             EditorGUI.BeginDisabledGroup(!isFocus);
             if (GUILayout.Button("Apply", GUILayout.Height(62)))
             {
-                Utility.IsApplyType((GameObject)current, m_imaage);
-                Utility.RefreshMonitor();
+                applyTexture(current, m_imaage);
             }
             EditorGUI.EndDisabledGroup();
             if (GUILayout.Button(EditorGUIService.BtnIcon("d_SceneViewFX@2x"), GUILayout.Height(62), GUILayout.Width(30)))
@@ -398,8 +431,7 @@ namespace ExternalEditor
                     EditorGUI.BeginDisabledGroup(!isFocus);
                     if (GUILayout.Button(t.name, GUILayout.Height(30)))
                     {
-                        Utility.IsApplyType((GameObject)current, t);
-                        Utility.RefreshMonitor();
+                        applyTexture(current, t);
                     }
                     EditorGUI.EndDisabledGroup();
                     EditorGUILayout.EndHorizontal();
@@ -468,6 +500,26 @@ namespace ExternalEditor
 
 
         }
+
+
+
+
+
+        void applyTexture(Object obj, Texture tex = null) 
+        {
+            Utility.ApplyType(obj, tex);
+            if (m_allparent && obj is GameObject)
+            {
+                foreach (var g in Service.GameObj.GetAllNode(((GameObject)obj).transform)) 
+                {
+                    Utility.ApplyType(g, tex);
+                }
+            }
+            Utility.RefreshMonitor();
+        }
+
+
+
     }
 
 
@@ -518,43 +570,67 @@ namespace ExternalEditor
             return filetype.unkown;
         }
 
-        public static string IsApplyType(GameObject obj , Texture tex = null )
+
+        public static string ApplyType(Object obj, Texture tex = null)
         {
             if (obj == null)
                 return null;
 
-            if (obj.GetComponent<Renderer>()!=null) 
+
+            if (obj as GameObject)
             {
+
+                var gameobject = (GameObject)obj;
+
+                if (gameobject.GetComponent<Renderer>() != null)
+                {
+                    if (tex != null)
+                    {
+                        var render = gameobject.GetComponent<Renderer>();
+                        Material mat = new Material(render.sharedMaterial);
+                        //mat.shader = render.sharedMaterial;
+                        mat.mainTexture = tex;
+                        render.material = mat;
+                    }
+                    return "Renderer";
+                }
+                if (gameobject.GetComponent<UITexture>() != null)
+                {
+                    if (tex != null)
+                    {
+                        var ui = gameobject.GetComponent<UITexture>();
+                        ui.mainTexture = tex;
+                        ui.Update();
+                        ui.UpdateAnchors();
+                        ui.enabled = true;
+                    }
+                    return "UITexture";
+                }
+                if (gameobject.GetComponent<RawImage>() != null)
+                {
+                    if (tex != null)
+                    {
+                        gameobject.GetComponent<RawImage>().texture = tex;
+                    }
+                    return "RawImage";
+                }
+            }
+            if (obj as Material)
+            {
+
+                //var material = (Material)obj;
+                //material.mainTexture = tex;
+
                 if (tex != null)
                 {
-                    var render = obj.GetComponent<Renderer>();
-                    Material mat = new Material(render.sharedMaterial);
-                    //mat.shader = render.sharedMaterial;
-                    mat.mainTexture = tex;
-                    render.material = mat;
+                    //Material material = (Material)AssetDatabase.LoadAssetAtPath(AssetDatabase.GetAssetPath(obj), typeof(Material) );
+                    var material = (Material)obj;
+                    material.mainTexture = tex;
                 }
-                return "Renderer";
+
+                return "Material";
             }
-            if (obj.GetComponent<UITexture>() != null)
-            {
-                if (tex != null)
-                {
-                    var ui = obj.GetComponent<UITexture>();
-                    ui.mainTexture = tex;
-                    ui.Update();
-                    ui.UpdateAnchors();
-                    ui.enabled = true;
-                }
-                return "UITexture";
-            }
-            if (obj.GetComponent<RawImage>() != null)
-            {
-                if (tex != null)
-                {
-                    obj.GetComponent<RawImage>().texture = tex;
-                }
-                return "RawImage";
-            }
+
             return null;
         }
 

@@ -10,8 +10,12 @@ public static class VariableService
 {
 
 
-    #region String
-    public static Service.Formula ToFormula(this string str)
+	#region String
+	public static bool notnull(this string str)
+	{
+		return !string.IsNullOrEmpty(str);
+	}
+	public static Service.Formula ToFormula(this string str)
 	{
 		return new Service.Formula(str);
 	}

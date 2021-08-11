@@ -17,7 +17,7 @@ public class GridTable : MonoBehaviour
     public enum Pivot
     {
         Left,
-        Center,
+        Center,CenterTop,
         Right
     }
 
@@ -48,7 +48,34 @@ public class GridTable : MonoBehaviour
 
     }
 
-    public List<Custom> Customs;
+
+    public  T AddChild<T>(GameObject gameObject)
+    {
+        var t =  Service.GameObj.Created(gameObject,transform).GetComponent<T>();
+        Reposition();
+        return t;
+    }
+    public GameObject AddChild(GameObject gameObject)
+    {
+        var t = Service.GameObj.Created(gameObject, transform);
+        Reposition();
+        return t;
+    }
+    public void DesAll( )
+    {
+        Service.GameObj.DesAllParent(transform);
+        Reposition();
+    }
+    public void Des(GameObject gameobject)
+    {
+        Destroy(gameobject);
+        Reposition();
+    }
+
+
+
+
+    public List<Custom> Customs = new List<Custom>();
     public void AddOffect(GameObject gameObject, Vector2 offset) 
     {
         var find = Customs.Find(x => x.gameObject == gameObject);
@@ -152,8 +179,11 @@ public class GridTable : MonoBehaviour
 
         }
 
-        if (pivot == Pivot.Center)
+        if (pivot == Pivot.Center || pivot == Pivot.CenterTop)
         {
+            float c = 0.0f;
+            if (pivot == Pivot.Center) c = CellHight * ((dict.Count / 2.0f) - 0.5f);
+
             foreach (var d in dict)
             {
                 //Debug.Log(d.Value.Count);
@@ -162,8 +192,10 @@ public class GridTable : MonoBehaviour
                     var resume = count - d.Value.Count;
                     Vector3 vec = t.transform.localPosition;
                     vec.x += (resume * CellWidth) / 2;
+                    vec.y += c;
                     t.transform.localPosition = vec;
                 }
+                //c -= CellHight;
             }
         }
 
