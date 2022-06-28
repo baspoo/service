@@ -5,11 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using UnityEngine.Networking;
 
 /// <summary>
 ///    ** Game Master Service by 'Baspoo'
-///    ** Contect Baspoogamedev@gmail.com for update & fix bug.
 /// </summary>
 public class Service : MonoBehaviour {
 	public static void Clear(){
@@ -32,7 +31,7 @@ public class Service : MonoBehaviour {
 		public delegate void callback_fvalue( float value );
 		public delegate void callback_bool( bool boo );
 		public delegate void callback_data( string data );
-		public delegate void callback_formula( Service.Formula f );
+		public delegate void callback_formula( Formula f );
 
 		public delegate int callback_value_return( int value );
         public delegate double callback_double_return(int value);
@@ -41,45 +40,43 @@ public class Service : MonoBehaviour {
 
 	}
 
-
-
+	[System.Serializable]
 	public class Node
 	{
-		#region Node
-		[System.Serializable]
-		public class NodeData
-		{
-			public string Key;
-			public long Value;
-		}
-		public NodeData this[int index] { get { return Nodes[index]; } }
-		public NodeData this[string key] { get { return Find(key); } }
+		public string Key;
+		public int Value;
+	}
+	public class NodeBooking
+	{
+		public Node this[int index] { get { return Nodes[index]; } }
+		public Node this[string key] { get { return Find(key); } }
 
-		public List<NodeData> Nodes;
-		public Node(List<NodeData> nodes)
+
+		public List<Node> Nodes;
+		public NodeBooking(List<Node> nodes)
 		{
 			this.Nodes = nodes;
 		}
-		public long Value(string key)
+		public int Value(string key)
 		{
 			var n = Find(key);
 			return (n != null) ? n.Value : 0;
 		}
-		public NodeData AddValue(string key, long point)
+		public Node AddValue(string key, int point)
 		{
 			var n = Find(key);
 			if (n != null)
 			{
 				n.Value += point;
 			}
-			else
+			else 
 			{
-				n = new NodeData() { Key = key, Value = point };
+				n = new Node() { Key = key, Value = point };
 				Nodes.Add(n);
 			}
 			return n;
 		}
-		public NodeData Set(string key, long point)
+		public Node Set(string key, int point)
 		{
 			var n = Find(key);
 			if (n != null)
@@ -88,20 +85,20 @@ public class Service : MonoBehaviour {
 			}
 			else
 			{
-				n = new NodeData() { Key = key, Value = point };
+				n = new Node() { Key = key, Value = point };
 				Nodes.Add(n);
 			}
 			return n;
 		}
-		public NodeData Find(string key)
+		public Node Find(string key)
 		{
 			return Nodes.Find(x => x.Key == key);
 		}
-		public NodeData Find(NodeData node)
+		public Node Find(Node node)
 		{
 			return Nodes.Find(x => x == node);
 		}
-		public bool Contains(NodeData node)
+		public bool Contains(Node node)
 		{
 			return Nodes.Contains(node);
 		}
@@ -110,116 +107,76 @@ public class Service : MonoBehaviour {
 			return Nodes.Find(x => x.Key == key) != null;
 		}
 	}
-	#endregion
 
 
-	public class Tag
+	[System.Serializable]
+	public class UNode
 	{
-		static List<TagData> tags = new List<TagData>();
-		class TagData
+		public string Key;
+		public long Value;
+	}
+	public class UNodeBooking
+	{
+		public UNode this[int index] { get { return Nodes[index]; } }
+		public UNode this[string key] { get { return Find(key); } }
+
+		public List<UNode> Nodes;
+		public UNodeBooking(List<UNode> nodes)
 		{
-			public string Tag { get { return m_tag; } }
-			string m_tag;
-			public List<object> Content { get { return m_tagobj; } }
-			List<object> m_tagobj = new List<object>();
-			public TagData(string tagname)
-			{
-				m_tag = tagname;
-			}
-			public void Add(object obj)
-			{
-				m_tagobj.Add(obj);
-			}
+			this.Nodes = nodes;
 		}
-		public static void Put(string tag, object obj)
+		public long Value(string key)
 		{
-			TagData NewTag = null;
-			foreach (TagData i_tag in tags)
-			{
-				if (i_tag.Tag == tag)
-					NewTag = i_tag;
-			}
-			if (NewTag == null)
-			{
-				NewTag = new TagData(tag);
-				tags.Add(NewTag);
-			}
-			NewTag.Add(obj);
+			var n = Find(key);
+			return (n != null) ? n.Value : 0;
 		}
-		static TagData Find(string tag)
+		public UNode Add(string key, long point)
 		{
-			foreach (TagData i_tag in tags)
+			var n = Find(key);
+			if (n != null)
 			{
-				if (i_tag.Tag == tag)
-					return i_tag;
-			}
-			return null;
-		}
-		public static List<object> Get(string tag, bool notnull = false)
-		{
-			TagData find = null;
-			find = Find(tag);
-			if (find == null)
-			{
-				return null;
+				n.Value += point;
 			}
 			else
 			{
-				if (notnull)
-				{
-					List<object> output = null;
-					foreach (object obj in find.Content)
-					{
-						if (!object.ReferenceEquals(obj, null))
-						{
-							if (output == null)
-								output = new List<object>();
-							output.Add(obj);
-						}
-					}
-					return output;
-				}
-				else
-				{
-					return find.Content;
-				}
+				n = new UNode() { Key = key, Value = point };
+				Nodes.Add(n);
 			}
+			return n;
 		}
-		public static object GetLast(string tag, bool notnull = false)
+		public UNode Set(string key, long point)
 		{
-			List<object> objs = Get(tag, notnull);
-			if (objs == null)
-				return null;
+			var n = Find(key);
+			if (n != null)
+			{
+				n.Value = point;
+			}
 			else
 			{
-				if (objs.Count == 0)
-					return null;
-				else
-					return objs[objs.Count - 1];
+				n = new UNode() { Key = key, Value = point };
+				Nodes.Add(n);
 			}
+			return n;
 		}
-		public static bool isHave(string tag)
+		public void Remove(string key)
 		{
-			List<object> objs = Get(tag, false);
-			if (objs == null)
-				return false;
-			else
-			{
-				if (objs.Count == 0)
-					return false;
-				else
-					return true;
-			}
+			 Nodes.RemoveAll(x => x.Key == key);
 		}
-		public static void Clear(string tag)
+		public UNode Find(string key)
 		{
-			TagData tagData = Find(tag);
-			if (tagData != null)
-				tags.Remove(tagData);
+			return Nodes.Find(x => x.Key == key);
 		}
-		public static void ClearAll()
+		public UNode Find(UNode node)
 		{
-			tags.Clear();
+			return Nodes.Find(x => x == node);
+		}
+		public bool Contains(UNode node)
+		{
+			return Nodes.Contains(node);
+		}
+		public bool Contains(string key)
+		{
+			return Nodes.Find(x => x.Key == key) != null;
 		}
 	}
 
@@ -228,61 +185,184 @@ public class Service : MonoBehaviour {
 
 
 
+
+
+
+
+	public class Permanence
+	{
+		public Permanence(string key) { this.key = key; }
+		string key;
+		bool m_init = false;
+
+		public void Clear() {
+			PlayerPrefs.DeleteKey(key);
+		}
+
+		public bool isHas => PlayerPrefs.HasKey(key);
+
+		bool m_bool;
+		public bool getBool
+		{
+			get
+			{
+				if (!m_init)
+				{
+					m_bool = save_bool;
+					m_init = true;
+				}
+				return m_bool;
+			}
+			set
+			{
+				m_bool = value;
+				save_bool = value;
+			}
+		}
+		bool save_bool
+		{
+			get { return PlayerPrefs.GetInt(key) == 1; }
+			set { PlayerPrefs.SetInt(key, value ? 1 : 0); }
+		}
+
+
+		string m_string;
+		public string getString
+		{
+			get
+			{
+				if (!m_init)
+				{
+					m_string = save_string;
+					m_init = true;
+				}
+				return m_string;
+			}
+			set
+			{
+				m_string = value;
+				save_string = value;
+			}
+		}
+		string save_string
+		{
+			get { return PlayerPrefs.GetString(key); }
+			set { PlayerPrefs.SetString(key, value); }
+		}
+
+
+		int m_int;
+		public int getInt
+		{
+			get
+			{
+				if (!m_init)
+				{
+					m_int = save_int;
+					m_init = true;
+				}
+				return m_int;
+			}
+			set
+			{
+				m_int = value;
+				save_int = value;
+			}
+		}
+		int save_int
+		{
+			get { return PlayerPrefs.GetInt(key); }
+			set { PlayerPrefs.SetInt(key, value); }
+		}
+	}
+
+
+
+
+
+
+
 	public class Var{
+
+
+		[System.Serializable]
+		public class Val
+		{
+			public string Key;
+			public double Value;
+		}
+
+
+
+
 
 		#region Var-Transforms
 		[System.Serializable]
-		public class Transforms{
+		public class Transforms
+		{
 			[SerializeField]
-			List<Trans>  _Transforms = new List<Trans>();
+			List<Trans> _Transforms = new List<Trans>();
 
 			public Transform this[int index] { get { return _Transforms[index].transform; } }
 			public Transform this[string key] { get { return Get(key); } }
 
 			[System.Serializable]
-			public class Trans{
+			public class Trans
+			{
 				public string name;
 				public Transform transform;
 			}
-			public void Add(string varName , Transform tran){
-				Trans t = new Trans ();
+			public void Add(string varName, Transform tran)
+			{
+				Trans t = new Trans();
 				t.name = varName;
 				t.transform = tran;
-				_Transforms.Add (t);
+				_Transforms.Add(t);
 			}
-			public void Remove(string varName, bool isDestoryObjectInTrans = false){
+			public void Remove(string varName, bool isDestoryObjectInTrans = false)
+			{
 				Trans find = null;
-				foreach (Trans t in _Transforms) {
+				foreach (Trans t in _Transforms)
+				{
 					if (t.name == varName)
 						find = t;
 				}
-				if (find != null) {
-					_Transforms.Remove (find);
+				if (find != null)
+				{
+					_Transforms.Remove(find);
 					if (isDestoryObjectInTrans)
-						Destroy (find.transform.gameObject);
+						Destroy(find.transform.gameObject);
 				}
 			}
-			public void RemoveAll(bool isDestoryObjectInTrans = false){
-				if(isDestoryObjectInTrans)
+			public void RemoveAll(bool isDestoryObjectInTrans = false)
+			{
+				if (isDestoryObjectInTrans)
 					foreach (Service.Var.Transforms.Trans t in _Transforms)
-						Destroy (t.transform.gameObject);
-				_Transforms.Clear ();
+						Destroy(t.transform.gameObject);
+				_Transforms.Clear();
 			}
-			public Transform Get(string varName){
-				foreach (Trans t in _Transforms) {
-					if (t.name == varName) {
+			public Transform Get(string varName)
+			{
+				foreach (Trans t in _Transforms)
+				{
+					if (t.name == varName)
+					{
 						return t.transform;
 					}
 				}
 				return null;
 			}
-			public List<Trans> Gets{
-				get{ return _Transforms;}
+			public List<Trans> Gets
+			{
+				get { return _Transforms; }
 			}
-			public Transform Active(string varName , bool isActive){
-				foreach (Trans t in _Transforms) {
-					if (t.name == varName) {
-						t.transform.gameObject.SetActive (isActive);
+			public Transform Active(string varName, bool isActive)
+			{
+				foreach (Trans t in _Transforms)
+				{
+					if (t.name == varName)
+					{
+						t.transform.gameObject.SetActive(isActive);
 						return t.transform;
 					}
 				}
@@ -294,36 +374,44 @@ public class Service : MonoBehaviour {
 		#endregion
 		#region Var-Values
 		[System.Serializable]
-		public class Values{
+		public class Values
+		{
 			[SerializeField]
-			List<Value>  _Values = new List<Value>();
+			List<Value> _Values = new List<Value>();
 			public double this[int index] { get { return _Values[index].value; } }
 			public double this[string key] { get { return Get(key); } }
 
 
 			[System.Serializable]
-			public class Value{
+			public class Value
+			{
 				public string name;
 				public double value;
 			}
-			public List<Value> ValueList{
-				get { return _Values;}
+			public List<Value> ValueList
+			{
+				get { return _Values; }
 			}
-			public void Add(string varName,double value){
+			public void Add(string varName, double value)
+			{
 				Value newValue = new Value();
 				newValue.name = varName;
 				newValue.value = value;
-				_Values.Add (newValue);
+				_Values.Add(newValue);
 			}
-			public double Get(string varName){
-				foreach (Value t in _Values) {
+			public double Get(string varName)
+			{
+				foreach (Value t in _Values)
+				{
 					if (t.name == varName)
 						return t.value;
 				}
 				return 0;
 			}
-			public void Set(string varName,double newValue){
-				foreach (Value t in _Values) {
+			public void Set(string varName, double newValue)
+			{
+				foreach (Value t in _Values)
+				{
 					if (t.name == varName)
 						t.value = newValue;
 				}
@@ -334,23 +422,27 @@ public class Service : MonoBehaviour {
 		#endregion
 		#region Var-Texture
 		[System.Serializable]
-		public class Textures{
+		public class Textures
+		{
 			[SerializeField]
-			List<TextureData>  _Texture = new List<TextureData>();
+			List<TextureData> _Texture = new List<TextureData>();
 			public Texture this[int index] { get { return _Texture[index].img; } }
 			public Texture this[string key] { get { return Get(key); } }
 
 			[System.Serializable]
-			public class TextureData{
+			public class TextureData
+			{
 				public string name;
 				public Texture img;
 			}
-			public void Add(string varName , Texture texture)
+			public void Add(string varName, Texture texture)
 			{
-				_Texture.Add (  new TextureData(){name = varName, img = texture  } );
+				_Texture.Add(new TextureData() { name = varName, img = texture });
 			}
-			public Texture Get(string varName){
-				foreach (TextureData t in _Texture) {
+			public Texture Get(string varName)
+			{
+				foreach (TextureData t in _Texture)
+				{
 					if (t.name == varName)
 						return t.img;
 				}
@@ -362,20 +454,24 @@ public class Service : MonoBehaviour {
 		#endregion
 		#region Var-String
 		[System.Serializable]
-		public class Strings{
+		public class Strings
+		{
 			[SerializeField]
-			List<String>  _Strings = new List<String>();
+			List<String> _Strings = new List<String>();
 			public string this[int index] { get { return _Strings[index].text; } }
 			public string this[string key] { get { return Get(key); } }
 
 
 			[System.Serializable]
-			public class String{
+			public class String
+			{
 				public string name;
 				public string text;
 			}
-			public string Get(string varName){
-				foreach (String t in _Strings) {
+			public string Get(string varName)
+			{
+				foreach (String t in _Strings)
+				{
 					if (t.name == varName)
 						return t.text;
 				}
@@ -385,26 +481,34 @@ public class Service : MonoBehaviour {
 			{
 				_Strings.Add(new String() { name = varName, text = text });
 			}
+			public void Remove(string varName)
+			{
+				_Strings.RemoveAll(x => x.name == varName);
+			}
 			public int Count => _Strings.Count;
 			public List<String> Contents => _Strings;
 		}
 		#endregion
 		#region Var-Color
 		[System.Serializable]
-		public class Colors{
+		public class Colors
+		{
 			[SerializeField]
-			List<_Color>  _Colors = new List<_Color>();
+			List<_Color> _Colors = new List<_Color>();
 			public Color this[int index] { get { return _Colors[index].color; } }
 			public Color this[string key] { get { return Get(key); } }
 
 
 			[System.Serializable]
-			public class _Color{
+			public class _Color
+			{
 				public string name;
 				public Color color;
 			}
-			public Color Get(string varName){
-				foreach (_Color t in _Colors) {
+			public Color Get(string varName)
+			{
+				foreach (_Color t in _Colors)
+				{
 					if (t.name == varName)
 						return t.color;
 				}
@@ -420,20 +524,24 @@ public class Service : MonoBehaviour {
 		#endregion
 		#region Var-Behaviour
 		[System.Serializable]
-		public class Behaviours{
+		public class Behaviours
+		{
 			[SerializeField]
-			List<behaviour>  _Behaviours = new List<behaviour>();
+			List<behaviour> _Behaviours = new List<behaviour>();
 			public Behaviour this[int index] { get { return _Behaviours[index].Class; } }
 			public Behaviour this[string key] { get { return Get(key); } }
 
 
 			[System.Serializable]
-			public class behaviour{
+			public class behaviour
+			{
 				public string name;
 				public Behaviour Class;
 			}
-			public Behaviour Get(string varName){
-				foreach (behaviour t in _Behaviours) {
+			public Behaviour Get(string varName)
+			{
+				foreach (behaviour t in _Behaviours)
+				{
 					if (t.name == varName)
 						return t.Class;
 				}
@@ -447,7 +555,6 @@ public class Service : MonoBehaviour {
 			public List<behaviour> Contents => _Behaviours;
 		}
 		#endregion
-
 
 
 
@@ -483,33 +590,33 @@ public class Service : MonoBehaviour {
 					var enumtype = System.Enum.Parse(field.FieldType, enumname ,false);
 					field.SetValue( _class , enumtype );
 				}
-				else if (field.FieldType == typeof(Dictionary<string,string>) && _value.GetType() == typeof(Service.Formula))
+				else if (field.FieldType == typeof(Dictionary<string,string>) && _value.GetType() == typeof(Formula))
 				{
-					var f = (Service.Formula)_value;
+					var f = (Formula)_value;
 					var values = ServiceJson.Json.DeserializeObject<Dictionary<string, string>>(f.PassToJson());
 					field.SetValue(_class, values);
 				}
-				else if (field.FieldType == typeof(Dictionary<string, double>) && _value.GetType() == typeof(Service.Formula))
+				else if (field.FieldType == typeof(Dictionary<string, double>) && _value.GetType() == typeof(Formula))
 				{
-					var f = (Service.Formula)_value;
+					var f = (Formula)_value;
 					var values = ServiceJson.Json.DeserializeObject<Dictionary<string, double>>(f.PassToJson());
 					field.SetValue(_class, values);
 				}
-				else if (field.FieldType == typeof(Dictionary<double, string>) && _value.GetType() == typeof(Service.Formula))
+				else if (field.FieldType == typeof(Dictionary<double, string>) && _value.GetType() == typeof(Formula))
 				{
-					var f = (Service.Formula)_value;
+					var f = (Formula)_value;
 					var values = ServiceJson.Json.DeserializeObject<Dictionary<double, string>>(f.PassToJson());
 					field.SetValue(_class, values);
 				}
-				else if (field.FieldType == typeof(Dictionary<double, double>) && _value.GetType() == typeof(Service.Formula))
+				else if (field.FieldType == typeof(Dictionary<double, double>) && _value.GetType() == typeof(Formula))
 				{
-					var f = (Service.Formula)_value;
+					var f = (Formula)_value;
 					var values = ServiceJson.Json.DeserializeObject<Dictionary<double, double>>(f.PassToJson());
 					field.SetValue(_class, values);
 				}
 				else if (field.FieldType == typeof(System.Double[]))
 				{
-					var listformula = (Service.Formula)_value;
+					var listformula = (Formula)_value;
 					int index = 0;
 					double[] output = new double[listformula.GetFormulaDatas.Count];
 					foreach (var d in listformula.GetFormulaDatas) {
@@ -533,6 +640,102 @@ public class Service : MonoBehaviour {
 	}
 
 
+
+
+	public class Tag{
+
+		public static List<TagData> tags = new List<TagData>();
+		public class TagData
+		{
+			public string Tag{get{ return m_tag;}}
+			string m_tag;
+			public List<object> Content{get{ return m_tagobj;}}
+			List<object> m_tagobj = new List<object>(); 
+			public TagData(string tagname ){
+				m_tag = tagname;
+			}
+			public void Add(object obj){
+				m_tagobj.Add (obj);
+			}
+			public object Get()
+            {
+				return GetLast(m_tag,true);
+			}
+		}
+		public static void Put (string tag , object obj){
+			TagData NewTag = null;
+			foreach (TagData i_tag in tags) {
+				if (i_tag.Tag == tag)
+					NewTag = i_tag;
+			}
+			if (NewTag == null) {
+				NewTag = new TagData (tag);
+				tags.Add (NewTag);
+			}
+			NewTag.Add (obj);
+		}
+		static TagData Find(string tag){
+			foreach (TagData i_tag in tags) {
+				if (i_tag.Tag == tag)
+					return i_tag;
+			}
+			return null;
+		}
+		public static List<object> Get (string tag , bool notnull = false){
+			TagData find = null;
+			find = Find (tag);
+			if (find == null) {
+				return null;
+			} else {
+				if (notnull) 
+				{
+					List<object> output = null;
+					foreach (object obj in find.Content) {
+						if (!object.ReferenceEquals (obj, null)) {
+							if (output == null)
+								output = new List<object> ();
+							output.Add (obj);
+						}
+					}
+					return output;
+				} else {
+					return find.Content;
+				}
+			}
+		}
+		public static object GetLast (string tag , bool notnull = false ){
+			List<object> objs = Get(tag,notnull);
+			if (objs == null)
+				return null;
+			else {
+				if (objs.Count == 0)
+					return null;
+				else
+					return objs [objs.Count-1];
+			}
+		}
+		public static bool isHave(string tag)
+		{
+			List<object> objs = Get(tag, false);
+			if (objs == null)
+				return false;
+			else
+			{
+				if (objs.Count == 0)
+					return false;
+				else
+					return true;
+			}
+		}
+		public static void Clear(string tag) {
+			TagData tagData = Find (tag);
+			if (tagData != null)
+				tags.Remove (tagData);
+		}
+		public static void ClearAll( ) {
+			tags.Clear ();
+		}
+	}
 
 
 
@@ -594,12 +797,14 @@ public class Service : MonoBehaviour {
 
 
 		// Addon
-		public static AddOn.IEnume AddIEnume(GameObject addTarget = null){
-			GameObject target;
-			if (addTarget != null) target = addTarget;
-			else target = gameservice;
-			AddOn.IEnume addOn = target.AddComponent <AddOn.IEnume>();
-			return addOn;
+		static AddOn.IEnume IEnume;
+		public static AddOn.IEnume AddIEnume()
+		{
+			if (IEnume == null) 
+			{
+				IEnume = gameservice.AddComponent<AddOn.IEnume>();
+			}
+			return IEnume;
 		}
 		// Addon
 		public static AddOn.Timmer AddTimmer(GameObject addTarget = null){
@@ -646,22 +851,13 @@ public class Service : MonoBehaviour {
 		public class OpenEyes  {
 			
 			#region Use-For-Inspecter
-			[System.Serializable]
-			public class OpenEyeData {
-				public string Name;
-				public Transform T;
-			}
-			[Header("Find by Name")]
-			public List<OpenEyeData> Content = new List<OpenEyeData>();
 			public void Open(string contentName)
 			{
-				if(trans.Count == 0)
+				if(trans.Count != 0)
 				{
-					foreach (var ct in Content)
-						AddTransform(ct.T);
+					var t = trans.Find(x => x.name == contentName);
+					Open(t);
 				}
-				var t = Content.Find(x=>x.Name == contentName);
-				Open( (t==null)? null: t.T);
 			}
             #endregion
 
@@ -705,7 +901,7 @@ public class Service : MonoBehaviour {
 		}
 
 		public class FunctionCalling{
-			public delegate void callback(Service.Formula f = null, Service.Callback.callback onfinish = null );
+			public delegate void callback(Formula f = null, Service.Callback.callback onfinish = null );
 			public class FunctionCallingData{
 				public callback Function;
 				public string Name;
@@ -749,7 +945,7 @@ public class Service : MonoBehaviour {
 				}
 				return null;
 			}
-			public void Call(string functionName , Service.Formula formula = null,Service.Callback.callback onfinish = null){
+			public void Call(string functionName , Formula formula = null,Service.Callback.callback onfinish = null){
 				FunctionCallingData f = Get (functionName);
 				if (f != null) 
 				{
@@ -761,7 +957,7 @@ public class Service : MonoBehaviour {
 					}
 				}
 			}
-			public void CallAll( Service.Formula formula = null,Service.Callback.callback onfinish = null){
+			public void CallAll( Formula formula = null,Service.Callback.callback onfinish = null){
 				if (Functions != null && Functions.Count > 0)
 				{
 					foreach (Service.Tools.FunctionCalling.FunctionCallingData f in new ArrayList(Functions))
@@ -779,7 +975,7 @@ public class Service : MonoBehaviour {
 					onfinish();
 
 			}
-			public void CallAll(string tag, Service.Formula formula = null, Service.Callback.callback onfinish = null)
+			public void CallAll(string tag, Formula formula = null, Service.Callback.callback onfinish = null)
 			{
 				if (Functions != null && Functions.Count > 0) 
 				{ 
@@ -827,22 +1023,24 @@ public class Service : MonoBehaviour {
 				m_obj = obj;
 			}
 			public string String { get{ if (m_obj == null)	return string.Empty; else return (string) m_obj; } }
-			public int Int { get{ if (m_obj == null)	return 0; else return (int) m_obj; } }
+			public int Int { get{ if (m_obj == null)	return 0; else return System.Convert.ToInt32(m_obj); } }
 			public double Double { get{ if (m_obj == null)	return 0; else return (double) m_obj; } }
 			public float Float { get{ if (m_obj == null)	return 0.0f; else return (float) m_obj; } }
-			public bool Bool { get{ if (m_obj == null)	return false; else return (bool) m_obj; } }
-			public Formula Formula { get { return new Formula(m_obj); } }
+			public long Long { get { if (m_obj == null) return 0; else return (long)m_obj; } }
+			public bool Bool { get{ if (m_obj == null)	return false; else return (bool)System.Convert.ToBoolean(m_obj); } }
+			public  Formula Formula { get { return new Formula(m_obj);  } }
 			public object Object { get { return m_obj; } }
 
+			public bool IsHave => m_obj != null;
 
 
-			public static Service.Formula.FormulaData.datatype DefineType(object obj) {
+			public static Formula.FormulaData.datatype DefineType(object obj) {
 				if (obj.GetType() == typeof(string)) return Formula.FormulaData.datatype.str;
 				else if (Service.Tools.ObjectDefine.IsNumeric(obj)) return Formula.FormulaData.datatype.num;
 				else if (obj.GetType() == typeof(bool)) return Formula.FormulaData.datatype.bol;
-				else if (obj.GetType() == typeof(Service.Formula)) return Formula.FormulaData.datatype.formula;
-				else if (obj.GetType() == typeof(Service.Formula.FormulaData)) return Formula.FormulaData.datatype.formulaData;
-				else if (obj.GetType() == typeof(List<Service.Formula.FormulaData>)) return Formula.FormulaData.datatype.list;
+				else if (obj.GetType() == typeof(Formula)) return Formula.FormulaData.datatype.formula;
+				else if (obj.GetType() == typeof(Formula.FormulaData)) return Formula.FormulaData.datatype.formulaData;
+				else if (obj.GetType() == typeof(List<Formula.FormulaData>)) return Formula.FormulaData.datatype.list;
 				return Formula.FormulaData.datatype.obj;
 			}
 
@@ -885,36 +1083,33 @@ public class Service : MonoBehaviour {
 		}
 
 
+		
 
+
+
+
+	
 
 
 		public class BinarySearch
 		{
-
-			void example()
-			{
-				List<string> demo = new List<string>() { "ritichai", "baspoo", "game", "dev", "test", "..." };
-
-				//** fest search
-				BinarySearch binarysearch = new BinarySearch(demo);
-				var index = binarysearch.Find("baspoo");
-
-				var result = demo[index];
-
+			char Getkey( string key ) {
+				if(!string.IsNullOrEmpty(key))
+					return key.ToCharArray()[0];
+				else 
+					return char.MinValue;
 			}
-
-
-
-			public BinarySearch(List<string> keys) 
+			Dictionary<char, Dictionary<string, int>> raw = new Dictionary<char, Dictionary<string, int>>();
+			public  void Init( List<string> keys )
 			{
 				raw = new Dictionary<char, Dictionary<string, int>>();
 				int index = 0;
-				foreach (var key in keys)
+				foreach (var key in keys) 
 				{
 					char ch = Getkey(key);
-					if (!raw.ContainsKey(ch))
+					if (!raw.ContainsKey(ch)) 
 					{
-						raw.Add(ch, new Dictionary<string, int>());
+						raw.Add( ch , new Dictionary<string, int>());
 					}
 					if (!raw[ch].ContainsKey(key))
 						raw[ch].Add(key, index);
@@ -922,15 +1117,6 @@ public class Service : MonoBehaviour {
 						Debug.LogError("ContainsKey:" + key);
 					index++;
 				}
-
-			}
-			Dictionary<char, Dictionary<string, int>> raw = new Dictionary<char, Dictionary<string, int>>();
-			char Getkey(string key)
-			{
-				if (!string.IsNullOrEmpty(key))
-					return key.ToCharArray()[0];
-				else
-					return char.MinValue;
 			}
 			public  int Find (string key)
 			{
@@ -954,10 +1140,8 @@ public class Service : MonoBehaviour {
 
 	#region String
 	public class String  {
-
-		public static TextEditor tx;
 		public static void Copy(string messge){
-			tx = new TextEditor ();
+			TextEditor tx = new TextEditor ();
 			tx.text = messge;
 			tx.SelectAll();
 			tx.Copy ();
@@ -1112,6 +1296,7 @@ public class Service : MonoBehaviour {
 		}
 		public static string RemoveSymbolCharater(string str){
 			string NameValidate = str;
+			NameValidate = NameValidate.Replace(" ", "");
 			NameValidate = NameValidate.Replace ("*", "");
 			NameValidate = NameValidate.Replace ("/", "");
 			NameValidate = NameValidate.Replace ("\\", "");
@@ -1285,60 +1470,6 @@ public class Service : MonoBehaviour {
 
 
 
-		public static string NumberConvertToCashString(int money) => NumberConvertToCashString((long)money);
-		public static string NumberConvertToCashString(long money)
-		{
-			int lang = 2;
-			if (money >= 1000000000)
-			{
-				string[] cash = money.ToString("#,##0").Split(',');
-				string output;
-				if (lang == 0) output = cash[0] + " B";
-				else
-				{
-					if (lang >= 3) lang = 3;
-					string Last = "." + cash[1].Substring(0, lang);
-					if ((lang == 2) && (Last == ".00")) Last = "";
-					output = cash[0] + Last + " B";
-				}
-				return output;
-			}
-			if (money >= 1000000)
-			{
-				string[] cash = money.ToString("#,##0").Split(',');
-				string output;
-				if (lang == 0) output = cash[0] + " M";
-				else
-				{
-					if (lang >= 3) lang = 3;
-					string Last = "." + cash[1].Substring(0, lang);
-					if ((lang == 2) && (Last == ".00")) Last = "";
-					output = cash[0] + Last + " M";
-				}
-				return output;
-			}
-			if (money >= 1000)
-			{
-				string[] cash = money.ToString("#,##0").Split(',');
-				string output;
-				if (lang == 0) output = cash[0] + " K";
-				else
-				{
-					if (lang >= 3) lang = 3;
-					string Last = "." + cash[1].Substring(0, lang);
-					if ((lang == 2) && (Last == ".00")) Last = "";
-					output = cash[0] + Last + " K";
-				}
-				return output;
-			}
-			return money.ToString();
-		}
-
-
-
-
-
-
 		public enum TypeWriter
 		{
 			up,low,all,number
@@ -1361,6 +1492,34 @@ public class Service : MonoBehaviour {
 			} else {
 				return ((char)Random.Range (CharConstans.A, CharConstans.z + 1)).ToString ();
 			}
+		}
+		public static string IUnikey(string head ="I", int ch = 4)
+		{
+			string main = Random.Range(00, 99).ToString();
+			string date = Service.Time.DateTimeToUnixTimeStamp(System.DateTime.Now).ToString();
+			string mid = "";
+			for (int i = 0; i < ch; i++)
+				mid += String.RandomString(String.TypeWriter.up);
+
+			string key = $"{head}-{main}-{mid}-{date}";
+			return key;
+		}
+		public static string UniSimple( int count = 6 )
+		{
+			string key = "";
+			for (int i = 0; i < count; i++) 
+			{
+				string add = "";
+				if (Random.RandomRange(0, 100) < 40)
+				{
+					key += Random.Range(0, 9).ToString();
+				}
+				else 
+				{
+					key += String.RandomString(String.TypeWriter.up);
+				}
+			}
+			return key;
 		}
 		public static string RandomUniKey( int ch ,bool isHeader = true){
 			string key = string.Empty;
@@ -1394,24 +1553,57 @@ public class Service : MonoBehaviour {
 			Vector3 IsVec = Vector3.zero;
 			if (string.IsNullOrEmpty (Str))
 				return IsVec;
-			
-			Str = strCropValue (Str,"(",")");
-			string[] Value = Str.Split (',');
-			IsVec.x = System.Convert.ToSingle (Value[0]);
-			IsVec.y = System.Convert.ToSingle (Value[1]);
-			IsVec.z = System.Convert.ToSingle (Value[2]);
-			return IsVec;
+			try 
+			{
+				Str = strCropValue(Str, "(", ")");
+				string[] Value = Str.Split(',');
+				IsVec.x = Value[0].ToFloat();
+				IsVec.y = Value[1].ToFloat();
+				IsVec.z = Value[2].ToFloat();
+				return IsVec;
+			} 
+			catch {
+				return Vector3.zero;
+			}
 		}
 		public static Vector2 PassStringToVector2(string Str){  
 			Vector2 IsVec = Vector2.zero;
 			if (string.IsNullOrEmpty (Str))
 				return IsVec;
+			try 
+			{
+				Str = strCropValue(Str, "(", ")");
+				string[] Value = Str.Split(',');
+				IsVec.x = Value[0].ToFloat();
+				IsVec.y = Value[1].ToFloat();
+				return IsVec;
 
-			Str = strCropValue (Str,"(",")");
-			string[] Value = Str.Split (',');
-			IsVec.x = System.Convert.ToSingle (Value[0]);
-			IsVec.y = System.Convert.ToSingle (Value[1]);
-			return IsVec;
+			} 
+			catch { return Vector2.zero; }
+		}
+		public static Vector2Int PassStringToVector2Int(string Str)
+		{
+			Vector2Int IsVec = Vector2Int.zero;
+			if (string.IsNullOrEmpty(Str))
+				return IsVec;
+			try
+			{
+				Str = strCropValue(Str, "(", ")");
+				string[] Value = Str.Split(',');
+				IsVec.x = Value[0].ToInt();
+				IsVec.y = Value[1].ToInt();
+				return IsVec;
+			}
+			catch 
+			{
+				return Vector2Int.zero;
+			}
+		}
+		public static int PassStringToInt(string Str){  
+			if (string.IsNullOrEmpty (Str))
+				return 0;
+			else 
+				return System.Convert.ToInt32 (Str);
 		}
 		public static double[] PassStringToRange(string Str){  
 			double[] output = new double[0];
@@ -1441,44 +1633,53 @@ public class Service : MonoBehaviour {
 			return sum;
 		}
 
-		public static int Parse(string Str, int _default){
+		public static int Parse(string Str, int _default)
+		{
 			var output = _default;
 			return (System.Int32.TryParse(Str, out output)) ? output : _default;
 		}
-		public static long Parse(string Str,long _default){
+		public static long Parse(string Str, long _default)
+		{
 			var output = _default;
 			return (System.Int64.TryParse(Str, out output)) ? output : _default;
 		}
-		public static double Parse(string Str ,double _default){
+		public static double Parse(string Str, double _default)
+		{
 			var output = _default;
 			return (System.Double.TryParse(Str, out output)) ? output : _default;
 		}
-		public static float Parse(string Str ,float _default){
+		public static float Parse(string Str, float _default)
+		{
 			var output = _default;
 			return (System.Single.TryParse(Str, out output)) ? output : _default;
 		}
-		public static bool Parse(string Str ,bool _default){
+		public static bool Parse(string Str, bool _default)
+		{
 			var output = _default;
 			return (System.Boolean.TryParse(Str, out output)) ? output : _default;
 		}
-		public static byte Parse(string Str, byte _default){
+		public static byte Parse(string Str, byte _default)
+		{
 			var output = _default;
 			return (System.Byte.TryParse(Str, out output)) ? output : _default;
 		}
-		public static System.DateTime Parse(string Str, System.DateTime _default){
+		public static System.DateTime Parse(string Str, System.DateTime _default)
+		{
 			var output = _default;
 			return (System.DateTime.TryParse(Str, out output)) ? output : _default;
 		}
-		public static string Parse(string Str ,string _default){  
-			if (string.IsNullOrEmpty (Str))
+		public static string Parse(string Str, string _default)
+		{
+			if (string.IsNullOrEmpty(Str))
 				return _default;
 			else
 				return Str;
 		}
-		public static Service.Formula  Parse ( string Str , Service.Formula _default , formulaToType type )
+		public enum formulaToType { statdard, json }
+		public static Formula Parse(string Str, Formula _default, formulaToType type)
 		{
 			if (type == formulaToType.statdard)
-				return Service.Formula.TextSetup(Str);
+				return Formula.TextSetup(Str);
 			else
 				return FormulaToolsService.Json.JsonToJFormula(Str);
 		}
@@ -1506,10 +1707,9 @@ public class Service : MonoBehaviour {
 		public static void To(string Str , out string result ){  
 			result = Parse(Str,string.Empty);
 		}
-		public enum formulaToType { statdard , json }
-		public static void To(string Str , out Service.Formula result , formulaToType type )
+		public static void To(string Str , out Formula result, formulaToType type = formulaToType.statdard)
 		{  
-			result = Parse(Str,new Service.Formula(), type);
+			result = Parse(Str,new Formula(), type);
 		}
 		public static void To(string Str , out Vector2 result ){  
 			result = Parse(Str,Vector2.zero);		
@@ -1517,12 +1717,6 @@ public class Service : MonoBehaviour {
 		public static void To(string Str , out Vector3 result ){  
 			result = Parse(Str,Vector3.zero);
 		}
-	
-
-
-
-
-
 		/// <summary>
 		/// Value = (ValueType) Service.String.ToEnum ("str",Value.none);
 		/// </summary>
@@ -1593,7 +1787,34 @@ public class Service : MonoBehaviour {
 
 
 
+		public static string ComputeSha256Hash(string rawData)
+		{
+			// Create a SHA256   
+			using (System.Security.Cryptography.SHA256 sha256Hash = System.Security.Cryptography.SHA256.Create())
+			{
+				// ComputeHash - returns byte array  
+				byte[] bytes = sha256Hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(rawData));
 
+				// Convert byte array to a string   
+				System.Text.StringBuilder builder = new System.Text.StringBuilder();
+				for (int i = 0; i < bytes.Length; i++)
+				{
+					builder.Append(bytes[i].ToString("x2"));
+				}
+				return builder.ToString();
+			}
+		}
+
+
+
+
+
+
+
+
+		public static string ClassToString(object c) {
+			return ServiceJson.Json.SerializeObject(c);
+		}
 
 
 		public class Transforms
@@ -1750,123 +1971,14 @@ public class Service : MonoBehaviour {
 			}
 		}
 		public class Json{
-			public static Service.Formula JsonToFormula(string json)
+			public static Formula JsonToFormula(string json)
 			{
 				return FormulaToolsService.Json.JsonToJFormula(json);
 			}
-			public static List<Service.Formula> JsonToFormulas(string json)
+			public static List<Formula> JsonToFormulas(string json)
 			{
 				return FormulaToolsService.Json.JsonArrayToJFormulas(json);
 			}
-            #region OLD
-			/*
-            public static Service.Formula JsonToFormula(string json) {
-				if (string.IsNullOrEmpty(json))
-					return new Service.Formula();
-
-
-				//** CropString{ }
-				string keyreplace = "<#key-replace#-";
-				Service.Formula strContent = new Service.Formula();
-				string NewJson = json;
-				if (NewJson.IndexOf("{") != -1)
-					if (NewJson.IndexOf("}") != -1)
-						NewJson = strCropValue(NewJson, "{", "}");
-
-
-				//** CropString SubJson to Args { }
-				string keyjson = "<#key-json#-";
-				string checkType = NewJson;
-				Service.Formula strContentJson = new Service.Formula();
-				if (String.isStrCropValue(checkType, "{", "}")) {
-					string subJson = String.strCropValue(checkType, "{", "}");
-					int indexcheck = 0;
-					List<string> subJsons = String.strCropValues(checkType, "{","}");
-					foreach (string s in subJsons) 
-					{
-						string KEYJSON = "\"" + keyjson + indexcheck.ToString() + ">\"";
-						strContentJson.AddFormula(KEYJSON.Replace("\"",""),s);
-						checkType = checkType.Replace(s, KEYJSON);
-						indexcheck++;
-					}
-				}
-				NewJson = checkType;
-
-
-
-				List<string> values = strCropValues ( NewJson , "\"","\"");
-				int index = 0;
-				foreach (string dataStr in values) 
-				{
-					if (!string.IsNullOrEmpty(dataStr))
-					{
-						string key = keyreplace + index.ToString() + ">";
-						NewJson = NewJson.Replace("\"" + dataStr + "\"", key);
-						strContent.AddFormula(key, dataStr);
-						index++;
-					}
-				}
-				NewJson = NewJson.Replace("\"\"","");
-				NewJson = NewJson.Replace("'", Formula.single);
-
-
-				string formulastring = string.Empty;
-				foreach (string str in NewJson.Split(',')) {
-					if (!string.IsNullOrEmpty (str)) {
-						string[] v = str.Split (':');
-						string key 		= v [0];
-						string value = v[1];
-						//Debug.Log(value);
-
-						key = strContent.GetFormula (  "<" + String.strCropValue(key,"<",">") +">" ).Text;
-						if (value.IndexOf (keyreplace) != -1) 
-						{
-							value =  strContent.GetFormula ("<" + String.strCropValue (value, "<", ">") + ">").Text;
-							if ( value.IndexOf ("[")==-1 && value.IndexOf ("]")==-1 ) 
-								value = "'" + value + "'";
-						}
-						string F = key+":"+value;
-						if(!string.IsNullOrEmpty(formulastring))
-							formulastring += ",";
-						formulastring += F;
-					}
-				}
-
-
-				///*** Add Args By SubJson{}
-				Service.Formula FormulaOutPut = Service.Formula.Setup(formulastring);
-				foreach (Service.Formula.FormulaData FD in FormulaOutPut.GetFormulaDatas) {
-					Service.Formula.FormulaData FindJson = strContentJson.GetFormula(FD.Text);
-					if (FindJson.isHave) 
-					{
-						//Debug.Log(FindJson.FormulaName);
-						Service.Formula j =  JsonToFormula(FindJson.Text);
-						foreach (Service.Formula.FormulaData jFD in j.GetFormulaDatas)
-						{
-							FD.AddArg(jFD.FormulaName, jFD.Text);
-						}
-					}
-				}
-
-
-
-
-				return FormulaOutPut;
-			}
-			public static List<Service.Formula>  JsonToFormulas( string json  ){
-				List<Service.Formula> fomulas = new List<Formula> ();
-				if (string.IsNullOrEmpty(json))
-					return fomulas;
-				json = json.Replace("'", Formula.single);
-				List<string> values = strCropValues ( strCropValue(json,"[","]") , "{","}");
-				foreach (string dataStr in values) 
-				{
-					fomulas.Add ( JsonToFormula(dataStr)  );
-				}
-				return fomulas;
-			}
-			*/
-            #endregion
             public static bool isJsonArray(string raw , bool isDeserializeCheck = true)
 			{
 				string strInput = raw.Trim();
@@ -1904,8 +2016,8 @@ public class Service : MonoBehaviour {
 			}
 		}
 		public class Dict{
-			public static Service.Formula DictToFormula( Dictionary<string,string> dic ){
-				Service.Formula f_dict = new Service.Formula( );
+			public static Formula DictToFormula( Dictionary<string,string> dic ){
+				Formula f_dict = new Formula( );
 				if (dic != null)
 					foreach (string key in dic.Keys) {
 						double n; bool b;
@@ -1941,960 +2053,6 @@ public class Service : MonoBehaviour {
 
 
 
-	#region Formula
-	[System.Serializable]
-	public class Formula : FormulaToolsService
-	{
-		public Formula()
-		{
-
-		}
-		public Formula(string key, Formula f)
-		{
-			AddFormula(key, f);
-		}
-		public Formula(string key, object obj)
-		{
-			AddFormula(key, obj);
-		}
-		public Formula(object serializable)
-		{
-			if (serializable != null)
-			{
-				var f = Json.JsonToJFormula( (serializable is string) ? (string)serializable : serializable);
-				AddFormulas(f);
-			}
-		}
-		[System.Serializable]
-		public class FormulaData
-		{
-
-			public enum datatype
-			{
-				none, num, nums, str, bol, vector, transform, enums, formula, obj, json, list, formulaData
-			}
-			public FormulaData(string name)
-			{
-				this.Name = name;
-			}
-			public FormulaData(string name, bool uni = false)
-			{
-				this.Name = name;
-				if (uni)
-					m_uniID = String.RandomUniKey(0, true);
-			}
-			public FormulaData(string name, string uni)
-			{
-				this.Name = name;
-				if (!string.IsNullOrEmpty(uni))
-					m_uniID = uni;
-			}
-			public FormulaData(string name, object obj)
-			{
-				this.Name = name;
-				if (obj != null)
-				{
-					isHave = true;
-					var define = new Service.Tools.ObjectDefine(obj);
-					var type = Service.Tools.ObjectDefine.DefineType(obj);
-					switch (type)
-					{
-						case datatype.str: Text = define.String; break;
-						case datatype.num: Value = Service.Tools.ObjectDefine.NumericToDouble(obj); break;
-						case datatype.bol: Status = define.Bool; break;
-						case datatype.formula: SubFormula = (Formula)obj; break;
-						case datatype.obj: Object = obj; break;
-					}
-				}
-			}
-
-
-
-			public string uniID { get { return m_uniID; } }
-			private string m_uniID;
-
-			public string FormulaName { get { return Name; } }
-			public void Rename(string newName)
-			{
-				Name = newName;
-			}
-
-			[SerializeField]
-			private string Name;
-			[SerializeField]
-			string m_Text;
-			[SerializeField]
-			double m_Value;
-			[SerializeField]
-			double[] m_Range;
-			[SerializeField]
-			bool m_Status;
-			[SerializeField]
-			object m_object;
-			[SerializeField]
-			Service.Formula m_formula;
-			[SerializeField]
-			Service.Formula m_litsformula;
-			[SerializeField]
-			public FormulaToolsService.LocalPackageContent LocalContent = new LocalPackageContent();
-
-
-			string m_tag;
-			//public string[] args = new string[10];
-			public List<argsData> args = new List<argsData>();
-			public class argsData
-			{
-				public string argName = string.Empty;
-				public string argData = null;
-			}
-			public string Text
-			{
-				get { return m_Text; }
-				set { m_datatype = datatype.str; m_Text = value; }
-			}
-			public string Json
-			{
-				get { return m_Text; }
-				set { m_datatype = datatype.json; m_Text = value; }
-			}
-			public double Value
-			{
-				get { return m_Value; }
-				set { m_datatype = datatype.num; m_Value = value; }
-			}
-			public int ValueInt
-			{
-				get { return (int)m_Value; }
-			}
-			public double[] Range
-			{
-				get
-				{
-					if (m_Range == null || m_Range.Length == 0)
-					{
-						m_Range = String.PassStringToRange(m_Text);
-					}
-					return m_Range;
-				}
-				set { m_datatype = datatype.nums; m_Range = value; }
-			}
-			public Service.Formula SubFormula
-			{
-				get { if (m_formula == null) m_formula = new Formula(); return m_formula; }
-				set { m_datatype = datatype.formula; m_formula = value; }
-			}
-			public Service.Formula ListFormulaDatas
-			{
-				get { return m_litsformula; }
-				set { m_datatype = datatype.list; m_litsformula = value; }
-			}
-			public object Object
-			{
-				get { return m_object; }
-				set { m_datatype = datatype.obj; m_object = value; }
-			}
-			public bool Status
-			{
-				get { return m_Status; }
-				set { m_datatype = datatype.bol; m_Status = value; }
-			}
-			public object GetDataByType()
-			{
-				if (m_datatype == datatype.str) return m_Text;
-				if (m_datatype == datatype.num) return m_Value;
-				if (m_datatype == datatype.bol) return m_Status;
-				if (m_datatype == datatype.formula) return SubFormula;
-				if (m_datatype == datatype.obj) return m_object;
-				if (m_datatype == datatype.list) return ListFormulaDatas;
-				return null;
-			}
-			public System.Enum Enum(object Default)
-			{
-				return String.ToEnum(Text, Default);
-			}
-			public double Relative(double increase)
-			{
-				if (GetDataType == datatype.num)
-					m_Value += increase;
-				return m_Value;
-			}
-
-			[HideInInspector]
-			public bool isHave = false;
-			public bool Equals(string findname, bool isSensitive = true)
-			{
-				if (isSensitive)
-					return (Name == findname);
-				else
-					return (Name.ToLower() == findname.ToLower());
-			}
-			datatype m_datatype = datatype.none;
-			public datatype GetDataType
-			{
-				get { return m_datatype; }
-			}
-			public FormulaData SetTag(string tagName)
-			{
-				m_tag = tagName;
-				return this;
-			}
-			public FormulaData SetUniID(string uniID)
-			{
-				m_uniID = uniID;
-				return this;
-			}
-			public string GetTag()
-			{
-				return m_tag;
-			}
-
-			public argsData AddArg(string argName, object argData)
-			{
-				return AddArg(argName, (argData == null) ? string.Empty : argData.ToString());
-			}
-			public argsData AddArg(string argName, int argData)
-			{
-				return AddArg(argName, argData.ToString());
-			}
-			public argsData AddArg(string argName, float argData)
-			{
-				return AddArg(argName, argData.ToString());
-			}
-			public argsData AddArg(string argName, bool argData)
-			{
-				return AddArg(argName, argData.ToString());
-			}
-			public argsData AddArg(string argName, string argData)
-			{
-				argsData a = new argsData();
-				a.argName = argName;
-				a.argData = argData;
-				args.Add(a);
-				return a;
-			}
-			public Service.String.StringDefine GetArg(string argName, bool isSensitive = true)
-			{
-				foreach (argsData arg in args)
-				{
-					if ((isSensitive) ? (arg.argName == argName) : (arg.argName.ToLower() == argName.ToLower()))
-						return Service.String.StringDefine.ToStringDefine(arg.argData);
-				}
-				return Service.String.StringDefine.ToStringDefine(string.Empty);
-			}
-			public bool UpdateArg(string argName, string value)
-			{
-				foreach (argsData arg in args)
-					if (arg.argName == argName)
-					{
-						arg.argData = value;
-						return true;
-					}
-				return false;
-			}
-			public void AddOrUpdateArg(string argName, object value)
-			{
-				foreach (argsData arg in args)
-					if (arg.argName == argName)
-					{
-						arg.argData = value.ToString();
-						return;
-					}
-				AddArg(argName, value.ToString());
-			}
-			public void AddArgs(List<argsData> argsDatas)
-			{
-				args.AddRange(argsDatas);
-			}
-			public void RemoveArg(string argName)
-			{
-				foreach (argsData arg in args)
-					if (arg.argName == argName)
-					{
-						args.Remove(arg);
-						return;
-					}
-			}
-			public bool isHaveArg(string argName)
-			{
-				foreach (argsData arg in args)
-					if (arg.argName == argName)
-						return true;
-				return false;
-			}
-			public void UpdateData(object value)
-			{
-				if (m_datatype == datatype.str) m_Text = new Service.Tools.ObjectDefine(value).String;
-				if (m_datatype == datatype.num) m_Value = new Service.Tools.ObjectDefine(value).Double;
-				if (m_datatype == datatype.bol) m_Status = new Service.Tools.ObjectDefine(value).Bool;
-				if (m_datatype == datatype.obj) m_object = value;
-			}
-			public void UpdateData(Service.Formula f)
-			{
-				if (m_datatype == datatype.formula) SubFormula = f;
-			}
-			public void AddList(object value)
-			{
-				ListFormulaDatas.AddFormula(null, value);
-			}
-		}
-
-		public FormulaData this[int index] { get { return GetFormulaDatas[index]; } }
-		public FormulaData this[string key] { get { return GetFormula(key); } }
-		public FormulaData this[string key,string tag] { get { return GetFormula(key, tag); } }
-
-
-		private string m_Nickname = string.Empty;
-		public string Nickname
-		{
-			get
-			{
-				return m_Nickname;
-			}
-			set
-			{
-				m_Nickname = value;
-			}
-		}
-
-		public FormulaToolsService.LocalPackageContent LocalContent = new LocalPackageContent();
-
-		[SerializeField]
-		List<FormulaData> FormulaDatas = new List<FormulaData>();
-		public List<FormulaData> GetFormulaDatas
-		{
-			get
-			{
-				return FormulaDatas;
-			}
-		}
-		public void Clear()
-		{
-			FormulaDatas.Clear();
-		}
-		public FormulaData AddFormula(string f_name, string text)
-		{
-			FormulaData fData = new FormulaData(f_name);
-			fData.Text = text;
-			fData.isHave = true;
-			FormulaDatas.Add(fData);
-			return fData;
-		}
-		public FormulaData AddFormula(string f_name, double value)
-		{
-			FormulaData fData = new FormulaData(f_name);
-			fData.Value = value;
-			fData.isHave = true;
-			FormulaDatas.Add(fData);
-			return fData;
-		}
-		public FormulaData AddFormula(string f_name, bool status)
-		{
-			FormulaData fData = new FormulaData(f_name);
-			fData.Status = status;
-			fData.isHave = true;
-			FormulaDatas.Add(fData);
-			return fData;
-		}
-		public FormulaData AddFormula(string f_name, Service.Formula f)
-		{
-			FormulaData fData = new FormulaData(f_name);
-			fData.SubFormula = f;
-			fData.isHave = true;
-			FormulaDatas.Add(fData);
-			return fData;
-		}
-		public FormulaData AddFormula(FormulaData formulaData)
-		{
-			if (formulaData != null)
-			{
-				formulaData.isHave = true;
-				FormulaDatas.Add(formulaData);
-			}
-			return formulaData;
-		}
-		protected FormulaData AddFormula(string f_name, object obj)
-		{
-			FormulaData fData = new FormulaData(f_name, obj);
-			if (fData.isHave) FormulaDatas.Add(fData);
-			return fData;
-		}
-		public FormulaData AddFormula(string f_name, object obj, FormulaData.datatype type)
-		{
-			FormulaData fData = new FormulaData(f_name);
-			if (obj != null)
-			{
-				switch (type)
-				{
-					case FormulaData.datatype.str: fData.Text = (string)obj; break;
-					case FormulaData.datatype.json: fData.Json = (string)obj; break;
-					case FormulaData.datatype.num: fData.Value = Tools.ObjectDefine.NumericToDouble(obj); break;
-					case FormulaData.datatype.bol: fData.Status = (bool)obj; break;
-					case FormulaData.datatype.obj: fData.Object = obj; break;
-				}
-				fData.isHave = true;
-				FormulaDatas.Add(fData);
-			}
-			return fData;
-		}
-		public void AddFormulas(Formula formulaData)
-		{
-			if (formulaData == null)
-				return;
-			AddFormulas(formulaData.GetFormulaDatas);
-		}
-		public void AddFormulas(List<Formula.FormulaData> formulaDatas)
-		{
-			if (formulaDatas == null)
-				return;
-			foreach (Service.Formula.FormulaData data in formulaDatas)
-			{
-				if (data.isHave)
-				{
-					FormulaDatas.Add(data);
-				}
-			}
-		}
-		public void AddAndUpdateFormulas(Formula formulaData)
-		{
-			if (formulaData == null)
-				return;
-			foreach (Service.Formula.FormulaData data in formulaData.GetFormulaDatas)
-			{
-				if (data.isHave)
-				{
-					Service.Formula.FormulaData FD = GetFormula(data.FormulaName);
-					if (FD.isHave)
-					{
-						FD.UpdateData(data.GetDataByType());
-					}
-					else
-						FormulaDatas.Add(data);
-				}
-			}
-		}
-		public FormulaData AddOrUpdateFormula(FormulaData formulaData)
-		{
-			for (int i = 0; i < FormulaDatas.Count; i++)
-			{
-				if (FormulaDatas[i].FormulaName == formulaData.FormulaName)
-				{
-					FormulaDatas[i] = formulaData;
-					return formulaData;
-				}
-			}
-			AddFormula(formulaData);
-			return formulaData;
-		}
-		public FormulaData AddOrUpdateFormula(string f_name, object obj)
-		{
-			FormulaData fData = GetFormula(f_name);
-			if (GameObj.isObjectNotNull(obj))
-			{
-				if (fData != null)
-				{
-					if (fData.isHave)
-					{
-						if (fData.GetDataType == FormulaData.datatype.num) fData.Value = Tools.ObjectDefine.NumericToDouble(obj);
-						if (fData.GetDataType == FormulaData.datatype.bol) fData.Status = (bool)obj;
-						if (fData.GetDataType == FormulaData.datatype.str) fData.Text = (string)obj;
-						if (fData.GetDataType == FormulaData.datatype.formula) fData.SubFormula = (Service.Formula)obj;
-						if (fData.GetDataType == FormulaData.datatype.obj) fData.Object = obj;
-					}
-					else fData = AddFormula(f_name, obj);
-				}
-				else fData = AddFormula(f_name, obj);
-			}
-			return fData;
-		}
-		public FormulaData AddOrUpdateFormula(string f_name, Formula obj)
-		{
-			FormulaData fData = GetFormula(f_name);
-			if (GameObj.isObjectNotNull(obj))
-			{
-				if (fData != null)
-				{
-					if (fData.isHave)
-					{
-						fData.SubFormula = obj;
-					}
-					else fData = AddFormula(f_name, obj);
-				}
-				else fData = AddFormula(f_name, obj);
-			}
-			return fData;
-		}
-		public double Relative(string f_name, double increase)
-		{
-			FormulaData fData = GetFormula(f_name);
-			if (fData.isHave) fData.Relative(increase);
-			else AddFormula(f_name, increase);
-			return fData.Value;
-		}
-
-
-		public FormulaData AddList(string f_name)
-		{
-			FormulaData fData = new FormulaData(f_name);
-			fData.ListFormulaDatas = new Formula();
-			fData.isHave = true;
-			FormulaDatas.Add(fData);
-			return fData;
-		}
-		public void DesAllFormula(string f_name)
-		{
-			FormulaDatas.RemoveAll(x => x.FormulaName == f_name);
-		}
-		public void DesFormula(string f_name)
-		{
-			FormulaData f = GetFormula(f_name);
-			if (f.isHave)
-			{
-				FormulaDatas.Remove(f);
-			}
-		}
-		public void DesFormula(FormulaData f)
-		{
-			if (f.isHave)
-			{
-				FormulaDatas.Remove(f);
-			}
-		}
-		public void DesFormulas(Service.Formula f_remove)
-		{
-			foreach (FormulaData fd in f_remove.GetFormulaDatas)
-			{
-				DesFormula(fd.FormulaName);
-			}
-		}
-		public Service.Formula DesFormulasAndCopy(Service.Formula f_remove)
-		{
-			Service.Formula copy = new Formula();
-			foreach (FormulaData fd in FormulaDatas)
-			{
-				if (!f_remove.GetFormula(fd.FormulaName).isHave)
-					copy.AddFormula(fd);
-			}
-			return copy;
-		}
-		public List<FormulaData> GetTag(string TagName)
-		{
-			List<FormulaData> tag = new List<FormulaData>();
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				if (formula.GetTag() == TagName)
-					tag.Add(formula);
-			}
-			return tag;
-		}
-		public Formula SplitTag(string TagName)
-		{
-			Service.Formula f = new Formula();
-			foreach (FormulaData fd in GetTag(TagName))
-			{
-				f.AddFormula(fd);
-			}
-			return f;
-		}
-		public List<FormulaData> GetAllisHaveArg(string ArgName)
-		{
-			List<FormulaData> args = new List<FormulaData>();
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				if (formula.isHaveArg(ArgName))
-					args.Add(formula);
-			}
-			return args;
-		}
-		public FormulaData GetFormula(string FormulaName, bool isSensitive = true)
-		{
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				if (formula.Equals(FormulaName, isSensitive))
-				{
-					return formula;
-				}
-			}
-			return new FormulaData(string.Empty);
-		}
-		public FormulaData GetFormula(string FormulaName, string tag)
-		{
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				if ((formula.Equals(FormulaName)) && (formula.GetTag() == tag))
-				{
-					return formula;
-				}
-			}
-			return new FormulaData(string.Empty);
-		}
-		public List<FormulaData> GetFormulas(string FormulaName)
-		{
-			List<FormulaData> fDatas = new List<FormulaData>();
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				if (formula.Equals(FormulaName))
-				{
-					fDatas.Add(formula);
-				}
-			}
-			return fDatas;
-		}
-		public List<FormulaData> GetFormulas(string FormulaName, string tag)
-		{
-			List<FormulaData> fDatas = new List<FormulaData>();
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				if (formula.Equals(FormulaName) && (formula.GetTag() == tag))
-				{
-					fDatas.Add(formula);
-				}
-			}
-			return fDatas;
-		}
-		public double RelativeSubPath(string path, double increase)
-		{
-			FormulaData fData = GetSubPath(path);
-			if (fData.isHave) fData.Relative(increase);
-			else AddSubPath(path, increase);
-			return fData.Value;
-		}
-		public FormulaData AddSubPath(string path, object value)
-		{
-			return Json.AddSubPath(this,path, value);
-		}
-		public FormulaData GetSubPath(string path)
-		{
-			return Json.GetSubPath(this,path);
-		}
-	
-
-
-
-
-		public void Shuffle()
-		{
-			for (int i = 0; i < FormulaDatas.Count; i++)
-			{
-				FormulaData temp = FormulaDatas[i];
-				int randomIndex = Random.Range(i, FormulaDatas.Count);
-				FormulaDatas[i] = FormulaDatas[randomIndex];
-				FormulaDatas[randomIndex] = temp;
-			}
-		}
-		public Formula.FormulaData OnCakeRandom()
-		{
-			List<double> random = new List<double>();
-			foreach (var f in GetFormulaDatas) 
-			{
-				random.Add(f.Value);
-			}
-			int index = CakeRandom.ChooseRandomIndex(random);
-			return GetFormulaDatas[index];
-		}
-		public Formula Clone()
-		{
-			string json = FormulaToolsService.Json.FormulaToJson(this);
-			return FormulaToolsService.Json.JsonToJFormula(json);
-		}
-
-
-
-		///		text:'hello world', index:5 , enable:false
-		/// 
-		///		[output]
-		///     formuladata.name = text
-		/// 	formuladata.text = "hello world";
-		/// 
-		/// 	formuladata.name = index
-		/// 	formuladata.value = 5;
-		/// 
-		/// 	formuladata.name = enable
-		/// 	formuladata.bool = false;
-		public static Formula TextSetup(string text)
-		{
-			if (string.IsNullOrEmpty(text))
-				return new Formula();
-			try
-			{
-				Formula formula = new Formula();
-				string NewJson = text;
-				List<string> values = String.strCropValues(NewJson, "'", "'");
-				int index = 0;
-				foreach (string dataStr in values)
-				{
-					string newValue = dataStr.Replace(",", "<&comma>");
-					NewJson = NewJson.Replace(dataStr, newValue);
-				}
-				string[] splitData = NewJson.Split(',');
-				foreach (string KeyValue in splitData)
-				{
-					if (!string.IsNullOrEmpty(KeyValue))
-					{
-						Formula.FormulaData FData = ToFormulaData(KeyValue.Replace("<&comma>", ","));
-						if (FData != null)
-							formula.AddFormula(FData);
-					}
-				}
-				return formula;
-			}
-			catch (System.Exception e)
-			{
-				Debug.LogError("Formula Can't Setup : {" + text + "}" + "\n\n\n\n" + e.StackTrace);
-			}
-			return new Formula();
-		}
-
-		
-
-
-
-
-
-
-		public static string single = "<#key-single#>";
-		static Formula.FormulaData ToFormulaData(string KeyValue)
-		{
-			//baspoo:50
-			//test:'ccc'
-
-			//**Remove Text 'message' to the Data FirstStep ==> You Can Enter All Char || String to the Formula Ok..!
-			string removeText = KeyValue;
-			string text = string.Empty;
-			if (removeText.IndexOf("'") != -1)
-			{
-				text = String.strCropValue(removeText, "'", "'");
-				if (!string.IsNullOrEmpty(text))
-					removeText = removeText.Replace("'" + text + "'", "''");
-				else
-					text = string.Empty;
-			}
-			//**-----------------------------------------------------------------------------------------------------
-			string args = string.Empty;
-			if (removeText.IndexOf("<arg>") != -1)
-			{
-				args = String.strCropValue(removeText, "<arg>", "</arg>");
-				if (!string.IsNullOrEmpty(args))
-					removeText = removeText.Replace("<arg>" + args + "</arg>", "");
-			}
-			//**-----------------------------------------------------------------------------------------------------
-			string uniID = string.Empty;
-			if (removeText.IndexOf("<uniID>") != -1)
-			{
-				uniID = String.strCropValue(removeText, "<uniID>", "</uniID>");
-				if (!string.IsNullOrEmpty(uniID))
-					removeText = removeText.Replace("<uniID>" + uniID + "</uniID>", "");
-			}
-			//**-----------------------------------------------------------------------------------------------------
-			string range = string.Empty;
-			if (removeText.IndexOf("[") != -1)
-				if (removeText.IndexOf("]") != -1)
-				{
-					range = String.strCropValue(removeText, "[", "]");
-					if (!string.IsNullOrEmpty(range))
-						removeText = removeText.Replace(range, "");
-				}
-			//**-----------------------------------------------------------------------------------------------------
-
-
-
-			//Debug.Log (KeyValue);
-			string[] splitKeyValue = removeText.Split(':');
-			if (splitKeyValue.Length >= 2)
-				if (!string.IsNullOrEmpty(splitKeyValue[0]))
-					if (!string.IsNullOrEmpty(splitKeyValue[1]))
-					{
-
-						//CleanKey
-						string key = splitKeyValue[0];
-						key = String.RemoveSpecialCharater(key);
-						FormulaData fData = new FormulaData(key);
-
-						//** String
-						if (!string.IsNullOrEmpty(text))
-						{
-							text = text.Replace(single, "'");
-							fData.Text = text; //function_string.strCropValue (splitKeyValue [1], '\'', '\'');
-							fData.isHave = true;
-						}
-						else
-						{
-							//** Bool
-							if ((splitKeyValue[1].ToLower().IndexOf("true") != -1) || (splitKeyValue[1].ToLower().IndexOf("false") != -1))
-							{
-								bool valuebool;
-								bool isBool = bool.TryParse(splitKeyValue[1], out valuebool);
-								if (isBool)
-								{
-									fData.Status = valuebool;
-									fData.isHave = true;
-								}
-							}
-							//** Double
-							else
-							{
-								//**Doubles / Rang [0/1] / [2/3/4/5/8/9.....]
-								if (!string.IsNullOrEmpty(range))
-								{
-
-									/*
-									string[] r = range.Split ('/');
-									fData.Range = new double[r.Length];
-									for (int i = 0 ; i < r.Length ; i++) {
-										fData.Range[i] = System.Convert.ToDouble (r[i]);
-									}
-									fData.isHave = true;
-									*/
-
-									fData.Range = String.PassStringToRange(range);
-									fData.isHave = true;
-
-								}
-								//**Double
-								else
-								{
-									double valueDouble = 0;
-									bool isDouble = double.TryParse(splitKeyValue[1], out valueDouble);
-									if (isDouble)
-									{
-										fData.Value = valueDouble;
-										fData.isHave = true;
-									}
-								}
-							}
-						}
-						//** Tag
-						if (splitKeyValue.Length >= 3)
-						{
-							if (!string.IsNullOrEmpty(splitKeyValue[2]))
-								fData.SetTag(splitKeyValue[2]);
-						}
-						//**Agus
-						if (!string.IsNullOrEmpty(args))
-						{
-							string[] args_split = args.Split('&');
-							foreach (string arg in args_split)
-							{
-								string argName = String.strCropValue(arg, "</args_", ">");
-								string begin = "<args_" + argName + ">";
-								string end = "</args_" + argName + ">";
-								if (args.IndexOf(begin) != -1)
-								{
-									string argData = String.strCropValue(args, begin, end);
-									fData.AddArg(argName, argData);
-								}
-							}
-						}
-						//**uniID
-						if (!string.IsNullOrEmpty(uniID))
-						{
-							fData.SetUniID(uniID);
-						}
-
-
-						return fData;
-					}
-			return null;
-		}
-		public string PassToString()
-		{
-			string str = "";
-			foreach (FormulaData formula in FormulaDatas)
-			{
-				string data = "";
-				//** Main
-				if (formula.GetDataType == FormulaData.datatype.str) data = formula.FormulaName + ":'" + formula.Text.Replace("'", single) + "'";
-				if (formula.GetDataType == FormulaData.datatype.num) data = formula.FormulaName + ":" + formula.Value.ToString();
-				if (formula.GetDataType == FormulaData.datatype.bol) data = formula.FormulaName + ":" + formula.Status.ToString();
-				if (formula.GetDataType == FormulaData.datatype.nums)
-				{
-					/*
-					string sum = "[";
-					for (int i = 0; i < formula.Range.Length; i++) {
-						if (i != 0)
-							sum += "/";
-						sum += formula.Range [i].ToString ();
-					}
-					sum += "]";
-					*/
-					string sum = String.PassRangeToString(formula.Range);
-					data = formula.FormulaName + ":" + sum;
-				}
-
-
-
-				//** Tag
-				if (!string.IsNullOrEmpty(formula.GetTag())) data += ":" + formula.GetTag();
-
-				//** Args
-				string args = string.Empty;
-				if (formula.args.Count != 0)
-				{
-					foreach (FormulaData.argsData arg in formula.args)
-					{
-						if (arg.argData != null)
-						{
-							if (args != string.Empty) args += "&";
-							args += "<args_" + arg.argName + ">" + arg.argData + "</args_" + arg.argName + ">";
-						}
-					}
-				}
-				if (args != string.Empty)
-				{
-					data += "<arg>" + args + "</arg>";
-				}
-
-
-				//** uniID
-				if (!string.IsNullOrEmpty(formula.uniID))
-					data += "<uniID>" + formula.uniID + "</uniID>";
-
-
-
-				//**Add data to datas[all].
-				if (!string.IsNullOrEmpty(data))
-				{
-					str += data + ",";
-				}
-			}
-			return str;
-		}
-		public void PassToClass(object obj)
-		{
-			foreach (Service.Formula.FormulaData fd in GetFormulaDatas)
-			{
-				Var.ToClass(obj, fd.FormulaName, fd.GetDataByType());
-			}
-		}
-		public string PassToJson(Service.Formula meta = null)
-		{
-			return Json.FormulaToJson(this, meta);
-		}
-		public void SaveToLocal(string FormulaThisName = null)
-		{
-			if (FormulaThisName == null) FormulaThisName = Nickname;
-			PlayerPrefs.SetString($"{FormulaThisName}@formula.localsave", PassToJson());
-		}
-		public static Service.Formula GetByLocal(string FormulaThisName)
-		{
-			var json = PlayerPrefs.GetString($"{FormulaThisName}@formula.localsave");
-			var f = JsonToFormula(json);
-			f.Nickname = FormulaThisName;
-			return f;
-		}
-
-
-		public static Service.Formula JsonToFormula(string raw_json) => FormulaToolsService.Json.JsonToJFormula(raw_json);
-		public static Service.Formula JsonToFormula(object json) => FormulaToolsService.Json.JsonToJFormula(json);
-
-		public static List<Service.Formula> JsonToFormulas(string raw_json) => FormulaToolsService.Json.JsonArrayToJFormulas(raw_json);
-		public static List<Service.Formula> JsonToFormulas(object json) => FormulaToolsService.Json.JsonArrayToJFormulas(json);
-	}
-	#endregion
-
-
-
-
-
 	#region IEnumerator
 	public class IEnume  {
 		public delegate void IEnumeratorCallback ( );
@@ -2906,11 +2064,39 @@ public class Service : MonoBehaviour {
 			addon.Waitting (waiting,callback);			
 			return addon;
 		}
-		public static AddOn.IEnume StartCorotine( IEnumerator corotime , GameObject root = null){
-			AddOn.IEnume addon = Tools.AddIEnume(root);
-			addon._StartCorotine (corotime);		
-			return addon;
+		public static Coroutine StartCorotine( IEnumerator corotime ){
+			AddOn.IEnume addon = Tools.AddIEnume();
+			return addon._StartCorotine (corotime);		
 		}
+		public static void StopCorotine(Coroutine corotime)
+		{
+			AddOn.IEnume addon = Tools.AddIEnume();
+			if (corotime != null) addon.StopCoroutine(corotime);
+		}
+
+		public class CoroutineList { public string name; public Coroutine coro; }
+		public static List<CoroutineList> CoroutineLists = new List<CoroutineList>();
+		public static Coroutine StartCorotine(string name , IEnumerator corotime)
+		{
+			AddOn.IEnume addon = Tools.AddIEnume();
+			StopCorotine(name);
+			var coro = addon._StartCorotine(corotime);
+			CoroutineLists.Add( new CoroutineList() { name = name , coro  = coro } );
+			return coro;
+		}
+		public static void StopCorotine(string corotime)
+		{
+			var find = CoroutineLists.Find(x=>x.name == corotime);
+			if (find!=null) 
+			{
+				StopCorotine(find.coro);
+			}
+			CoroutineLists.RemoveAll(x => x.coro == null);
+		}
+
+
+
+
 		public static AddOn.IEnume WaitLoop(float waiting , int Count , IEnumeratorCallbackLoop callback  ){
 			return WaitLoop (waiting,Count,callback,0.0f);
 		}
@@ -2928,14 +2114,16 @@ public class Service : MonoBehaviour {
 	#endregion
 
 
-	public class Task
+
+
+	//
+	public class Task 
 	{
-		public static void RunJob(System.Action job, System.Action callback)
-		{
+		public static void RunJob(System.Action job, System.Action callback) {
 			AddOn.IEnume addon = Tools.AddIEnume();
 			addon.StartCoroutine(runtime(job, callback));
 		}
-		static IEnumerator runtime(System.Action job, System.Action callback)
+		static IEnumerator runtime(System.Action job, System.Action callback) 
 		{
 			bool isDone = false;
 			var threadsave = new System.Threading.Thread(() => {
@@ -2951,10 +2139,51 @@ public class Service : MonoBehaviour {
 			callback?.Invoke();
 		}
 	}
+	
+
+
+
 
 
 	#region Timemer
 	public class Timmer  {
+
+
+		public class Update 
+		{
+			public bool IsPause = false;
+			public float Runtime = 0.0f;
+			System.Action m_timeout;
+			public void OnUpdate(float max = 1.0f , float speed = 1.0f , System.Action timeout = null ) 
+			{
+				m_timeout = timeout;
+				if (IsPause)
+					return;
+
+				if (Runtime < max)
+				{
+					Runtime += UnityEngine.Time.deltaTime * speed;
+				}
+				else 
+				{
+					Done();
+				}
+			}
+			public void Reset( )
+			{
+				Runtime = 0.0f;
+			}
+			public void Done()
+			{
+				m_timeout?.Invoke();
+				Runtime = 0.0f;
+			}
+		}
+
+
+
+
+
 		public delegate void TimmerCallback (   );
 		public delegate void TimmerCallbackLoop ( int index);
 		public delegate void TimmerCallbackInfinity ( AddOn.Timmer time);
@@ -2966,35 +2195,12 @@ public class Service : MonoBehaviour {
 			}
 			return null;
 		}
-		public static AddOn.Timmer Find(GameObject obj, string ID)
-		{
-			foreach (var time in obj.GetComponents<AddOn.Timmer>())
-			{
-				if (time != null)
-					if (time.ID == ID)
-					{
-						return time;
-					}
-			}
-			return null;
-		}
 		public static  void StopAndDelete(string ID){
 			AddOn.Timmer time = Find (ID);
 			if (time != null)
 				time.StopAndDelete ();
 		}
-        public static void StopAndDelete(GameObject obj, string ID)
-        {
-            foreach (var time in obj.GetComponents<AddOn.Timmer>())
-            {
-                if (time != null)
-                    if (time.ID == ID)
-                    {
-                        time.StopAndDelete();
-                    }
-            }
-        }
-        public static void StopAndDeleteAll(string ID)
+		public static void StopAndDeleteAll(string ID)
 		{
 			foreach (AddOn.Timmer time in FindObjectsOfType<AddOn.Timmer>().ToList())
 			{
@@ -3009,13 +2215,7 @@ public class Service : MonoBehaviour {
 			if (time != null)
 				time.ForceFinish ();
 		}
-		public static AddOn.Timmer ToBetween(float form, float to,float speed = 1.0f , TimmerCallback callback = null, bool isIgnoreTimeScale = false)
-		{
-			AddOn.Timmer addon = Tools.AddTimmer();
-			addon.isIgnoreTimeScale = isIgnoreTimeScale;
-			addon.ToBetween(form, to, speed, callback);
-			return addon;
-		}
+
 		public static AddOn.Timmer Wait(float waiting  , TimmerCallback callback = null , bool isIgnoreTimeScale=false){
 			AddOn.Timmer addon = Tools.AddTimmer ();
             addon.isIgnoreTimeScale = isIgnoreTimeScale;
@@ -3080,16 +2280,28 @@ public class Service : MonoBehaviour {
 
 		public class TimeServer
 		{
+			public TimeServer(bool promoteToMaster = false) { if (promoteToMaster) master = this; }
+			//bool thisTimelocal = false;
 			public static TimeServer master = new TimeServer();
 
 			long dif;
-			public void Init(System.DateTime TimeServerNow) {
+			// If TimeServerNow == UniversalTime Not LocalTo
+			// Pls.. TimeServerNow.ToLocalTime();
+
+			public void Init(System.DateTime TimeServerNow ) {
+				//this.thisTimelocal = thisTimelocal;
 				//ex1. 50100 - 50000 = 100
 				//ex2. 50100 - 50200 = -100
-				dif = (DateTimeToUnixTimeStamp(TimeServerNow) - DateTimeToUnixTimeStamp(System.DateTime.Now));
-				Debug.LogError($"TimeServerNow {TimeServerNow} - DateTime.Now {System.DateTime.Now}");
-			}
 
+				long unix = DateTimeToUnixTimeStamp(TimeServerNow);
+				dif = (unix - DateTimeToUnixTimeStamp(System.DateTime.Now));
+			}
+			public void Init(long unix)
+			{
+				//ex1. 50100 - 50000 = 100
+				//ex2. 50100 - 50200 = -100
+				dif = (unix - DateTimeToUnixTimeStamp(System.DateTime.UtcNow));
+			}
 			public System.DateTime Time {
 				get {
 					//ex1
@@ -3117,14 +2329,17 @@ public class Service : MonoBehaviour {
 			}
 			public long UnixTime
 			{
-				get { return DateTimeToUnixTimeStamp(Time); }
+				get 
+				{
+					return DateTimeToUnixTimeStamp(Time,true);
+				}
 			}
-
+		
 			public bool isTimeOut(System.DateTime Timeout) {
 				return Service.Time.isTimeOut(Time, Timeout);
 			}
 			public bool isTimeOut(long Timeout) {
-				return DateTimeToUnixTimeStamp(Time) >= Timeout;
+				return UnixTime >= Timeout;
 			}
 			public AddOn.Timmer CountDown(GameObject root, System.DateTime Timeout, Service.Callback.callback_data runtime, Service.Callback.callback timeout = null)
 			{
@@ -3162,9 +2377,19 @@ public class Service : MonoBehaviour {
 		/// Check datetime (ignore year)
 		/// </summary>
 		public static bool isInPeriodDay(System.DateTime Now, System.DateTime Start, System.DateTime End)
-        {	
-			System.DateTime startThisyear = Start.AddYears(Now.Year - Start.Year);
-			System.DateTime endThisyear = End.AddYears(Now.Year - End.Year);
+        {
+			int diffyear = Start.Year;
+			if (Start.Year - End.Year != 0 || Start.Month > End.Month)
+            {
+				//** กรณีช่วงคาบเกี่ยวระหว่างปลายปีไปต้นปี
+				if (Now.Month <= End.Month)
+					diffyear = End.Year;
+			}
+			
+			System.DateTime startThisyear = Start.AddYears(Now.Year - diffyear); 
+			System.DateTime endThisyear = End.AddYears(Now.Year - diffyear);
+			//Debug.Log("startThisyear " + startThisyear.ToString());
+			//Debug.Log("endThisyear " + endThisyear.ToString());
 
 			return isInPeriodTime(Now, startThisyear, endThisyear);
 
@@ -3206,16 +2431,17 @@ public class Service : MonoBehaviour {
             if (isLocalTime) return (long)(datetime.Subtract(DateTime1970.ToLocalTime())).TotalSeconds;
             else return (long)(datetime.Subtract(DateTime1970)).TotalSeconds;
         }
+
 		public static System.DateTime UnixTimeStampToDateTime( long unixTimeStamp , bool isLocalTime = false)
 		{
 			// Unix timestamp is seconds past epoch
 			System.DateTime dtDateTime = new System.DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
-            if (isLocalTime)
-                dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
-            else
-                dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
+			if (unixTimeStamp > 9999999999)
+				dtDateTime = dtDateTime.AddMilliseconds(unixTimeStamp);
+			else
+				dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
 
-            return dtDateTime;
+            return isLocalTime? dtDateTime.ToLocalTime() : dtDateTime;
 		}
 		public enum WatchType
 		{
@@ -3262,8 +2488,6 @@ public class Service : MonoBehaviour {
 	#endregion
 
 
-
-
 	#region Loop
 	public class Loop  {
 		public static void For( int round , Service.Callback.callback_value callback ){
@@ -3286,6 +2510,7 @@ public class Service : MonoBehaviour {
 		}
 		public static GameObject Created(  GameObject _page , Transform _parent){
 			GameObject p = Instantiate(_page) as GameObject;
+			//AssetsBundleHandle.RefreshMaterial(p);
 			p.transform.parent 			= _parent;
 			p.transform.localPosition 	= Vector3.zero;
 			p.transform.localScale 		= Vector3.one;
@@ -3306,6 +2531,7 @@ public class Service : MonoBehaviour {
 			for (int i = 0; i < count; i++)
 			{
 				var g = Service.GameObj.Created(p , root);
+				//AssetsBundleHandle.RefreshMaterial(g);
 				list.Add(g.GetComponent<T>());
 			}
 			return list;
@@ -3346,8 +2572,17 @@ public class Service : MonoBehaviour {
 		}
 		public static void DesAllParent( Transform _tran){
 			int count = _tran.childCount;
+
+			if(Application.isPlaying)
+
 			for (int n = 0; n < count; n++)
 				Destroy (_tran.GetChild(n).gameObject );
+
+			else
+
+				for (int n = 0; n < count; n++)
+					DestroyImmediate(_tran.GetChild(n).gameObject);
+
 		}
 		public static List<GameObject> GetAllParent( Transform _tran){
 			List<GameObject> m_objs = new List<GameObject> ();
@@ -3356,12 +2591,27 @@ public class Service : MonoBehaviour {
 				m_objs.Add (_tran.GetChild(n).gameObject );
 			return m_objs;
 		}
+		public static List<T> GetAllParent<T>(Transform _tran)
+		{
+			return _tran.GetComponentsInChildren<T>().ToList<T>();
+		}
 		public static GameObject GetTransform( Transform _tran , string name){
 			foreach(GameObject g in GetAllParent(_tran) ){
 				if (g.name == name)
 					return g;
 			}
 			return null;
+		}
+		public static List<T> GetAllNode<T>(Transform _tran)
+		{
+			List<T> list = new List<T>();
+			foreach (GameObject g in GetAllParent(_tran))
+			{
+				var get = g.GetComponent<T>();
+				if (get!=null)
+					list.Add(get);
+			}
+			return list;
 		}
 		public static List<GameObject> GetAllNode( Transform _tran){
 			List<GameObject> m_objs = new List<GameObject> ();
@@ -3376,6 +2626,16 @@ public class Service : MonoBehaviour {
 		public static GameObject GetAllNode( Transform _tran , string findname){
         
 			return GetAllNode (_tran).Find(x=>x.gameObject.name == findname);
+		}
+		public static void OnAllNodeActive(Transform root,string name,bool enable)
+		{
+			foreach (var p in Service.GameObj.GetAllNode(root))
+			{
+				if (p.name.IndexOf(name) != -1)
+				{
+					p.gameObject.SetActive(enable);
+				}
+			}
 		}
 		public static void Parent(  GameObject gameobj , Transform parent_to_transform ){
 			gameobj.transform.parent = parent_to_transform;
@@ -3420,6 +2680,32 @@ public class Service : MonoBehaviour {
 
 
 
+
+	#region Calculate
+	public class Cal
+	{
+		public static int CountOfFill( int count , int maxline ) 
+		{
+			int fill = maxline - (count % maxline);
+			if (fill == maxline)
+			{
+				fill = 0;
+			}
+			return fill;
+		}
+	}
+    #endregion
+
+
+
+
+
+
+
+
+
+
+
     #region Image
     public class Image : MonoBehaviour {
 		public enum ImageDimensionType{
@@ -3438,7 +2724,7 @@ public class Service : MonoBehaviour {
 			Sprite sprite = Sprite.Create(texture2d,rec,new Vector2(0.5f,0.5f), pixelsPerunit );
 			return sprite;
 		}
-		public static Texture2D TextureToTexture2D(Texture texture)
+		public static Texture2D TextureToTexture2D( Texture texture)
 		{
 			Texture2D texture2D = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
 			RenderTexture currentRT = RenderTexture.active;
@@ -3446,7 +2732,7 @@ public class Service : MonoBehaviour {
 			Graphics.Blit(texture, renderTexture);
 
 			RenderTexture.active = renderTexture;
-
+			
 			texture2D.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
 			texture2D.Apply();
 
@@ -3454,8 +2740,7 @@ public class Service : MonoBehaviour {
 			RenderTexture.ReleaseTemporary(renderTexture);
 			return texture2D;
 		}
-		public static Color32 AverageColorFromTexture(Texture tex)
-		{
+		public static Color32 AverageColorFromTexture(Texture tex) {
 			return AverageColorFromTexture(TextureToTexture2D(tex));
 		}
 		public static Color32 AverageColorFromTexture(Texture2D tex)
@@ -3610,6 +2895,14 @@ public class Service : MonoBehaviour {
 
 	public class Vector
 	{
+		public static Vector3 RandomVector(Vector3 root, float min, float max)
+		{
+			return new Vector3(
+				root.x + UnityEngine.Random.RandomRange(min, max),
+				root.y + UnityEngine.Random.RandomRange(min, max),
+				root.z + UnityEngine.Random.RandomRange(min, max)
+				);
+		}
 		public static Vector3 RandomVector(float min, float max)
 		{
 			return RandomVector(Vector3.zero, Random.RandomRange(min,max), Random.RandomRange(min, max), Random.RandomRange(min, max));
@@ -3649,6 +2942,13 @@ public class Service : MonoBehaviour {
 			f = Mathf.Clamp01(f);
 			return (byte)(f * 255);
 		}
+		public static Color HexColor(string hexString)
+		{
+			Color actColor;
+			ColorUtility.TryParseHtmlString(hexString,out actColor);
+			return actColor;
+		}
+
 	}
 	#endregion
 
@@ -3677,9 +2977,252 @@ public class Service : MonoBehaviour {
 			}
 			return null;
 		}
+
+
+		public static string CreateTextfile (string path , string data )
+		{
+			path = Application.dataPath + Path.DirectorySeparatorChar + path;
+			Debug.Log(path);
+			#if UNITY_EDITOR
+			System.IO.File.WriteAllText(path, data);
+			#endif
+			return path;
+		}
+
+
 	}
 	#endregion
 
 
 
+
+
+	#region Net
+	public class Net
+	{
+		public enum method {
+			POST, GET
+		}
+
+		static NetBehaviour m_net;
+		public static NetBehaviour net
+        {
+			get {
+				if (m_net == null) 
+				{
+					m_net = Tools.gameservice.AddComponent<NetBehaviour>();
+				}
+				return m_net;
+			}
+		}
+
+		public static NetBehaviour ApiRequest(method method, string url, WWWForm form, System.Action<UnityWebRequest> onComplete, System.Action<UnityWebRequestAsyncOperation> onOperation = null)
+		{
+			net.SendRequest(method, url, form, onComplete , onOperation);
+			return net;
+		}
+		public static NetBehaviour ApiRequest(string url , System.Action<UnityWebRequest> onComplete, System.Action<UnityWebRequestAsyncOperation> onOperation = null)
+		{
+			net.SendRequest(method.GET , url, null , onComplete , onOperation);
+			return net;
+		}
+
+
+		static Dictionary<string, Texture> imageDict = new Dictionary<string, Texture>();
+		//public static void LoadImage(string imageUrl, System.Action<Texture> onComplete)
+		//{
+		//	if (!imageUrl.notnull())
+		//	{
+		//		onComplete?.Invoke(null);
+		//		return;
+		//	}
+
+
+		//	if (imageDict.ContainsKey(imageUrl))
+		//	{
+		//		onComplete?.Invoke(imageDict[imageUrl]);
+		//	}
+		//	else 
+		//	{
+		//		net.SendRequest(method.GET, imageUrl, null, (uwr) => {
+		//			if (uwr.isNetworkError || uwr.isHttpError)
+		//			{
+		//				onComplete?.Invoke(null);
+		//			}
+		//			else
+		//			{
+		//				Texture myTexture = DownloadHandlerTexture.GetContent(uwr);
+		//				if (myTexture != null)
+		//				{
+		//					imageDict.Add(imageUrl, myTexture);
+		//					onComplete?.Invoke(myTexture);
+		//				}
+		//				else onComplete?.Invoke(null);
+		//			}
+		//		});
+		//	}
+		//}
+		public static void LoadImage(string imageUrl, System.Action<Texture> onComplete)
+		{
+			if (!imageUrl.notnull())
+			{
+				onComplete?.Invoke(null);
+				return;
+			}
+
+
+			if (imageDict.ContainsKey(imageUrl))
+			{
+				onComplete?.Invoke(imageDict[imageUrl]);
+			}
+			else
+			{
+				net.SendWWW(imageUrl, (www) => {
+					if (www.error.notnull())
+					{
+						onComplete?.Invoke(null);
+					}
+					else
+					{
+						Texture myTexture = www.texture;
+						if (myTexture != null)
+						{
+							imageDict.Add(imageUrl, myTexture);
+							onComplete?.Invoke(myTexture);
+						}
+						else onComplete?.Invoke(null);
+					}
+				});
+			}
+		}
+
+
+
+		public class NetBehaviour : MonoBehaviour 
+		{
+
+			public void SendRequest(method method, string url, WWWForm form, System.Action<UnityWebRequest> onComplete , System.Action<UnityWebRequestAsyncOperation> onOperation = null)
+			{
+				StartCoroutine(_SendRequest(method, url, form, onComplete , onOperation));
+			}
+			IEnumerator _SendRequest(method method, string url, WWWForm form, System.Action<UnityWebRequest> onComplete, System.Action<UnityWebRequestAsyncOperation> onOperation = null)
+			{
+				string fullURL = url;
+				UnityWebRequest request = null;
+				switch (method)
+				{
+					case method.POST:
+						request = UnityWebRequest.Post(fullURL, form);
+						break;
+					case method.GET:
+						request = UnityWebRequest.Get(fullURL);
+						break;
+				}
+
+				UnityWebRequestAsyncOperation op = request.SendWebRequest();
+				while (op.isDone == false)
+				{
+					onOperation?.Invoke(op);
+					yield return 0;
+				}
+				onComplete?.Invoke(request);
+				request.Dispose();
+			}
+
+
+
+			public void SendWWW( string url , System.Action<WWW> onComplete )
+			{
+				StartCoroutine(_SendWWW(url, onComplete));
+			}
+			IEnumerator _SendWWW(string url, System.Action<WWW> onComplete)
+			{
+				WWW www = new WWW(url);
+				yield return www;
+				onComplete?.Invoke(www);
+				www.Dispose();
+			}
+		}
+		
+
+	}
+	#endregion
+
+	
+
+
+
+	public class Dict
+	{
+		public static void Add( Dictionary<string,int> dict , string key , int value)
+		{
+			if (!dict.ContainsKey(key)) dict.Add(key, value);
+			else dict[key]+= value;
+		}
+		public static void Add(Dictionary<string, long> dict, string key, long value)
+		{
+			if (!dict.ContainsKey(key)) dict.Add(key, value);
+			else dict[key] += value;
+		}
+		public static void Set(Dictionary<string, int> dict, string key, int value)
+		{
+			if (!dict.ContainsKey(key)) dict.Add(key, value);
+			else dict[key] = value;
+		}
+		public static void Set(Dictionary<string, long> dict, string key, long value)
+		{
+			if (!dict.ContainsKey(key)) dict.Add(key, value);
+			else dict[key] = value;
+		}
+		public static void Set(Dictionary<string, string> dict, string key, string value)
+		{
+			if (!dict.ContainsKey(key)) dict.Add(key, value);
+			else dict[key] = value;
+		}
+		public static void Set(Dictionary<string, object> dict, string key, object value)
+		{
+			if (!dict.ContainsKey(key)) dict.Add(key, value);
+			else dict[key] = value;
+		}
+
+		public static int Get(Dictionary<string, int> dict, string key)
+		{
+			if (dict.ContainsKey(key)) return dict[key];
+			else return 0;
+		}
+		public static long Get(Dictionary<string, long> dict, string key)
+		{
+			if (dict.ContainsKey(key)) return dict[key];
+			else return 0;
+		}
+		public static string Get(Dictionary<string, string> dict, string key)
+		{
+			if (dict.ContainsKey(key)) return dict[key];
+			else return string.Empty;
+		}
+		public static object Get(Dictionary<string, object> dict, string key)
+		{
+			if (dict.ContainsKey(key)) return dict[key];
+			else return null;
+		}
+
+
+
+
+
+
+
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

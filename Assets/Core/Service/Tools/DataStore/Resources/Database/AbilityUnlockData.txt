@@ -1,6 +1,0 @@
-TierID	LvUnlock	StandardRequests	ExclusiveRequests
-t_ab_0	0		
-t_ab_1	1	[{"type":"Resource","currency":"CO","value":1000},{"type":"Resource","currency":"LP","value":3}]	[{"type":"Resource","currency":"CO","value":1400},{"type":"Resource","currency":"LP","value":6}]
-t_ab_2	3	[{"type":"Resource","currency":"CO","value":3000},{"type":"Resource","currency":"LP","value":6}]	[{"type":"Resource","currency":"CO","value":4200},{"type":"Resource","currency":"LP","value":9}]
-t_ab_3	5	[{"type":"Resource","currency":"CO","value":4000},{"type":"Resource","currency":"LP","value":9}]	[{"type":"Resource","currency":"CO","value":8400},{"type":"Resource","currency":"LP","value":12}]
-t_ab_4	7	[{"type":"Resource","currency":"CO","value":6000},{"type":"Resource","currency":"LP","value":12}]	[{"type":"Resource","currency":"CO","value":14000},{"type":"Resource","currency":"LP","value":15}]

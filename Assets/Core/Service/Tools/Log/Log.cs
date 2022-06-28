@@ -40,7 +40,7 @@ public class Log {
 			public Transform Transform;
 			public MonoBehaviour MonoBehaviour;
 			public object Object;
-			public Service.Formula Formula;
+			public Formula Formula;
 		}
 		public LocalButton LocalButtonContent = null;
 		public class LocalButton
@@ -76,30 +76,30 @@ public class Log {
 		if (Content != null) {
 
 			switch (Service.Tools.ObjectDefine.DefineType(Content)) {
-				case Service.Formula.FormulaData.datatype.str:
-				case Service.Formula.FormulaData.datatype.num:
-				case Service.Formula.FormulaData.datatype.bol:
-				case Service.Formula.FormulaData.datatype.enums:
+				case Formula.FormulaData.datatype.str:
+				case Formula.FormulaData.datatype.num:
+				case Formula.FormulaData.datatype.bol:
+				case Formula.FormulaData.datatype.enums:
 					return Write(Tag, Content.ToString(), null); break;
 			}
 			if (Content.GetType() == typeof(GameObject)) return Write(Tag, Message, new LogData.Local() { GameObject = (GameObject)Content });
 			if (Content.GetType() == typeof(Transform)) return Write(Tag, Message, new LogData.Local() { Transform = (Transform)Content });
 			if (Content is MonoBehaviour) return Write(Tag, Message, new LogData.Local() { MonoBehaviour = (MonoBehaviour)Content });
-			if (Content.GetType() == typeof(Service.Formula)) return Write(Tag, Message, new LogData.Local() { Formula = (Service.Formula)Content });
+			if (Content.GetType() == typeof(Formula)) return Write(Tag, Message, new LogData.Local() { Formula = (Formula)Content });
 			return Write(Tag, Message, new LogData.Local() { Object = Content });
 		}
 		return Write(Tag, "Null", null);
 	}
 
 
-	public static LogData Write(string Tag,  Service.Formula Formula , bool isBreak) {
+	public static LogData Write(string Tag,  Formula Formula , bool isBreak) {
 		return Write(Tag, string.Empty, Formula , isBreak);
 	}
-	public static LogData Write(string Tag, string Message, Service.Formula Formula, bool isBreak)
+	public static LogData Write(string Tag, string Message, Formula Formula, bool isBreak)
 	{
 		if (!isCanLog) return null;
 		//Only Formula Break RuntimeUpdate
-		if (isBreak) return Write(Tag, Message, new LogData.Local() { Formula = Service.String.Json.JsonToFormula(Formula.PassToJson(new Service.Formula())) });
+		if (isBreak) return Write(Tag, Message, new LogData.Local() { Formula = Service.String.Json.JsonToFormula(Formula.PassToJson(new Formula())) });
 		else return Write(Tag, Message, new LogData.Local() { Formula = Formula });
 	}
 	public static LogData WriteRuntime(string Tag, LogData.LocalRunTime.logDataCallback Content)

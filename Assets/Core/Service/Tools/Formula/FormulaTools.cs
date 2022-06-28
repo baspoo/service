@@ -49,7 +49,7 @@ public class FormulaToolsWindows : EditorWindow
 	}
 
 
-	public static void ShowWindow(Service.Formula fomula)
+	public static void ShowWindow(Formula fomula)
 	{
 		data = "";
 		formulas.Clear();
@@ -59,7 +59,7 @@ public class FormulaToolsWindows : EditorWindow
 	public static void ShowWindow(string json)
 	{
 		data = json;
-		Service.Formula fomula = FormulaToolsService.Json.JsonToJFormula(json);
+		Formula fomula = FormulaToolsService.Json.JsonToJFormula(json);
 		formulas.Clear();
 		formulas.Add(fomula);
 		ShowWindow();
@@ -101,7 +101,7 @@ public class FormulaToolsWindows : EditorWindow
 		get { return EditorPrefs.GetString("formulatoolswindows_gui_text"); }
 		set { EditorPrefs.SetString("formulatoolswindows_gui_text", value); }
 	}
-	public static List<Service.Formula> formulas = new List<Service.Formula>();
+	public static List<Formula> formulas = new List<Formula>();
 
 	void OnGUI()
 	{
@@ -141,7 +141,7 @@ public class FormulaToolsWindows : EditorWindow
 
 					if (type == text) 
 					{
-						formulas.Add(Service.Formula.TextSetup(data));
+						formulas.Add(Formula.TextSetup(data));
 					}
 					if (type == json)
 					{
@@ -254,18 +254,18 @@ public class FormulaToolsService
 		{
 			full, mini
 		}
-		public static void FormulaDisplay(string Name, Service.Formula f, display style = display.full)
+		public static void FormulaDisplay(string Name, Formula f, display style = display.full)
 		{
 			GUIStyle header = GUIstylePackage.Instant.Header;
 			GUIFormulaSerialize.FormulaDataDisplay(f, style);
 		}
-		public class GUIFormulaSerialize : Service.Formula
+		public class GUIFormulaSerialize : Formula
 		{
 			public static string path = "";
 			public static List<string> open = new List<string>();
-			public static void FormulaDataDisplay(Service.Formula f, display style, string inheader = "", string key = "master", int lv = 0, bool isForce = false)
+			public static void FormulaDataDisplay(Formula f, display style, string inheader = "", string key = "master", int lv = 0, bool isForce = false)
 			{
-				Service.Formula read = (string.IsNullOrEmpty(path)) ? f : f.GetSubPath(path).SubFormula;
+				Formula read = (string.IsNullOrEmpty(path)) ? f : f.GetSubPath(path).SubFormula;
 				EditorGUILayout.BeginVertical();
 				string tap = (lv == 0) ? "" : "\t";
 				string header = tap + "[ Lv." + lv + "]" + inheader;
@@ -301,7 +301,7 @@ public class FormulaToolsService
 				}
 				EditorGUILayout.EndVertical();
 			}
-			static void FormulaData(Service.Formula.FormulaData fd, display style, string key, int lv)
+			static void FormulaData(Formula.FormulaData fd, display style, string key, int lv)
 			{
 
 				if (style == display.mini)
@@ -322,8 +322,8 @@ public class FormulaToolsService
 					EditorGUILayout.TextField(fd.uniID, GUILayout.Width(40.0f));
 				}
 				EditorGUILayout.LabelField(fd.FormulaName, GUILayout.Width(120.0f));
-				var datatype = (Service.Formula.FormulaData.datatype)EditorGUILayout.EnumPopup(fd.GetDataType, GUILayout.Width(80.0f));
-				if (fd.GetDataType == Service.Formula.FormulaData.datatype.formula)
+				var datatype = (Formula.FormulaData.datatype)EditorGUILayout.EnumPopup(fd.GetDataType, GUILayout.Width(80.0f));
+				if (fd.GetDataType == Formula.FormulaData.datatype.formula)
 				{
 					GUI.backgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.1f);
 					EditorGUILayout.TextField(fd.SubFormula.PassToJson());
@@ -333,7 +333,7 @@ public class FormulaToolsService
 						path += ((string.IsNullOrEmpty(path)) ? "" : "/") + fd.FormulaName;
 					}
 				}
-				else if (fd.GetDataType == Service.Formula.FormulaData.datatype.list)
+				else if (fd.GetDataType == Formula.FormulaData.datatype.list)
 				{
 					GUI.backgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.1f);
 					//EditorGUILayout.TextField(fd.ListFormulaDatas.PassToJson());
@@ -361,9 +361,9 @@ public class FormulaToolsService
 							EditorGUILayout.BeginHorizontal();
 							var type = lit.GetDataType;
 							EditorGUILayout.EnumPopup(type, GUILayout.Width(80.0f));
-							if (type == Service.Formula.FormulaData.datatype.formula)
+							if (type == Formula.FormulaData.datatype.formula)
 								EditorGUILayout.TextField(lit.SubFormula.PassToJson());
-							else if (type == Service.Formula.FormulaData.datatype.list)
+							else if (type == Formula.FormulaData.datatype.list)
 								EditorGUILayout.TextField(lit.ListFormulaDatas.PassToJson());
 							else
 								EditorGUILayout.TextField(lit.GetDataByType().ToString());
@@ -559,23 +559,23 @@ public class FormulaToolsService
 	public class Json
 	{
 
-		public static Service.Formula.FormulaData AddSubPath(Service.Formula formula,string path, object value)
+		public static Formula.FormulaData AddSubPath(Formula formula,string path, object value)
 		{
 
 			//	0	/ 1	   / 2 / 3
 			// count = 4
 			// match/cha_0/hit/kill  : 99
 			List<string> s = path.Split('/').ToList<string>();
-			Service.Formula root = formula;
-			Service.Formula lastpath = formula;
-			Service.Formula notfound = null;
-			Service.Formula.FormulaData fd = null;
+			Formula root = formula;
+			Formula lastpath = formula;
+			Formula notfound = null;
+			Formula.FormulaData fd = null;
 			for (int i = 0; i < s.Count - 1; i++)
 			{
 				var find = root.GetFormula(s[i]);
 				if (find.isHave)
 				{
-					if (find.GetDataType != Service.Formula.FormulaData.datatype.formula)
+					if (find.GetDataType != Formula.FormulaData.datatype.formula)
 					{
 						Debug.LogError("invalid path!");
 						return null;
@@ -587,11 +587,11 @@ public class FormulaToolsService
 				{
 					if (notfound == null)
 					{
-						root = new Service.Formula();
+						root = new Formula();
 						notfound = root;
 
 					}
-					root = root.AddFormula(s[i], new Service.Formula()).SubFormula;
+					root = root.AddFormula(s[i], new Formula()).SubFormula;
 				}
 			}
 			if (notfound != null)
@@ -600,7 +600,7 @@ public class FormulaToolsService
 			}
 
 			var checking = root.GetFormula(s[s.Count - 1]);
-			if (checking.isHave && checking.GetDataType == Service.Formula.FormulaData.datatype.formula)
+			if (checking.isHave && checking.GetDataType == Formula.FormulaData.datatype.formula)
 			{
 				Debug.LogError("invalid path!");
 				return null;
@@ -609,14 +609,14 @@ public class FormulaToolsService
 			fd = root.AddOrUpdateFormula(s[s.Count - 1], value);
 			return fd;
 		}
-		public static Service.Formula.FormulaData GetSubPath(Service.Formula formula, string path)
+		public static Formula.FormulaData GetSubPath(Formula formula, string path)
 		{
 
 			if (string.IsNullOrEmpty(path))
-				return (new Service.Formula()).AddFormula("", formula);
+				return (new Formula()).AddFormula("", formula);
 
-			Service.Formula find = formula;
-			Service.Formula.FormulaData fd = null;
+			Formula find = formula;
+			Formula.FormulaData fd = null;
 			List<string> s = path.Split('/').ToList<string>();
 			while (s.Count > 0)
 			{
@@ -631,22 +631,22 @@ public class FormulaToolsService
 
 
 
-		public static string FormulaToJsonArray(Service.Formula formula)
+		public static string FormulaToJsonArray(Formula formula)
 		{
 			string array = "";
 			foreach (var f in formula.GetFormulaDatas)
 				array = Service.String.AddCommarString(f.SubFormula.PassToJson(), array);
 			return $"[{array}]";
 		}
-		public static string FormulasToJsonArray(List<Service.Formula> formulas, bool isMeta = false)
+		public static string FormulasToJsonArray(List<Formula> formulas, bool isMeta = false)
 		{
 			string array = "";
 			foreach (var f in formulas)
-				array = Service.String.AddCommarString(FormulaToJson(f, (isMeta) ? new Service.Formula() : null), array);
+				array = Service.String.AddCommarString(FormulaToJson(f, (isMeta) ? new Formula() : null), array);
 			return $"[{array}]";
 		}
 
-		public static string FormulaToJson(Service.Formula formula, Service.Formula meta = null)
+		public static string FormulaToJson(Formula formula, Formula meta = null)
 		{
 			string json = string.Empty;
 			foreach (var fd in formula.GetFormulaDatas)
@@ -656,35 +656,35 @@ public class FormulaToolsService
 
 			if (formula != null && formula.GetFormulaDatas.Count > 0 && meta != null)
 			{
-				json += "," + FormulaDataToJson(new Service.Formula.FormulaData(metakey, meta));
+				json += "," + FormulaDataToJson(new Formula.FormulaData(metakey, meta));
 			}
 
 			return "{" + json + "}";
 		}
-		public static string FormulaDataToJson(Service.Formula.FormulaData fd, Service.Formula meta = null)
+		public static string FormulaDataToJson(Formula.FormulaData fd, Formula meta = null)
 		{
 
 			// json "key" : value  || "key" : {   }
-			string GetStringValueFormulaToJsan(Service.Formula.FormulaData FD, Service.Formula META = null)
+			string GetStringValueFormulaToJsan(Formula.FormulaData FD, Formula META = null)
 			{
 				string output = "null";
-				if (FD.GetDataType == Service.Formula.FormulaData.datatype.str)
+				if (FD.GetDataType == Formula.FormulaData.datatype.str)
 				{
 					output = "\"" + FD.Text + "\"";
 				}
-				if (FD.GetDataType == Service.Formula.FormulaData.datatype.num)
+				if (FD.GetDataType == Formula.FormulaData.datatype.num)
 				{
 					output = FD.Value.ToString();
 				}
-				if (FD.GetDataType == Service.Formula.FormulaData.datatype.bol)
+				if (FD.GetDataType == Formula.FormulaData.datatype.bol)
 				{
 					output = FD.Status.ToString().ToLower();
 				}
-				if (FD.GetDataType == Service.Formula.FormulaData.datatype.json)
+				if (FD.GetDataType == Formula.FormulaData.datatype.json)
 				{
 					output = FD.Json.ToString();
 				}
-				if (FD.GetDataType == Service.Formula.FormulaData.datatype.formula)
+				if (FD.GetDataType == Formula.FormulaData.datatype.formula)
 				{
 					output = FD.SubFormula.PassToJson(META);
 				}
@@ -693,7 +693,7 @@ public class FormulaToolsService
 			string json = GetStringValueFormulaToJsan(fd, meta);
 
 			// jsonList "key" : [ ]
-			if (fd.GetDataType == Service.Formula.FormulaData.datatype.list)
+			if (fd.GetDataType == Formula.FormulaData.datatype.list)
 			{
 				string argstring = "";
 				foreach (var data in fd.ListFormulaDatas.GetFormulaDatas)
@@ -706,13 +706,13 @@ public class FormulaToolsService
 			return "\"" + ((meta != null) ? GetJsonTagKey(fd, meta) : fd.FormulaName) + "\" : " + json;
 
 		}
-		public static List<Service.Formula> JsonArrayToJFormulas(object raw)
+		public static List<Formula> JsonArrayToJFormulas(object raw)
 		{
 			return JsonArrayToJFormulas(ServiceJson.Json.SerializeObject(raw));
 		}
-		public static List<Service.Formula> JsonArrayToJFormulas(string raw)
+		public static List<Formula> JsonArrayToJFormulas(string raw)
 		{
-			List<Service.Formula> formulas = new List<Service.Formula>();
+			List<Formula> formulas = new List<Formula>();
 			if (string.IsNullOrEmpty(raw))
 				return formulas;
 			var list = ServiceJson.Json.DeserializeObject<List<object>>(raw);
@@ -723,13 +723,13 @@ public class FormulaToolsService
 			}
 			return formulas;
 		}
-		public static Service.Formula JsonToJFormula(object raw)
+		public static Formula JsonToJFormula(object raw)
 		{
 			return JsonToJFormula(ServiceJson.Json.SerializeObject(raw));
 		}
-		public static Service.Formula JsonToJFormula(string raw)
+		public static Formula JsonToJFormula(string raw)
 		{
-			Service.Formula formula = new Service.Formula();
+			Formula formula = new Formula();
 			if (string.IsNullOrEmpty(raw))
 				return formula;
 
@@ -739,7 +739,7 @@ public class FormulaToolsService
 			if (dict != null)
 			{
 				bool IsMeta = dict.ContainsKey(metakey);
-				Service.Formula meta = (IsMeta) ? JsonToJFormula(dict[metakey].ToString()) : null;
+				Formula meta = (IsMeta) ? JsonToJFormula(dict[metakey].ToString()) : null;
 				foreach (string key in dict.Keys)
 				{
 					object value = dict[key];
@@ -753,10 +753,10 @@ public class FormulaToolsService
 			return formula;
 		}
 
-		static Service.Formula.FormulaData JsonToJFormulaData(string key, object value, Service.Formula meta)
+		static Formula.FormulaData JsonToJFormulaData(string key, object value, Formula meta)
 		{
 			bool IsMeta = meta != null;
-			var FD = new Service.Formula.FormulaData(key);
+			var FD = new Formula.FormulaData(key);
 
 			//Value == Json
 			if (value.GetType() == typeof(ServiceJson.JsonObject))
@@ -770,7 +770,7 @@ public class FormulaToolsService
 			else if (value.GetType() == typeof(ServiceJson.JsonArray))
 			{
 
-				FD.ListFormulaDatas = new Service.Formula();
+				FD.ListFormulaDatas = new Formula();
 				List<object> values = (List<object>)value;
 				foreach (object v in values)
 				{
@@ -779,7 +779,7 @@ public class FormulaToolsService
 					// v == Object   { } 
 					if (Service.String.Json.isJson(argData))
 					{
-						Service.Formula sub = JsonToJFormula(argData);
+						Formula sub = JsonToJFormula(argData);
 						FD.AddList(sub);
 					}
 					// v == Normal "123"
@@ -807,7 +807,7 @@ public class FormulaToolsService
 				else
 				{
 					// Text or Other
-					FD = new Service.Formula.FormulaData(key, value);
+					FD = new Formula.FormulaData(key, value);
 					if (IsMeta)
 						AdjustKey(FD, key, meta);
 				}
@@ -833,7 +833,7 @@ public class FormulaToolsService
 		{
 			return Service.String.strCropRemove(key, "<m", ">");
 		}
-		static void AdjustKey(Service.Formula.FormulaData fd, string key, Service.Formula meta)
+		static void AdjustKey(Formula.FormulaData fd, string key, Formula meta)
 		{
 			fd.Rename(GetNormalKey(fd.FormulaName));
 			var metaData = meta.GetFormula(key);
@@ -851,22 +851,22 @@ public class FormulaToolsService
 			}
 			return;
 		}
-		static string GetJsonTagKey(Service.Formula.FormulaData fd, Service.Formula meta)
+		static string GetJsonTagKey(Formula.FormulaData fd, Formula meta)
 		{
 			//int index = meta.GetFormulaDatas.Count;
-			int index = meta.LocalContent.Int;
-			meta.LocalContent.Int++;
+			int index = meta.meta;
+			meta.meta++;
 			string key = $"<m{index}>{fd.FormulaName}";
 			//fd.LocalContent.String = key;
 
-			Service.Formula metaData = new Service.Formula();
+			Formula metaData = new Formula();
 			if (!string.IsNullOrEmpty(fd.GetTag()))
 				metaData.AddFormula("tag", fd.GetTag());
 			if (!string.IsNullOrEmpty(fd.uniID))
 				metaData.AddFormula("uniID", fd.uniID);
 			if (fd.args.Count > 0)
 			{
-				Service.Formula args = new Service.Formula();
+				Formula args = new Formula();
 				foreach (var a in fd.args)
 				{
 					args.AddFormula(a.argName, a.argData);
@@ -876,88 +876,6 @@ public class FormulaToolsService
 			if (metaData.GetFormulaDatas.Count > 0)
 				meta.AddFormula(key, metaData);
 			return key;
-		}
-
-
-
-
-
-
-
-
-		public static string CleaningMeta(string eventname, Service.Formula pushFormula)
-		{
-
-			var meta = new Service.Formula();
-			var output = pushFormula.PassToJson(meta);
-			//Debug.LogError(eventname +" : "+ output.Length);
-			return output;
-			/*
-			var meta = new Service.Formula();
-			string json = pushFormula.PassToJson(meta);
-			ChangeKey(pushFormula);
-			pushFormula.AddFormula(metakey, meta);
-			return FormulaToJson(pushFormula, null );
-			*/
-		}
-		static void ChangeKey(Service.Formula f)
-		{
-			foreach (var fd in f.GetFormulaDatas)
-			{
-				fd.Rename(fd.LocalContent.String);
-				if (fd.SubFormula != null)
-					if (fd.SubFormula.GetFormulaDatas.Count > 0)
-					{
-						ChangeKey(fd.SubFormula);
-					}
-			}
-		}
-
-
-
-
-
-		public static string CleaningJunkMeta(string json)
-		{
-			Service.Formula pushFormula = Service.String.Json.JsonToFormula(json);
-			foreach (var fd in pushFormula.GetFormulaDatas)
-			{
-				/*
-				if(fd!=null)
-				if (fd.FormulaName != metakey)
-					if (fd.SubFormula != null) 
-							if(fd.SubFormula.GetFormulaDatas.Count > 0)
-								{
-									Debug.Log("CLEAN : " + fd.FormulaName);
-									CleaningJunkMeta(fd.SubFormula);
-								}
-								*/
-
-				if (fd != null)
-				{
-					Debug.LogError("CLEAN : " + fd.FormulaName + " ----  " + (fd.FormulaName != metakey));
-				}
-			}
-			return pushFormula.PassToJson();
-		}
-		static void CleaningJunkMeta(Service.Formula f)
-		{
-
-			if (f.GetFormula(metakey).isHave)
-			{
-				Debug.LogError("CleaningJunkMeta Find Found!!");
-				f.DesFormula(metakey);
-			}
-			foreach (var fd in f.GetFormulaDatas)
-			{
-				if (fd.SubFormula != null)
-					if (fd.SubFormula.GetFormulaDatas.Count > 0)
-					{
-						Debug.Log("CLEAN : " + fd.FormulaName);
-						CleaningJunkMeta(fd.SubFormula);
-					}
-			}
-
 		}
 
 		#endregion

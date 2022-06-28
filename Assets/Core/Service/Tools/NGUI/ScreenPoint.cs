@@ -14,9 +14,9 @@ public class ScreenPoint : MonoBehaviour
 	}
 	public static Vector3 GetWorldPositionToNGUI(Camera maincam, Transform target, UIRoot root, UIAnchor anc = null)
 	{
-		return GetWorldPositionToNGUI(maincam, target.position, root, anc);
+		return GetWorldPositionToNGUI(maincam,target.position, root, anc);
 	}
-	public static Vector3 GetWorldPositionToNGUI(Camera maincam, Vector3 position, UIRoot root , UIAnchor anc = null){
+	public static Vector3 GetWorldPositionToNGUI(Camera maincam,Vector3 pos , UIRoot root , UIAnchor anc = null){
 
 		//** Setup Anc
 		if (anc != null) {
@@ -25,8 +25,15 @@ public class ScreenPoint : MonoBehaviour
 			anc.enabled = true;
 		}
 
+
+		if (maincam == null)
+			maincam = Camera.main;
+
 		//** Position
-		position = maincam.WorldToScreenPoint(position);
+		Vector3 position = Vector3.zero;
+		position = maincam.WorldToScreenPoint(pos);
+
+		if (position.x * position.y * position.z < 0) return new Vector3(-10000f, -10000f, -10000f);
 
 		//** Screen Percent
 		Vector3 percent = Vector3.zero;
@@ -47,33 +54,13 @@ public class ScreenPoint : MonoBehaviour
 
 
 
-
-
-
-
 	[Header("MainCamera")]
 	public Camera cam;
 	public Transform target;
-	Vector3 screenPos;
-	Vector2 screenPercent;
     void Update()
     {
-		DupCamUpdate ();
 		NguiUpdate ();
-    }
-
-
-	[Header("OtherCamera")]
-	public bool isOtherCamera;
-	public Camera otherCam;
-	public Transform moveOtherObj;
-	void DupCamUpdate()
-	{
-		if (!isOtherCamera) return;
-		moveOtherObj.transform.position = GetWorldPositionToOtherCam(cam,target,otherCam);
 	}
-
-
 
 
 	[Header("NGUI")]
@@ -81,11 +68,45 @@ public class ScreenPoint : MonoBehaviour
 	public UIRoot root;
 	public UIAnchor anc;
 	public Transform move;
-	Vector2 panelscreen;
+	public Vector3 NGUIMousePosition()
+	{
+		var pos = Input.mousePosition;
+		pos.z = 0;
+		pos = anc.uiCamera.ScreenToWorldPoint(pos);
+		return pos;
+	}
+	public Vector3 NGUITargetPosition( Transform objectWorld3D )
+	{
+		moveBase.transform.localPosition = GetWorldPositionToNGUI(cam, objectWorld3D, root);
+		return moveBase.transform.position;
+	}
 	void NguiUpdate()
 	{
 		if (!isNgui) return;
-		move.transform.localPosition =  GetWorldPositionToNGUI(cam,target,root);
+
+		if(move!=null && target != null) 
+			move.transform.localPosition =  GetWorldPositionToNGUI(cam,target,root);
+
+		if (Lookings.Count > 0) 
+		{
+			var remove = new List<Looking>();
+			foreach (var look in Lookings) 
+			{
+				if ( look.isReady ) 
+				{
+					look.move.transform.localPosition = GetWorldPositionToNGUI(cam, look.target3D, root);
+					look.uipage.position = look.move.transform.position;
+					look.onUpdate?.Invoke();
+				}
+				else if (look.target3D == null || look.uipage == null)
+					remove.Add(look);
+			}
+			if(remove.Count>0)
+				foreach (var look in remove)
+				{
+					RemoveLooking(look);
+				}
+		}
 	}
 
 
@@ -95,4 +116,149 @@ public class ScreenPoint : MonoBehaviour
 
 
 
+#if UNITY_EDITOR
+	public RuntimeBtn Setup = new RuntimeBtn("UIAnchor", (r) => {
+
+
+		var root = (GameObject)UnityEditor.Selection.activeObject;
+		var screen = root.GetComponent<ScreenPoint>();
+		if (screen != null) 
+		{
+
+			if (screen.anc == null)
+				screen.anc = screen.gameObject.GetComponent<UIAnchor>();
+
+			if (screen.anc == null && screen.gameObject.GetComponent<UIAnchor>() == null)
+				screen.anc = screen.gameObject.AddComponent<UIAnchor>();
+
+			if (screen.anc != null)
+			{
+				screen.anc.side = UIAnchor.Side.BottomLeft;
+				screen.anc.runOnlyOnce = false;
+				screen.anc.enabled = true;
+			}
+		}
+
+	});
+#endif
+
+	List<Looking> Lookings = new List<Looking>();
+	public class Looking {
+		public bool ignore;
+		public Transform uipage;
+		public PoolObj move;
+		public Transform target3D;
+		public string name;
+		public System.Action onUpdate;
+		public bool isReady => (!ignore && uipage != null && move != null && target3D != null);
+
+	}
+	GameObject m_moveBase;
+	GameObject moveBase
+    {
+		get {
+			if (m_moveBase == null)
+			{
+				m_moveBase = new GameObject("moveBase");
+				m_moveBase.transform.parent = transform;
+			}
+			return m_moveBase;
+		}
+	}
+	public Looking AddLooking(Transform uipage, Transform target3D , string name = null) 
+	{
+		var looking = new Looking
+		{
+			uipage = uipage,
+			move = PoolManager.SpawParent(moveBase, transform),
+			target3D = target3D,
+			name = name
+		};
+		Lookings.Add(looking);
+		return looking;
+	}
+	public void RemoveLooking(Looking looking)
+	{
+		looking.move.Deactive();
+		Lookings.Remove(looking);
+	}
+	public void RemoveLooking(string looking)
+	{
+		Lookings.FindAll(x => x.name == looking).ForEach(x => RemoveLooking(x));
+	}
+	public void RemoveLooking(Transform looking)
+	{
+		Lookings.RemoveAll(x=>x.uipage == looking);
+		Lookings.RemoveAll(x => x.target3D == looking);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#if UNITY_EDITOR
+	public class ScreenPointExample : MonoBehaviour
+	{
+		public bool lockMouse;
+		public ScreenPoint ScreenPoint;
+		public Transform page;
+		public Transform target;
+		ScreenPoint.Looking look;
+		void Update()
+		{
+			//if (Input.GetKeyDown(KeyCode.A))
+			//{
+			//	look = ScreenPoint.AddLooking(page, target);
+
+			//}
+			//if (Input.GetKeyDown(KeyCode.S))
+			//{
+			//	ScreenPoint.RemoveLooking(look);
+
+			//}
+			//if (Input.GetKeyDown(KeyCode.G))
+			//{
+			//	page.transform.position = ScreenPoint.NGUITargetPosition(target);
+
+			//}
+			if (lockMouse)
+			{
+				page.transform.position = ScreenPoint.NGUIMousePosition();
+			}
+		}
+	}
+#endif
+
+
+
+
+
 }
+
+
+

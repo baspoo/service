@@ -1,4 +1,0 @@
-Key	Value	Version
-UpgradeCost	{"Common":[100,200,300,400,500,600,700,800,900,1000],"Uncommon":[100,200,300,400,500,600,700,800,900,1000],"Rare":[100,200,300,400,500,600,700,800,900,1000],"UltraRare":[100,200,300,400,500,600,700,800,900,1000],"Legendary ":[100,200,300,400,500,600,700,800,900,1000]}	1
-Happiness	{"Moods":[{"MoodName":"BadMood","Point":30,"BonusStat":-30},{"MoodName":"Neutral","Point":70,"BonusStat":-10},{"MoodName":"Happy","Point":100,"BonusStat":0},{"MoodName":"SuperHappy","Point":120,"BonusStat":30}],"Recover":{"Idle":{"Sec":900,"Regen":10},"Playground":{"Sec":300,"Regen":20}},"Reduce":{"Milk":-5,"Win":-10,"Lose":-30}}	1
-Feed	{"Cost":{"Type":"Currency","Id":"Diamond","Amount":100},"RecoversHappiness":120}	1

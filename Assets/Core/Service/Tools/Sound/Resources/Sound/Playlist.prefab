@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7386615514363249026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27102067907271655}
+  - component: {fileID: 1767626454637286054}
+  m_Layer: 0
+  m_Name: Playlist
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27102067907271655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386615514363249026}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1767626454637286054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7386615514363249026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df14c920d0b4b904792cdfe84ebd7ec3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundmusic:
+    bgm_mainmenu:
+      path: 
+      clip: {fileID: 0}
+  playlist:
+    sfx_click:
+      path: 
+      clip: {fileID: 0}
+    sfx_select:
+      path: 
+      clip: {fileID: 0}
+    sfx_submit:
+      path: 
+      clip: {fileID: 0}
+    sfx_message:
+      path: 
+      clip: {fileID: 0}
+    sfx_notif:
+      path: 
+      clip: {fileID: 0}
+    sfx_ping:
+      path: 
+      clip: {fileID: 0}
+    sfx_back:
+      path: 
+      clip: {fileID: 0}
+    sfx_openbag:
+      path: 
+      clip: {fileID: 0}
+    sfx_movepage:
+      path: 
+      clip: {fileID: 0}
+    sfx_get_carbon:
+      path: 
+      clip: {fileID: 0}
+    sfx_get_coin:
+      path: 
+      clip: {fileID: 0}
+    sfx_purchase:
+      path: 
+      clip: {fileID: 0}
+    sfx_get_reward_1:
+      path: 
+      clip: {fileID: 0}
+    sfx_get_reward_2:
+      path: 
+      clip: {fileID: 0}
+    sfx_placeobject:
+      path: 
+      clip: {fileID: 0}
+    sfx_planttree:
+      path: 
+      clip: {fileID: 0}
+    sfx_watertree:
+      path: 
+      clip: {fileID: 0}
+    sfx_deadtree:
+      path: 
+      clip: {fileID: 0}
+    sfx_bufftree:
+      path: 
+      clip: {fileID: 0}
+    sfx_win_1:
+      path: 
+      clip: {fileID: 0}
+    sfx_win_2:
+      path: 
+      clip: {fileID: 0}
+    sfx_onworld:
+      path: 
+      clip: {fileID: 0}
+    sfx_warp_1:
+      path: 
+      clip: {fileID: 0}
+    sfx_warp_2:
+      path: 
+      clip: {fileID: 0}
+    sfx_impactground:
+      path: 
+      clip: {fileID: 0}
+    sfx_get_minievent:
+      path: 
+      clip: {fileID: 0}
+    sfx_pop_many: []
+    sfx_page_many: []

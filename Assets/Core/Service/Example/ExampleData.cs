@@ -17,7 +17,7 @@ namespace ExampleService
         public string m_Data;
 
 
-        public Service.Formula Formula;
+        public Formula Formula;
 
         public ExampleType Example;
         public enum ExampleType 
@@ -63,6 +63,7 @@ namespace ExampleService
                 row.GetValue("ID", out ID);
                 row.GetValue("Name", out Name);
                 row.GetValue("Value", out Value);
+                row.GetValue("Formula", out Formula);
 
                 //Style #2
                 //Variable names must match only. "ID" == ID
@@ -73,13 +74,6 @@ namespace ExampleService
                 //Style #3
                 //Variable names must match only. List{ "","" }
                 row.GetValue(this, "ID", "Name", "Value");
-
-
-
-         
-
-                //Formula
-                Formula = row.GetValue("Formula").ToFormula();
 
                 //Enum
                 Example = (ExampleType) row.GetValue("Example").ToEnum(ExampleType.A);

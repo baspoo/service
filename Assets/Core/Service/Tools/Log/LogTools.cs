@@ -150,9 +150,9 @@ public class LogTools : MonoBehaviour {
 
 
 
-	public static Service.Formula ToFomula(Log.LogData log)
+	public static Formula ToFomula(Log.LogData log)
 	{
-		Service.Formula F = new Service.Formula();
+		Formula F = new Formula();
 		string mess = Service.String.EncodeString(log.Message, 123, Service.String.EncodeStringType.linear);
 		F.AddFormula("Message", mess);
 		F.AddFormula("LogType", log.LogType.ToString());
@@ -163,13 +163,13 @@ public class LogTools : MonoBehaviour {
 		{
 			if (log.LocalContent.Formula != null)
 			{
-				string fencode = Service.String.EncodeString(log.LocalContent.Formula.PassToJson(new Service.Formula()), 123, Service.String.EncodeStringType.linear);
+				string fencode = Service.String.EncodeString(log.LocalContent.Formula.PassToJson(new Formula()), 123, Service.String.EncodeStringType.linear);
 				F.AddFormula("Formula", fencode);
 			}
 		}
 		return F;
 	}
-	public static Log.LogData ToLog(Service.Formula F)
+	public static Log.LogData ToLog(Formula F)
 	{
 		Log.LogData data = new Log.LogData();
 		string tag = F.GetFormula("Tag").Text;
@@ -186,7 +186,7 @@ public class LogTools : MonoBehaviour {
 	}
 	public static string SaveToString()
 	{
-		List<Service.Formula> save = new List<Service.Formula>();
+		List<Formula> save = new List<Formula>();
 		foreach (var l in Log.LogDatas)
 		{
 			save.Add(LogTools.ToFomula(l));
@@ -299,7 +299,7 @@ namespace LogEditor
 	public class LogCenterData {
 		public string Name;
 		public bool isMeta;
-		public Service.Formula Formula;
+		public Formula Formula;
 		public Log.LogData Data;
 		public bool isAddMore;
 		public string AddMoremssage;
@@ -323,7 +323,7 @@ namespace LogEditor
 			{
 				EditorStyles.textField.wordWrap = true;
 				logCenterData.isMeta = EditorGUILayout.ToggleLeft("meta", logCenterData.isMeta );
-				EditorGUILayout.TextArea( logCenterData.Formula.PassToJson(  (logCenterData.isMeta)?new Service.Formula():null  )  , GUILayout.Height(100.0f));
+				EditorGUILayout.TextArea( logCenterData.Formula.PassToJson(  (logCenterData.isMeta)?new Formula():null  )  , GUILayout.Height(100.0f));
 				FormulaToolsService.OnGUI.GUIFormulaSerialize.FormulaDataDisplay(logCenterData.Formula, FormulaToolsService.OnGUI.display.full, logCenterData.Name);
 			}
 			if (logCenterData.Data != null) 
@@ -374,7 +374,7 @@ namespace LogEditor
 			if (logCenterData.isAddMore) {
 				logCenterData.AddMoremssage = EditorGUILayout.TextArea( logCenterData.AddMoremssage , GUILayout.Height(100.0f));
 				if (GUILayout.Button("Push", GUILayout.Width(60.0f))) {
-					List<Service.Formula> load = FormulaToolsService.Json.JsonArrayToJFormulas(logCenterData.AddMoremssage);
+					List<Formula> load = FormulaToolsService.Json.JsonArrayToJFormulas(logCenterData.AddMoremssage);
 					List<Log.LogData> testLog = new List<Log.LogData>();
 					foreach (var f in load)
 					{

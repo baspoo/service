@@ -11,8 +11,61 @@ public class EditorGUIService
 {
 
 	//Label Style
-	public static void LableBlod(string text) => EditorGUILayout.LabelField(text, EditorStyles.boldLabel);
-	public static void LableLarge(string text) => EditorGUILayout.LabelField(text, EditorStyles.largeLabel);
+	static void DoLableStyle(string text, GUIStyle style, Color? color = null ,TextAnchor anc = TextAnchor.MiddleLeft)
+	{
+		if (color != null)
+			GUI.contentColor = (Color)color;
+		style.alignment = anc;
+		EditorGUILayout.LabelField(text, style);
+		if (color != null)
+			GUI.contentColor = Color.white;
+	}
+	//public static void LableStyle(string text, int size = 0 ,Color? color = null, FontStyle font = FontStyle.Normal, TextAnchor anc = TextAnchor.MiddleLeft)
+	//{
+	//	if (color != null)
+	//		GUI.contentColor = (Color)color;
+
+	//	var style = new GUIStyle();
+	//	style.alignment = anc;
+	//	style.fontStyle = font;
+	//	style.fontSize = size;
+	//	style.c
+	//	EditorGUILayout.LabelField(text, style);
+	//	if (color != null)
+	//		GUI.contentColor = Color.white;
+	//}
+	public static void LableBlod(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, EditorStyles.boldLabel, color, anc); 
+	public static void LableLarge(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, EditorStyles.largeLabel , color, anc);
+	public static void LableHeader(string text , Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, GUIstylePackage.Instant.Header , color, anc);
+	public static void LableHeaderBig(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, GUIstylePackage.Instant.HeaderBig, color, anc);
+	//public static void LableHeaderBigCenter(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, GUIstylePackage.Instant.HeaderBigCenter, color , anc);
+
+
+
+	public static bool Button(string TextOrImage, Color? color = null) 
+	{
+		bool click = false;
+		if (color != null)
+			GUI.backgroundColor = (Color)color;
+		var icon = EditorGUIUtility.FindTexture(TextOrImage);
+		if (icon != null) 
+			click = GUILayout.Button(icon);
+		else 
+			click = GUILayout.Button(TextOrImage);
+
+		if (color != null)
+			GUI.backgroundColor = Color.white;
+		return click;
+	}
+
+
+
+
+
+
+
+
+
 
 
 

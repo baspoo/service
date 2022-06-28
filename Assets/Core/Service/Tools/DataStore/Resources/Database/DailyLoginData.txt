@@ -1,6 +1,0 @@
-isEnable	ID	Rewards
-TRUE	day_1	[{ "type": "Resource", "currency": "CO", "value": 1000 }]
-TRUE	day_2	[{ "type": "Resource", "currency": "CO", "value": 1500 }]
-TRUE	day_3	[{ "type": "Resource", "currency": "CO", "value": 2500 }]
-TRUE	day_4	[{ "type": "Resource", "currency": "JS", "value": 100 }]
-TRUE	day_bonus	[{"type":"ItemBag","ItemBagID":"gacha_box2","value":1}, {"type":"ItemBag","ItemBagID":"gacha_box2","value":2}, {"type":"ItemBag","ItemBagID":"gacha_box3","value":1}, {"type":"ItemBag","ItemBagID":"gacha_box3","value":2}, ]

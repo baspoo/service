@@ -21,12 +21,9 @@ public class FillScaleTexture : MonoBehaviour
                 {
                     return;
                 }
-                
-            if (Application.isPlaying)
-            {
-                float v = EditorGUILayout.Slider(m_tools.value, 0.0f, 1.0f);
-                if(v!= m_tools.value) m_tools.value = v;
-            }
+
+            float v = EditorGUILayout.Slider(m_tools.value, 0.0f, 1.0f);
+            if (v != m_tools.value) m_tools.value = v;
             m_tools.isAnim = EditorGUILayout.ToggleLeft("isAnim", m_tools.isAnim);
             if (m_tools.isAnim)
             {
@@ -54,6 +51,7 @@ public class FillScaleTexture : MonoBehaviour
     float m_value = 0.0f;
     int height;
     int width;
+    int lastwidth;
     int min = 0;
     Vector4 border = new Vector4();
     Vector4 minborder = new Vector4();
@@ -88,7 +86,15 @@ public class FillScaleTexture : MonoBehaviour
 
     void OnChange( float percent = 0.0f )
     {
-        if (!Init())
+
+
+        if (m_texture != null && lastwidth != 0 && m_texture.width != lastwidth)
+        {
+            m_texture = null;
+            Debug.Log("modify width");
+        }
+
+            if (!Init())
             return;
         if (percent >= 1.0f) percent = 1.0f;
         if (percent <= 0.0f) percent = 0.0f;
@@ -112,6 +118,7 @@ public class FillScaleTexture : MonoBehaviour
             m_texture.border = border;
         }
         m_texture.width = x;
+        lastwidth = m_texture.width;
     }
 
 

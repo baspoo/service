@@ -1,0 +1,12 @@
+- Formula Split by service [ok]
+- CameraCapture : by the last bug [ok]
+- NGUIservice : ui templace [ok]
+- NGUIservice : uimakeer templace[ok]
+- Editor :  guipackage [ok]
+--------------------------------------------------
+
+- Package Local : Layout Style
+- NGUIservice : auto topic toolstips
+- Clean Formula
+- Clean Service.CS
+- Clean Gedget & Category

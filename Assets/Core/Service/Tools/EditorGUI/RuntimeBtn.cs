@@ -12,12 +12,12 @@ public class RuntimeBtn
 
 	public enum pram { None, String, Double, Transform, MonoBehaviour }
 
-	public RuntimeBtn(System.Action<RuntimeBtn> action) 
+	public RuntimeBtn(System.Action<RuntimeBtn> action)
 	{
 		this.Action = action;
 		this.BtnName = "Run";
 	}
-	public RuntimeBtn(string btnName , System.Action<RuntimeBtn> action)
+	public RuntimeBtn(string btnName, System.Action<RuntimeBtn> action)
 	{
 		this.Action = action;
 		this.BtnName = btnName;
@@ -29,6 +29,13 @@ public class RuntimeBtn
 	public double Double;
 	public Transform Transform;
 	public MonoBehaviour MonoBehaviour;
+
+#if UNITY_EDITOR
+	public GameObject Gameobject => (GameObject)Selection.activeObject;
+#else
+		public GameObject Gameobject => Transform.gameObject;	
+#endif
+
 
 }
 

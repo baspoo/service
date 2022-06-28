@@ -1,5 +1,0 @@
-IsEnabled	ExchangeID	Category	LimitPerDay	UnlockLevel	Reward	Materials
-TRUE	exchange_0	Material	4	0	{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","ItemBagID":"character_recipe","Value":1}	[{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","itemBagID":"material_8","Value":4}]
-TRUE	exchange_1	Chest	4	0	{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","ItemBagID":"gacha_pack1","Value":1}	[{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","itemBagID":"material_9","Value":3}]
-TRUE	exchange_2	Chest	5	0	{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","ItemBagID":"gacha_box2","Value":1}	[{"Kind":"specific","Tag":"Resource","Currency":"JS","Value":50}]
-FALSE	exchange_3	Costume	0	0	{"Kind":"specific","Tag":"ItemBag","Type":"Costume","ItemBagID":"costume","CustomData":{"CostumeType":"Skin","CostumeID":"rk_common_2","Value":0,"AbilityID":""}}	[{"Kind":"specific","Tag":"Resource","Currency":"CO","Value":500},{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","ItemBagID":"material_3","Value":1},{"Kind":"specific","Tag":"ItemBag","Type":"ItemBag","ItemBagID":"material_4","Value":1}]

@@ -1,3 +1,0 @@
-isEnable	DealID	OverrideItemIDs	ShowShopItemIDs	Name	Description	URLImage	AssetID	StartDate	ExpireDate	Currency	NewPrice	LimitCount
-TRUE	cashdeal_0	{"cashshop_0":"com.onemoby.thelastbug.cash_firsttime_0", "cashshop_1":"com.onemoby.thelastbug.cash_firsttime_1"}	["cashshop_1"]	First Time Gem Pack				0	0			1
-FALSE	cashdeal_1	{"cashshop_0":"com.onemoby.thelastbug.cash_firsttime_0"}	["cashshop_0"]	Second Time Gem Pack				1583236800	1583323200			1

@@ -7,6 +7,16 @@ public class UIDropDown : MonoBehaviour
     public enum Pivot { Down , Up }
     public Pivot pivot;
     public List<string> Contents;
+   
+    public List<Style> Styles;
+    [System.Serializable]
+    public class Style {
+        public bool isEnable;
+        public Color defaultColor;
+        public Color hover;
+        public Color pressed;
+        public Color disabledColor;
+    }
     public Transform root;
     public UILabel ui_lbname;
     public UIButton btn;
@@ -19,14 +29,29 @@ public class UIDropDown : MonoBehaviour
     public string value { get { return m_value; } }
     string m_value;
     public int Index { get { return Contents.FindIndex(x => x == m_value); } }
+    public string GetContentIndex(int Index)
+    {
+        if (Contents != null && Index < Contents.Count)
+            return Contents[Index];
+        else
+            return string.Empty;
+    }
+
+    int fixDefaultIndex = 0;
+    public void FixDefaultIndex(int index)
+    {
+        fixDefaultIndex = index;
+
+    }
+    int defaultIndex { get { return fixDefaultIndex > 0 && fixDefaultIndex < Contents.Count ? fixDefaultIndex : 0; } }
 
     void Start()
     {
-        OnChange(0);
+        OnChange(defaultIndex);
     }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        if (Input.GetMouseButtonUp(0)) 
         {
            if(isActive)
                 StartCoroutine(IEClose());
@@ -38,10 +63,15 @@ public class UIDropDown : MonoBehaviour
 
 
 
-
+    public void OnAddDisble(int index)
+    {
+        var content = GetContentIndex(index);
+        OnAddDisble(content);
+    }
     public void OnAddDisble(string content )
     {
-        m_disble.Add(content);
+        if(!string.IsNullOrEmpty(content))
+            m_disble.Add(content);
     }
     public void OnClearDisble( )
     {
@@ -53,14 +83,16 @@ public class UIDropDown : MonoBehaviour
 
 
 
-
-    public void OnChange( int Index  , bool isTriggerEvent = false) 
+    public void OnChange( int index  , bool isTriggerEvent = false) 
     {
-        m_value = Contents[Index];
+        m_value = Contents[index];
         ui_lbname.text = m_value;//language(m_value);
-        if(isTriggerEvent)
+        AdapToMainBtn(index);
+        if (isTriggerEvent)
             if (EventChange != null)
                 EventChange.Execute();
+
+
     }
     public void OnChange(string content , bool isTriggerEvent = false)
     {
@@ -97,8 +129,12 @@ public class UIDropDown : MonoBehaviour
         grid.pivot = uipivot;
         grid.cellHeight = ui_imgbar.height + 5.0f;
         grid.arrangement = UIGrid.Arrangement.Vertical;
-        foreach (var c in Contents)
-            GenBar(c, grid.transform);
+        int index = 0;
+        foreach (var c in Contents) 
+        {
+            GenBar( c , index , grid.transform);
+            index++;
+        }
         grid.repositionNow = true;
         btn.isEnabled = false;
 
@@ -129,14 +165,83 @@ public class UIDropDown : MonoBehaviour
         position.from = new Vector3(0.0f, 0.0f, 0.0f);
         position.to = new Vector3(0.0f, ui_imgbar.height * fector , 0.0f);
         position.duration = 0.15f;
+        StartCoroutine(IEOpen());
+        
 
+        if (m_opened != null)
+            m_opened();
+    }
+    IEnumerator IEOpen()
+    {
+        //isActive = true;
+        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
         isActive = true;
+    }
+    Service.Callback.callback m_opened;
+    public void Opened(Service.Callback.callback opened) 
+    {
+        m_opened = opened;
+    }
+
+    public List<ContentObj> ContentObjs => contentObjs;
+    List<ContentObj> contentObjs = new List<ContentObj>();
+    public class ContentObj
+    {
+        public string ID;
+        public int Index;
+        public UITexture Bar;
+        public UILabel Text;
+        public UIButton Btn;
+        public UIDropDown master;
+        public void Init()
+        {
+            //Debug.Log(this.Index);
+            var style = master.GetStyle(this.Index);
+            if (style != null) 
+            {
+                ChangeBtnColor(style.defaultColor, style.hover, style.pressed, style.disabledColor);
+            }
+        }
+        public void ChangeBtnColor(Color normal , Color hover , Color perssed , Color disable ) {
+            Btn.defaultColor = normal;
+            Btn.hover = hover;
+            Btn.pressed = perssed;
+            Btn.disabledColor = disable;
+        }
     }
 
 
 
+    Style GetStyle(int index) 
+    {
+        if (Styles != null)
+        {
+            if (index < Styles.Count)
+            {
+                var style = Styles[index];
+                if (style.isEnable)
+                    return style;
+                else
+                    return null;
+            }
+        }
+        return null;
+    }
 
-    void GenBar( string content , Transform parent)
+    void AdapToMainBtn( int index )
+    {
+        var style = GetStyle(index);
+        if (style != null)
+        {
+            btn.defaultColor = style.defaultColor;
+            btn.hover = style.hover;
+            btn.pressed = style.pressed;
+            btn.disabledColor = style.disabledColor;
+        }
+    }
+    void GenBar( string content , int index ,Transform parent)
     {
         UITexture Bar = Instantiate( ui_imgbar , parent ); 
         Service.GameObj.DesAllParent(Bar.transform);
@@ -153,31 +258,46 @@ public class UIDropDown : MonoBehaviour
         Text.transform.localPosition = Vector3.zero;
 
 
-
+        
         UIButton Btn = Bar.GetComponent<UIButton>();
+        Destroy(Btn.GetComponent<UIDropDown>());
         Bar.color = Btn.defaultColor;
         Btn.ResetDefaultColor();
         Btn.onClick.Clear();
         Btn.onClick.Add(new EventDelegate(()=> {
             Debug.Log(content);
-            Onclose();
             OnChange(content,true);
+            //Onclose();
+            StartCoroutine(IEClose(0.05f));
         })) ;
 
         Btn.isEnabled = !m_disble.Contains(content);
+
+
+
+        ContentObj contentObj = new ContentObj();
+        contentObj.ID       = content;
+        contentObj.Index    = index;
+        contentObj.Bar      = Bar;
+        contentObj.Text     = Text;
+        contentObj.Btn      = Btn;
+        contentObj.master   = this;
+        contentObj.Init();
+        contentObjs.Add(contentObj);
     }
 
-
+    public bool IsActive =>isActive;
     bool isActive = false;
     public void Onclose() 
     {
         isActive = false;
         btn.isEnabled = true;
         popup.gameObject.SetActive(false);
+        contentObjs.Clear();
     }
-    IEnumerator IEClose() 
+    IEnumerator IEClose(float delay = 0.15f) 
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(delay);
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         Onclose();

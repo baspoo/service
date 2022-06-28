@@ -2,6 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public class BasePool : MonoBehaviour
+{
+	PoolObj m_pool = null;
+	PoolObj pool
+	{
+		get
+		{
+			if (m_pool == null)
+				m_pool = GetComponent<PoolObj>();
+			return m_pool;
+		}
+	}
+	public void Destroy()
+	{
+		if (pool != null)
+		{
+			pool.Deactive();
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
+}
+
+
+
+
+
+
+
 public class PoolObj : MonoBehaviour {
 
 	public int refID;

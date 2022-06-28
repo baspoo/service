@@ -1,3 +1,0 @@
-isEnable	DealID	ShopID	Name	Description	URLImage	Type	AssetID	Expire	Currency	NewPrice	LimitCount
-FALSE	deal_0	shop_16	Champion Letter	For buying a new champion. Just believe in your fate!		Itembag		0	Gem	300	0
-FALSE	deal_1	shop_15	High-Fashion Pack	A high-level sachet of bugs costume. Let's open it and get a new skin for the champion. Believe in your destiny. It's time to show off a rare skin to friends!		Itembag		0	Gem	200	0

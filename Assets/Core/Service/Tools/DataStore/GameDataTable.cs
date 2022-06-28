@@ -3,51 +3,82 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameData {
-	private string Key;
-	private string Value;
-	List<GameData> DataLists = new List<GameData>();
-	public void SetValue(string key,string value){
-		GameData GameData = new GameData ();
-		GameData.Key = key;
-		GameData.Value = value;
-		DataLists.Add (GameData);
+	Dictionary<string, string> dict = new Dictionary<string, string>();
+
+	public void SetValue(string key, string value)
+	{
+		if (dict.ContainsKey(key))
+			dict[key] = value;
+		else
+			dict.Add(key, value);
 	}
-	public string GetValue(string key){
-		foreach (GameData GD in DataLists)
-			if (GD.Key == key)
-				return GD.Value;
-		Debug.LogError ("Find null value : " + key );
-		return string.Empty;
+	public string GetValue(string key)
+	{
+		if (dict.ContainsKey(key))
+			return dict[key];
+		else
+		{
+			Debug.LogError("Find null value : " + key);
+			return string.Empty;
+		}
 	}
 
-	public void GetValue(string key ,out int data)=> Service.String.To(GetValue(key), out data);
+
+	public void GetValue(string key, out bool data) => Service.String.To(GetValue(key), out data);
+	public void GetValue(string key, out int data) => Service.String.To(GetValue(key), out data);
 	public void GetValue(string key, out float data) => Service.String.To(GetValue(key), out data);
 	public void GetValue(string key, out double data) => Service.String.To(GetValue(key), out data);
 	public void GetValue(string key, out long data) => Service.String.To(GetValue(key), out data);
 	public void GetValue(string key, out string data) => Service.String.To(GetValue(key), out data);
-	public void GetValue(string key, out Service.Formula data) 
+
+	public void GetValue(string key, out int[] data) 
 	{
-		data = GetValue(key).ToFormula();
+		var val = GetValue(key);
+		data = val.DeserializeObject<int[]>();
+	}
+	public void GetValue(string key, out double[] data)
+	{
+		var val = GetValue(key);
+		data = val.DeserializeObject<double[]>();
+	}
+	public void GetValue(string key, out float[] data)
+	{
+		var val = GetValue(key);
+		data = val.DeserializeObject<float[]>();
+	}
+	public void GetValue(string key, out string[] data)
+	{
+		var val = GetValue(key);
+		data = val.DeserializeObject<string[]>();
+	}
+
+	public System.Enum GetEnum(string key, object enum_default) {
+		var value = GetValue(key);
+		return Service.String.ToEnum(value, enum_default);
+	}
+	public void GetValue(string key, out Formula data)
+	{
+		data = new Formula(GetValue(key));
 	}
 
 
-	void GetValue( object objclass ,string key)
+	void GetValue(object objclass, string key)
 	{
 		var val = GetValue(key);
-		if(!string.IsNullOrEmpty(val))Service.Var.ToClass(objclass, key, val);
+		if (!string.IsNullOrEmpty(val)) Service.Var.ToClass(objclass, key, val);
 	}
 	public void GetValue(object objclass, params string[] keys)
 	{
 		foreach (var k in keys)
-			GetValue(objclass,k);
+			GetValue(objclass, k);
 	}
 
 
-	public bool isHave(string key){
-		foreach (GameData GD in DataLists)
-			if (GD.Key == key)
-				return true;
-		return false;
+
+
+	public bool isHave(string key)
+	{
+		return dict.ContainsKey(key);
 	}
 }
 
