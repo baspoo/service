@@ -63,6 +63,10 @@ public static class VariableService
 	{
 		return Service.String.PassStringToVector3(str);
 	}
+	public static Formula ToFormula(this string json)
+	{
+		return  Formula.Json.JsonToJFormula(json);
+	}
 	public static System.Enum ToEnum(this string str, object defaultenum)
 	{
 		return Service.String.ToEnum(str, defaultenum);
@@ -118,25 +122,6 @@ public static class VariableService
 			return false;
 		}
 	}
-
-	const string dot = "*";
-	public static string emailToKey(this string email)
-	{
-		var split = email.Split('@');
-		if (split.Length <= 0)
-			return email;
-		split[1] = split[1].Replace(".", dot);
-		return $"{split[0]}@{split[1]}";
-	}
-	public static string keyToEmail(this string keyemail)
-	{
-		var split = keyemail.Split('@');
-		if (split.Length <= 0)
-			return keyemail;
-		split[1] = split[1].Replace(dot, ".");
-		return $"{split[0]}@{split[1]}";
-	}
-
 	#endregion
 
 

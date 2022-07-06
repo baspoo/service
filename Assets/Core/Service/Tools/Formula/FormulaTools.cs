@@ -211,31 +211,31 @@ public class FormulaToolsService
 	#endregion
 
 
-	#region LocalPackageContent
-	[System.Serializable]
-	public class LocalPackageContent
-	{
-		public bool Bol = new bool();
-		public int Int = 0;
-		public int[] Ints;
-		public float Float;
-		public float[] Floats;
-		public string String = "";
-		public Vector2 vecter2 = new Vector2();
-		public Vector3 vecter3 = new Vector3();
-		public Vector4 vecter4 = new Vector4();
-		public Quaternion quaternion = new Quaternion();
-		public Color color = new Color();
-		public Rect rect = new Rect();
-		public Texture texture = null;
-		public Texture2D texture2D = null;
-		public AnimationClip animclip = null;
-		public AnimationCurve animationCurve = null;
-		public Transform transform = null;
-		public Material material = null;
-		public Renderer renderer = null;
-	}
-	#endregion
+	//#region LocalPackageContent
+	//[System.Serializable]
+	//public class LocalPackageContent
+	//{
+	//	public bool Bol = new bool();
+	//	public int Int = 0;
+	//	public int[] Ints;
+	//	public float Float;
+	//	public float[] Floats;
+	//	public string String = "";
+	//	public Vector2 vecter2 = new Vector2();
+	//	public Vector3 vecter3 = new Vector3();
+	//	public Vector4 vecter4 = new Vector4();
+	//	public Quaternion quaternion = new Quaternion();
+	//	public Color color = new Color();
+	//	public Rect rect = new Rect();
+	//	public Texture texture = null;
+	//	public Texture2D texture2D = null;
+	//	public AnimationClip animclip = null;
+	//	public AnimationCurve animationCurve = null;
+	//	public Transform transform = null;
+	//	public Material material = null;
+	//	public Renderer renderer = null;
+	//}
+	//#endregion
 
 
 

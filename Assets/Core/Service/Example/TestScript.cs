@@ -18,6 +18,13 @@ public class TestScript : MonoBehaviour
         public void PushData(GameData row) {
 
 
+
+
+            Formula f = new Formula();
+            var str = f["",50].Text;
+
+
+
             row.GetValue( "value" , out value);
             row.GetValue("type", out type);
             row.GetValue("index", out index);

@@ -10,7 +10,8 @@ using UnityEngine.Networking;
 /// <summary>
 ///    ** Game Master Service by 'Baspoo'
 /// </summary>
-public class Service : MonoBehaviour {
+public class Service : MonoBehaviour 
+{
 	public static void Clear(){
 		//Clear
 		if(Tools.gameservice!=null)
@@ -32,155 +33,12 @@ public class Service : MonoBehaviour {
 		public delegate void callback_bool( bool boo );
 		public delegate void callback_data( string data );
 		public delegate void callback_formula( Formula f );
-
 		public delegate int callback_value_return( int value );
         public delegate double callback_double_return(int value);
-
         public delegate string callback_data_return( string data );
-
 	}
 
-	[System.Serializable]
-	public class Node
-	{
-		public string Key;
-		public int Value;
-	}
-	public class NodeBooking
-	{
-		public Node this[int index] { get { return Nodes[index]; } }
-		public Node this[string key] { get { return Find(key); } }
-
-
-		public List<Node> Nodes;
-		public NodeBooking(List<Node> nodes)
-		{
-			this.Nodes = nodes;
-		}
-		public int Value(string key)
-		{
-			var n = Find(key);
-			return (n != null) ? n.Value : 0;
-		}
-		public Node AddValue(string key, int point)
-		{
-			var n = Find(key);
-			if (n != null)
-			{
-				n.Value += point;
-			}
-			else 
-			{
-				n = new Node() { Key = key, Value = point };
-				Nodes.Add(n);
-			}
-			return n;
-		}
-		public Node Set(string key, int point)
-		{
-			var n = Find(key);
-			if (n != null)
-			{
-				n.Value = point;
-			}
-			else
-			{
-				n = new Node() { Key = key, Value = point };
-				Nodes.Add(n);
-			}
-			return n;
-		}
-		public Node Find(string key)
-		{
-			return Nodes.Find(x => x.Key == key);
-		}
-		public Node Find(Node node)
-		{
-			return Nodes.Find(x => x == node);
-		}
-		public bool Contains(Node node)
-		{
-			return Nodes.Contains(node);
-		}
-		public bool Contains(string key)
-		{
-			return Nodes.Find(x => x.Key == key) != null;
-		}
-	}
-
-
-	[System.Serializable]
-	public class UNode
-	{
-		public string Key;
-		public long Value;
-	}
-	public class UNodeBooking
-	{
-		public UNode this[int index] { get { return Nodes[index]; } }
-		public UNode this[string key] { get { return Find(key); } }
-
-		public List<UNode> Nodes;
-		public UNodeBooking(List<UNode> nodes)
-		{
-			this.Nodes = nodes;
-		}
-		public long Value(string key)
-		{
-			var n = Find(key);
-			return (n != null) ? n.Value : 0;
-		}
-		public UNode Add(string key, long point)
-		{
-			var n = Find(key);
-			if (n != null)
-			{
-				n.Value += point;
-			}
-			else
-			{
-				n = new UNode() { Key = key, Value = point };
-				Nodes.Add(n);
-			}
-			return n;
-		}
-		public UNode Set(string key, long point)
-		{
-			var n = Find(key);
-			if (n != null)
-			{
-				n.Value = point;
-			}
-			else
-			{
-				n = new UNode() { Key = key, Value = point };
-				Nodes.Add(n);
-			}
-			return n;
-		}
-		public void Remove(string key)
-		{
-			 Nodes.RemoveAll(x => x.Key == key);
-		}
-		public UNode Find(string key)
-		{
-			return Nodes.Find(x => x.Key == key);
-		}
-		public UNode Find(UNode node)
-		{
-			return Nodes.Find(x => x == node);
-		}
-		public bool Contains(UNode node)
-		{
-			return Nodes.Contains(node);
-		}
-		public bool Contains(string key)
-		{
-			return Nodes.Find(x => x.Key == key) != null;
-		}
-	}
-
-
+	
 
 
 
@@ -291,10 +149,6 @@ public class Service : MonoBehaviour {
 			public string Key;
 			public double Value;
 		}
-
-
-
-
 
 		#region Var-Transforms
 		[System.Serializable]
@@ -555,9 +409,6 @@ public class Service : MonoBehaviour {
 			public List<behaviour> Contents => _Behaviours;
 		}
 		#endregion
-
-
-
 		#region Var-Class
 		public static object GetClass( object _class , string _key ){
 			System.Reflection.FieldInfo field = _class.GetType ().GetField (_key);
@@ -639,103 +490,6 @@ public class Service : MonoBehaviour {
 		#endregion
 	}
 
-
-
-
-	public class Tag{
-
-		public static List<TagData> tags = new List<TagData>();
-		public class TagData
-		{
-			public string Tag{get{ return m_tag;}}
-			string m_tag;
-			public List<object> Content{get{ return m_tagobj;}}
-			List<object> m_tagobj = new List<object>(); 
-			public TagData(string tagname ){
-				m_tag = tagname;
-			}
-			public void Add(object obj){
-				m_tagobj.Add (obj);
-			}
-			public object Get()
-            {
-				return GetLast(m_tag,true);
-			}
-		}
-		public static void Put (string tag , object obj){
-			TagData NewTag = null;
-			foreach (TagData i_tag in tags) {
-				if (i_tag.Tag == tag)
-					NewTag = i_tag;
-			}
-			if (NewTag == null) {
-				NewTag = new TagData (tag);
-				tags.Add (NewTag);
-			}
-			NewTag.Add (obj);
-		}
-		static TagData Find(string tag){
-			foreach (TagData i_tag in tags) {
-				if (i_tag.Tag == tag)
-					return i_tag;
-			}
-			return null;
-		}
-		public static List<object> Get (string tag , bool notnull = false){
-			TagData find = null;
-			find = Find (tag);
-			if (find == null) {
-				return null;
-			} else {
-				if (notnull) 
-				{
-					List<object> output = null;
-					foreach (object obj in find.Content) {
-						if (!object.ReferenceEquals (obj, null)) {
-							if (output == null)
-								output = new List<object> ();
-							output.Add (obj);
-						}
-					}
-					return output;
-				} else {
-					return find.Content;
-				}
-			}
-		}
-		public static object GetLast (string tag , bool notnull = false ){
-			List<object> objs = Get(tag,notnull);
-			if (objs == null)
-				return null;
-			else {
-				if (objs.Count == 0)
-					return null;
-				else
-					return objs [objs.Count-1];
-			}
-		}
-		public static bool isHave(string tag)
-		{
-			List<object> objs = Get(tag, false);
-			if (objs == null)
-				return false;
-			else
-			{
-				if (objs.Count == 0)
-					return false;
-				else
-					return true;
-			}
-		}
-		public static void Clear(string tag) {
-			TagData tagData = Find (tag);
-			if (tagData != null)
-				tags.Remove (tagData);
-		}
-		public static void ClearAll( ) {
-			tags.Clear ();
-		}
-	}
 
 
 
@@ -2490,8 +2244,10 @@ public class Service : MonoBehaviour {
 
 	#region Loop
 	public class Loop  {
-		public static void For( int round , Service.Callback.callback_value callback ){
-			for (int i = 0; i < round; i++) {
+		public static void For( int round , Service.Callback.callback_value callback )
+		{
+			for (int i = 0; i < round; i++) 
+			{
 				callback (i);
 			}
 		}

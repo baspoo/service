@@ -58,7 +58,7 @@ public class GameData {
 	}
 	public void GetValue(string key, out Formula data)
 	{
-		data = new Formula(GetValue(key));
+		data = GetValue(key).ToFormula();
 	}
 
 
