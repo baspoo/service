@@ -18,7 +18,7 @@ public class EditorSourceFinding : EditorWindow
 {
     static int selected = 0;
     Vector2 ScrollView;
-    [MenuItem("Utility/AssetsBundle/SourceFinding")]
+    //[MenuItem("Utility/AssetsBundle/SourceFinding")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(EditorSourceFinding), false, "SourceFinding");

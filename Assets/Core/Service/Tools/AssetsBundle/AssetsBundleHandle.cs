@@ -516,7 +516,7 @@ public class EditorAssetsBundleHandle : EditorWindow
 {
     static int selected = 0;
     Vector2 ScrollView;
-    [MenuItem("Utility/AssetsBundle/EditorAssetsBundleHandle")]
+    //[MenuItem("Utility/AssetsBundle/EditorAssetsBundleHandle")]
     public static void ShowWindow()
     {
         EditorWindow.GetWindow(typeof(EditorAssetsBundleHandle), true, "EditorAssetsBundleHandle");

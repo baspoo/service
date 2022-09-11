@@ -9,7 +9,7 @@ using UnityEditor;
 #if UNITY_EDITOR
 public class UIMakerToolsWindowEditor : EditorWindow
 {
-    [MenuItem("Utility/UIMaker")]
+    //[MenuItem("Utility/UIMaker")]
     public static void ShowWindow()
     {
         GetWindow(typeof(UIMakerToolsWindowEditor));

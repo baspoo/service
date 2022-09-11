@@ -31,7 +31,7 @@ namespace ExternalEditor
 
     public class ExternalEditorInspector : EditorWindow
     {
-        [MenuItem(EditorGUIService.ProjectPath.header + "/Editor/ExternalEditor")]
+        //[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/ExternalEditor")]
         public static void ShowWindow()
         {
             var wnd = GetWindow<ExternalEditorInspector>();
@@ -42,8 +42,6 @@ namespace ExternalEditor
         {
             Repaint();
         }
-
-
         public void OnGUI()
         {
 

@@ -10,8 +10,8 @@ using UnityEditor;
 public class Sound : MonoBehaviour {
 
 #if UNITY_EDITOR
-	[MenuItem("Utility/Sound/Playlist")]
-	public static void MenuSetup2() {
+	//[MenuItem("Utility/Sound/Playlist")]
+	public static void MenuSetup() {
 		Selection.activeObject = Playlist.instance;
 		//((GameObject)Selection.activeObject).transform.hideFlags = HideFlags.HideInInspector;
 		AssetDatabase.OpenAsset(Selection.activeObject);

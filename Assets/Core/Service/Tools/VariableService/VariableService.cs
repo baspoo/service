@@ -259,6 +259,28 @@ public static class VariableService
 		}
 		return null;
 	}
+	public static bool RemoveTag(this string tagName, string category = "")
+	{
+		if (tags.ContainsKey(category))
+		{
+			var currentCatagoy = tags[category];
+			if (currentCatagoy.ContainsKey(tagName))
+			{
+				currentCatagoy.Remove(tagName);
+				return true;
+			}
+		}
+		return false;
+	}
+	public static bool RemoveTagCategory(this string category)
+	{
+		if (tags.ContainsKey(category))
+		{
+			tags.Remove(category);
+			return true;
+		}
+		return false;
+	}
 	#endregion
 
 
@@ -276,8 +298,6 @@ public static class VariableService
 	#region Object
 	public class JsonPropertyNameResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
 	{
-		public string Fo;
-		public string fo;
 		protected override string ResolvePropertyName(string propertyName)
 		{
 			//Change the incoming property name into Title case
@@ -469,11 +489,23 @@ public static class VariableService
 	{
 		return transforms.Find(name) != null;
 	}
-    #endregion
+	#endregion
 
 
 
 
+	#region Coroutine
+
+	public static Coroutine StartCorotine(this IEnumerator Iienumerator)
+	{
+		return Service.Tools.serviceRunTime.OnStartCorotine(Iienumerator);
+	}
+	public static void StopCorotine(this Coroutine corotine)
+	{
+		Service.Tools.serviceRunTime.OnStopCorotine(corotine);
+	}
+
+	#endregion
 
 
 
@@ -532,6 +564,27 @@ public static class VariableService
 
 
 
+	#region Log
+	public static void Log(this object message)
+	{
+		Log(message, null);
+	}
+	public static void Log(this object message, Color color)
+	{
+		Log(message, color == null ? null : Service.Colour.ToRGBHex(color));
+	}
+	public static void Log(this object message, string RgbHexColor = null)
+	{
+		if (RgbHexColor != null)
+		{
+			Debug.Log($"<color={RgbHexColor}>{message}</color>");
+		}
+		else
+		{
+			Debug.Log(message);
+		}
+	}
+	#endregion
 
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TsvDataEditor : EditorWindow
 {
-	[MenuItem( "Utility/Data/Update Tsv")]
+	//[MenuItem( "Utility/Data/Update Tsv")]
 	public static void ShowWindow()
 	{
 		GetWindow(typeof(TsvDataEditor));

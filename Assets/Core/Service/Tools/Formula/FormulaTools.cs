@@ -42,7 +42,7 @@ public class FormulaDisplayData
 #if UNITY_EDITOR
 public class FormulaToolsWindows : EditorWindow
 {
-	[MenuItem("File/FormulaToolsWindows")]
+	//[MenuItem("File/FormulaToolsWindows")]
 	public static void ShowWindow()
 	{
 		EditorWindow.GetWindow(typeof(FormulaToolsWindows));

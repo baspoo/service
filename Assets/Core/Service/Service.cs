@@ -500,13 +500,42 @@ public class Service : MonoBehaviour
 	#region Tools
 	public class Tools{
 		static GameObject m_gameservice;
-		public static GameObject gameservice{
-			get{
-				if (m_gameservice == null) {
-					m_gameservice = new GameObject ("#GameService");
-					GameObject.DontDestroyOnLoad (m_gameservice);  
+
+
+		static ServiceRunTime m_serviceRunTime;
+		public static ServiceRunTime serviceRunTime
+		{
+			get
+			{
+				if (gameservice)
+					return m_serviceRunTime;
+				return null;
+			}
+			private set { m_serviceRunTime = value; }
+		}
+		public static GameObject gameservice
+		{
+			get
+			{
+				if (m_gameservice == null)
+				{
+					m_gameservice = new GameObject("#GameService");
+					serviceRunTime = m_gameservice.AddComponent<ServiceRunTime>();
+					GameObject.DontDestroyOnLoad(m_gameservice);
 				}
 				return m_gameservice;
+			}
+		}
+		public class ServiceRunTime : MonoBehaviour
+		{
+			public Coroutine OnStartCorotine(IEnumerator ienumerator)
+			{
+				return StartCoroutine(ienumerator);
+			}
+			public void OnStopCorotine(Coroutine coroutine)
+			{
+				if (coroutine != null)
+					StopCoroutine(coroutine);
 			}
 		}
 

@@ -3,9 +3,10 @@
 - NGUIservice : ui templace [ok]
 - NGUIservice : uimakeer templace[ok]
 - Editor :  guipackage [ok]
+- Package Local : Layout Style [ok]
 --------------------------------------------------
 
-- Package Local : Layout Style
+
 - NGUIservice : auto topic toolstips
 - Clean Formula
 - Clean Service.CS

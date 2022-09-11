@@ -6,7 +6,7 @@ using UnityEditor;
 [CustomEditor(typeof(LogTools))]
 public class LogToolsUI : Editor{
 
-	[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/Log/LogSetting")]
+	//[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/Log/LogSetting")]
 	public static void OnSelection() {
 		Selection.activeObject = LogTools.log.gameObject;
 		AssetDatabase.OpenAsset(Selection.activeObject);
@@ -444,7 +444,7 @@ namespace LogEditor
 
 
 
-		[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/Log/LogEditor")]
+		//[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/Log/LogEditor")]
 		public static void ShowWindow()
 		{
 			EditorWindow.GetWindow(typeof(LogEditor),false, "LogEditor");

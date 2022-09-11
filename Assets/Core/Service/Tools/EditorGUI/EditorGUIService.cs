@@ -70,17 +70,7 @@ public class EditorGUIService
 
 
 
-	public class ProjectPath
-	{
-		public const string header = "Core-Service";
-	}
 
-
-	[MenuItem(EditorGUIService.ProjectPath.header + "/Editor/DeleteAll EditorPrefs")]
-	public static void ShowWindow()
-	{
-		EditorPrefs.DeleteAll();
-	}
 
 	public class EditorData {
 		string m_key;
@@ -404,9 +394,17 @@ public class EditorGUIService
 	static public void RegisterUndo(string name, params Object[] objects) { if (objects != null && objects.Length > 0) UnityEditor.Undo.RecordObjects(objects, name); }
 
 
-	public static bool DrawHeader(string text, string key, bool forceOn, bool minimalistic)
+	public class Option
 	{
-		bool state = EditorPrefs.GetBool(key, true);
+		public string Icon;
+		public string Description;
+		public Color Color = Color.white;
+		public bool ShowAlway;
+		public System.Action Exe;
+	}
+	public static bool DrawHeader(string text, string key, bool forceOn, bool minimalistic, params Option[] options)
+	{
+		bool state = EditorPrefs.GetBool(key, false);
 
 		if (!minimalistic) GUILayout.Space(3f);
 		if (!forceOn && !state) GUI.backgroundColor = new Color(0.8f, 0.8f, 0.8f);
@@ -431,6 +429,34 @@ public class EditorGUIService
 			else text = "\u25BA " + text;
 			if (!GUILayout.Toggle(true, text, "dragtab", GUILayout.MinWidth(20f))) state = !state;
 		}
+
+		if (options != null)
+		{
+			foreach (var opt in options)
+			{
+				if (state || opt.ShowAlway)
+				{
+					GUI.backgroundColor = opt.Color;
+					if (opt.Description.notnull())
+					{
+						if (GUILayout.Button(new GUIContent(opt.Icon, opt.Description), GUILayout.MaxWidth(20f), GUILayout.MaxHeight(14f)))
+						{
+							opt.Exe?.Invoke();
+						}
+					}
+					else
+					{
+						if (GUILayout.Button(opt.Icon, GUILayout.MaxWidth(20f), GUILayout.MaxHeight(14f)))
+						{
+							opt.Exe?.Invoke();
+						}
+					}
+					GUI.backgroundColor = Color.white;
+				}
+			}
+		}
+
+
 
 		if (GUI.changed) EditorPrefs.SetBool(key, state);
 
@@ -569,6 +595,40 @@ public class EditorGUIService
 	public class ListView 
 	{
 
+		public static void Print(string listName, int count, System.Action<int> view, System.Action add, System.Action<int> des)
+		{
+			if (EditorGUIService.DrawHeader(listName, "Print.List." + listName, false, false, new Option()
+			{
+				Icon = "✚",
+				Description = "New item",
+				Color = Color.green,
+				ShowAlway = false,
+				Exe = () => {
+					add?.Invoke();
+					return;
+				}
+			}))
+			{
+
+				for (int i = 0; i < count; i++)
+				{
+					EditorGUILayout.Space();
+					GUI.backgroundColor = Color.gray;
+					EditorGUIService.BeginContents(false);
+					view?.Invoke(i);
+					GUI.backgroundColor = Color.red;
+					if (GUILayout.Button("✘"))
+					{
+						des?.Invoke(i);
+						return;
+					}
+					GUI.backgroundColor = Color.white;
+					EditorGUIService.EndContents();
+				}
+
+			}
+		}
+
 
 		static void head(string name,System.Action action , System.Action add) 
 		{
@@ -597,10 +657,6 @@ public class EditorGUIService
 			GUI.backgroundColor = Color.white;
 			EditorGUILayout.EndHorizontal();
 		}
-
-
-
-
 		//ตัวอย่างการใช้ Other Objects
 		static void example() {
 
@@ -616,7 +672,6 @@ public class EditorGUIService
 			});
 
 		}
-
 		public static void Objects( string name , int count , System.Action<int> contentlist, System.Action add, System.Action<int> remove)
 		{
 			head(name, () => {
