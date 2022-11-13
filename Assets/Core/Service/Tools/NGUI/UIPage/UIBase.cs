@@ -6,78 +6,6 @@ using UnityEditor;
 #endif
 
 
-
-
-
-//Sub-Class On UIRoot Main Interface
-public class UIRootBase : UIBase
-{
-    public UIRootSetting rootsetting;
-    [System.Serializable]
-    public class UIRootSetting
-    {
-        public Camera mainCamera;
-        public Camera uiCamera;
-        public UIRoot uiRoot;
-        public UIPanel uiPanel;
-        public ScreenPoint screenPoint;
-        public Transform transMask;
-        public Transform transCloseScreen;
-        public Transform rootPage;
-        public Transform rootPool;
-
-
-        public UIConfig config;
-        [System.Serializable]
-        public class UIConfig
-        {
-            public float bubbleSize = 1.0f;
-        }
-    }
-    public static UIRootBase instance;
-
-    public void Init()
-    {
-        instance = this;
-    }
-    bool isMask => rootsetting.transMask.gameObject.activeSelf;
-    List<Transform> notClickRequire = new List<Transform>();
-    public void OpenMask(bool visible, Transform root = null)
-    {
-        if (root != null)
-        {
-            if (visible)
-            {
-                if (!notClickRequire.Contains(root))
-                    notClickRequire.Add(root);
-            }
-            else
-                notClickRequire.Remove(root);
-        }
-        if (!visible)
-        {
-            if (notClickRequire.Count != 0)
-                return;
-        }
-        rootsetting.transMask.gameObject.SetActive(visible);
-    }
-
-    public void OnCreateEffect(GameObject effect, Transform position)
-    {
-        PoolManager.CreateNewPoolGroup(effect, rootsetting.rootPool);
-        var g = PoolManager.SpawParent(effect, rootsetting.rootPool, 3.0f).gameObject;
-        g.SetActive(false);
-        g.transform.position = position.position;
-    }
-
-
-
-
-}
-
-
-
-//Sub-Class On All Page
 public class UIBase : MonoBehaviour
 {
 #if UNITY_EDITOR
@@ -124,38 +52,50 @@ public class UIBase : MonoBehaviour
         }
 
         public bool DontDestoryOnClose;
-        [Header("On Open")]
-        public bool OpenMask;
-        public Sfx OpenSfx;
 
+
+        [Header("On Open")]
+        public ActionPage Open;
         [Header("On Close")]
-        public bool CloseMask;
-        public Sfx CloseSfx;
+        public ActionPage Close;
+
+        [System.Serializable]
+        public class ActionPage
+        {
+            public bool IsMask;
+            public bool IsAnimation;
+            public AnimationCurve Curve;
+            public float duration = 0.15f;
+        }
+
 
         public TaskService.Function EventOnClose = new TaskService.Function();
     }
 
 
-    public UIRootBase root => UIRootBase.instance;
-    //public static Store.Pages Pages => Store.instance.page;
     bool IsActive = false;
+    protected bool IsMute { get; private set; }
 
     static Dictionary<GameObject, GameObject> m_stock = new Dictionary<GameObject, GameObject>();
     public static T CreatePage<T>(GameObject page) 
     {
         GameObject Create() 
         {
-            var np = page.Create(UIRootBase.instance.rootsetting.rootPage);
+            var np = page.Create(InterfaceRoot.instance.rootpage);
             return np;
         } 
         GameObject newpage = null;
+        bool resue = false;
         if (!m_stock.ContainsKey(page))
             newpage = Create();
         else
         {
             newpage = m_stock[page];
-            if (newpage != null) newpage.SetActive(true);
-            else 
+            if (newpage != null) 
+            {
+                resue = true;
+            }
+            else
             {
                 m_stock.Remove(page);
                 newpage = Create();
@@ -164,15 +104,21 @@ public class UIBase : MonoBehaviour
 
         //UIBase
         var uibase = newpage.GetComponent<UIBase>();
+        if(resue) uibase.ReuseHandle();
+        else uibase.HandleOpen();
+
         uibase.name = $"{page.name} [depth - { ((uibase.panel!=null)? uibase.panel.depth : 0) }]";
-        if (uibase.settingpage.OpenMask)
+        if (uibase.settingpage.Open.IsMask)
             uibase.root.OpenMask(true, uibase.transform);
-        uibase.HandleSound(uibase.settingpage.OpenSfx);
+
         if (!m_stock.ContainsKey(page) && uibase.settingpage.DontDestoryOnClose)
             m_stock.Add(page, newpage);
 
         uibase.DoPanel();
         uibase.IsActive = true;
+
+ 
+
         return newpage.GetComponent<T>();
     }
 
@@ -215,22 +161,72 @@ public class UIBase : MonoBehaviour
     {
         if(panel!=null) panel.alpha = visible ? 1.0f : 0.0f;
     }
-
-    
-
-
-    protected TaskService.Function EventOnClose => settingpage.EventOnClose;
+    public bool IsVisible => panel.alpha != 0.0f;
+    public InterfaceRoot root => InterfaceRoot.instance;
+    public TaskService.Function EventOnClose => settingpage.EventOnClose;
 
 
-    public void OnClose()
+
+    Coroutine sfxhandle;
+    void HandleOpen()
     {
-        
-        HandleClose();
+        IsMute = true;
+        if (sfxhandle != null) StopCoroutine(sfxhandle);
+        sfxhandle = RefreshTime(30, (i) => { IsMute = false; });
 
-        if (settingpage.DontDestoryOnClose)
+        if (settingpage.Open.IsAnimation)
+        {
+            if (tweenScale == null)
+                tweenScale = gameObject.AddComponent<TweenScale>();
+            tweenScale.from = Vector3.zero;
+            tweenScale.to = Vector3.one;
+            tweenScale.duration = settingpage.Open.duration;
+            tweenScale.animationCurve = settingpage.Open.Curve;
+            ReAwake.ReTween(tweenScale);
+        }
+    }
+
+
+
+    Coroutine coroscale;
+    TweenScale tweenScale;
+    void ReuseHandle() 
+    {
+        if (coroscale != null) coroscale.StopCorotine();
+
+        IEnumerator Do()
+        {
             gameObject.SetActive(false);
-        else
-            Destroy(gameObject);
+            yield return new WaitForEndOfFrame( );
+            gameObject.transform.ResetTransform();
+            gameObject.SetActive(true);
+            HandleOpen();
+        }
+        Do().StartCorotine();
+    }
+    protected void OnClose()
+    {
+        HandleClose();
+        IEnumerator Do()
+        {
+            if (settingpage.Close.IsAnimation)
+            {
+                if (tweenScale == null)
+                    tweenScale = gameObject.AddComponent<TweenScale>();
+                tweenScale.from = gameObject.transform.localScale;
+                tweenScale.to = Vector3.zero;
+                tweenScale.duration = settingpage.Close.duration;
+                tweenScale.animationCurve = settingpage.Close.Curve;
+                ReAwake.ReTween(tweenScale);
+                yield return new WaitForSeconds(settingpage.Close.duration);
+            }
+
+            if (settingpage.DontDestoryOnClose)
+                gameObject.SetActive(false);
+            else
+                Destroy(gameObject);
+        }
+        coroscale = StartCoroutine(Do());
         IsActive = false;
     }
 
@@ -241,12 +237,13 @@ public class UIBase : MonoBehaviour
 
         UIBubble.OnClose(gameObject.name);
 
-        if (settingpage.CloseMask)
+        if (settingpage.Close.IsMask)
             root.OpenMask(false, transform);
-        HandleSound(settingpage.CloseSfx);
+        //HandleSound(settingpage.CloseSfx);
         EventOnClose?.callall();
     }
 
+    public bool IsPageHide => !gameObject.activeSelf;
 
     public void OnHide(bool Hide)
     {
@@ -254,9 +251,9 @@ public class UIBase : MonoBehaviour
 
         gameObject.SetActive(!Hide);
 
-        if (!Hide && settingpage.OpenMask)
+        if (!Hide && settingpage.Open.IsMask)
             root.OpenMask(true, transform);
-        if (Hide && settingpage.CloseMask)
+        if (Hide && settingpage.Close.IsMask)
             root.OpenMask(false, transform);
     }
 
@@ -266,7 +263,7 @@ public class UIBase : MonoBehaviour
     }
     public GameObject UIPool(GameObject obj, Transform trans, float wait = 0.0f)
     {
-        PoolManager.CreateNewPoolGroup(obj, root.rootsetting.rootPool);
+        PoolManager.CreateNewPoolGroup(obj, root.pool);
         var g = PoolManager.SpawParent(obj, trans, wait).gameObject;
         g.SetActive(false);
         RefreshTime(() => { g.SetActive(true); });
@@ -274,17 +271,17 @@ public class UIBase : MonoBehaviour
     }
     public GameObject UIPoolPosition(GameObject obj, Transform trans, float wait = 0.0f)
     {
-        PoolManager.CreateNewPoolGroup(obj, root.rootsetting.rootPool);
+        PoolManager.CreateNewPoolGroup(obj, root.pool);
         var g = PoolManager.SpawParent(obj, trans, wait).gameObject;
-        g.transform.parent = root.rootsetting.rootPool;
+        g.transform.parent = root.pool;
         g.SetActive(false);
         RefreshTime(() => { g.SetActive(true); });
         return g;
     }
 
 
-    public void RefreshTime( System.Action actionToRefresh) => StartCoroutine(IERefresh(1, (i)=> { actionToRefresh?.Invoke(); }));
-    public void RefreshTime(int time, System.Action<int> actionToRefresh) => StartCoroutine(IERefresh(time, actionToRefresh));
+    public Coroutine RefreshTime(System.Action actionToRefresh) =>  IERefresh(1, (i) => { actionToRefresh?.Invoke(); }).StartCorotine();
+    public Coroutine RefreshTime(int time, System.Action<int> actionToRefresh) => StartCoroutine(IERefresh(time, actionToRefresh));
     IEnumerator IERefresh(int time, System.Action<int> actionToRefresh) {
         for (int i = 0; i < time; i++) 
         {
@@ -323,14 +320,8 @@ public class UIBase : MonoBehaviour
         UIBubbles = new List<UIBubble>();
     }
 
-    void HandleSound(UISettingPage.Sfx sfx)
-    {
-        switch (sfx)
-        {
-            case UISettingPage.Sfx.movepage: Playlist.let.sfx_movepage.Play(); break;
-            case UISettingPage.Sfx.page: Playlist.let.sfx_pages.Play(); break;
-        }
-    }
+
+   
 
 
 

@@ -15,7 +15,7 @@ public class SpwanEffect : MonoBehaviour
         if (pEnable == null)
             return;
 
-        if (UI) UIRootBase.instance.OnCreateEffect(pEnable, transform);
+        if (UI) InterfaceRoot.instance.UIPool(pEnable, transform);
         else pEnable?.PoolPosition(transform,2.5f);
     }
     void OnDisable()
@@ -23,7 +23,7 @@ public class SpwanEffect : MonoBehaviour
         if (pDisable == null)
             return;
 
-        if (UI) UIRootBase.instance.OnCreateEffect(pDisable, transform);
+        if (UI) InterfaceRoot.instance.UIPool(pDisable, transform);
         else pDisable?.PoolPosition(transform, 2.5f);
     }
 

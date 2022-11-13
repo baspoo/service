@@ -15,17 +15,21 @@ public class TestScript : MonoBehaviour
         public double value;
         public string type;
         public int index;
-        public void PushData(GameData row) {
+
+       
+
+        public void PushData(GameData row)
+        {
 
 
 
 
             Formula f = new Formula();
-            var str = f["",50].Text;
+            var str = f["", 50].Text;
 
 
 
-            row.GetValue( "value" , out value);
+            row.GetValue("value", out value);
             row.GetValue("type", out type);
             row.GetValue("index", out index);
 
@@ -36,12 +40,14 @@ public class TestScript : MonoBehaviour
             //row.GetValue(this, "type");
             //row.GetValue(this, "index");
 
+            //string ss = "ss";
+            //var tk = ss.DeserializeObject<Tk>();
+            //object data = null;
+            //tk = data.DeserializeObject<Tk>();
 
-            var tk = "ss".DeserializeObject<Tk>();
-            object data = null;
-            tk = data.DeserializeObject<Tk>();
 
-
+            var obj = "{}".DeserializeObject();
+            var tk = "{}".DeserializeObject<Tk>();
         }
     }
 

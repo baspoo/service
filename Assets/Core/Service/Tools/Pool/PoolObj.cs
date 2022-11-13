@@ -7,7 +7,7 @@ using UnityEngine;
 public class BasePool : MonoBehaviour
 {
 	PoolObj m_pool = null;
-	PoolObj pool
+	protected PoolObj pool
 	{
 		get
 		{
@@ -43,7 +43,7 @@ public class PoolObj : MonoBehaviour {
 	public Service.Callback.callback onActive;
 	public Service.Callback.callback onDeactive;
 	PoolGroup m_group;
-
+	public List<PoolObj> PoolObjs => m_group.PoolObjs;
 	public void init(  PoolGroup group )
 	{
 		ID = this.GetInstanceID();

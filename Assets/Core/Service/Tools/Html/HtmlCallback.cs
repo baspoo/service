@@ -57,12 +57,27 @@ public class HtmlCallback : MonoBehaviour
                 Application.OpenURL(url);
         #endif
     }
+    public static void Copy(string str)
+    {
+        #if !UNITY_EDITOR && UNITY_WEBGL
+                    OnHtmlMessage(3,str);
+        #else
+                str.Copy();
+        #endif
+    }
+    public static void ClearCache()
+    {
+    #if !UNITY_EDITOR && UNITY_WEBGL
+            OnHtmlMessage(4, string.Empty); // clear cache
+            OnHtmlMessage(5, string.Empty); // refresh - reload page
+    #endif
+    }
 
 
 
 
 
-   
+
 
     public static TaskService.Function onCallback = new TaskService.Function();
 

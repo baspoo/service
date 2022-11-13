@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.Networking;
+using System.Security.Cryptography;
+using System.Text;
 
 /// <summary>
 ///    ** Game Master Service by 'Baspoo'
@@ -1517,6 +1519,16 @@ public class Service : MonoBehaviour
 		}
 		//public static int key=2533;
 		public enum EncodeStringType { linear, curve }
+		public static bool isCheckHaveinString(string strFind, string strMessage)
+		{
+			if (string.IsNullOrEmpty(strMessage)) return false;
+			else return (strMessage.IndexOf(strFind) != -1);
+		}
+
+
+
+
+
 		public static string EncodeString(string str, int key, EncodeStringType encodeStringType)
 		{
 			string output_s = "";
@@ -1559,16 +1571,6 @@ public class Service : MonoBehaviour
 			}
 			return output_s;
 		}
-		public static bool isCheckHaveinString(string strFind, string strMessage)
-		{
-			if (string.IsNullOrEmpty(strMessage)) return false;
-			else return (strMessage.IndexOf(strFind) != -1);
-		}
-
-
-
-
-
 
 		public static string ComputeSha256Hash(string rawData)
 		{
@@ -1586,6 +1588,41 @@ public class Service : MonoBehaviour
 				}
 				return builder.ToString();
 			}
+		}
+
+
+		private static byte[] iv = new byte[8] { 1, 2, 3, 4, 5, 6, 7, 8 };
+		static byte[] getKey(int keys)
+		{
+			//Debug.Log(keys);
+			byte[] key = new byte[8];
+			//var sign = keys/8;
+			for (var i = 0; i < 8; i++)
+			{
+				var dd = keys / (i + 1);
+				//Debug.Log(dd);
+				key[i] = (byte)(dd);
+			}
+			return key;
+		}
+		public static string Encrypt(string text, int key)
+		{
+			byte[] keyByte = getKey(key);
+			SymmetricAlgorithm algorithm = DES.Create();
+			ICryptoTransform transform = algorithm.CreateEncryptor(keyByte, iv);
+			byte[] inputbuffer = Encoding.Unicode.GetBytes(text);
+			byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
+			return System.Convert.ToBase64String(outputBuffer);
+		}
+
+		public static string Decrypt(string text, int key)
+		{
+			byte[] keyByte = getKey(key);
+			SymmetricAlgorithm algorithm = DES.Create();
+			ICryptoTransform transform = algorithm.CreateDecryptor(keyByte, iv);
+			byte[] inputbuffer = System.Convert.FromBase64String(text);
+			byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
+			return Encoding.Unicode.GetString(outputBuffer);
 		}
 
 

@@ -8,6 +8,94 @@ using System.Linq;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public enum SerializeHandle
+{
+	NullValue,          //--> skip null value on serialize.
+	IgnoreUpperCase,    //--> ignore upper or lower variable name.
+	ReplaceAll,        //--> replace default data in class.
+	FormattingIndented  //--> adjust beautiful json format.
+}
+public static class SerializeService
+{
+	public class JsonPropertyNameResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
+	{
+		protected override string ResolvePropertyName(string propertyName)
+		{
+			//Change the incoming property name into Title case
+			var name = string.Concat(propertyName[0].ToString().ToUpper(), propertyName.Substring(1).ToLower());
+			return base.ResolvePropertyName(name);
+		}
+	}
+
+	public static Newtonsoft.Json.JsonSerializerSettings gethandle(params SerializeHandle[] SerializeHandles)
+	{
+		var handle = new Newtonsoft.Json.JsonSerializerSettings();
+		handle.Converters.Add(new ObscuredValueConverter());
+
+		foreach (var key in SerializeHandles)
+		{
+			if (key == SerializeHandle.NullValue) handle.NullValueHandling = NullValueHandling.Ignore;
+			if (key == SerializeHandle.IgnoreUpperCase) handle.ContractResolver = new JsonPropertyNameResolver();
+			if (key == SerializeHandle.ReplaceAll) handle.ObjectCreationHandling = ObjectCreationHandling.Replace;
+			if (key == SerializeHandle.FormattingIndented) handle.Formatting = Formatting.Indented;
+		}
+		return handle;
+	}
+
+	public static string SerializeToJson(this object obj, params SerializeHandle[] SerializeHandles)
+	{
+		var handle = gethandle(SerializeHandles);
+		return JsonConvert.SerializeObject(obj, handle);
+	}
+    public static T DeserializeObject<T>(this object obj, params SerializeHandle[] SerializeHandles)
+    {
+        var json = obj is string ? (string)obj : SerializeToJson(obj, SerializeHandles);
+        return DeserializeObject<T>(json, SerializeHandles);
+    }
+    public static T DeserializeObject<T>(this string json, params SerializeHandle[] SerializeHandles)
+	{
+		var handle = gethandle(SerializeHandles);
+		return JsonConvert.DeserializeObject<T>(json, handle);
+	}
+	public static object DeserializeObject(this string json, params SerializeHandle[] SerializeHandles)
+	{
+		var handle = gethandle(SerializeHandles);
+		return JsonConvert.DeserializeObject(json, handle);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 public static class VariableService
 {
 
@@ -99,10 +187,15 @@ public static class VariableService
 	}
 	public static void Copy(this string messge)
 	{
-		TextEditor tx = new TextEditor();
-		tx.text = messge;
-		tx.SelectAll();
-		tx.Copy();
+		#if !UNITY_EDITOR && UNITY_WEBGL
+				HtmlCallback.Copy(messge);
+		#else
+				TextEditor tx = new TextEditor();
+				tx.text = messge;
+				tx.SelectAll();
+				tx.Copy();
+		
+		#endif
 	}
 	public static bool IsValidEmail(this string email)
 	{
@@ -295,49 +388,7 @@ public static class VariableService
 
 
 
-	#region Object
-	public class JsonPropertyNameResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
-	{
-		protected override string ResolvePropertyName(string propertyName)
-		{
-			//Change the incoming property name into Title case
-			var name = string.Concat(propertyName[0].ToString().ToUpper(), propertyName.Substring(1).ToLower());
-			return base.ResolvePropertyName(name);
-		}
-	}
 
-
-
-	public enum SerializeHandle {
-		NullValue, IgnoreUpperCase, ReplaceAll
-	}
-	public static Newtonsoft.Json.JsonSerializerSettings gethandle(params SerializeHandle[] SerializeHandles)
-	{
-		var handle = new Newtonsoft.Json.JsonSerializerSettings();
-		foreach (var key in SerializeHandles)
-		{
-			if (key == SerializeHandle.NullValue) handle.NullValueHandling = NullValueHandling.Ignore;
-			if (key == SerializeHandle.IgnoreUpperCase) handle.ContractResolver = new JsonPropertyNameResolver();
-			if (key == SerializeHandle.ReplaceAll) handle.ObjectCreationHandling = ObjectCreationHandling.Replace;
-		}
-		return handle;
-	}
-	public static string SerializeToJson(this object obj, params SerializeHandle[] SerializeHandles)
-	{
-		var handle = gethandle(SerializeHandles);
-		return JsonConvert.SerializeObject(obj, handle);
-	}
-	public static T DeserializeObject<T>(this object obj, params SerializeHandle[] SerializeHandles)
-	{
-		var json = SerializeToJson(obj , SerializeHandles);
-		return DeserializeObject<T>(json, SerializeHandles);
-	}
-	public static T DeserializeObject<T>(this string json, params SerializeHandle[] SerializeHandles)
-	{
-		var handle = gethandle(SerializeHandles);
-		return JsonConvert.DeserializeObject<T>(json, handle);
-	}
-	#endregion
 
 
 	#region GameObject
