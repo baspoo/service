@@ -32,12 +32,14 @@ public class EditorMenu : Editor
 	[MenuItem(ProjectPath.header + "/Editor/Log/LogSetting")]
 	public static void OnLogSetting()
 	{
-		LogToolsUI.OnSelection();
+		LogService.LogEditor.UILogSetting.OnSelection();
+		//LogToolsUI.OnSelection();
 	}
 	[MenuItem(ProjectPath.header + "/Editor/Log/LogEditor")]
 	public static void OnLogEditor()
 	{
-		LogEditor.LogEditor.ShowWindow();
+		LogService.LogEditor.LogEditor.ShowWindow();
+		//LogEditor.LogEditor.ShowWindow();
 	}
 
 

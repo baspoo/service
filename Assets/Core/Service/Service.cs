@@ -1325,11 +1325,25 @@ public class Service : MonoBehaviour
 		public static List<int> StringToASCII ( string str  ){
 			List<int> i = new List<int> ();
 			if (!string.IsNullOrEmpty (str)) {
-				foreach (char c in str.ToCharArray()) {
+				foreach (char c in str.ToCharArray()) 
+				{
 					i.Add ((int)c);
 				}
 			}
 			return i;
+		}
+		public static int StringToTotalASCII(string str)
+		{
+			int sum = 0;
+			if (!string.IsNullOrEmpty(str))
+			{
+				foreach (char c in str.ToCharArray())
+				{
+					
+					sum += (int)c;
+				}
+			}
+			return sum;
 		}
 		/// <summary>
 		/// Str = (0.0f,0.0f,0.0f)

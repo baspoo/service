@@ -62,7 +62,7 @@ public class EditorGUIService
 
 
 
-
+	public static string StringBuffer => EditorGUIUtility.systemCopyBuffer;
 
 
 
@@ -137,9 +137,23 @@ public class EditorGUIService
 
 
 
-
-
-
+	public static void NativeFilePath(string filter, string oldpath, System.Action<string> done)
+	{
+		//string path = EditorUtility.OpenFilePanel("Path", "", "png,jpg");
+		string path = EditorUtility.OpenFilePanel("Path", oldpath, filter);
+		done(path);
+	}
+	public static void NativeFileByte(string filter, string oldpath, System.Action<byte[]> done)
+	{
+		//string path = EditorUtility.OpenFilePanel("Path", "", "png,jpg");
+		string path = EditorUtility.OpenFilePanel("Path", oldpath, filter);
+		if (path.Length != 0)
+		{
+			var fileContent = System.IO.File.ReadAllBytes(path);
+			done(fileContent);
+		}
+		else done(null);
+	}
 
 
 
@@ -360,8 +374,8 @@ public class EditorGUIService
 		{
 #if UNITY_EDITOR
 			var prevSkin = GUI.skin;
-			if (guiSkin == null)
-				Debug.LogWarning("editor warning: guiSkin parameter is null");
+			if (guiSkin == null) { }
+			//Debug.LogWarning("editor warning: guiSkin parameter is null");
 			else
 				GUI.skin = guiSkin;
 
@@ -502,14 +516,13 @@ public class EditorGUIService
 	}
 
 
-	static public void BeginEndnable(bool isEnable)
+	static public void BeginEndnable(bool isEnable , System.Action action)
 	{
 		EditorGUI.BeginDisabledGroup(!isEnable);
-	}
-	static public void EndVisible()
-	{
+		action?.Invoke();
 		EditorGUI.EndDisabledGroup();
 	}
+
 
 
 	public static void SimpleViewObject(object obj, HashSet<string> onlyfield = null)
