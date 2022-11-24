@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using UnityEngine;
 using Newtonsoft.Json;
 using System.Linq;
+using CodeStage.AntiCheat.ObscuredTypes;
 
 
 
@@ -216,6 +217,20 @@ public static class VariableService
 		}
 	}
 	#endregion
+
+
+
+	#region ObscuredTypes
+	public static int[] ToInt(this ObscuredInt[] datas)
+	{
+		int[] output = new int[datas.Length];
+		for (int i = 0; i < datas.Length; i++)
+			output[i] = datas[i];
+		return output;
+	}
+	#endregion
+
+
 
 
 

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using CodeStage.AntiCheat.ObscuredTypes;
+
 
 public class GameData {
 	Dictionary<string, string> dict = new Dictionary<string, string>();
@@ -31,6 +33,7 @@ public class GameData {
 	public void GetValue(string key, out long data) => Service.String.To(GetValue(key), out data);
 	public void GetValue(string key, out string data) => Service.String.To(GetValue(key), out data);
 
+
 	public void GetValue(string key, out int[] data) 
 	{
 		var val = GetValue(key);
@@ -51,7 +54,6 @@ public class GameData {
 		var val = GetValue(key);
 		data = val.DeserializeObject<string[]>();
 	}
-
 	public System.Enum GetEnum(string key, object enum_default) {
 		var value = GetValue(key);
 		return Service.String.ToEnum(value, enum_default);
@@ -60,8 +62,6 @@ public class GameData {
 	{
 		data = GetValue(key).ToFormula();
 	}
-
-
 	void GetValue(object objclass, string key)
 	{
 		var val = GetValue(key);
@@ -72,6 +72,66 @@ public class GameData {
 		foreach (var k in keys)
 			GetValue(objclass, k);
 	}
+
+
+
+
+
+	#region Obscurd
+	//** Obscured Int
+	public void GetValue(string key, out ObscuredInt data)
+	{
+		data = Service.String.Parse(GetValue(key), 0);
+	}
+	public void GetValue(string key, out ObscuredInt[] data)
+	{
+		var val = GetValue(key);
+		var Ints = val.DeserializeObject<int[]>();
+		data = new ObscuredInt[Ints.Length];
+		for (int i = 0; i < Ints.Length; i++)
+			data[i] = Ints[i];
+	}
+	//** Obscured Long
+	public void GetValue(string key, out ObscuredLong data)
+	{
+		data = Service.String.Parse(GetValue(key), (long)0);
+	}
+	public void GetValue(string key, out ObscuredLong[] data)
+	{
+		var val = GetValue(key);
+		var Ints = val.DeserializeObject<long[]>();
+		data = new ObscuredLong[Ints.Length];
+		for (int i = 0; i < Ints.Length; i++)
+			data[i] = Ints[i];
+	}
+	//** Obscured Double
+	public void GetValue(string key, out ObscuredDouble data)
+	{
+		data = Service.String.Parse(GetValue(key), 0);
+	}
+	public void GetValue(string key, out ObscuredDouble[] data)
+	{
+		var val = GetValue(key);
+		var Ints = val.DeserializeObject<double[]>();
+		data = new ObscuredDouble[Ints.Length];
+		for (int i = 0; i < Ints.Length; i++)
+			data[i] = Ints[i];
+	}
+	//** Obscured Float
+	public void GetValue(string key, out ObscuredFloat data)
+	{
+		data = Service.String.Parse(GetValue(key), 0);
+	}
+	public void GetValue(string key, out ObscuredFloat[] data)
+	{
+		var val = GetValue(key);
+		var Ints = val.DeserializeObject<float[]>();
+		data = new ObscuredFloat[Ints.Length];
+		for (int i = 0; i < Ints.Length; i++)
+			data[i] = Ints[i];
+	}
+	#endregion
+
 
 
 
