@@ -320,7 +320,8 @@ namespace LogService.Utility
                 if (logData.Tag == null) message = $"({logData.TagName}) {logData.Message}";
                 else message = $"<color={Service.Colour.ToRGBHex(logData.Tag.Color)}>({logData.Tag.Tag})</color> {logData.Message}";
             }
-            unityLogHandler.LogFormat(logType, context , message, args);
+            //unityLogHandler.LogFormat(logType, context , message, args);
+            unityLogHandler.Log(message);
         }
     }
 
