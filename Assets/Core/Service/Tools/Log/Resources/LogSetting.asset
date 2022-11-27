@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f387a79f74ad35439cf319e15540229, type: 3}
   m_Name: LogSetting
   m_EditorClassIdentifier: 
-  IsEnable: 1
+  IsEnable: 0
   IsNonTag: 1
   IsUnkownTag: 1
   IsHasTag: 1

@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class UIHover : MonoBehaviour
 {
-
     public static UIHover Instance;
     public static bool Hover;
-
+    public static bool Enable
+    {
+        get
+        {
+            if (Instance == null) Instance = FindObjectOfType<UIHover>();
+            return Instance.gameObject.activeSelf;
+        }
+        set
+        {
+            if (Instance == null) Instance = FindObjectOfType<UIHover>();
+            Instance.gameObject.SetActive(value);
+        }
+    }
     public Vector3 mousePosition => transform.position;
     [SerializeField] Camera uiCamera;
     [SerializeField] bool m_Hover;
