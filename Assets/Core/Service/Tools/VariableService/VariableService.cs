@@ -633,26 +633,65 @@ public static class VariableService
 	#region Log
 	public static void Log(this object message)
 	{
-		Log(message, null);
+		Debug.Log(message);
+	}
+	public static void Log(this object message , string tag)
+	{
+		Debug.LogFormat($"{message}", tag );
 	}
 	public static void Log(this object message, Color color)
 	{
-		Log(message, color == null ? null : Service.Colour.ToRGBHex(color));
-	}
-	public static void Log(this object message, string RgbHexColor = null)
-	{
-		if (RgbHexColor != null)
-		{
-			Debug.Log($"<color={RgbHexColor}>{message}</color>");
-		}
-		else
-		{
-			Debug.Log(message);
-		}
+		Debug.Log($"<color={Service.Colour.ToRGBHex(color)}>{message}</color>");
 	}
 	#endregion
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	#region List
+	public static int[] Shuffle(this int count)
+	{
+		var index = new int[count];
+		for (int i = 0; i < count; i++)
+			index[i] = i;
+
+		for (int i = 0; i < count; i++)
+		{
+			var temp = index[i];
+			int randomIndex = UnityEngine.Random.Range(i, count);
+			index[i] = index[randomIndex];
+			index[randomIndex] = temp;
+		}
+		return index;
+	}
+	public static List<T> Shuffle<T>(this List<T> let)
+	{
+		for (int i = 0; i < let.Count; i++)
+		{
+			var temp = let[i];
+			int randomIndex = UnityEngine.Random.Range(i, let.Count);
+			let[i] = let[randomIndex];
+			let[randomIndex] = temp;
+		}
+		return let;
+	}
+	#endregion
 
 
 

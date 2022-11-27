@@ -321,7 +321,10 @@ namespace LogService.Utility
                 else message = $"<color={Service.Colour.ToRGBHex(logData.Tag.Color)}>({logData.Tag.Tag})</color> {logData.Message}";
             }
             //unityLogHandler.LogFormat(logType, context , message, args);
-            unityLogHandler.Log(message);
+            //unityLogHandler.Log(message);
+            //Debug.unityLogger.Log(message);
+            //Debug.Log(message);
+            unityLogHandler.LogFormat(logType, new UnityEngine.Object(), "{0}", message);
         }
     }
 

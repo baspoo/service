@@ -23,6 +23,20 @@ namespace LogService.Test
         {
 
 
+
+
+            "1.message".Log();
+            "2.message".Log(Color.red);
+            "3.message".Log("baspoo");
+            5.Log("baspoo");
+
+
+            return;
+
+            Debug.Log("1.message");
+
+            return;
+
             //Commond
             Debug.Log("1.message");
 
