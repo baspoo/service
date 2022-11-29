@@ -691,6 +691,18 @@ public static class VariableService
 		}
 		return let;
 	}
+	public static List<T> If<T>(this List<T> let , System.Func<T, bool> func )
+	{
+		List<T> output = new List<T>();
+		foreach (var l in let) 
+		{
+			if (func.Invoke(l)) 
+			{
+				output.Add(l);
+			}
+		}
+		return output;
+	}
 	#endregion
 
 

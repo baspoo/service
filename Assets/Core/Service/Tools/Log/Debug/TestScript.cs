@@ -17,7 +17,38 @@ namespace LogService.Test
 
 
 
+        public void TestList() {
 
+
+            List<int> let = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+
+            //let.Shuffle().ForEach(x => Debug.Log(x));
+
+
+            //let.If(x => x > 5).ForEach(x => Debug.Log(x));
+
+            //let.If((x) => {
+            //    return false;
+            //});
+
+
+
+            bool IsCal(int x) 
+            {
+
+                if (x % 2 == 0)
+                    return false;
+                else
+                    return true;
+            }
+
+            foreach (var d in let.If(IsCal)) 
+            {
+                Debug.Log(d);
+            }
+
+        }
 
         public void TestLog() 
         {
@@ -97,7 +128,10 @@ namespace LogService.Test
 
 
 
-
+        public RuntimeBtn List = new RuntimeBtn((r) =>
+        {
+            r.Gameobject.GetComponent<TestScript>().TestList();
+        });
 
         public RuntimeBtn Log = new RuntimeBtn((r) =>
         {
