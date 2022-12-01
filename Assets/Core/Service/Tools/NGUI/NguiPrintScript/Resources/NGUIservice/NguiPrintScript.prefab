@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fced09ea30635d24ca9272dab82dc487, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cover: {fileID: 2800000, guid: 28084f2db1f1a924c9b6b4375760a7d2, type: 3}
   Fonts:
   - {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
   Texture:

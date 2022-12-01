@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 public class NguiPrintScript : MonoBehaviour
 {
@@ -14,22 +18,42 @@ public class NguiPrintScript : MonoBehaviour
         var ngui = r.Gameobject.GetComponent<NguiPrintScript>();
         ngui.OnJsonToNgui(ngui.Json);
     });
-    #endif
+#endif
+
+
+
+    public static NguiPrintScript Create(string json , Transform transform) 
+    {
+        var ngui = new GameObject("NguiPrintScript").AddComponent<NguiPrintScript>();
+        ngui.transform.parent = transform;
+        ngui.transform.ResetTransform();
+        Service.GameObj.ReLayer(ngui.gameObject , transform.gameObject);
+        ngui.OnJsonToNgui(json);
+        return ngui;
+    }
 
 
     [TextArea]
     public string Json;
+    public bool isGenerated => transform.childCount > 0;
     public string OnNguiToJson(Transform root) 
     {
         guiData = DoConvertToJson(root);
-        return guiData.SerializeToJson(SerializeHandle.NullValue);
+        return guiData.SerializeToJson(SerializeHandle.NullValue, SerializeHandle.FormattingIndented);
     }
     public Transform OnJsonToNgui(string json)
     {
+        OnClean();
         return DoConvertToNGUI(json.DeserializeObject<GUIData>() , transform );
     }
-
-
+    public void OnClose( )
+    {
+        Destroy(gameObject);
+    }
+    public void OnClean()
+    {
+        transform.DesAllParent();
+    }
 
 
 
@@ -59,8 +83,27 @@ public class NguiPrintScript : MonoBehaviour
         public Vector3 position;
         public Vector3 rotate;
         public Vector3 scale;
-        
 
+        public static string[] AddOnActions = new string[4] {
+            AddOnAction.Close,
+            AddOnAction.GoTo,
+            AddOnAction.GoToAndClose,
+            AddOnAction.Reopen
+        };
+        public class AddOnAction {
+            public const string Close = "close";
+            public const string GoTo = "goto";
+            public const string GoToAndClose = "goto&close";
+            public const string Reopen = "reopen";
+        }
+        [System.Serializable]
+        public class AddOn
+        {
+            public string name;
+            public string imgURL;
+            public string btnDir;
+            public string btnAct;
+        }
 
         [System.Serializable]
         public class Widget
@@ -139,21 +182,6 @@ public class NguiPrintScript : MonoBehaviour
 
 
 
-    void Demo()
-    {
-        Debug.Log("Demo");
-    }
-
-
-    public void Test() 
-    {
-        var find =  GameObject.Find("GameObject");
-        if (find != null) 
-        {
-            find.SendMessage("Demo");
-        }
-    }
-
 
 
     GUIData DoConvertToJson(Transform root) 
@@ -163,8 +191,8 @@ public class NguiPrintScript : MonoBehaviour
         gui.position = root.localPosition;
         gui.scale = root.localScale;
         gui.rotate = root.localEulerAngles;
-        
 
+      
 
         var label = root.GetComponent<UILabel>();
         if (label != null)
@@ -252,13 +280,6 @@ public class NguiPrintScript : MonoBehaviour
     }
 
 
-    public void OnBtnClick(GameObject btn) { 
-    
-    }
-    public void OnBtnClickx( )
-    {
-
-    }
     Transform DoConvertToNGUI(GUIData guiData , Transform parent) 
     {
         var root = new GameObject(guiData.name);
@@ -268,18 +289,77 @@ public class NguiPrintScript : MonoBehaviour
         root.transform.localEulerAngles = guiData.rotate;
 
 
+        GUIData.AddOn addon = null;
+        if (Service.String.isStrCropValue(guiData.name, "{", "}"))
+        {
+             addon = guiData.name.DeserializeObject<GUIData.AddOn>();
+        }
+
+
+
         if (guiData.label != null && guiData.label.enable)
         {
             var label = root.AddComponent<UILabel>();
+            var font = NPSUtility.instance.Fonts.Find(x => x.name == guiData.label.fontName);
+            label.trueTypeFont = font !=null ? font : NPSUtility.instance.Fonts[0];
+            label.text = guiData.label.text;
+            label.fontSize = guiData.label.fontSize;
+            label.maxLineCount = guiData.label.maxLine;
+            label.fontStyle = (FontStyle)guiData.label.fontStyle;
+            label.overflowMethod = (UILabel.Overflow)guiData.label.overflow;
+            label.color = guiData.label.color.HexToColor();
+            label.spacingX = (int)guiData.label.spacing.x;
+            label.spacingY = (int)guiData.label.spacing.y;
+
+            label.effectStyle = (UILabel.Effect)guiData.label.effect;
+            label.effectDistance = guiData.label.effectSize;
+            label.effectColor = guiData.label.effectColor.HexToColor();
+            label.applyGradient = guiData.label.gradient;
+            label.gradientTop = guiData.label.colorTop.HexToColor();
+            label.gradientBottom = guiData.label.colorBot.HexToColor();
+
+            label.width = (int)guiData.label.widget.size.x;
+            label.height = (int)guiData.label.widget.size.y;
+            label.pivot = (UIWidget.Pivot)guiData.label.widget.pivot;
+            label.depth = guiData.label.widget.depth;
+
         }
         if (guiData.texture != null && guiData.texture.enable)
         {
             var texture = root.AddComponent<UITexture>();
 
+            texture.uvRect = new Rect() { 
+                x = (float)guiData.texture.uvRect[0],
+                y = (float)guiData.texture.uvRect[1],
+                width = (float)guiData.texture.uvRect[2],
+                height = (float)guiData.texture.uvRect[3]
+            };
+            texture.type = (UISprite.Type)guiData.texture.type;
+            texture.border = guiData.texture.border;
+            texture.flip = (UISprite.Flip)guiData.texture.flip;
+            texture.color = guiData.texture.color.HexToColor();
+            texture.applyGradient = guiData.texture.gradient;
+            texture.gradientTop = guiData.texture.colorTop.HexToColor();
+            texture.gradientBottom = guiData.texture.colorBot.HexToColor();
 
-            Service.Net.LoadImage("url",(tex)=> { 
-            
-            });
+            texture.width = (int)guiData.texture.widget.size.x;
+            texture.height = (int)guiData.texture.widget.size.y;
+            texture.pivot = (UIWidget.Pivot)guiData.texture.widget.pivot;
+            texture.depth = guiData.texture.widget.depth;
+
+
+            if (addon != null)
+            {
+                Service.Net.LoadImage(addon.imgURL , (tex) => {
+                    texture.mainTexture = tex;
+                });
+            }
+            else 
+            {
+                texture.mainTexture = NPSUtility.instance.Texture.Find(x=>x.name == guiData.texture.imageName);
+            }
+
+
         }
         if (guiData.btn != null && guiData.btn.enable)
         {
@@ -298,10 +378,27 @@ public class NguiPrintScript : MonoBehaviour
             collider.size = guiData.btn.colliderSize;
             btn.onClick.Add(new EventDelegate(()=>{
 
-
-                Debug.Log(btn.name);
-            
-
+                if (addon != null) 
+                {
+                    if (addon.btnAct == GUIData.AddOnAction.Close) 
+                    {
+                        OnClose();
+                    }
+                    if (addon.btnAct == GUIData.AddOnAction.Reopen)
+                    {
+                        OnClean();
+                        OnJsonToNgui(addon.btnDir);
+                    }
+                    if (addon.btnAct == GUIData.AddOnAction.GoTo)
+                    {
+                        DoGoto(addon.btnDir);
+                    }
+                    if (addon.btnAct == GUIData.AddOnAction.GoToAndClose)
+                    {
+                        DoGoto(addon.btnDir);
+                        OnClose();
+                    }
+                }
             }));
         }
 
@@ -322,6 +419,238 @@ public class NguiPrintScript : MonoBehaviour
         }
         return root.transform;
     }
+
+
+    void DoGoto(string dir )
+    {
+        var path = dir.Split('.');
+        var find = GameObject.Find(path[0]);
+        if (find != null)
+        {
+            find.SendMessage(path[1]);
+        }
+    }
+
+
+
+}
+
+
+
+
+
+
+namespace LogService.LogEditor
+{
+#if UNITY_EDITOR
+    [CustomEditor(typeof(NguiPrintScript))]
+    public class UINguiPrintScript : Editor
+    {
+        public static void OnSelection()
+        {
+            Selection.activeObject = LogSetting.instance;
+        }
+        public NguiPrintScript m_tools { get { return (NguiPrintScript)target; } }
+        public override void OnInspectorGUI()
+        {
+
+            GUILayout.Label(NPSUtility.instance.Cover, GUILayout.Height(120));
+
+            if (EditorGUIService.DrawHeader("Global", "NguiPrintScript.Global", false, false))
+            {
+                EditorGUIService.BeginContents(false);
+
+
+                EditorGUIService.ListView.Print("Fonts", NPSUtility.instance.Fonts.Count, (i)=> {
+                    NPSUtility.instance.Fonts[i] = (Font) EditorGUILayout.ObjectField(NPSUtility.instance.Fonts[i],typeof(Font));
+                },()=> {
+                    NPSUtility.instance.Fonts.Add(null);
+                },(i)=> {
+                    NPSUtility.instance.Fonts.RemoveAt(i);
+                });
+
+                EditorGUIService.ListView.Print("Textures", NPSUtility.instance.Texture.Count, (i) => {
+                    NPSUtility.instance.Texture[i] = (Texture)EditorGUILayout.ObjectField(NPSUtility.instance.Texture[i], typeof(Texture));
+                }, () => {
+                    NPSUtility.instance.Texture.Add(null);
+                }, (i) => {
+                    NPSUtility.instance.Texture.RemoveAt(i);
+                });
+
+                if (GUILayout.Button("Save"))
+                {
+                    DoSave();
+                }
+                EditorGUIService.EndContents();
+            }
+
+
+
+
+            if (EditorGUIService.DrawHeader("Current", "NguiPrintScript.Current", false, false, new EditorGUIService.Option() {
+                Icon = "C",
+                Description ="Copy Json",
+                Exe = () => {
+                    m_tools.Json.Copy();
+                }
+            }, new EditorGUIService.Option()
+            {
+                Icon = "✚",
+                Description = "Addon",
+                Exe = () => {
+                    EditorGUIService.Popup.ShowWindow("Addon", DoOpenAddOn );
+                }
+            }))
+            {
+                EditorGUIService.BeginContents(false);
+
+
+                m_tools.Json = EditorGUILayout.TextArea(m_tools.Json, GUILayout.Height(120));
+
+                EditorGUILayout.Space(25);
+
+                EditorGUIService.BeginEndnable(m_tools.isGenerated, () => {
+                    if (GUILayout.Button("\nNGUI To Json\n"))
+                    {
+                        m_tools.Json = m_tools.OnNguiToJson(m_tools.transform);
+                    }
+                });
+
+
+                if (!m_tools.isGenerated)
+                {
+                    EditorGUIService.BeginEndnable(m_tools.Json.notnull(), () => {
+                        if (GUILayout.Button("\nJson To NGUI\n"))
+                        {
+                            m_tools.OnJsonToNgui(m_tools.Json);
+                        }
+                    });
+                }
+                else 
+                {
+                    GUI.backgroundColor = Color.red;
+                    if (GUILayout.Button("\nClear\n"))
+                    {
+                        m_tools.OnClean();
+                    }
+                    GUI.backgroundColor = Color.white;
+                }
+                EditorGUIService.EndContents();
+            }
+
+
+
+        }
+
+        void DoSave()
+        {
+            Undo.RecordObject(NPSUtility.instance, "NPSUtility");
+            PrefabUtility.RecordPrefabInstancePropertyModifications(NPSUtility.instance);
+            EditorUtility.CopySerialized(NPSUtility.instance, NPSUtility.instance);
+            AssetDatabase.SaveAssets();
+        }
+
+
+        void DoOpenAddOn()
+        {
+            GUI.backgroundColor = Color.green;
+            Transform newTransform = null;
+            newTransform = (Transform)EditorGUILayout.ObjectField(newTransform, typeof(Transform), GUILayout.Height(40));
+            GUI.backgroundColor = Color.white;
+
+            if (newTransform != null)
+            {
+                NguiPrintScript.GUIData.AddOn addon = new NguiPrintScript.GUIData.AddOn();
+                addon.name = newTransform.gameObject.name;
+                newTransform.gameObject.name = addon.SerializeToJson(SerializeHandle.NullValue);
+            }
+
+
+
+            EditorGUILayout.Space(25);
+
+
+            foreach (var n in m_tools.gameObject.transform.GetAllNode())
+            {
+                if (Service.String.isStrCropValue(n.name, "{", "}")) 
+                {
+                    EditorGUIService.BeginContents(false);
+                    var addon = n.name.DeserializeObject<NguiPrintScript.GUIData.AddOn>();
+                    EditorGUILayout.ObjectField(n.transform, typeof(Transform));
+
+
+
+                    if (n.GetComponent<UITexture>())
+                    {
+                        //EditorGUILayout.LabelField("Texture");
+                        addon.imgURL = EditorGUILayout.TextField("Texture URL", addon.imgURL);
+                        if (addon.imgURL == "Texture URL") addon.imgURL = null;
+                    }
+
+                    if (n.GetComponent<UIButton>())
+                    {
+                        //EditorGUILayout.LabelField("Button");
+                        EditorGUILayout.BeginHorizontal();
+                      
+                        var index = 0;
+                        var i = 0;
+                        foreach (var str in NguiPrintScript.GUIData.AddOnActions)
+                        {
+                            if (addon.btnAct == str)
+                            {
+                                index = i;
+                            }
+                            i++;
+                        }
+                        index = EditorGUILayout.Popup("Button", index, NguiPrintScript.GUIData.AddOnActions);
+                        addon.btnAct = NguiPrintScript.GUIData.AddOnActions[index];
+                        switch (addon.btnAct)
+                        {
+                            case NguiPrintScript.GUIData.AddOnAction.Close: break;
+                            case NguiPrintScript.GUIData.AddOnAction.GoTo:
+                            case NguiPrintScript.GUIData.AddOnAction.GoToAndClose:
+                            case NguiPrintScript.GUIData.AddOnAction.Reopen:
+                                addon.btnDir = EditorGUILayout.TextField(addon.btnDir);
+                                break;
+
+                        }
+                        EditorGUILayout.EndHorizontal();
+                    }
+
+
+
+                    if (addon.imgURL.isnull()) addon.imgURL = null;
+                    if (addon.btnAct.isnull()) addon.btnAct = null;
+                    if (addon.btnDir.isnull()) addon.btnDir = null;
+
+
+                    GUI.backgroundColor = Color.red;
+                    if (GUILayout.Button("Remove"))
+                    {
+                        n.gameObject.name = addon.name;
+                    }
+                    else 
+                    {
+                        n.gameObject.name = addon.SerializeToJson(SerializeHandle.NullValue);
+                    }
+                    GUI.backgroundColor = Color.white;
+
+                    
+                    EditorGUIService.EndContents();
+
+                    EditorGUILayout.Space(6);
+                }
+            }
+
+
+           
+
+        }
+
+
+    }
+#endif
+
 
 
 

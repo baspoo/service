@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -148,7 +148,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1643056607}
   m_Father: {fileID: 2056941903}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -178,8 +179,71 @@ MonoBehaviour:
     Double: 0
     Transform: {fileID: 0}
     MonoBehaviour: {fileID: 0}
-  Json: '{"name":"root","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"Panel","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"goto[close]","position":{"x":229.0,"y":99.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"close","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":1,"size":{"x":100.0,"y":100.0}}},"btn":{"enable":true,"transition":0.2,"colorNormal":"#FFFFFF","colorHover":"#E1C896","colorPressed":"#B7A37B","colorDisabled":"#7F7F7F","colliderCenter":{"x":0.0,"y":0.0,"z":0.0},"colliderSize":{"x":120.0,"y":120.0,"z":0.0}}},{"name":"img[white]","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"burlap","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":0,"size":{"x":480.0,"y":200.0}}},"Hierarchies":[{"name":"Label","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"label":{"enable":true,"text":"New
-    Label","fontSize":62,"maxLine":0,"fontName":"Font-Bold","fontStyle":0,"overflow":0,"color":"#FFFFFF","spacing":{"x":0.0,"y":0.0},"effect":3,"effectSize":{"x":1.0,"y":1.0},"effectColor":"#000000","gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":2,"size":{"x":700.0,"y":100.0}}}}]}]}]}'
+  Json: "{\r\n  \"name\": \"root\",\r\n  \"position\": {\r\n    \"x\": 0.0,\r\n   
+    \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"rotate\": {\r\n    \"x\": 0.0,\r\n   
+    \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"scale\": {\r\n    \"x\": 1.0,\r\n   
+    \"y\": 1.0,\r\n    \"z\": 1.0\r\n  },\r\n  \"Hierarchies\": [\r\n    {\r\n     
+    \"name\": \"Panel\",\r\n      \"position\": {\r\n        \"x\": 0.0,\r\n       
+    \"y\": 0.0,\r\n        \"z\": 0.0\r\n      },\r\n      \"rotate\": {\r\n       
+    \"x\": 0.0,\r\n        \"y\": 0.0,\r\n        \"z\": 0.0\r\n      },\r\n     
+    \"scale\": {\r\n        \"x\": 1.0,\r\n        \"y\": 1.0,\r\n        \"z\":
+    1.0\r\n      },\r\n      \"Hierarchies\": [\r\n        {\r\n          \"name\":
+    \"goto[close]\",\r\n          \"position\": {\r\n            \"x\": 229.0,\r\n           
+    \"y\": 99.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"rotate\":
+    {\r\n            \"x\": 0.0,\r\n            \"y\": 0.0,\r\n            \"z\":
+    0.0\r\n          },\r\n          \"scale\": {\r\n            \"x\": 1.0,\r\n           
+    \"y\": 1.0,\r\n            \"z\": 1.0\r\n          },\r\n          \"texture\":
+    {\r\n            \"enable\": true,\r\n            \"imageName\": \"close\",\r\n           
+    \"uvRect\": [\r\n              0.0,\r\n              0.0,\r\n              1.0,\r\n             
+    1.0\r\n            ],\r\n            \"color\": \"#FFFFFF\",\r\n            \"type\":
+    0,\r\n            \"border\": {\r\n              \"x\": 0.0,\r\n             
+    \"y\": 0.0,\r\n              \"z\": 0.0,\r\n              \"w\": 0.0\r\n           
+    },\r\n            \"flip\": 0,\r\n            \"gradient\": false,\r\n           
+    \"colorTop\": \"#FFFFFF\",\r\n            \"colorBot\": \"#B2B2B2\",\r\n           
+    \"widget\": {\r\n              \"pivot\": 4,\r\n              \"depth\": 1,\r\n             
+    \"size\": {\r\n                \"x\": 100.0,\r\n                \"y\": 100.0\r\n             
+    }\r\n            }\r\n          },\r\n          \"btn\": {\r\n            \"enable\":
+    true,\r\n            \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
+    \"colorHover\": \"#E1C896\",\r\n            \"colorPressed\": \"#B7A37B\",\r\n           
+    \"colorDisabled\": \"#7F7F7F\",\r\n            \"colliderCenter\": {\r\n             
+    \"x\": 0.0,\r\n              \"y\": 0.0,\r\n              \"z\": 0.0\r\n           
+    },\r\n            \"colliderSize\": {\r\n              \"x\": 120.0,\r\n             
+    \"y\": 120.0,\r\n              \"z\": 0.0\r\n            }\r\n          }\r\n       
+    },\r\n        {\r\n          \"name\": \"img[white]\",\r\n          \"position\":
+    {\r\n            \"x\": 0.0,\r\n            \"y\": 0.0,\r\n            \"z\":
+    0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"burlap\",\r\n            \"uvRect\": [\r\n              0.0,\r\n             
+    0.0,\r\n              1.0,\r\n              1.0\r\n            ],\r\n           
+    \"color\": \"#FFFFFF\",\r\n            \"type\": 0,\r\n            \"border\":
+    {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 0,\r\n              \"size\": {\r\n               
+    \"x\": 480.0,\r\n                \"y\": 200.0\r\n              }\r\n           
+    }\r\n          },\r\n          \"Hierarchies\": [\r\n            {\r\n             
+    \"name\": \"Label\",\r\n              \"position\": {\r\n                \"x\":
+    0.0,\r\n                \"y\": 0.0,\r\n                \"z\": 0.0\r\n             
+    },\r\n              \"rotate\": {\r\n                \"x\": 0.0,\r\n               
+    \"y\": 0.0,\r\n                \"z\": 0.0\r\n              },\r\n             
+    \"scale\": {\r\n                \"x\": 1.0,\r\n                \"y\": 1.0,\r\n               
+    \"z\": 1.0\r\n              },\r\n              \"label\": {\r\n               
+    \"enable\": true,\r\n                \"text\": \"New Label\",\r\n               
+    \"fontSize\": 62,\r\n                \"maxLine\": 0,\r\n                \"fontName\":
+    \"Font-Bold\",\r\n                \"fontStyle\": 0,\r\n                \"overflow\":
+    0,\r\n                \"color\": \"#FFFFFF\",\r\n                \"spacing\":
+    {\r\n                  \"x\": 0.0,\r\n                  \"y\": 0.0\r\n               
+    },\r\n                \"effect\": 3,\r\n                \"effectSize\": {\r\n                 
+    \"x\": 4.0,\r\n                  \"y\": 4.0\r\n                },\r\n               
+    \"effectColor\": \"#000000\",\r\n                \"gradient\": true,\r\n               
+    \"colorTop\": \"#FFE700\",\r\n                \"colorBot\": \"#4F9900\",\r\n               
+    \"widget\": {\r\n                  \"pivot\": 4,\r\n                  \"depth\":
+    2,\r\n                  \"size\": {\r\n                    \"x\": 700.0,\r\n                   
+    \"y\": 100.0\r\n                  }\r\n                }\r\n              }\r\n           
+    }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"
   guiData:
     name: root
     position: {x: 0, y: 0, z: 0}
@@ -231,7 +295,7 @@ MonoBehaviour:
       colliderCenter: {x: 0, y: 0, z: 0}
       colliderSize: {x: 0, y: 0, z: 0}
     Hierarchies:
-    - name: Panel
+    - name: root
       position: {x: 0, y: 0, z: 0}
       rotate: {x: -0, y: 0, z: 0}
       scale: {x: 1, y: 1, z: 1}
@@ -281,61 +345,7 @@ MonoBehaviour:
         colliderCenter: {x: 0, y: 0, z: 0}
         colliderSize: {x: 0, y: 0, z: 0}
       Hierarchies:
-      - name: goto[close]
-        position: {x: 229, y: 99, z: 0}
-        rotate: {x: -0, y: 0, z: 0}
-        scale: {x: 1, y: 1, z: 1}
-        label:
-          enable: 0
-          text: 
-          fontSize: 0
-          maxLine: 0
-          fontName: 
-          fontStyle: 0
-          overflow: 0
-          color: 
-          spacing: {x: 0, y: 0}
-          effect: 0
-          effectSize: {x: 0, y: 0}
-          effectColor: 
-          gradient: 0
-          colorTop: 
-          colorBot: 
-          widget:
-            pivot: 0
-            depth: 0
-            size: {x: 0, y: 0}
-        texture:
-          enable: 1
-          imageName: close
-          uvRect:
-          - 0
-          - 0
-          - 1
-          - 1
-          color: '#FFFFFF'
-          type: 0
-          border: {x: 0, y: 0, z: 0, w: 0}
-          flip: 0
-          gradient: 0
-          colorTop: '#FFFFFF'
-          colorBot: '#B2B2B2'
-          widget:
-            pivot: 4
-            depth: 1
-            size: {x: 100, y: 100}
-        btn:
-          enable: 1
-          action: 
-          transition: 0.2
-          colorNormal: '#FFFFFF'
-          colorHover: '#E1C896'
-          colorPressed: '#B7A37B'
-          colorDisabled: '#7F7F7F'
-          colliderCenter: {x: 0, y: 0, z: 0}
-          colliderSize: {x: 120, y: 120, z: 0}
-        Hierarchies: []
-      - name: img[white]
+      - name: Panel (1)
         position: {x: 0, y: 0, z: 0}
         rotate: {x: -0, y: 0, z: 0}
         scale: {x: 1, y: 1, z: 1}
@@ -360,24 +370,20 @@ MonoBehaviour:
             depth: 0
             size: {x: 0, y: 0}
         texture:
-          enable: 1
-          imageName: burlap
-          uvRect:
-          - 0
-          - 0
-          - 1
-          - 1
-          color: '#FFFFFF'
+          enable: 0
+          imageName: 
+          uvRect: []
+          color: 
           type: 0
           border: {x: 0, y: 0, z: 0, w: 0}
           flip: 0
           gradient: 0
-          colorTop: '#FFFFFF'
-          colorBot: '#B2B2B2'
+          colorTop: 
+          colorBot: 
           widget:
-            pivot: 4
+            pivot: 0
             depth: 0
-            size: {x: 480, y: 200}
+            size: {x: 0, y: 0}
         btn:
           enable: 0
           action: 
@@ -389,38 +395,23 @@ MonoBehaviour:
           colliderCenter: {x: 0, y: 0, z: 0}
           colliderSize: {x: 0, y: 0, z: 0}
         Hierarchies:
-        - name: Label
-          position: {x: 0, y: 0, z: 0}
+        - name: goto[close]
+          position: {x: 229, y: 99, z: 0}
           rotate: {x: -0, y: 0, z: 0}
           scale: {x: 1, y: 1, z: 1}
           label:
-            enable: 1
-            text: New Label
-            fontSize: 62
+            enable: 0
+            text: 
+            fontSize: 0
             maxLine: 0
-            fontName: Font-Bold
+            fontName: 
             fontStyle: 0
             overflow: 0
-            color: '#FFFFFF'
-            spacing: {x: 0, y: 0}
-            effect: 3
-            effectSize: {x: 1, y: 1}
-            effectColor: '#000000'
-            gradient: 0
-            colorTop: '#FFFFFF'
-            colorBot: '#B2B2B2'
-            widget:
-              pivot: 4
-              depth: 2
-              size: {x: 700, y: 100}
-          texture:
-            enable: 0
-            imageName: 
-            uvRect: []
             color: 
-            type: 0
-            border: {x: 0, y: 0, z: 0, w: 0}
-            flip: 0
+            spacing: {x: 0, y: 0}
+            effect: 0
+            effectSize: {x: 0, y: 0}
+            effectColor: 
             gradient: 0
             colorTop: 
             colorBot: 
@@ -428,6 +419,79 @@ MonoBehaviour:
               pivot: 0
               depth: 0
               size: {x: 0, y: 0}
+          texture:
+            enable: 1
+            imageName: close
+            uvRect:
+            - 0
+            - 0
+            - 1
+            - 1
+            color: '#FFFFFF'
+            type: 0
+            border: {x: 0, y: 0, z: 0, w: 0}
+            flip: 0
+            gradient: 0
+            colorTop: '#FFFFFF'
+            colorBot: '#B2B2B2'
+            widget:
+              pivot: 4
+              depth: 1
+              size: {x: 100, y: 100}
+          btn:
+            enable: 1
+            action: 
+            transition: 0.2
+            colorNormal: '#FFFFFF'
+            colorHover: '#E1C896'
+            colorPressed: '#B7A37B'
+            colorDisabled: '#7F7F7F'
+            colliderCenter: {x: 0, y: 0, z: 0}
+            colliderSize: {x: 120, y: 120, z: 0}
+          Hierarchies: []
+        - name: img[white]
+          position: {x: 0, y: 0, z: 0}
+          rotate: {x: -0, y: 0, z: 0}
+          scale: {x: 1, y: 1, z: 1}
+          label:
+            enable: 0
+            text: 
+            fontSize: 0
+            maxLine: 0
+            fontName: 
+            fontStyle: 0
+            overflow: 0
+            color: 
+            spacing: {x: 0, y: 0}
+            effect: 0
+            effectSize: {x: 0, y: 0}
+            effectColor: 
+            gradient: 0
+            colorTop: 
+            colorBot: 
+            widget:
+              pivot: 0
+              depth: 0
+              size: {x: 0, y: 0}
+          texture:
+            enable: 1
+            imageName: 
+            uvRect:
+            - 0
+            - 0
+            - 1
+            - 1
+            color: '#FFFFFF'
+            type: 0
+            border: {x: 0, y: 0, z: 0, w: 0}
+            flip: 0
+            gradient: 0
+            colorTop: '#FFFFFF'
+            colorBot: '#B2B2B2'
+            widget:
+              pivot: 4
+              depth: 0
+              size: {x: 480, y: 200}
           btn:
             enable: 0
             action: 
@@ -438,7 +502,158 @@ MonoBehaviour:
             colorDisabled: 
             colliderCenter: {x: 0, y: 0, z: 0}
             colliderSize: {x: 0, y: 0, z: 0}
-          Hierarchies: []
+          Hierarchies:
+          - name: Label
+            position: {x: 0, y: 0, z: 0}
+            rotate: {x: -0, y: 0, z: 0}
+            scale: {x: 1, y: 1, z: 1}
+            label:
+              enable: 1
+              text: New Label
+              fontSize: 62
+              maxLine: 0
+              fontName: Font-Bold
+              fontStyle: 0
+              overflow: 0
+              color: '#FFFFFF'
+              spacing: {x: 0, y: 0}
+              effect: 3
+              effectSize: {x: 4, y: 4}
+              effectColor: '#000000'
+              gradient: 1
+              colorTop: '#FFE700'
+              colorBot: '#4F9900'
+              widget:
+                pivot: 4
+                depth: 2
+                size: {x: 700, y: 100}
+            texture:
+              enable: 0
+              imageName: 
+              uvRect: []
+              color: 
+              type: 0
+              border: {x: 0, y: 0, z: 0, w: 0}
+              flip: 0
+              gradient: 0
+              colorTop: 
+              colorBot: 
+              widget:
+                pivot: 0
+                depth: 0
+                size: {x: 0, y: 0}
+            btn:
+              enable: 0
+              action: 
+              transition: 0
+              colorNormal: 
+              colorHover: 
+              colorPressed: 
+              colorDisabled: 
+              colliderCenter: {x: 0, y: 0, z: 0}
+              colliderSize: {x: 0, y: 0, z: 0}
+            Hierarchies: []
+--- !u!1 &177581171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 177581172}
+  - component: {fileID: 177581173}
+  m_Layer: 5
+  m_Name: gg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &177581172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177581171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 234446824}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &177581173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177581171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 700
+  mHeight: 100
+  mDepth: 2
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 7
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
+  mFont: {fileID: 0}
+  mText: New Label
+  mFontSize: 62
+  mFontStyle: 0
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 3
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 4, y: 4}
+  mOverflow: 0
+  mApplyGradient: 1
+  mGradientTop: {r: 1, g: 0.90588236, b: 0, a: 1}
+  mGradientBottom: {r: 0.30980393, g: 0.6, b: 0, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mOverflowEllipsis: 0
+  mOverflowWidth: 0
+  mOverflowHeight: 0
+  mModifier: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
 --- !u!1 &223029968
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,6 +793,133 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
+--- !u!1 &234446823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234446824}
+  - component: {fileID: 234446825}
+  m_Layer: 5
+  m_Name: '{"name":"img[white]"}'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &234446824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234446823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1457555198}
+  - {fileID: 177581172}
+  m_Father: {fileID: 515662187}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &234446825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234446823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 480
+  mHeight: 200
+  mDepth: 0
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.4
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 0}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!1 &515662186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 515662187}
+  m_Layer: 0
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &515662187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515662186}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 939283184}
+  - {fileID: 234446824}
+  m_Father: {fileID: 1643056607}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540058263
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,11 +1246,11 @@ MonoBehaviour:
   mEffectStyle: 3
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
-  mEffectDistance: {x: 1, y: 1}
+  mEffectDistance: {x: 4, y: 4}
   mOverflow: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mApplyGradient: 1
+  mGradientTop: {r: 1, g: 0.90713394, b: 0, a: 1}
+  mGradientBottom: {r: 0.3101739, g: 0.6037736, b: 0, a: 1}
   mSpacingX: 0
   mSpacingY: 0
   mUseFloatSpacing: 0
@@ -923,6 +1265,140 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
+--- !u!1 &939283183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939283184}
+  - component: {fileID: 939283187}
+  - component: {fileID: 939283186}
+  - component: {fileID: 939283185}
+  m_Layer: 5
+  m_Name: '{"name":"goto[close]","btnAct":"close"}'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &939283184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939283183}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 229, y: 99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 515662187}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &939283185
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939283183}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120, y: 120, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &939283186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939283183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 939283183}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
+--- !u!114 &939283187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939283183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 1
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: b65e9be99974bc94eab5d6698811d0b8, type: 3}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
 --- !u!1 &1181378180
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,6 +1778,107 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
+--- !u!1 &1457555197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457555198}
+  - component: {fileID: 1457555199}
+  m_Layer: 5
+  m_Name: Label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1457555198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457555197}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 234446824}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1457555199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457555197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 700
+  mHeight: 100
+  mDepth: 2
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 7
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
+  mFont: {fileID: 0}
+  mText: New Label
+  mFontSize: 62
+  mFontStyle: 0
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 3
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 4, y: 4}
+  mOverflow: 0
+  mApplyGradient: 1
+  mGradientTop: {r: 1, g: 0.90588236, b: 0, a: 1}
+  mGradientBottom: {r: 0.30980393, g: 0.6, b: 0, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mOverflowEllipsis: 0
+  mOverflowWidth: 0
+  mOverflowHeight: 0
+  mModifier: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
 --- !u!1 &1616600004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1318,7 +1895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1616600005
 Transform:
   m_ObjectHideFlags: 0
@@ -1360,8 +1937,71 @@ MonoBehaviour:
     Double: 0
     Transform: {fileID: 0}
     MonoBehaviour: {fileID: 0}
-  Json: '{"name":"root","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"Panel","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"goto[close]","position":{"x":229.0,"y":99.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"close","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":1,"size":{"x":100.0,"y":100.0}}},"btn":{"enable":true,"transition":0.2,"colorNormal":"#FFFFFF","colorHover":"#E1C896","colorPressed":"#B7A37B","colorDisabled":"#7F7F7F","colliderCenter":{"x":0.0,"y":0.0,"z":0.0},"colliderSize":{"x":120.0,"y":120.0,"z":0.0}}},{"name":"img[white]","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"burlap","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":0,"size":{"x":480.0,"y":200.0}}},"Hierarchies":[{"name":"Label","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"label":{"enable":true,"text":"New
-    Label","fontSize":62,"maxLine":0,"fontName":"Font-Bold","fontStyle":0,"overflow":0,"color":"#FFFFFF","spacing":{"x":0.0,"y":0.0},"effect":3,"effectSize":{"x":1.0,"y":1.0},"effectColor":"#000000","gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":2,"size":{"x":700.0,"y":100.0}}}}]}]}]}'
+  Json: "{\r\n  \"name\": \"root\",\r\n  \"position\": {\r\n    \"x\": 0.0,\r\n   
+    \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"rotate\": {\r\n    \"x\": 0.0,\r\n   
+    \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"scale\": {\r\n    \"x\": 1.0,\r\n   
+    \"y\": 1.0,\r\n    \"z\": 1.0\r\n  },\r\n  \"Hierarchies\": [\r\n    {\r\n     
+    \"name\": \"Panel\",\r\n      \"position\": {\r\n        \"x\": 0.0,\r\n       
+    \"y\": 0.0,\r\n        \"z\": 0.0\r\n      },\r\n      \"rotate\": {\r\n       
+    \"x\": 0.0,\r\n        \"y\": 0.0,\r\n        \"z\": 0.0\r\n      },\r\n     
+    \"scale\": {\r\n        \"x\": 1.0,\r\n        \"y\": 1.0,\r\n        \"z\":
+    1.0\r\n      },\r\n      \"Hierarchies\": [\r\n        {\r\n          \"name\":
+    \"goto[close]\",\r\n          \"position\": {\r\n            \"x\": 229.0,\r\n           
+    \"y\": 99.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"rotate\":
+    {\r\n            \"x\": 0.0,\r\n            \"y\": 0.0,\r\n            \"z\":
+    0.0\r\n          },\r\n          \"scale\": {\r\n            \"x\": 1.0,\r\n           
+    \"y\": 1.0,\r\n            \"z\": 1.0\r\n          },\r\n          \"texture\":
+    {\r\n            \"enable\": true,\r\n            \"imageName\": \"close\",\r\n           
+    \"uvRect\": [\r\n              0.0,\r\n              0.0,\r\n              1.0,\r\n             
+    1.0\r\n            ],\r\n            \"color\": \"#FFFFFF\",\r\n            \"type\":
+    0,\r\n            \"border\": {\r\n              \"x\": 0.0,\r\n             
+    \"y\": 0.0,\r\n              \"z\": 0.0,\r\n              \"w\": 0.0\r\n           
+    },\r\n            \"flip\": 0,\r\n            \"gradient\": false,\r\n           
+    \"colorTop\": \"#FFFFFF\",\r\n            \"colorBot\": \"#B2B2B2\",\r\n           
+    \"widget\": {\r\n              \"pivot\": 4,\r\n              \"depth\": 1,\r\n             
+    \"size\": {\r\n                \"x\": 100.0,\r\n                \"y\": 100.0\r\n             
+    }\r\n            }\r\n          },\r\n          \"btn\": {\r\n            \"enable\":
+    true,\r\n            \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
+    \"colorHover\": \"#E1C896\",\r\n            \"colorPressed\": \"#B7A37B\",\r\n           
+    \"colorDisabled\": \"#7F7F7F\",\r\n            \"colliderCenter\": {\r\n             
+    \"x\": 0.0,\r\n              \"y\": 0.0,\r\n              \"z\": 0.0\r\n           
+    },\r\n            \"colliderSize\": {\r\n              \"x\": 120.0,\r\n             
+    \"y\": 120.0,\r\n              \"z\": 0.0\r\n            }\r\n          }\r\n       
+    },\r\n        {\r\n          \"name\": \"img[white]\",\r\n          \"position\":
+    {\r\n            \"x\": 0.0,\r\n            \"y\": 0.0,\r\n            \"z\":
+    0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"burlap\",\r\n            \"uvRect\": [\r\n              0.0,\r\n             
+    0.0,\r\n              1.0,\r\n              1.0\r\n            ],\r\n           
+    \"color\": \"#FFFFFF\",\r\n            \"type\": 0,\r\n            \"border\":
+    {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 0,\r\n              \"size\": {\r\n               
+    \"x\": 480.0,\r\n                \"y\": 200.0\r\n              }\r\n           
+    }\r\n          },\r\n          \"Hierarchies\": [\r\n            {\r\n             
+    \"name\": \"Label\",\r\n              \"position\": {\r\n                \"x\":
+    0.0,\r\n                \"y\": 0.0,\r\n                \"z\": 0.0\r\n             
+    },\r\n              \"rotate\": {\r\n                \"x\": 0.0,\r\n               
+    \"y\": 0.0,\r\n                \"z\": 0.0\r\n              },\r\n             
+    \"scale\": {\r\n                \"x\": 1.0,\r\n                \"y\": 1.0,\r\n               
+    \"z\": 1.0\r\n              },\r\n              \"label\": {\r\n               
+    \"enable\": true,\r\n                \"text\": \"New Label\",\r\n               
+    \"fontSize\": 62,\r\n                \"maxLine\": 0,\r\n                \"fontName\":
+    \"Font-Bold\",\r\n                \"fontStyle\": 0,\r\n                \"overflow\":
+    0,\r\n                \"color\": \"#FFFFFF\",\r\n                \"spacing\":
+    {\r\n                  \"x\": 0.0,\r\n                  \"y\": 0.0\r\n               
+    },\r\n                \"effect\": 3,\r\n                \"effectSize\": {\r\n                 
+    \"x\": 4.0,\r\n                  \"y\": 4.0\r\n                },\r\n               
+    \"effectColor\": \"#000000\",\r\n                \"gradient\": true,\r\n               
+    \"colorTop\": \"#FFE700\",\r\n                \"colorBot\": \"#4F9900\",\r\n               
+    \"widget\": {\r\n                  \"pivot\": 4,\r\n                  \"depth\":
+    2,\r\n                  \"size\": {\r\n                    \"x\": 700.0,\r\n                   
+    \"y\": 100.0\r\n                  }\r\n                }\r\n              }\r\n           
+    }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"
   guiData:
     name: root
     position: {x: 0, y: 0, z: 0}
@@ -1586,11 +2226,11 @@ MonoBehaviour:
             color: '#FFFFFF'
             spacing: {x: 0, y: 0}
             effect: 3
-            effectSize: {x: 1, y: 1}
+            effectSize: {x: 4, y: 4}
             effectColor: '#000000'
-            gradient: 0
-            colorTop: '#FFFFFF'
-            colorBot: '#B2B2B2'
+            gradient: 1
+            colorTop: '#FFE700'
+            colorBot: '#4F9900'
             widget:
               pivot: 4
               depth: 2
@@ -1621,6 +2261,37 @@ MonoBehaviour:
             colliderCenter: {x: 0, y: 0, z: 0}
             colliderSize: {x: 0, y: 0, z: 0}
           Hierarchies: []
+--- !u!1 &1643056606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1643056607}
+  m_Layer: 0
+  m_Name: root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1643056607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643056606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 515662187}
+  m_Father: {fileID: 30934056}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1704313639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,7 +2612,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3000
+  startingRenderQueue: 3002
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0

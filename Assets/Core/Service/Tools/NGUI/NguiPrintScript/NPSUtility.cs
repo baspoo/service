@@ -13,6 +13,7 @@ public class NPSUtility : MonoBehaviour
             return m_instance;
         }
     }
+    public Texture Cover;
     public List<Font> Fonts;
     public List<Texture> Texture;
 

@@ -453,14 +453,14 @@ public class EditorGUIService
 					GUI.backgroundColor = opt.Color;
 					if (opt.Description.notnull())
 					{
-						if (GUILayout.Button(new GUIContent(opt.Icon, opt.Description), GUILayout.MaxWidth(20f), GUILayout.MaxHeight(14f)))
+						if (GUILayout.Button(new GUIContent(opt.Icon, opt.Description), GUILayout.MaxWidth(20f), GUILayout.MaxHeight(18f)))
 						{
 							opt.Exe?.Invoke();
 						}
 					}
 					else
 					{
-						if (GUILayout.Button(opt.Icon, GUILayout.MaxWidth(20f), GUILayout.MaxHeight(14f)))
+						if (GUILayout.Button(opt.Icon, GUILayout.MaxWidth(20f), GUILayout.MaxHeight(18f)))
 						{
 							opt.Exe?.Invoke();
 						}
@@ -607,8 +607,10 @@ public class EditorGUIService
 
 	public class ListView 
 	{
-
-		public static void Print(string listName, int count, System.Action<int> view, System.Action add, System.Action<int> des)
+		public enum LineStyle { 
+			Once,Group
+		}
+		public static void Print(string listName, int count, System.Action<int> view, System.Action add, System.Action<int> des , LineStyle lineStyle = LineStyle.Once)
 		{
 			if (EditorGUIService.DrawHeader(listName, "Print.List." + listName, false, false, new Option()
 			{
@@ -625,18 +627,34 @@ public class EditorGUIService
 
 				for (int i = 0; i < count; i++)
 				{
-					EditorGUILayout.Space();
-					GUI.backgroundColor = Color.gray;
-					EditorGUIService.BeginContents(false);
-					view?.Invoke(i);
-					GUI.backgroundColor = Color.red;
-					if (GUILayout.Button("✘"))
+					if (lineStyle == LineStyle.Once)
 					{
-						des?.Invoke(i);
-						return;
+						EditorGUILayout.BeginHorizontal();
+						view?.Invoke(i);
+						GUI.backgroundColor = Color.red;
+						if (GUILayout.Button("✘"))
+						{
+							des?.Invoke(i);
+							return;
+						}
+						GUI.backgroundColor = Color.white;
+						EditorGUILayout.EndHorizontal();
 					}
-					GUI.backgroundColor = Color.white;
-					EditorGUIService.EndContents();
+					else 
+					{
+						EditorGUILayout.Space();
+						GUI.backgroundColor = Color.gray;
+						EditorGUIService.BeginContents(false);
+						view?.Invoke(i);
+						GUI.backgroundColor = Color.red;
+						if (GUILayout.Button("✘"))
+						{
+							des?.Invoke(i);
+							return;
+						}
+						GUI.backgroundColor = Color.white;
+						EditorGUIService.EndContents();
+					}
 				}
 
 			}
