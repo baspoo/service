@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -121,6 +121,463 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30934055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30934056}
+  - component: {fileID: 30934057}
+  m_Layer: 5
+  m_Name: root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30934056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30934055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2056941903}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &30934057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30934055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efe667f37a91604890bb0af9c1c7a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NguiToJson:
+    Prams: 0
+    BtnName: Run
+    String: 
+    Double: 0
+    Transform: {fileID: 0}
+    MonoBehaviour: {fileID: 0}
+  JsonToNgui:
+    Prams: 0
+    BtnName: Run
+    String: 
+    Double: 0
+    Transform: {fileID: 0}
+    MonoBehaviour: {fileID: 0}
+  Json: '{"name":"root","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"Panel","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"goto[close]","position":{"x":229.0,"y":99.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"close","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":1,"size":{"x":100.0,"y":100.0}}},"btn":{"enable":true,"transition":0.2,"colorNormal":"#FFFFFF","colorHover":"#E1C896","colorPressed":"#B7A37B","colorDisabled":"#7F7F7F","colliderCenter":{"x":0.0,"y":0.0,"z":0.0},"colliderSize":{"x":120.0,"y":120.0,"z":0.0}}},{"name":"img[white]","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"burlap","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":0,"size":{"x":480.0,"y":200.0}}},"Hierarchies":[{"name":"Label","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"label":{"enable":true,"text":"New
+    Label","fontSize":62,"maxLine":0,"fontName":"Font-Bold","fontStyle":0,"overflow":0,"color":"#FFFFFF","spacing":{"x":0.0,"y":0.0},"effect":3,"effectSize":{"x":1.0,"y":1.0},"effectColor":"#000000","gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":2,"size":{"x":700.0,"y":100.0}}}}]}]}]}'
+  guiData:
+    name: root
+    position: {x: 0, y: 0, z: 0}
+    rotate: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    label:
+      enable: 0
+      text: 
+      fontSize: 0
+      maxLine: 0
+      fontName: 
+      fontStyle: 0
+      overflow: 0
+      color: 
+      spacing: {x: 0, y: 0}
+      effect: 0
+      effectSize: {x: 0, y: 0}
+      effectColor: 
+      gradient: 0
+      colorTop: 
+      colorBot: 
+      widget:
+        pivot: 0
+        depth: 0
+        size: {x: 0, y: 0}
+    texture:
+      enable: 0
+      imageName: 
+      uvRect: []
+      color: 
+      type: 0
+      border: {x: 0, y: 0, z: 0, w: 0}
+      flip: 0
+      gradient: 0
+      colorTop: 
+      colorBot: 
+      widget:
+        pivot: 0
+        depth: 0
+        size: {x: 0, y: 0}
+    btn:
+      enable: 0
+      action: 
+      transition: 0
+      colorNormal: 
+      colorHover: 
+      colorPressed: 
+      colorDisabled: 
+      colliderCenter: {x: 0, y: 0, z: 0}
+      colliderSize: {x: 0, y: 0, z: 0}
+    Hierarchies:
+    - name: Panel
+      position: {x: 0, y: 0, z: 0}
+      rotate: {x: -0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      label:
+        enable: 0
+        text: 
+        fontSize: 0
+        maxLine: 0
+        fontName: 
+        fontStyle: 0
+        overflow: 0
+        color: 
+        spacing: {x: 0, y: 0}
+        effect: 0
+        effectSize: {x: 0, y: 0}
+        effectColor: 
+        gradient: 0
+        colorTop: 
+        colorBot: 
+        widget:
+          pivot: 0
+          depth: 0
+          size: {x: 0, y: 0}
+      texture:
+        enable: 0
+        imageName: 
+        uvRect: []
+        color: 
+        type: 0
+        border: {x: 0, y: 0, z: 0, w: 0}
+        flip: 0
+        gradient: 0
+        colorTop: 
+        colorBot: 
+        widget:
+          pivot: 0
+          depth: 0
+          size: {x: 0, y: 0}
+      btn:
+        enable: 0
+        action: 
+        transition: 0
+        colorNormal: 
+        colorHover: 
+        colorPressed: 
+        colorDisabled: 
+        colliderCenter: {x: 0, y: 0, z: 0}
+        colliderSize: {x: 0, y: 0, z: 0}
+      Hierarchies:
+      - name: goto[close]
+        position: {x: 229, y: 99, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: close
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#FFFFFF'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 1
+            size: {x: 100, y: 100}
+        btn:
+          enable: 1
+          action: 
+          transition: 0.2
+          colorNormal: '#FFFFFF'
+          colorHover: '#E1C896'
+          colorPressed: '#B7A37B'
+          colorDisabled: '#7F7F7F'
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 120, y: 120, z: 0}
+        Hierarchies: []
+      - name: img[white]
+        position: {x: 0, y: 0, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: burlap
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#FFFFFF'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 0
+            size: {x: 480, y: 200}
+        btn:
+          enable: 0
+          action: 
+          transition: 0
+          colorNormal: 
+          colorHover: 
+          colorPressed: 
+          colorDisabled: 
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 0, y: 0, z: 0}
+        Hierarchies:
+        - name: Label
+          position: {x: 0, y: 0, z: 0}
+          rotate: {x: -0, y: 0, z: 0}
+          scale: {x: 1, y: 1, z: 1}
+          label:
+            enable: 1
+            text: New Label
+            fontSize: 62
+            maxLine: 0
+            fontName: Font-Bold
+            fontStyle: 0
+            overflow: 0
+            color: '#FFFFFF'
+            spacing: {x: 0, y: 0}
+            effect: 3
+            effectSize: {x: 1, y: 1}
+            effectColor: '#000000'
+            gradient: 0
+            colorTop: '#FFFFFF'
+            colorBot: '#B2B2B2'
+            widget:
+              pivot: 4
+              depth: 2
+              size: {x: 700, y: 100}
+          texture:
+            enable: 0
+            imageName: 
+            uvRect: []
+            color: 
+            type: 0
+            border: {x: 0, y: 0, z: 0, w: 0}
+            flip: 0
+            gradient: 0
+            colorTop: 
+            colorBot: 
+            widget:
+              pivot: 0
+              depth: 0
+              size: {x: 0, y: 0}
+          btn:
+            enable: 0
+            action: 
+            transition: 0
+            colorNormal: 
+            colorHover: 
+            colorPressed: 
+            colorDisabled: 
+            colliderCenter: {x: 0, y: 0, z: 0}
+            colliderSize: {x: 0, y: 0, z: 0}
+          Hierarchies: []
+--- !u!1 &223029968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223029969}
+  - component: {fileID: 223029972}
+  - component: {fileID: 223029971}
+  - component: {fileID: 223029970}
+  m_Layer: 5
+  m_Name: goto&close[https:\\sdfsdfksod.com]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &223029969
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223029968}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 230, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1239622534}
+  m_Father: {fileID: 2056941903}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &223029970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223029968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 480, y: 200, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &223029971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223029968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 223029968}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick:
+  - mTarget: {fileID: 1704313643}
+    mMethodName: Test
+    mParameters: []
+    oneShot: 0
+--- !u!114 &223029972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223029968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 480
+  mHeight: 200
+  mDepth: 0
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 1
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.4
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: 5705f2fc1302ea340a90c9525cc0428b, type: 3}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
 --- !u!1 &540058263
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,7 +589,7 @@ GameObject:
   - component: {fileID: 540058264}
   - component: {fileID: 540058265}
   m_Layer: 5
-  m_Name: Texture
+  m_Name: img[white]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,14 +641,14 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 533
-  mHeight: 533
+  mWidth: 480
+  mHeight: 200
   mDepth: 0
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
-  keepAspectRatio: 1
-  aspectRatio: 1
+  keepAspectRatio: 0
+  aspectRatio: 2.4
   mType: 0
   mFillDirection: 4
   mFillAmount: 1
@@ -246,7 +703,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2056941903}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &796010318
 MonoBehaviour:
@@ -365,6 +822,107 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &880590544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 880590545}
+  - component: {fileID: 880590546}
+  m_Layer: 5
+  m_Name: Label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &880590545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880590544}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1434220976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &880590546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 880590544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 700
+  mHeight: 100
+  mDepth: 2
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 7
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
+  mFont: {fileID: 0}
+  mText: New Label
+  mFontSize: 62
+  mFontStyle: 0
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 3
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mOverflowEllipsis: 0
+  mOverflowWidth: 0
+  mOverflowHeight: 0
+  mModifier: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
 --- !u!1 &1181378180
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,29 +985,130 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 120
-  mHeight: 20
-  mDepth: 1
+  mWidth: 700
+  mHeight: 100
+  mDepth: 2
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 6
+  aspectRatio: 7
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
   mFont: {fileID: 0}
   mText: New Label
-  mFontSize: 40
+  mFontSize: 62
   mFontStyle: 0
   mAlignment: 0
   mEncoding: 1
   mMaxLineCount: 0
-  mEffectStyle: 0
+  mEffectStyle: 3
   mEffectColor: {r: 0, g: 0, b: 0, a: 1}
   mSymbols: 1
   mEffectDistance: {x: 1, y: 1}
   mOverflow: 0
-  mApplyGradient: 1
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 0
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mOverflowEllipsis: 0
+  mOverflowWidth: 0
+  mOverflowHeight: 0
+  mModifier: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!1 &1239622533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1239622534}
+  - component: {fileID: 1239622535}
+  m_Layer: 5
+  m_Name: Label
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1239622534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239622533}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 223029969}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1239622535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239622533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 700
+  mHeight: 100
+  mDepth: 2
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 7
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
+  mFont: {fileID: 0}
+  mText: New Label
+  mFontSize: 62
+  mFontStyle: 0
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 3
+  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 1, y: 1}
+  mOverflow: 0
+  mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
   mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   mSpacingX: 0
@@ -549,7 +1208,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1986723497
+--- !u!1 &1434220975
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -557,8 +1216,669 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1986723498}
-  - component: {fileID: 1986723499}
+  - component: {fileID: 1434220976}
+  - component: {fileID: 1434220977}
+  m_Layer: 5
+  m_Name: img[white]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1434220976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434220975}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 880590545}
+  m_Father: {fileID: 1812163415}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1434220977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434220975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 480
+  mHeight: 200
+  mDepth: 0
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.4
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: 5705f2fc1302ea340a90c9525cc0428b, type: 3}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!1 &1616600004
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1616600005}
+  - component: {fileID: 1616600006}
+  m_Layer: 5
+  m_Name: root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1616600005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616600004}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1812163415}
+  m_Father: {fileID: 2056941903}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1616600006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616600004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efe667f37a91604890bb0af9c1c7a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NguiToJson:
+    Prams: 0
+    BtnName: Run
+    String: 
+    Double: 0
+    Transform: {fileID: 0}
+    MonoBehaviour: {fileID: 0}
+  JsonToNgui:
+    Prams: 0
+    BtnName: Run
+    String: 
+    Double: 0
+    Transform: {fileID: 0}
+    MonoBehaviour: {fileID: 0}
+  Json: '{"name":"root","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"Panel","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"Hierarchies":[{"name":"goto[close]","position":{"x":229.0,"y":99.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"close","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":1,"size":{"x":100.0,"y":100.0}}},"btn":{"enable":true,"transition":0.2,"colorNormal":"#FFFFFF","colorHover":"#E1C896","colorPressed":"#B7A37B","colorDisabled":"#7F7F7F","colliderCenter":{"x":0.0,"y":0.0,"z":0.0},"colliderSize":{"x":120.0,"y":120.0,"z":0.0}}},{"name":"img[white]","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"texture":{"enable":true,"imageName":"burlap","uvRect":[0.0,0.0,1.0,1.0],"color":"#FFFFFF","type":0,"border":{"x":0.0,"y":0.0,"z":0.0,"w":0.0},"flip":0,"gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":0,"size":{"x":480.0,"y":200.0}}},"Hierarchies":[{"name":"Label","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"label":{"enable":true,"text":"New
+    Label","fontSize":62,"maxLine":0,"fontName":"Font-Bold","fontStyle":0,"overflow":0,"color":"#FFFFFF","spacing":{"x":0.0,"y":0.0},"effect":3,"effectSize":{"x":1.0,"y":1.0},"effectColor":"#000000","gradient":false,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":2,"size":{"x":700.0,"y":100.0}}}}]}]}]}'
+  guiData:
+    name: root
+    position: {x: 0, y: 0, z: 0}
+    rotate: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    label:
+      enable: 0
+      text: 
+      fontSize: 0
+      maxLine: 0
+      fontName: 
+      fontStyle: 0
+      overflow: 0
+      color: 
+      spacing: {x: 0, y: 0}
+      effect: 0
+      effectSize: {x: 0, y: 0}
+      effectColor: 
+      gradient: 0
+      colorTop: 
+      colorBot: 
+      widget:
+        pivot: 0
+        depth: 0
+        size: {x: 0, y: 0}
+    texture:
+      enable: 0
+      imageName: 
+      uvRect: []
+      color: 
+      type: 0
+      border: {x: 0, y: 0, z: 0, w: 0}
+      flip: 0
+      gradient: 0
+      colorTop: 
+      colorBot: 
+      widget:
+        pivot: 0
+        depth: 0
+        size: {x: 0, y: 0}
+    btn:
+      enable: 0
+      action: 
+      transition: 0
+      colorNormal: 
+      colorHover: 
+      colorPressed: 
+      colorDisabled: 
+      colliderCenter: {x: 0, y: 0, z: 0}
+      colliderSize: {x: 0, y: 0, z: 0}
+    Hierarchies:
+    - name: Panel
+      position: {x: 0, y: 0, z: 0}
+      rotate: {x: -0, y: 0, z: 0}
+      scale: {x: 1, y: 1, z: 1}
+      label:
+        enable: 0
+        text: 
+        fontSize: 0
+        maxLine: 0
+        fontName: 
+        fontStyle: 0
+        overflow: 0
+        color: 
+        spacing: {x: 0, y: 0}
+        effect: 0
+        effectSize: {x: 0, y: 0}
+        effectColor: 
+        gradient: 0
+        colorTop: 
+        colorBot: 
+        widget:
+          pivot: 0
+          depth: 0
+          size: {x: 0, y: 0}
+      texture:
+        enable: 0
+        imageName: 
+        uvRect: []
+        color: 
+        type: 0
+        border: {x: 0, y: 0, z: 0, w: 0}
+        flip: 0
+        gradient: 0
+        colorTop: 
+        colorBot: 
+        widget:
+          pivot: 0
+          depth: 0
+          size: {x: 0, y: 0}
+      btn:
+        enable: 0
+        action: 
+        transition: 0
+        colorNormal: 
+        colorHover: 
+        colorPressed: 
+        colorDisabled: 
+        colliderCenter: {x: 0, y: 0, z: 0}
+        colliderSize: {x: 0, y: 0, z: 0}
+      Hierarchies:
+      - name: goto[close]
+        position: {x: 229, y: 99, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: close
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#FFFFFF'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 1
+            size: {x: 100, y: 100}
+        btn:
+          enable: 1
+          action: 
+          transition: 0.2
+          colorNormal: '#FFFFFF'
+          colorHover: '#E1C896'
+          colorPressed: '#B7A37B'
+          colorDisabled: '#7F7F7F'
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 120, y: 120, z: 0}
+        Hierarchies: []
+      - name: img[white]
+        position: {x: 0, y: 0, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: burlap
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#FFFFFF'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 0
+            size: {x: 480, y: 200}
+        btn:
+          enable: 0
+          action: 
+          transition: 0
+          colorNormal: 
+          colorHover: 
+          colorPressed: 
+          colorDisabled: 
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 0, y: 0, z: 0}
+        Hierarchies:
+        - name: Label
+          position: {x: 0, y: 0, z: 0}
+          rotate: {x: -0, y: 0, z: 0}
+          scale: {x: 1, y: 1, z: 1}
+          label:
+            enable: 1
+            text: New Label
+            fontSize: 62
+            maxLine: 0
+            fontName: Font-Bold
+            fontStyle: 0
+            overflow: 0
+            color: '#FFFFFF'
+            spacing: {x: 0, y: 0}
+            effect: 3
+            effectSize: {x: 1, y: 1}
+            effectColor: '#000000'
+            gradient: 0
+            colorTop: '#FFFFFF'
+            colorBot: '#B2B2B2'
+            widget:
+              pivot: 4
+              depth: 2
+              size: {x: 700, y: 100}
+          texture:
+            enable: 0
+            imageName: 
+            uvRect: []
+            color: 
+            type: 0
+            border: {x: 0, y: 0, z: 0, w: 0}
+            flip: 0
+            gradient: 0
+            colorTop: 
+            colorBot: 
+            widget:
+              pivot: 0
+              depth: 0
+              size: {x: 0, y: 0}
+          btn:
+            enable: 0
+            action: 
+            transition: 0
+            colorNormal: 
+            colorHover: 
+            colorPressed: 
+            colorDisabled: 
+            colliderCenter: {x: 0, y: 0, z: 0}
+            colliderSize: {x: 0, y: 0, z: 0}
+          Hierarchies: []
+--- !u!1 &1704313639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704313640}
+  - component: {fileID: 1704313643}
+  - component: {fileID: 1704313642}
+  - component: {fileID: 1704313641}
+  m_Layer: 5
+  m_Name: img[https:\\dsfsdf]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1704313640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704313639}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1986723498}
+  m_Father: {fileID: 2056941903}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1704313641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704313639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 2
+  mHeight: 16
+  mDepth: 0
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.125
+  keepCrispWhenShrunk: 1
+  mTrueTypeFont: {fileID: 12800000, guid: 325a32228e334114db298913e28a3666, type: 3}
+  mFont: {fileID: 0}
+  mText: 5555555
+  mFontSize: 16
+  mFontStyle: 1
+  mAlignment: 0
+  mEncoding: 1
+  mMaxLineCount: 0
+  mEffectStyle: 2
+  mEffectColor: {r: 1, g: 0.8018225, b: 0.1462264, a: 1}
+  mSymbols: 1
+  mEffectDistance: {x: 5.86, y: 5.5}
+  mOverflow: 1
+  mApplyGradient: 1
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  mSpacingX: 169
+  mSpacingY: 0
+  mUseFloatSpacing: 0
+  mFloatSpacingX: 0
+  mFloatSpacingY: 0
+  mOverflowEllipsis: 0
+  mOverflowWidth: 0
+  mOverflowHeight: 0
+  mModifier: 0
+  mShrinkToFit: 0
+  mMaxLineWidth: 0
+  mMaxLineHeight: 0
+  mLineWidth: 0
+  mMultiline: 1
+--- !u!114 &1704313642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704313639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 0, b: 0, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 200
+  mDepth: 1
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 0.5
+  mType: 1
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 1
+  mApplyGradient: 1
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: 20f7cab44eaf6e849a8b7131f390055a, type: 3}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 4, y: 8, z: 9, w: 7}
+  mFixedAspect: 0
+--- !u!114 &1704313643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704313639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7efe667f37a91604890bb0af9c1c7a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NguiToJson:
+    Prams: 0
+    BtnName: Run
+    String: 
+    Double: 0
+    Transform: {fileID: 0}
+    MonoBehaviour: {fileID: 0}
+  JsonToNgui:
+    Prams: 0
+    BtnName: Run
+    String: 
+    Double: 0
+    Transform: {fileID: 0}
+    MonoBehaviour: {fileID: 0}
+  Json: '{"name":"img[https:\\\\dsfsdf]","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"label":{"enable":true,"text":"5555555","fontSize":16,"maxLine":0,"fontName":"OpenSans-SemiBold","fontStyle":1,"overflow":1,"color":"#000000","spacing":{"x":169.0,"y":0.0},"effect":2,"effectSize":{"x":5.86,"y":5.5},"effectColor":"#FFCC25","gradient":true,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":0,"size":{"x":2.0,"y":16.0}}},"texture":{"enable":true,"imageName":"Backdrop","uvRect":[0.0,0.0,1.0,1.0],"color":"#FF0000","type":1,"border":{"x":4.0,"y":8.0,"z":9.0,"w":7.0},"flip":1,"gradient":true,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":1,"size":{"x":100.0,"y":200.0}}}}'
+  guiData:
+    name: img[https:\\dsfsdf]
+    position: {x: 0, y: 0, z: 0}
+    rotate: {x: -0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    label:
+      enable: 1
+      text: 5555555
+      fontSize: 16
+      maxLine: 0
+      fontName: OpenSans-SemiBold
+      fontStyle: 1
+      overflow: 1
+      color: '#000000'
+      spacing: {x: 169, y: 0}
+      effect: 2
+      effectSize: {x: 5.86, y: 5.5}
+      effectColor: '#FFCC25'
+      gradient: 1
+      colorTop: '#FFFFFF'
+      colorBot: '#B2B2B2'
+      widget:
+        pivot: 4
+        depth: 0
+        size: {x: 2, y: 16}
+    texture:
+      enable: 1
+      imageName: Backdrop
+      uvRect:
+      - 0
+      - 0
+      - 1
+      - 1
+      color: '#FF0000'
+      type: 1
+      border: {x: 4, y: 8, z: 9, w: 7}
+      flip: 1
+      gradient: 1
+      colorTop: '#FFFFFF'
+      colorBot: '#B2B2B2'
+      widget:
+        pivot: 4
+        depth: 1
+        size: {x: 100, y: 200}
+    btn:
+      enable: 0
+      action: 
+      transition: 0
+      colorNormal: 
+      colorHover: 
+      colorPressed: 
+      colorDisabled: 
+      colliderCenter: {x: 0, y: 0, z: 0}
+      colliderSize: {x: 0, y: 0, z: 0}
+    Hierarchies: []
+--- !u!1 &1812163414
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1812163415}
+  - component: {fileID: 1812163416}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -566,28 +1886,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1986723498
+--- !u!4 &1812163415
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986723497}
+  m_GameObject: {fileID: 1812163414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 540058264}
-  m_Father: {fileID: 2056941903}
-  m_RootOrder: 1
+  - {fileID: 2046507327}
+  - {fileID: 1434220976}
+  m_Father: {fileID: 1616600005}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1986723499
+--- !u!114 &1812163416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986723497}
+  m_GameObject: {fileID: 1812163414}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
@@ -631,6 +1952,222 @@ MonoBehaviour:
   mSortingLayerName: 
   mClipOffset: {x: 0, y: 0}
   useSortingOrder: 0
+--- !u!1 &1986723497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1986723498}
+  - component: {fileID: 1986723499}
+  m_Layer: 5
+  m_Name: Panel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1986723498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986723497}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 540058264}
+  m_Father: {fileID: 1704313640}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1986723499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986723497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  showInPanelTool: 1
+  generateNormals: 0
+  generateUV2: 0
+  shadowMode: 0
+  widgetsAreStatic: 0
+  cullWhileDragging: 1
+  alwaysOnScreen: 0
+  anchorOffset: 0
+  softBorderPadding: 1
+  renderQueue: 0
+  startingRenderQueue: 3006
+  mClipTexture: {fileID: 0}
+  mAlpha: 1
+  mClipping: 0
+  mClipRange: {x: 0, y: 0, z: 300, w: 200}
+  mClipSoftness: {x: 4, y: 4}
+  mDepth: 1
+  mSortingOrder: 0
+  mSortingLayerName: 
+  mClipOffset: {x: 0, y: 0}
+  useSortingOrder: 0
+--- !u!1 &2046507326
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046507327}
+  - component: {fileID: 2046507330}
+  - component: {fileID: 2046507329}
+  - component: {fileID: 2046507328}
+  m_Layer: 5
+  m_Name: goto[close]
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2046507327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046507326}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 229, y: 99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1812163415}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2046507328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046507326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mPivot: 4
+  mWidth: 100
+  mHeight: 100
+  mDepth: 1
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: b65e9be99974bc94eab5d6698811d0b8, type: 3}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!65 &2046507329
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046507326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120, y: 120, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2046507330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046507326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweenTarget: {fileID: 2046507326}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!1 &2056941899
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +2265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c5ecb5660b11414fb042fb826e03b73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalingStyle: 0
+  scalingStyle: 1
   manualWidth: 1280
   manualHeight: 720
   minimumHeight: 320
@@ -746,10 +2283,13 @@ Transform:
   m_GameObject: {fileID: 2056941899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0013020834, y: 0.0013020834, z: 0.0013020834}
+  m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
   m_Children:
+  - {fileID: 223029969}
   - {fileID: 796010317}
-  - {fileID: 1986723498}
+  - {fileID: 1704313640}
+  - {fileID: 1616600005}
+  - {fileID: 30934056}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
