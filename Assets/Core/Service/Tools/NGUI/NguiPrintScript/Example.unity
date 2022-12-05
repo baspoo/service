@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &30934056
 Transform:
   m_ObjectHideFlags: 0
@@ -148,10 +148,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1643056607}
+  m_Children: []
   m_Father: {fileID: 2056941903}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &30934057
 MonoBehaviour:
@@ -165,20 +164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efe667f37a91604890bb0af9c1c7a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NguiToJson:
-    Prams: 0
-    BtnName: Run
-    String: 
-    Double: 0
-    Transform: {fileID: 0}
-    MonoBehaviour: {fileID: 0}
-  JsonToNgui:
-    Prams: 0
-    BtnName: Run
-    String: 
-    Double: 0
-    Transform: {fileID: 0}
-    MonoBehaviour: {fileID: 0}
   Json: "{\r\n  \"name\": \"root\",\r\n  \"position\": {\r\n    \"x\": 0.0,\r\n   
     \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"rotate\": {\r\n    \"x\": 0.0,\r\n   
     \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"scale\": {\r\n    \"x\": 1.0,\r\n   
@@ -188,22 +173,23 @@ MonoBehaviour:
     \"x\": 0.0,\r\n        \"y\": 0.0,\r\n        \"z\": 0.0\r\n      },\r\n     
     \"scale\": {\r\n        \"x\": 1.0,\r\n        \"y\": 1.0,\r\n        \"z\":
     1.0\r\n      },\r\n      \"Hierarchies\": [\r\n        {\r\n          \"name\":
-    \"goto[close]\",\r\n          \"position\": {\r\n            \"x\": 229.0,\r\n           
-    \"y\": 99.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"rotate\":
-    {\r\n            \"x\": 0.0,\r\n            \"y\": 0.0,\r\n            \"z\":
-    0.0\r\n          },\r\n          \"scale\": {\r\n            \"x\": 1.0,\r\n           
-    \"y\": 1.0,\r\n            \"z\": 1.0\r\n          },\r\n          \"texture\":
-    {\r\n            \"enable\": true,\r\n            \"imageName\": \"close\",\r\n           
-    \"uvRect\": [\r\n              0.0,\r\n              0.0,\r\n              1.0,\r\n             
-    1.0\r\n            ],\r\n            \"color\": \"#FFFFFF\",\r\n            \"type\":
-    0,\r\n            \"border\": {\r\n              \"x\": 0.0,\r\n             
-    \"y\": 0.0,\r\n              \"z\": 0.0,\r\n              \"w\": 0.0\r\n           
-    },\r\n            \"flip\": 0,\r\n            \"gradient\": false,\r\n           
-    \"colorTop\": \"#FFFFFF\",\r\n            \"colorBot\": \"#B2B2B2\",\r\n           
-    \"widget\": {\r\n              \"pivot\": 4,\r\n              \"depth\": 1,\r\n             
-    \"size\": {\r\n                \"x\": 100.0,\r\n                \"y\": 100.0\r\n             
-    }\r\n            }\r\n          },\r\n          \"btn\": {\r\n            \"enable\":
-    true,\r\n            \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
+    \"{\\\"name\\\":\\\"goto[close]\\\",\\\"btnDir\\\":\\\"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C\\\",\\\"btnAct\\\":\\\"goto&close\\\"}\",\r\n         
+    \"position\": {\r\n            \"x\": 229.0,\r\n            \"y\": 99.0,\r\n           
+    \"z\": 0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"close\",\r\n            \"uvRect\": [\r\n              0.0,\r\n             
+    0.0,\r\n              1.0,\r\n              1.0\r\n            ],\r\n           
+    \"color\": \"#FFFFFF\",\r\n            \"type\": 0,\r\n            \"border\":
+    {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 1,\r\n              \"size\": {\r\n               
+    \"x\": 100.0,\r\n                \"y\": 100.0\r\n              }\r\n           
+    }\r\n          },\r\n          \"btn\": {\r\n            \"enable\": true,\r\n           
+    \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
     \"colorHover\": \"#E1C896\",\r\n            \"colorPressed\": \"#B7A37B\",\r\n           
     \"colorDisabled\": \"#7F7F7F\",\r\n            \"colliderCenter\": {\r\n             
     \"x\": 0.0,\r\n              \"y\": 0.0,\r\n              \"z\": 0.0\r\n           
@@ -241,9 +227,25 @@ MonoBehaviour:
     \"effectColor\": \"#000000\",\r\n                \"gradient\": true,\r\n               
     \"colorTop\": \"#FFE700\",\r\n                \"colorBot\": \"#4F9900\",\r\n               
     \"widget\": {\r\n                  \"pivot\": 4,\r\n                  \"depth\":
-    2,\r\n                  \"size\": {\r\n                    \"x\": 700.0,\r\n                   
+    3,\r\n                  \"size\": {\r\n                    \"x\": 700.0,\r\n                   
     \"y\": 100.0\r\n                  }\r\n                }\r\n              }\r\n           
-    }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"
+    }\r\n          ]\r\n        },\r\n        {\r\n          \"name\": \"{\\\"name\\\":\\\"img[white]
+    download\\\",\\\"imgURL\\\":\\\"https://docs.unity3d.com/StaticFiles/ScriptRefImages/TextAreaAttribute.png\\\"}\",\r\n         
+    \"position\": {\r\n            \"x\": 0.0,\r\n            \"y\": 284.0,\r\n           
+    \"z\": 0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"burlap\",\r\n            \"uvRect\": [\r\n              0.0,\r\n             
+    0.0,\r\n              1.0,\r\n              1.0\r\n            ],\r\n           
+    \"color\": \"#FFFFFF\",\r\n            \"type\": 0,\r\n            \"border\":
+    {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 0,\r\n              \"size\": {\r\n               
+    \"x\": 480.0,\r\n                \"y\": 200.0\r\n              }\r\n           
+    }\r\n          }\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"
   guiData:
     name: root
     position: {x: 0, y: 0, z: 0}
@@ -553,7 +555,7 @@ MonoBehaviour:
               colliderCenter: {x: 0, y: 0, z: 0}
               colliderSize: {x: 0, y: 0, z: 0}
             Hierarchies: []
---- !u!1 &177581171
+--- !u!1 &367123533
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -561,39 +563,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 177581172}
-  - component: {fileID: 177581173}
+  - component: {fileID: 367123534}
+  - component: {fileID: 367123537}
+  - component: {fileID: 367123536}
+  - component: {fileID: 367123535}
   m_Layer: 5
-  m_Name: gg
+  m_Name: '{"name":"goto method","btnDir":"Demo.Hello","btnAct":"goto"}'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &177581172
+--- !u!4 &367123534
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177581171}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 367123533}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -171, y: 99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 234446824}
-  m_RootOrder: 1
+  m_Father: {fileID: 1812163415}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &177581173
+--- !u!114 &367123535
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177581171}
+  m_GameObject: {fileID: 367123533}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   leftAnchor:
@@ -613,107 +617,65 @@ MonoBehaviour:
     relative: 1
     absolute: 0
   updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
+  mColor: {r: 0, g: 1, b: 0.3253188, a: 1}
   mPivot: 4
-  mWidth: 700
+  mWidth: 100
   mHeight: 100
-  mDepth: 2
+  mDepth: 1
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 7
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
-  mFont: {fileID: 0}
-  mText: New Label
-  mFontSize: 62
-  mFontStyle: 0
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 3
-  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 4, y: 4}
-  mOverflow: 0
-  mApplyGradient: 1
-  mGradientTop: {r: 1, g: 0.90588236, b: 0, a: 1}
-  mGradientBottom: {r: 0.30980393, g: 0.6, b: 0, a: 1}
-  mSpacingX: 0
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mOverflowHeight: 0
-  mModifier: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
---- !u!1 &223029968
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 223029969}
-  - component: {fileID: 223029972}
-  - component: {fileID: 223029971}
-  - component: {fileID: 223029970}
-  m_Layer: 5
-  m_Name: goto&close[https:\\sdfsdfksod.com]
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &223029969
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223029968}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 230, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1239622534}
-  m_Father: {fileID: 2056941903}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &223029970
+  aspectRatio: 1
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 10906, guid: 0000000000000000f000000000000000, type: 0}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!65 &367123536
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223029968}
+  m_GameObject: {fileID: 367123533}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 480, y: 200, z: 0}
+  m_Size: {x: 120, y: 120, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &223029971
+--- !u!114 &367123537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223029968}
+  m_GameObject: {fileID: 367123533}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 223029968}
+  tweenTarget: {fileID: 367123533}
   hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
   pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
   disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
@@ -726,294 +688,7 @@ MonoBehaviour:
   pressedSprite2D: {fileID: 0}
   disabledSprite2D: {fileID: 0}
   pixelSnap: 0
-  onClick:
-  - mTarget: {fileID: 1704313643}
-    mMethodName: Test
-    mParameters: []
-    oneShot: 0
---- !u!114 &223029972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 223029968}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 480
-  mHeight: 200
-  mDepth: 0
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 1
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 2.4
-  mType: 0
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: 5705f2fc1302ea340a90c9525cc0428b, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
-  mFixedAspect: 0
---- !u!1 &234446823
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 234446824}
-  - component: {fileID: 234446825}
-  m_Layer: 5
-  m_Name: '{"name":"img[white]"}'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &234446824
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234446823}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1457555198}
-  - {fileID: 177581172}
-  m_Father: {fileID: 515662187}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &234446825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234446823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 480
-  mHeight: 200
-  mDepth: 0
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 2.4
-  mType: 0
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 0}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
-  mFixedAspect: 0
---- !u!1 &515662186
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 515662187}
-  m_Layer: 0
-  m_Name: Panel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &515662187
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515662186}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 939283184}
-  - {fileID: 234446824}
-  m_Father: {fileID: 1643056607}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &540058263
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 540058264}
-  - component: {fileID: 540058265}
-  m_Layer: 5
-  m_Name: img[white]
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &540058264
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540058263}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1181378181}
-  m_Father: {fileID: 1986723498}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &540058265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540058263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 480
-  mHeight: 200
-  mDepth: 0
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 2.4
-  mType: 0
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: 5705f2fc1302ea340a90c9525cc0428b, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 0, y: 0, z: 0, w: 0}
-  mFixedAspect: 0
+  onClick: []
 --- !u!1 &796010316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,7 +720,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2056941903}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &796010318
 MonoBehaviour:
@@ -1228,7 +903,7 @@ MonoBehaviour:
   mPivot: 4
   mWidth: 700
   mHeight: 100
-  mDepth: 2
+  mDepth: 3
   mMat: {fileID: 0}
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
@@ -1265,7 +940,7 @@ MonoBehaviour:
   mMaxLineHeight: 0
   mLineWidth: 0
   mMultiline: 1
---- !u!1 &939283183
+--- !u!1 &1163473221
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1273,77 +948,79 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 939283184}
-  - component: {fileID: 939283187}
-  - component: {fileID: 939283186}
-  - component: {fileID: 939283185}
-  m_Layer: 5
-  m_Name: '{"name":"goto[close]","btnAct":"close"}'
+  - component: {fileID: 1163473223}
+  - component: {fileID: 1163473222}
+  m_Layer: 0
+  m_Name: Demo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &939283184
+--- !u!114 &1163473222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163473221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353f5f4d72eac3b46a64842fa54a102a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1163473223
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939283183}
+  m_GameObject: {fileID: 1163473221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 229, y: 99, z: 0}
+  m_LocalPosition: {x: 0.32523048, y: 0.46044376, z: -2.0781777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 515662187}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &939283185
-BoxCollider:
+--- !u!1 &1287328672
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939283183}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 120, y: 120, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &939283186
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287328673}
+  - component: {fileID: 1287328674}
+  m_Layer: 5
+  m_Name: '{"name":"img[white] download","imgURL":"https://docs.unity3d.com/StaticFiles/ScriptRefImages/TextAreaAttribute.png"}'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1287328673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287328672}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 284, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1812163415}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1287328674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939283183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweenTarget: {fileID: 939283183}
-  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
-  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
-  disabledColor: {r: 0.49803922, g: 0.49803922, b: 0.49803922, a: 1}
-  duration: 0.2
-  dragHighlight: 0
-  hoverSprite: 
-  pressedSprite: 
-  disabledSprite: 
-  hoverSprite2D: {fileID: 0}
-  pressedSprite2D: {fileID: 0}
-  disabledSprite2D: {fileID: 0}
-  pixelSnap: 0
-  onClick: []
---- !u!114 &939283187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 939283183}
+  m_GameObject: {fileID: 1287328672}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
@@ -1368,6 +1045,101 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
+  mWidth: 480
+  mHeight: 200
+  mDepth: 0
+  mMat: {fileID: 0}
+  autoResizeBoxCollider: 0
+  hideIfOffScreen: 0
+  keepAspectRatio: 0
+  aspectRatio: 2.4
+  mType: 0
+  mFillDirection: 4
+  mFillAmount: 1
+  mInvert: 0
+  mFlip: 0
+  mApplyGradient: 0
+  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
+  centerType: 1
+  leftType: 1
+  rightType: 1
+  bottomType: 1
+  topType: 1
+  mRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  mTexture: {fileID: 2800000, guid: 5705f2fc1302ea340a90c9525cc0428b, type: 3}
+  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
+  mBorder: {x: 0, y: 0, z: 0, w: 0}
+  mFixedAspect: 0
+--- !u!1 &1340320332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1340320333}
+  - component: {fileID: 1340320336}
+  - component: {fileID: 1340320335}
+  - component: {fileID: 1340320334}
+  m_Layer: 5
+  m_Name: '{"name":"goto www","btnDir":"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C","btnAct":"goto"}'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1340320333
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340320332}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -63, y: 99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1812163415}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340320334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340320332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  rightAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  bottomAnchor:
+    target: {fileID: 0}
+    relative: 0
+    absolute: 0
+  topAnchor:
+    target: {fileID: 0}
+    relative: 1
+    absolute: 0
+  updateAnchors: 1
+  mColor: {r: 0, g: 0.52797985, b: 1, a: 1}
+  mPivot: 4
   mWidth: 100
   mHeight: 100
   mDepth: 1
@@ -1383,7 +1155,7 @@ MonoBehaviour:
   mFlip: 0
   mApplyGradient: 0
   mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
+  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
   centerType: 1
   leftType: 1
   rightType: 1
@@ -1395,212 +1167,49 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
-  mTexture: {fileID: 2800000, guid: b65e9be99974bc94eab5d6698811d0b8, type: 3}
+  mTexture: {fileID: 10906, guid: 0000000000000000f000000000000000, type: 0}
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
---- !u!1 &1181378180
-GameObject:
+--- !u!65 &1340320335
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1181378181}
-  - component: {fileID: 1181378182}
-  m_Layer: 5
-  m_Name: Label
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1181378181
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181378180}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 540058264}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1181378182
+  m_GameObject: {fileID: 1340320332}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 120, y: 120, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1340320336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181378180}
+  m_GameObject: {fileID: 1340320332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fdca5042b1d12a4890ec1bd4f04290d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 700
-  mHeight: 100
-  mDepth: 2
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 7
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
-  mFont: {fileID: 0}
-  mText: New Label
-  mFontSize: 62
-  mFontStyle: 0
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 3
-  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  mSpacingX: 0
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mOverflowHeight: 0
-  mModifier: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
---- !u!1 &1239622533
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1239622534}
-  - component: {fileID: 1239622535}
-  m_Layer: 5
-  m_Name: Label
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1239622534
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239622533}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 223029969}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1239622535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1239622533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 700
-  mHeight: 100
-  mDepth: 2
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 7
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
-  mFont: {fileID: 0}
-  mText: New Label
-  mFontSize: 62
-  mFontStyle: 0
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 3
-  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 1, y: 1}
-  mOverflow: 0
-  mApplyGradient: 0
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  mSpacingX: 0
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mOverflowHeight: 0
-  mModifier: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
+  tweenTarget: {fileID: 1340320332}
+  hover: {r: 0.88235295, g: 0.78431374, b: 0.5882353, a: 1}
+  pressed: {r: 0.7176471, g: 0.6392157, b: 0.48235294, a: 1}
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  duration: 0.2
+  dragHighlight: 0
+  hoverSprite: 
+  pressedSprite: 
+  disabledSprite: 
+  hoverSprite2D: {fileID: 0}
+  pressedSprite2D: {fileID: 0}
+  disabledSprite2D: {fileID: 0}
+  pixelSnap: 0
+  onClick: []
 --- !u!1 &1340699788
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1221,7 @@ GameObject:
   - component: {fileID: 1340699791}
   - component: {fileID: 1340699790}
   - component: {fileID: 1340699789}
+  - component: {fileID: 1340699792}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1684,6 +1294,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1340699792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340699788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &1434220975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1778,107 +1419,6 @@ MonoBehaviour:
   mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
   mBorder: {x: 0, y: 0, z: 0, w: 0}
   mFixedAspect: 0
---- !u!1 &1457555197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1457555198}
-  - component: {fileID: 1457555199}
-  m_Layer: 5
-  m_Name: Label
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1457555198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457555197}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 234446824}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1457555199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457555197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 1, b: 1, a: 1}
-  mPivot: 4
-  mWidth: 700
-  mHeight: 100
-  mDepth: 2
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 7
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 12800000, guid: 02fc8d63a1afaa240916f026fc08314b, type: 3}
-  mFont: {fileID: 0}
-  mText: New Label
-  mFontSize: 62
-  mFontStyle: 0
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 3
-  mEffectColor: {r: 0, g: 0, b: 0, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 4, y: 4}
-  mOverflow: 0
-  mApplyGradient: 1
-  mGradientTop: {r: 1, g: 0.90588236, b: 0, a: 1}
-  mGradientBottom: {r: 0.30980393, g: 0.6, b: 0, a: 1}
-  mSpacingX: 0
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mOverflowHeight: 0
-  mModifier: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
 --- !u!1 &1616600004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,7 +1449,7 @@ Transform:
   m_Children:
   - {fileID: 1812163415}
   m_Father: {fileID: 2056941903}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1616600006
 MonoBehaviour:
@@ -1923,20 +1463,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7efe667f37a91604890bb0af9c1c7a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NguiToJson:
-    Prams: 0
-    BtnName: Run
-    String: 
-    Double: 0
-    Transform: {fileID: 0}
-    MonoBehaviour: {fileID: 0}
-  JsonToNgui:
-    Prams: 0
-    BtnName: Run
-    String: 
-    Double: 0
-    Transform: {fileID: 0}
-    MonoBehaviour: {fileID: 0}
   Json: "{\r\n  \"name\": \"root\",\r\n  \"position\": {\r\n    \"x\": 0.0,\r\n   
     \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"rotate\": {\r\n    \"x\": 0.0,\r\n   
     \"y\": 0.0,\r\n    \"z\": 0.0\r\n  },\r\n  \"scale\": {\r\n    \"x\": 1.0,\r\n   
@@ -1946,22 +1472,23 @@ MonoBehaviour:
     \"x\": 0.0,\r\n        \"y\": 0.0,\r\n        \"z\": 0.0\r\n      },\r\n     
     \"scale\": {\r\n        \"x\": 1.0,\r\n        \"y\": 1.0,\r\n        \"z\":
     1.0\r\n      },\r\n      \"Hierarchies\": [\r\n        {\r\n          \"name\":
-    \"goto[close]\",\r\n          \"position\": {\r\n            \"x\": 229.0,\r\n           
-    \"y\": 99.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"rotate\":
-    {\r\n            \"x\": 0.0,\r\n            \"y\": 0.0,\r\n            \"z\":
-    0.0\r\n          },\r\n          \"scale\": {\r\n            \"x\": 1.0,\r\n           
-    \"y\": 1.0,\r\n            \"z\": 1.0\r\n          },\r\n          \"texture\":
-    {\r\n            \"enable\": true,\r\n            \"imageName\": \"close\",\r\n           
-    \"uvRect\": [\r\n              0.0,\r\n              0.0,\r\n              1.0,\r\n             
-    1.0\r\n            ],\r\n            \"color\": \"#FFFFFF\",\r\n            \"type\":
-    0,\r\n            \"border\": {\r\n              \"x\": 0.0,\r\n             
-    \"y\": 0.0,\r\n              \"z\": 0.0,\r\n              \"w\": 0.0\r\n           
-    },\r\n            \"flip\": 0,\r\n            \"gradient\": false,\r\n           
-    \"colorTop\": \"#FFFFFF\",\r\n            \"colorBot\": \"#B2B2B2\",\r\n           
-    \"widget\": {\r\n              \"pivot\": 4,\r\n              \"depth\": 1,\r\n             
-    \"size\": {\r\n                \"x\": 100.0,\r\n                \"y\": 100.0\r\n             
-    }\r\n            }\r\n          },\r\n          \"btn\": {\r\n            \"enable\":
-    true,\r\n            \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
+    \"{\\\"name\\\":\\\"goto[close]\\\",\\\"btnDir\\\":\\\"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C\\\",\\\"btnAct\\\":\\\"close\\\"}\",\r\n         
+    \"position\": {\r\n            \"x\": 229.0,\r\n            \"y\": 99.0,\r\n           
+    \"z\": 0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"close\",\r\n            \"uvRect\": [\r\n              0.0,\r\n             
+    0.0,\r\n              1.0,\r\n              1.0\r\n            ],\r\n           
+    \"color\": \"#FFFFFF\",\r\n            \"type\": 0,\r\n            \"border\":
+    {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 1,\r\n              \"size\": {\r\n               
+    \"x\": 100.0,\r\n                \"y\": 100.0\r\n              }\r\n           
+    }\r\n          },\r\n          \"btn\": {\r\n            \"enable\": true,\r\n           
+    \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
     \"colorHover\": \"#E1C896\",\r\n            \"colorPressed\": \"#B7A37B\",\r\n           
     \"colorDisabled\": \"#7F7F7F\",\r\n            \"colliderCenter\": {\r\n             
     \"x\": 0.0,\r\n              \"y\": 0.0,\r\n              \"z\": 0.0\r\n           
@@ -1999,9 +1526,70 @@ MonoBehaviour:
     \"effectColor\": \"#000000\",\r\n                \"gradient\": true,\r\n               
     \"colorTop\": \"#FFE700\",\r\n                \"colorBot\": \"#4F9900\",\r\n               
     \"widget\": {\r\n                  \"pivot\": 4,\r\n                  \"depth\":
-    2,\r\n                  \"size\": {\r\n                    \"x\": 700.0,\r\n                   
+    3,\r\n                  \"size\": {\r\n                    \"x\": 700.0,\r\n                   
     \"y\": 100.0\r\n                  }\r\n                }\r\n              }\r\n           
-    }\r\n          ]\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}"
+    }\r\n          ]\r\n        },\r\n        {\r\n          \"name\": \"{\\\"name\\\":\\\"img[white]
+    download\\\",\\\"imgURL\\\":\\\"https://docs.unity3d.com/StaticFiles/ScriptRefImages/TextAreaAttribute.png\\\"}\",\r\n         
+    \"position\": {\r\n            \"x\": 0.0,\r\n            \"y\": 284.0,\r\n           
+    \"z\": 0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"burlap\",\r\n            \"uvRect\": [\r\n              0.0,\r\n             
+    0.0,\r\n              1.0,\r\n              1.0\r\n            ],\r\n           
+    \"color\": \"#FFFFFF\",\r\n            \"type\": 0,\r\n            \"border\":
+    {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 0,\r\n              \"size\": {\r\n               
+    \"x\": 480.0,\r\n                \"y\": 200.0\r\n              }\r\n           
+    }\r\n          }\r\n        },\r\n        {\r\n          \"name\": \"{\\\"name\\\":\\\"goto
+    method\\\",\\\"btnDir\\\":\\\"Demo.Hello\\\",\\\"btnAct\\\":\\\"goto\\\"}\",\r\n         
+    \"position\": {\r\n            \"x\": -171.0,\r\n            \"y\": 99.0,\r\n           
+    \"z\": 0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"Background\",\r\n            \"uvRect\": [\r\n             
+    0.0,\r\n              0.0,\r\n              1.0,\r\n              1.0\r\n           
+    ],\r\n            \"color\": \"#00FF52\",\r\n            \"type\": 0,\r\n           
+    \"border\": {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 1,\r\n              \"size\": {\r\n               
+    \"x\": 100.0,\r\n                \"y\": 100.0\r\n              }\r\n           
+    }\r\n          },\r\n          \"btn\": {\r\n            \"enable\": true,\r\n           
+    \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
+    \"colorHover\": \"#E1C896\",\r\n            \"colorPressed\": \"#B7A37B\",\r\n           
+    \"colorDisabled\": \"#7F7F7F\",\r\n            \"colliderCenter\": {\r\n             
+    \"x\": 0.0,\r\n              \"y\": 0.0,\r\n              \"z\": 0.0\r\n           
+    },\r\n            \"colliderSize\": {\r\n              \"x\": 120.0,\r\n             
+    \"y\": 120.0,\r\n              \"z\": 0.0\r\n            }\r\n          }\r\n       
+    },\r\n        {\r\n          \"name\": \"{\\\"name\\\":\\\"goto www\\\",\\\"btnDir\\\":\\\"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C\\\",\\\"btnAct\\\":\\\"goto\\\"}\",\r\n         
+    \"position\": {\r\n            \"x\": -63.0,\r\n            \"y\": 99.0,\r\n           
+    \"z\": 0.0\r\n          },\r\n          \"rotate\": {\r\n            \"x\": 0.0,\r\n           
+    \"y\": 0.0,\r\n            \"z\": 0.0\r\n          },\r\n          \"scale\":
+    {\r\n            \"x\": 1.0,\r\n            \"y\": 1.0,\r\n            \"z\":
+    1.0\r\n          },\r\n          \"texture\": {\r\n            \"enable\": true,\r\n           
+    \"imageName\": \"Background\",\r\n            \"uvRect\": [\r\n             
+    0.0,\r\n              0.0,\r\n              1.0,\r\n              1.0\r\n           
+    ],\r\n            \"color\": \"#0086FF\",\r\n            \"type\": 0,\r\n           
+    \"border\": {\r\n              \"x\": 0.0,\r\n              \"y\": 0.0,\r\n             
+    \"z\": 0.0,\r\n              \"w\": 0.0\r\n            },\r\n            \"flip\":
+    0,\r\n            \"gradient\": false,\r\n            \"colorTop\": \"#FFFFFF\",\r\n           
+    \"colorBot\": \"#B2B2B2\",\r\n            \"widget\": {\r\n              \"pivot\":
+    4,\r\n              \"depth\": 1,\r\n              \"size\": {\r\n               
+    \"x\": 100.0,\r\n                \"y\": 100.0\r\n              }\r\n           
+    }\r\n          },\r\n          \"btn\": {\r\n            \"enable\": true,\r\n           
+    \"transition\": 0.2,\r\n            \"colorNormal\": \"#FFFFFF\",\r\n           
+    \"colorHover\": \"#E1C896\",\r\n            \"colorPressed\": \"#B7A37B\",\r\n           
+    \"colorDisabled\": \"#7F7F7F\",\r\n            \"colliderCenter\": {\r\n             
+    \"x\": 0.0,\r\n              \"y\": 0.0,\r\n              \"z\": 0.0\r\n           
+    },\r\n            \"colliderSize\": {\r\n              \"x\": 120.0,\r\n             
+    \"y\": 120.0,\r\n              \"z\": 0.0\r\n            }\r\n          }\r\n       
+    }\r\n      ]\r\n    }\r\n  ]\r\n}"
   guiData:
     name: root
     position: {x: 0, y: 0, z: 0}
@@ -2103,7 +1691,7 @@ MonoBehaviour:
         colliderCenter: {x: 0, y: 0, z: 0}
         colliderSize: {x: 0, y: 0, z: 0}
       Hierarchies:
-      - name: goto[close]
+      - name: '{"name":"goto[close]","btnDir":"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C","btnAct":"close"}'
         position: {x: 229, y: 99, z: 0}
         rotate: {x: -0, y: 0, z: 0}
         scale: {x: 1, y: 1, z: 1}
@@ -2233,7 +1821,7 @@ MonoBehaviour:
             colorBot: '#4F9900'
             widget:
               pivot: 4
-              depth: 2
+              depth: 3
               size: {x: 700, y: 100}
           texture:
             enable: 0
@@ -2261,285 +1849,168 @@ MonoBehaviour:
             colliderCenter: {x: 0, y: 0, z: 0}
             colliderSize: {x: 0, y: 0, z: 0}
           Hierarchies: []
---- !u!1 &1643056606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1643056607}
-  m_Layer: 0
-  m_Name: root
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1643056607
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1643056606}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 515662187}
-  m_Father: {fileID: 30934056}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1704313639
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1704313640}
-  - component: {fileID: 1704313643}
-  - component: {fileID: 1704313642}
-  - component: {fileID: 1704313641}
-  m_Layer: 5
-  m_Name: img[https:\\dsfsdf]
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1704313640
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704313639}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1986723498}
-  m_Father: {fileID: 2056941903}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1704313641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704313639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d0b5f3bbe925a408bd595c79d0bf63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 0, g: 0, b: 0, a: 1}
-  mPivot: 4
-  mWidth: 2
-  mHeight: 16
-  mDepth: 0
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 0.125
-  keepCrispWhenShrunk: 1
-  mTrueTypeFont: {fileID: 12800000, guid: 325a32228e334114db298913e28a3666, type: 3}
-  mFont: {fileID: 0}
-  mText: 5555555
-  mFontSize: 16
-  mFontStyle: 1
-  mAlignment: 0
-  mEncoding: 1
-  mMaxLineCount: 0
-  mEffectStyle: 2
-  mEffectColor: {r: 1, g: 0.8018225, b: 0.1462264, a: 1}
-  mSymbols: 1
-  mEffectDistance: {x: 5.86, y: 5.5}
-  mOverflow: 1
-  mApplyGradient: 1
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  mSpacingX: 169
-  mSpacingY: 0
-  mUseFloatSpacing: 0
-  mFloatSpacingX: 0
-  mFloatSpacingY: 0
-  mOverflowEllipsis: 0
-  mOverflowWidth: 0
-  mOverflowHeight: 0
-  mModifier: 0
-  mShrinkToFit: 0
-  mMaxLineWidth: 0
-  mMaxLineHeight: 0
-  mLineWidth: 0
-  mMultiline: 1
---- !u!114 &1704313642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704313639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5c5ca47aa5c01740810b7c66662099f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  mColor: {r: 1, g: 0, b: 0, a: 1}
-  mPivot: 4
-  mWidth: 100
-  mHeight: 200
-  mDepth: 1
-  mMat: {fileID: 0}
-  autoResizeBoxCollider: 0
-  hideIfOffScreen: 0
-  keepAspectRatio: 0
-  aspectRatio: 0.5
-  mType: 1
-  mFillDirection: 4
-  mFillAmount: 1
-  mInvert: 0
-  mFlip: 1
-  mApplyGradient: 1
-  mGradientTop: {r: 1, g: 1, b: 1, a: 1}
-  mGradientBottom: {r: 0.7, g: 0.7, b: 0.7, a: 1}
-  centerType: 1
-  leftType: 1
-  rightType: 1
-  bottomType: 1
-  topType: 1
-  mRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  mTexture: {fileID: 2800000, guid: 20f7cab44eaf6e849a8b7131f390055a, type: 3}
-  mShader: {fileID: 4800000, guid: e75727d9555d9d14ca51d91908c681bc, type: 3}
-  mBorder: {x: 4, y: 8, z: 9, w: 7}
-  mFixedAspect: 0
---- !u!114 &1704313643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1704313639}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7efe667f37a91604890bb0af9c1c7a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NguiToJson:
-    Prams: 0
-    BtnName: Run
-    String: 
-    Double: 0
-    Transform: {fileID: 0}
-    MonoBehaviour: {fileID: 0}
-  JsonToNgui:
-    Prams: 0
-    BtnName: Run
-    String: 
-    Double: 0
-    Transform: {fileID: 0}
-    MonoBehaviour: {fileID: 0}
-  Json: '{"name":"img[https:\\\\dsfsdf]","position":{"x":0.0,"y":0.0,"z":0.0},"rotate":{"x":0.0,"y":0.0,"z":0.0},"scale":{"x":1.0,"y":1.0,"z":1.0},"label":{"enable":true,"text":"5555555","fontSize":16,"maxLine":0,"fontName":"OpenSans-SemiBold","fontStyle":1,"overflow":1,"color":"#000000","spacing":{"x":169.0,"y":0.0},"effect":2,"effectSize":{"x":5.86,"y":5.5},"effectColor":"#FFCC25","gradient":true,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":0,"size":{"x":2.0,"y":16.0}}},"texture":{"enable":true,"imageName":"Backdrop","uvRect":[0.0,0.0,1.0,1.0],"color":"#FF0000","type":1,"border":{"x":4.0,"y":8.0,"z":9.0,"w":7.0},"flip":1,"gradient":true,"colorTop":"#FFFFFF","colorBot":"#B2B2B2","widget":{"pivot":4,"depth":1,"size":{"x":100.0,"y":200.0}}}}'
-  guiData:
-    name: img[https:\\dsfsdf]
-    position: {x: 0, y: 0, z: 0}
-    rotate: {x: -0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-    label:
-      enable: 1
-      text: 5555555
-      fontSize: 16
-      maxLine: 0
-      fontName: OpenSans-SemiBold
-      fontStyle: 1
-      overflow: 1
-      color: '#000000'
-      spacing: {x: 169, y: 0}
-      effect: 2
-      effectSize: {x: 5.86, y: 5.5}
-      effectColor: '#FFCC25'
-      gradient: 1
-      colorTop: '#FFFFFF'
-      colorBot: '#B2B2B2'
-      widget:
-        pivot: 4
-        depth: 0
-        size: {x: 2, y: 16}
-    texture:
-      enable: 1
-      imageName: Backdrop
-      uvRect:
-      - 0
-      - 0
-      - 1
-      - 1
-      color: '#FF0000'
-      type: 1
-      border: {x: 4, y: 8, z: 9, w: 7}
-      flip: 1
-      gradient: 1
-      colorTop: '#FFFFFF'
-      colorBot: '#B2B2B2'
-      widget:
-        pivot: 4
-        depth: 1
-        size: {x: 100, y: 200}
-    btn:
-      enable: 0
-      action: 
-      transition: 0
-      colorNormal: 
-      colorHover: 
-      colorPressed: 
-      colorDisabled: 
-      colliderCenter: {x: 0, y: 0, z: 0}
-      colliderSize: {x: 0, y: 0, z: 0}
-    Hierarchies: []
+      - name: '{"name":"img[white] download","imgURL":"https://docs.unity3d.com/StaticFiles/ScriptRefImages/TextAreaAttribute.png"}'
+        position: {x: 0, y: 284, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: burlap
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#FFFFFF'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 0
+            size: {x: 480, y: 200}
+        btn:
+          enable: 0
+          action: 
+          transition: 0
+          colorNormal: 
+          colorHover: 
+          colorPressed: 
+          colorDisabled: 
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 0, y: 0, z: 0}
+        Hierarchies: []
+      - name: '{"name":"goto method","btnDir":"Demo.Hello","btnAct":"goto"}'
+        position: {x: -171, y: 99, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: Background
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#00FF52'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 1
+            size: {x: 100, y: 100}
+        btn:
+          enable: 1
+          action: 
+          transition: 0.2
+          colorNormal: '#FFFFFF'
+          colorHover: '#E1C896'
+          colorPressed: '#B7A37B'
+          colorDisabled: '#7F7F7F'
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 120, y: 120, z: 0}
+        Hierarchies: []
+      - name: '{"name":"goto www","btnDir":"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C","btnAct":"goto"}'
+        position: {x: -63, y: 99, z: 0}
+        rotate: {x: -0, y: 0, z: 0}
+        scale: {x: 1, y: 1, z: 1}
+        label:
+          enable: 0
+          text: 
+          fontSize: 0
+          maxLine: 0
+          fontName: 
+          fontStyle: 0
+          overflow: 0
+          color: 
+          spacing: {x: 0, y: 0}
+          effect: 0
+          effectSize: {x: 0, y: 0}
+          effectColor: 
+          gradient: 0
+          colorTop: 
+          colorBot: 
+          widget:
+            pivot: 0
+            depth: 0
+            size: {x: 0, y: 0}
+        texture:
+          enable: 1
+          imageName: Background
+          uvRect:
+          - 0
+          - 0
+          - 1
+          - 1
+          color: '#0086FF'
+          type: 0
+          border: {x: 0, y: 0, z: 0, w: 0}
+          flip: 0
+          gradient: 0
+          colorTop: '#FFFFFF'
+          colorBot: '#B2B2B2'
+          widget:
+            pivot: 4
+            depth: 1
+            size: {x: 100, y: 100}
+        btn:
+          enable: 1
+          action: 
+          transition: 0.2
+          colorNormal: '#FFFFFF'
+          colorHover: '#E1C896'
+          colorPressed: '#B7A37B'
+          colorDisabled: '#7F7F7F'
+          colliderCenter: {x: 0, y: 0, z: 0}
+          colliderSize: {x: 120, y: 120, z: 0}
+        Hierarchies: []
 --- !u!1 &1812163414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2041,9 @@ Transform:
   m_Children:
   - {fileID: 2046507327}
   - {fileID: 1434220976}
+  - {fileID: 1287328673}
+  - {fileID: 367123534}
+  - {fileID: 1340320333}
   m_Father: {fileID: 1616600005}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2612,89 +2086,7 @@ MonoBehaviour:
   anchorOffset: 0
   softBorderPadding: 1
   renderQueue: 0
-  startingRenderQueue: 3002
-  mClipTexture: {fileID: 0}
-  mAlpha: 1
-  mClipping: 0
-  mClipRange: {x: 0, y: 0, z: 300, w: 200}
-  mClipSoftness: {x: 4, y: 4}
-  mDepth: 1
-  mSortingOrder: 0
-  mSortingLayerName: 
-  mClipOffset: {x: 0, y: 0}
-  useSortingOrder: 0
---- !u!1 &1986723497
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1986723498}
-  - component: {fileID: 1986723499}
-  m_Layer: 5
-  m_Name: Panel
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1986723498
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986723497}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 540058264}
-  m_Father: {fileID: 1704313640}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1986723499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1986723497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae942c9068183dc40a9d01f648273726, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  rightAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  bottomAnchor:
-    target: {fileID: 0}
-    relative: 0
-    absolute: 0
-  topAnchor:
-    target: {fileID: 0}
-    relative: 1
-    absolute: 0
-  updateAnchors: 1
-  showInPanelTool: 1
-  generateNormals: 0
-  generateUV2: 0
-  shadowMode: 0
-  widgetsAreStatic: 0
-  cullWhileDragging: 1
-  alwaysOnScreen: 0
-  anchorOffset: 0
-  softBorderPadding: 1
-  renderQueue: 0
-  startingRenderQueue: 3006
+  startingRenderQueue: 3000
   mClipTexture: {fileID: 0}
   mAlpha: 1
   mClipping: 0
@@ -2718,7 +2110,7 @@ GameObject:
   - component: {fileID: 2046507329}
   - component: {fileID: 2046507328}
   m_Layer: 5
-  m_Name: goto[close]
+  m_Name: '{"name":"goto[close]","btnDir":"https://www.netflix.com/watch/81100902?trackId=254015180&tctx=0%2C0%2C616ec4f0-c671-4163-be73-70a2d359d4ec-337404800%2CNES_0E07A8AE550DC8967890B0F4C053E2-696A1AB49AD018-45069D837A_p_1670244290182%2CNES_0E07A8AE550DC8967890B0F4C053E2_p_1670244290182%2C%2C%2C%2C","btnAct":"close"}'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2956,11 +2348,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.0027777778, y: 0.0027777778, z: 0.0027777778}
   m_Children:
-  - {fileID: 223029969}
   - {fileID: 796010317}
-  - {fileID: 1704313640}
   - {fileID: 1616600005}
   - {fileID: 30934056}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

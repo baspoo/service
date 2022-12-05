@@ -23,7 +23,7 @@ public class UIObj : BasePool
     public System.Action onRefresh;
     public void Init()
     {
-        
+      
     }
     public void OnSubmit() {
         onSumbit?.Invoke(this);

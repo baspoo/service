@@ -2973,8 +2973,10 @@ public class Service : MonoBehaviour
 			}
 			IEnumerator _SendWWW(string url, System.Action<WWW> onComplete)
 			{
+				//url.Log();
 				WWW www = new WWW(url);
 				yield return www;
+				//www.error.Log();
 				onComplete?.Invoke(www);
 				www.Dispose();
 			}

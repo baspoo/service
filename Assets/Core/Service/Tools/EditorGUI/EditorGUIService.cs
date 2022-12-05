@@ -116,11 +116,11 @@ public class EditorGUIService
 	public class Popup : EditorWindow
 	{
 		Vector2 ScrollView;
-		static System.Action Delegate = null;
-		public static void ShowWindow(string popupname, System.Action data)
+		public static System.Action Delegate = null;
+		public static EditorWindow ShowWindow(string popupname, System.Action data)
 		{
 			Delegate = data;
-			EditorWindow.GetWindow(typeof(Popup), true, popupname);
+			return EditorWindow.GetWindow(typeof(Popup), true, popupname);
 		}
 		void OnGUI()
 		{
