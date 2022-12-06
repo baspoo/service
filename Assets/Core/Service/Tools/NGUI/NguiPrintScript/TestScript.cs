@@ -21,6 +21,9 @@ namespace NPS.Demo
             Debug.Log("Hello Baspoo!");
         }
 
-
+        void PBaspoo()
+        {
+            Debug.Log("Hello PBaspoo!");
+        }
     }
 }

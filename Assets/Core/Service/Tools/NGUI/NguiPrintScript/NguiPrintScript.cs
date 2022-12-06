@@ -34,9 +34,6 @@ namespace NPS
 
 
 
-
-
-
         [TextArea]
         public string Json;
         public bool isGenerated => transform.childCount > 0;
@@ -90,11 +87,11 @@ namespace NPS
             public Vector3 scale;
 
             public static string[] AddOnActions = new string[4] {
-            AddOnAction.Close,
-            AddOnAction.GoTo,
-            AddOnAction.GoToAndClose,
-            AddOnAction.Reopen
-        };
+                AddOnAction.Close,
+                AddOnAction.GoTo,
+                AddOnAction.GoToAndClose,
+                AddOnAction.Reopen
+            };
             public class AddOnAction
             {
                 public const string Close = "close";
@@ -178,7 +175,40 @@ namespace NPS
                 public Vector3 colliderSize;
             }
 
+            public Panel panel;
+            [System.Serializable]
+            public class Panel
+            {
+                public bool enable;
+                public int depth;
+                public int clipping;
+                public string sortingLayerName;
+                public float alpha;
+                public int renderQueue;
+                public int sortingOrder;
+                public Vector2 clipOffset;
+                public Vector2 clipSoftness;
+                public Vector4 baseClipRegion;
+                public bool useSortingOrder;
+            }
 
+
+            public List<Tween> tweens;
+            [System.Serializable]
+            public class Tween
+            {
+                public bool enable;
+                public string action;
+                public int style;
+                public float duration;
+                public float delay;
+                public bool ignoreTimescale;
+                public bool fixedUpdate;
+                public Vector3 to;
+                public Vector3 from;
+                public Keyframe[] keyframes;
+                public string[] colors;
+            }
 
 
             public List<GUIData> Hierarchies;
@@ -197,8 +227,6 @@ namespace NPS
             gui.position = root.localPosition;
             gui.scale = root.localScale;
             gui.rotate = root.localEulerAngles;
-
-
 
             var label = root.GetComponent<UILabel>();
             if (label != null)
@@ -267,6 +295,104 @@ namespace NPS
                 }
             }
 
+            var panel = root.GetComponent<UIPanel>();
+            if (panel != null)
+            {
+                gui.panel = new GUIData.Panel() { enable = true };
+                gui.panel.depth = panel.depth;
+                gui.panel.alpha = panel.alpha;
+                gui.panel.sortingLayerName = panel.sortingLayerName;
+                gui.panel.clipping = (int)panel.clipping;
+                gui.panel.renderQueue = (int)panel.renderQueue;
+                gui.panel.sortingOrder = panel.sortingOrder;
+                gui.panel.clipOffset = panel.clipOffset;
+                gui.panel.clipSoftness = panel.clipSoftness;
+                gui.panel.baseClipRegion = panel.baseClipRegion;
+                gui.panel.useSortingOrder = panel.useSortingOrder;
+            }
+
+            var tweenPosition = root.GetComponent<TweenPosition>();
+            if (tweenPosition != null)
+            {
+                var tween = new GUIData.Tween() { enable = true, action = "TweenPosition" };
+                tween.delay = tweenPosition.delay;
+                tween.duration = tweenPosition.duration;
+                tween.fixedUpdate = tweenPosition.useFixedUpdate;
+                tween.ignoreTimescale = tweenPosition.ignoreTimeScale;
+                tween.style = (int)tweenPosition.style;
+                tween.keyframes = tweenPosition.animationCurve.keys;
+                tween.from = tweenPosition.from;
+                tween.to = tweenPosition.to;
+
+                if (gui.tweens == null)  gui.tweens = new List<GUIData.Tween>();
+                gui.tweens.Add(tween);
+            }
+            var tweenScale = root.GetComponent<TweenScale>();
+            if (tweenScale != null)
+            {
+                var tween = new GUIData.Tween() { enable = true, action = "TweenScale" };
+                tween.delay = tweenScale.delay;
+                tween.duration = tweenScale.duration;
+                tween.fixedUpdate = tweenScale.useFixedUpdate;
+                tween.ignoreTimescale = tweenScale.ignoreTimeScale;
+                tween.style = (int)tweenScale.style;
+                tween.keyframes = tweenScale.animationCurve.keys;
+                tween.from = tweenScale.from;
+                tween.to = tweenScale.to;
+
+                if (gui.tweens == null) gui.tweens = new List<GUIData.Tween>();
+                gui.tweens.Add(tween);
+            }
+            var tweenRotation = root.GetComponent<TweenRotation>();
+            if (tweenRotation != null)
+            {
+                var tween = new GUIData.Tween() { enable = true, action = "TweenRotation" };
+                tween.delay = tweenRotation.delay;
+                tween.duration = tweenRotation.duration;
+                tween.fixedUpdate = tweenRotation.useFixedUpdate;
+                tween.ignoreTimescale = tweenRotation.ignoreTimeScale;
+                tween.style = (int)tweenRotation.style;
+                tween.keyframes = tweenRotation.animationCurve.keys;
+                tween.from = tweenRotation.from;
+                tween.to = tweenRotation.to;
+
+                if (gui.tweens == null) gui.tweens = new List<GUIData.Tween>();
+                gui.tweens.Add(tween);
+            }
+            var tweenAlpha = root.GetComponent<TweenAlpha>();
+            if (tweenAlpha != null)
+            {
+                var tween = new GUIData.Tween() { enable = true, action = "TweenAlpha" };
+                tween.delay = tweenAlpha.delay;
+                tween.duration = tweenAlpha.duration;
+                tween.fixedUpdate = tweenAlpha.useFixedUpdate;
+                tween.ignoreTimescale = tweenAlpha.ignoreTimeScale;
+                tween.style = (int)tweenAlpha.style;
+                tween.keyframes = tweenAlpha.animationCurve.keys;
+                tween.from.x = tweenAlpha.from;
+                tween.to.x = tweenAlpha.to;
+
+                if (gui.tweens == null) gui.tweens = new List<GUIData.Tween>();
+                gui.tweens.Add(tween);
+            }
+            var tweenColor = root.GetComponent<TweenColor>();
+            if (tweenColor != null)
+            {
+                var tween = new GUIData.Tween() { enable = true, action = "TweenColor" };
+                tween.delay = tweenColor.delay;
+                tween.duration = tweenColor.duration;
+                tween.fixedUpdate = tweenColor.useFixedUpdate;
+                tween.ignoreTimescale = tweenColor.ignoreTimeScale;
+                tween.style = (int)tweenColor.style;
+                tween.keyframes = tweenColor.animationCurve.keys;
+                tween.colors = new string[2];
+                tween.colors[0] = tweenColor.from.ToHexString();
+                tween.colors[1] = tweenColor.to.ToHexString();
+
+                if (gui.tweens == null) gui.tweens = new List<GUIData.Tween>();
+                gui.tweens.Add(tween);
+            }
+
 
 
             var gameobjs = root.GetAllParent();
@@ -279,6 +405,7 @@ namespace NPS
                     gui.Hierarchies.Add(n);
                 }
             }
+
 
 
 
@@ -371,16 +498,14 @@ namespace NPS
                 var btn = root.AddComponent<UIButton>();
                 var collider = root.AddComponent<BoxCollider>();
                 collider.isTrigger = true;
-
+                collider.center = guiData.btn.colliderCenter;
+                collider.size = guiData.btn.colliderSize;
 
                 btn.defaultColor = guiData.btn.colorNormal.HexToColor();
                 btn.hover = guiData.btn.colorHover.HexToColor();
                 btn.pressed = guiData.btn.colorPressed.HexToColor();
                 btn.disabledColor = guiData.btn.colorDisabled.HexToColor();
                 btn.duration = guiData.btn.transition;
-
-                collider.center = guiData.btn.colliderCenter;
-                collider.size = guiData.btn.colliderSize;
                 btn.onClick.Add(new EventDelegate(() =>
                 {
 
@@ -407,10 +532,102 @@ namespace NPS
                     }
                 }));
             }
+            if (guiData.panel != null && guiData.panel.enable)
+            {
+                var panel = root.AddComponent<UIPanel>();
+                panel.depth = guiData.panel.depth;
+                panel.alpha = guiData.panel.alpha;
+                panel.sortingLayerName = guiData.panel.sortingLayerName;
+                panel.clipping = (UIDrawCall.Clipping)guiData.panel.clipping;
+                panel.renderQueue = (UIPanel.RenderQueue)guiData.panel.renderQueue;
+                panel.sortingOrder = guiData.panel.sortingOrder;
+                panel.clipOffset = guiData.panel.clipOffset;
+                panel.clipSoftness = guiData.panel.clipSoftness;
+                panel.baseClipRegion = guiData.panel.baseClipRegion;
+                panel.useSortingOrder = guiData.panel.useSortingOrder;
+            }
 
 
 
 
+            if (guiData.tweens != null)
+            {
+
+                foreach (var guiDatatween in guiData.tweens)
+                {
+
+                    if (!guiDatatween.enable)
+                        continue;
+
+                    if (guiDatatween.action == "TweenPosition")
+                    {
+                        var tween = root.AddComponent<TweenPosition>();
+                        tween.to = guiDatatween.to;
+                        tween.from = guiDatatween.from;
+                        tween.duration = guiDatatween.duration;
+                        tween.delay = guiDatatween.delay;
+                        tween.useFixedUpdate = guiDatatween.fixedUpdate;
+                        tween.ignoreTimeScale = guiDatatween.ignoreTimescale;
+                        tween.style = (UITweener.Style)guiDatatween.style;
+                        tween.animationCurve.keys = guiDatatween.keyframes;
+                        AwakeREUItween.ReTween(tween);
+                    }
+                    if (guiDatatween.action == "TweenScale")
+                    {
+                        var tween = root.AddComponent<TweenScale>();
+                        tween.to = guiDatatween.to;
+                        tween.from = guiDatatween.from;
+                        tween.duration = guiDatatween.duration;
+                        tween.delay = guiDatatween.delay;
+                        tween.useFixedUpdate = guiDatatween.fixedUpdate;
+                        tween.ignoreTimeScale = guiDatatween.ignoreTimescale;
+                        tween.style = (UITweener.Style)guiDatatween.style;
+                        tween.animationCurve.keys = guiDatatween.keyframes;
+                        AwakeREUItween.ReTween(tween);
+                    }
+                    if (guiDatatween.action == "TweenRotation")
+                    {
+                        var tween = root.AddComponent<TweenRotation>();
+                        tween.to = guiDatatween.to;
+                        tween.from = guiDatatween.from;
+                        tween.duration = guiDatatween.duration;
+                        tween.delay = guiDatatween.delay;
+                        tween.useFixedUpdate = guiDatatween.fixedUpdate;
+                        tween.ignoreTimeScale = guiDatatween.ignoreTimescale;
+                        tween.style = (UITweener.Style)guiDatatween.style;
+                        tween.animationCurve.keys = guiDatatween.keyframes;
+                        AwakeREUItween.ReTween(tween);
+                    }
+                    if (guiDatatween.action == "TweenAlpha")
+                    {
+                        var tween = root.AddComponent<TweenAlpha>();
+                        tween.to = guiDatatween.to.x;
+                        tween.from = guiDatatween.from.x;
+                        tween.duration = guiDatatween.duration;
+                        tween.delay = guiDatatween.delay;
+                        tween.useFixedUpdate = guiDatatween.fixedUpdate;
+                        tween.ignoreTimeScale = guiDatatween.ignoreTimescale;
+                        tween.style = (UITweener.Style)guiDatatween.style;
+                        tween.animationCurve.keys = guiDatatween.keyframes;
+                        AwakeREUItween.ReTween(tween);
+                    }
+                    if (guiDatatween.action == "TweenColor")
+                    {
+                        var tween = root.AddComponent<TweenColor>();
+                        tween.to = guiDatatween.colors[1].HexToColor();
+                        tween.from = guiDatatween.colors[0].HexToColor();
+                        tween.duration = guiDatatween.duration;
+                        tween.delay = guiDatatween.delay;
+                        tween.useFixedUpdate = guiDatatween.fixedUpdate;
+                        tween.ignoreTimeScale = guiDatatween.ignoreTimescale;
+                        tween.style = (UITweener.Style)guiDatatween.style;
+                        tween.animationCurve.keys = guiDatatween.keyframes;
+                        AwakeREUItween.ReTween(tween);
+                    }
+                }
+
+
+            }
 
 
 
@@ -454,6 +671,57 @@ namespace NPS
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 namespace NPS.Utls
 {
 #if UNITY_EDITOR
@@ -471,19 +739,25 @@ namespace NPS.Utls
                 EditorGUIService.BeginContents(false);
 
 
-                EditorGUIService.ListView.Print("Fonts", NPSUtility.instance.Fonts.Count, (i)=> {
-                    NPSUtility.instance.Fonts[i] = (Font) EditorGUILayout.ObjectField(NPSUtility.instance.Fonts[i],typeof(Font));
-                },()=> {
+                EditorGUIService.ListView.Print("Fonts", NPSUtility.instance.Fonts.Count, (i) =>
+                {
+                    NPSUtility.instance.Fonts[i] = (Font)EditorGUILayout.ObjectField(NPSUtility.instance.Fonts[i], typeof(Font));
+                }, () =>
+                {
                     NPSUtility.instance.Fonts.Add(null);
-                },(i)=> {
+                }, (i) =>
+                {
                     NPSUtility.instance.Fonts.RemoveAt(i);
                 });
 
-                EditorGUIService.ListView.Print("Textures", NPSUtility.instance.Texture.Count, (i) => {
+                EditorGUIService.ListView.Print("Textures", NPSUtility.instance.Texture.Count, (i) =>
+                {
                     NPSUtility.instance.Texture[i] = (Texture)EditorGUILayout.ObjectField(NPSUtility.instance.Texture[i], typeof(Texture));
-                }, () => {
+                }, () =>
+                {
                     NPSUtility.instance.Texture.Add(null);
-                }, (i) => {
+                }, (i) =>
+                {
                     NPSUtility.instance.Texture.RemoveAt(i);
                 });
 
@@ -497,18 +771,21 @@ namespace NPS.Utls
 
 
 
-            if (EditorGUIService.DrawHeader("Current", "NguiPrintScript.Current", false, false, new EditorGUIService.Option() {
+            if (EditorGUIService.DrawHeader("Current", "NguiPrintScript.Current", false, false, new EditorGUIService.Option()
+            {
                 Icon = "C",
-                Description ="Copy Json",
-                Exe = () => {
+                Description = "Copy Json",
+                Exe = () =>
+                {
                     m_tools.Json.Copy();
                 }
             }, new EditorGUIService.Option()
             {
                 Icon = "✚",
                 Description = "Addon",
-                Exe = () => {
-                    EditorGUIService.Popup.ShowWindow("Addon", DoOpenAddOn );
+                Exe = () =>
+                {
+                    EditorGUIService.Popup.ShowWindow("Addon", DoOpenAddOn);
                 }
             }))
             {
@@ -520,10 +797,11 @@ namespace NPS.Utls
 
                 EditorGUILayout.Space(25);
 
-                EditorGUIService.BeginEndnable(m_tools.isGenerated, () => {
+                EditorGUIService.BeginEndnable(m_tools.isGenerated, () =>
+                {
                     if (GUILayout.Button("\nNGUI To Json\n"))
                     {
-                        if(IsCheckingToJson())
+                        if (IsCheckingToJson())
                             m_tools.Json = m_tools.OnNguiToJson(m_tools.transform);
                     }
                 });
@@ -531,14 +809,15 @@ namespace NPS.Utls
 
                 if (!m_tools.isGenerated)
                 {
-                    EditorGUIService.BeginEndnable(m_tools.Json.notnull(), () => {
+                    EditorGUIService.BeginEndnable(m_tools.Json.notnull(), () =>
+                    {
                         if (GUILayout.Button("\nJson To NGUI\n"))
                         {
                             m_tools.OnJsonToNgui(m_tools.Json);
                         }
                     });
                 }
-                else 
+                else
                 {
                     GUI.backgroundColor = Color.red;
                     if (GUILayout.Button("\nClear\n"))
@@ -583,7 +862,7 @@ namespace NPS.Utls
 
             foreach (var n in m_tools.gameObject.transform.GetAllNode())
             {
-                if (Service.String.isStrCropValue(n.name, "{", "}")) 
+                if (Service.String.isStrCropValue(n.name, "{", "}"))
                 {
                     EditorGUIService.BeginContents(false);
                     var addon = n.name.DeserializeObject<NguiPrintScript.GUIData.AddOn>();
@@ -605,7 +884,7 @@ namespace NPS.Utls
                     {
                         //EditorGUILayout.LabelField("Button");
                         EditorGUILayout.BeginHorizontal();
-                      
+
                         var index = 0;
                         var i = 0;
                         foreach (var str in NguiPrintScript.GUIData.AddOnActions)
@@ -643,13 +922,13 @@ namespace NPS.Utls
                     {
                         n.gameObject.name = addon.name;
                     }
-                    else 
+                    else
                     {
                         n.gameObject.name = addon.SerializeToJson(SerializeHandle.NullValue);
                     }
                     GUI.backgroundColor = Color.white;
 
-                    
+
                     EditorGUIService.EndContents();
 
                     EditorGUILayout.Space(6);
@@ -657,25 +936,25 @@ namespace NPS.Utls
             }
 
 
-           
+
 
         }
-        bool IsCheckingToJson() 
+        bool IsCheckingToJson()
         {
             if (Verlify())
             {
                 return true;
             }
-            else 
+            else
             {
                 EditorGUIService.Popup.ShowWindow("Checking ToJson", () => { Verlify(); });
                 return false;
             }
         }
-        bool Verlify( )
+        bool Verlify()
         {
 
-            
+
             bool complete = true;
             foreach (var n in m_tools.transform.GetAllNode())
             {
@@ -683,11 +962,11 @@ namespace NPS.Utls
                 var texture = n.GetComponent<UITexture>();
                 if (texture != null &&
                     texture.mainTexture != null &&
-                    NPSUtility.instance.Texture.Find(x=>x == texture.mainTexture) == null )
+                    NPSUtility.instance.Texture.Find(x => x == texture.mainTexture) == null)
                 {
                     complete = false;
                     EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.ObjectField(texture.mainTexture,typeof(Texture));
+                    EditorGUILayout.ObjectField(texture.mainTexture, typeof(Texture));
                     GUI.backgroundColor = Color.yellow;
                     if (GUILayout.Button("Solve"))
                     {
