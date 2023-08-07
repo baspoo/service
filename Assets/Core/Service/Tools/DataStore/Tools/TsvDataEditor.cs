@@ -43,19 +43,12 @@ public class TsvDataEditorGui : MonoBehaviour
 		EditorGUILayout.EndHorizontal();
 
 		GUILayout.Label("TSV ---------", EditorStyles.boldLabel);
-		var btnTextTsvLoad = "Reload All - Tsv";
-		if (TSVLoaderTools.isHave)
-		{
-			btnTextTsvLoad = "Loading....";
-			if (GUILayout.Button("Stop")) 
-				TSVLoaderTools.loader.Stop();
-		}
-		if (GUILayout.Button(btnTextTsvLoad))
-			TSVLoaderTools.loader.Download();
+		if (GUILayout.Button("ReloadAll"))
+			TSVLoaderTools.loaderData.Downloads();
 		EditorGUILayout.Space(20.0f);
 		foreach (var fileData in TSVLoaderTools.loaderData.FileDatas)
 			if (GUILayout.Button(fileData.Name))
-				TSVLoaderTools.loader.Download(fileData);
+				TSVLoaderTools.loaderData.Download(fileData);
 		EditorGUILayout.EndScrollView();
 	}
 }

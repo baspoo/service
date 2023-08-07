@@ -166,10 +166,9 @@ public class UIDropDown : MonoBehaviour
         position.to = new Vector3(0.0f, ui_imgbar.height * fector , 0.0f);
         position.duration = 0.15f;
         StartCoroutine(IEOpen());
-        
 
-        if (m_opened != null)
-            m_opened();
+
+        m_opened?.Invoke();
     }
     IEnumerator IEOpen()
     {
@@ -179,8 +178,8 @@ public class UIDropDown : MonoBehaviour
         yield return new WaitForEndOfFrame();
         isActive = true;
     }
-    Service.Callback.callback m_opened;
-    public void Opened(Service.Callback.callback opened) 
+    System.Action m_opened;
+    public void Opened(System.Action opened) 
     {
         m_opened = opened;
     }

@@ -26,41 +26,29 @@ public class AnimationCallBack : MonoBehaviour
 	}
 
 
+
 	//**Option #2
-	public Service.Callback.callback[] CallbackIndex = new Service.Callback.callback[10];
-	public void Take(int index)
+	public System.Action<string> CallbackState = null;
+	public void TakeState(string state)
 	{
-		if (index < CallbackIndex.Length)
-			if (CallbackIndex[index] != null)
-				CallbackIndex[index]();
+		CallbackState?.Invoke(state);
 	}
 
 
 
 	//**Option #3
-	public Service.Callback.callback_data CallbackState = null;
-	public void TakeState(string state)
+	public TaskService.Function FunctionCalling = new TaskService.Function();
+	public void OnFunctionCalling(string callback)
 	{
-		if (CallbackState != null)
-			CallbackState(state);
+		FunctionCalling.call(callback);
 	}
+
+
+
 
 
 
 	//**Option #4
-	public Service.Tools.FunctionCalling FunctionCalling = new Service.Tools.FunctionCalling();
-	public void OnFunctionCalling(string callback)
-	{
-		//Debug.LogError("OnFunctionCalling:" + callback);
-		FunctionCalling.Call(callback);
-	}
-
-
-
-
-
-
-	//**Option #5
 	[System.Serializable]
 	public class SimpleCallBack
 	{

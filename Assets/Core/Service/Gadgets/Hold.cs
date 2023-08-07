@@ -10,9 +10,9 @@ public class Hold : MonoBehaviour
     float timehold = 0.0f;
 
     public float timehold_toComplete;
-    public Service.Callback.callback_fvalue onHolding;
-    public Service.Callback.callback onComplete;
-    public Service.Callback.callback onCancel;
+    public System.Action<float> onHolding;
+    public System.Action onComplete;
+    public System.Action onCancel;
 
     UIEventTrigger eventTrigger;
 
@@ -20,7 +20,7 @@ public class Hold : MonoBehaviour
     //** Init
     //** -----------------------------------------------------------
 
-    public void Init(Service.Callback.callback onComplete, Service.Callback.callback onCancel, Service.Callback.callback_fvalue onHolding = null)
+    public void Init(System.Action onComplete, System.Action onCancel, System.Action<float> onHolding = null)
     {
         this.onComplete = onComplete;
         this.onCancel = onCancel;
@@ -67,28 +67,20 @@ public class Hold : MonoBehaviour
 
     public void Holding()
     {
-        if (onHolding != null)
-            onHolding(timehold);
+        onHolding?.Invoke(timehold);
     }
 
     public void Complete()
     {
         //Debug.Log("Complete");
         isHold = false;
-        if (onComplete != null)
-        {
-            onComplete();
-        }
-
+        onComplete?.Invoke();
     }
 
     public void Cancel()
     {
         //Debug.Log("Cancel");
-        if (onCancel != null)
-        {
-            onCancel();
-        }
+        onCancel?.Invoke();
     }
 
 

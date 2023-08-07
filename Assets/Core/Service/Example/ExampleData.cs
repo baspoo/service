@@ -76,7 +76,7 @@ namespace ExampleService
                 row.GetValue(this, "ID", "Name", "Value");
 
                 //Enum
-                Example = (ExampleType) row.GetValue("Example").ToEnum(ExampleType.A);
+                Example = row.GetValue("Example").ToEnum<ExampleType>();
 
                 //Class
                 ClassEx = ServiceJson.Json.DeserializeObject<ClassExData>(row.GetValue("ClassEx"));

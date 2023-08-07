@@ -7,6 +7,29 @@ public class AddOn : MonoBehaviour {
 		//Setting;
 		bool autoDestory;
 
+		public Coroutine _Refresh(System.Action action) => StartCoroutine(IERefresh(action));
+		IEnumerator IERefresh(System.Action action)
+		{
+			yield return new WaitForEndOfFrame();
+			action?.Invoke();
+		}
+		public Coroutine _Refresh(float duration ,System.Action action) => StartCoroutine(IERefresh(duration,action));
+		IEnumerator IERefresh(float duration, System.Action action)
+		{
+			yield return new WaitForSeconds(duration);
+			action?.Invoke();
+		}
+		public Coroutine _While(System.Func<bool> condition, System.Action loop, System.Action done) 
+			=> StartCoroutine(IEwhile(condition, loop, done));
+		IEnumerator IEwhile( System.Func<bool> condition  , System.Action loop , System.Action done )
+		{
+			while (condition.Invoke()) 
+			{
+				loop?.Invoke();
+				yield return new WaitForEndOfFrame();
+			}
+			done?.Invoke();
+		}
 
 		public Coroutine _StartCorotine( IEnumerator coro ){
 			return StartCoroutine (coro);

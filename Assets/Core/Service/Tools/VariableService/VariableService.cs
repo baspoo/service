@@ -33,18 +33,28 @@ public enum SerializeHandle
 {
 	NullValue,          //--> skip null value on serialize.
 	IgnoreUpperCase,    //--> ignore upper or lower variable name.
+	IgnoreReadonly,    //--> ignore upper or lower variable name.
 	ReplaceAll,        //--> replace default data in class.
 	FormattingIndented  //--> adjust beautiful json format.
+
 }
 public static class SerializeService
 {
 	public class JsonPropertyNameResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
 	{
+		public bool ignoreUpercase = false;
+		public bool ignoreReadonly = false;
+
 		protected override string ResolvePropertyName(string propertyName)
 		{
 			//Change the incoming property name into Title case
-			var name = string.Concat(propertyName[0].ToString().ToUpper(), propertyName.Substring(1).ToLower());
+			var name = ignoreUpercase ? string.Concat(propertyName[0].ToString().ToUpper(), propertyName.Substring(1).ToLower()) : propertyName;
 			return base.ResolvePropertyName(name);
+		}
+		protected override IList<Newtonsoft.Json.Serialization.JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
+		{
+			IList<Newtonsoft.Json.Serialization.JsonProperty> props = base.CreateProperties(type, memberSerialization);
+			return ignoreReadonly ? props.Where(p => p.Writable).ToList() : props;
 		}
 	}
 
@@ -53,10 +63,14 @@ public static class SerializeService
 		var handle = new Newtonsoft.Json.JsonSerializerSettings();
 		handle.Converters.Add(new ObscuredValueConverter());
 
+		var resolver = new JsonPropertyNameResolver();
+		handle.ContractResolver = resolver;
+
 		foreach (var key in SerializeHandles)
 		{
 			if (key == SerializeHandle.NullValue) handle.NullValueHandling = NullValueHandling.Ignore;
-			if (key == SerializeHandle.IgnoreUpperCase) handle.ContractResolver = new JsonPropertyNameResolver();
+			if (key == SerializeHandle.IgnoreUpperCase) resolver.ignoreUpercase = true;
+			if (key == SerializeHandle.IgnoreReadonly) resolver.ignoreReadonly = true;
 			if (key == SerializeHandle.ReplaceAll) handle.ObjectCreationHandling = ObjectCreationHandling.Replace;
 			if (key == SerializeHandle.FormattingIndented) handle.Formatting = Formatting.Indented;
 		}
@@ -82,6 +96,22 @@ public static class SerializeService
 	{
 		var handle = gethandle(SerializeHandles);
 		return JsonConvert.DeserializeObject(json, handle);
+	}
+	public static void DeserializeObject<T>(this object obj, System.Action<T> done, bool flatbufferFormatHandle = false)
+	{
+		if (obj != null)
+		{
+			var json = obj.SerializeToJson();
+			if (json.notnull())
+			{
+				if (flatbufferFormatHandle && json.IsFlatBufferFormat())
+				{
+					json = json.ConvertFlatToJsObject();
+				}
+				var result = json.DeserializeObject<T>(SerializeHandle.IgnoreUpperCase);
+				done?.Invoke(result);
+			}
+		}
 	}
 }
 
@@ -140,6 +170,29 @@ public static class VariableService
 		bool.TryParse(str, out output);
 		return output;
 	}
+	public static char GetFirst(this string str)
+	{
+		if (str.notnull() && str.Length > 0)
+			return str[0];
+		else
+			return char.MinValue;
+	}
+	public static char GetLast(this string str)
+	{
+		if (str.notnull() && str.Length > 0)
+			return str[str.Length - 1];
+		else
+			return char.MinValue;
+	}
+	public static bool IsJson(this string str)
+	{
+		return str.GetFirst() == '{' && str.GetLast() == '}';
+	}
+	public static bool IsJsonArray(this string str)
+	{
+		return str.GetFirst() == '[' && str.GetLast() == ']';
+	}
+
 	public static Vector2 ToVector2(this string str)
 	{
 		return Service.String.PassStringToVector2(str);
@@ -156,12 +209,19 @@ public static class VariableService
 	{
 		return  Formula.Json.JsonToJFormula(json);
 	}
-	public static System.Enum ToEnum(this string str, object defaultenum)
-	{
-		return Service.String.ToEnum(str, defaultenum);
-	}
+
+
 	public static string ToHexString(this Color c) => Service.Colour.ToRGBHex(c);
 	public static Color HexToColor(this string hexstring) => Service.Colour.HexColor(hexstring);
+	public static Color ToBrightness(this Color color, float percent)
+	{
+		//** percent = -1 to Drak.
+		//** percent = +1 to Bright.
+
+		var colorOutput = color + (Color.white * percent);
+		colorOutput.a = color.a;
+		return colorOutput;
+	}
 
 
 
@@ -233,6 +293,62 @@ public static class VariableService
 
 
 
+	#region object
+	public static int ToInt(this object obj)
+	{
+		if (obj == null) return 0;
+		else return obj is int ? (int)obj : 0;
+	}
+	public static long ToLong(this object obj)
+	{
+		if (obj == null) return 0;
+		else return obj is long ? (long)obj : 0;
+	}
+	public static float ToFloat(this object obj)
+	{
+		if (obj == null) return 0;
+		else return obj is float ? (float)obj : 0;
+	}
+	public static double ToDouble(this object obj)
+	{
+		if (obj == null) return 0;
+		else return obj is double ? (double)obj : 0;
+	}
+	public static bool ToBool(this object obj)
+	{
+		if (obj == null) return false;
+		else return obj is bool ? (bool)obj : false;
+	}
+	public static string ToStr(this object obj)
+	{
+		if (obj == null) return string.Empty;
+		else return obj is string ? (string)obj : string.Empty;
+	}
+	public static T ToEnum<T>(this object obj, object _default = null)
+	{
+		return ToEnum<T>(obj.ToStr(), _default);
+	}
+	public static T ToEnum<T>(this string obj, object _default = null)
+	{
+		try
+		{
+			var result = System.Enum.Parse(typeof(T), obj);
+			return (T)result;
+		}
+		catch
+		{
+			return _default != null ? (T)_default : default;
+		}
+	}
+
+
+
+
+	public static T To<T>(this object obj)
+	{
+		return obj.DeserializeObject<T>();
+	}
+	#endregion
 
 
 
@@ -286,6 +402,16 @@ public static class VariableService
 	public static int Max(this int i, int max) => (i > max) ? max : i;
 	public static double Max(this double i, double max) => (i > max) ? max : i;
 	public static float Max(this float i, float max) => (i > max) ? max : i;
+	public static bool IsEnough(this int value, int cost, System.Action action = null)
+	{
+		if (value >= cost)
+		{
+			action?.Invoke();
+			return true;
+		}
+		else return false;
+	}
+
 
 	//
 	static System.DateTime Date => Service.Time.TimeServer.master.Time;
@@ -557,7 +683,14 @@ public static class VariableService
 	}
 	#endregion
 
-
+	#region MonoBehaviour
+	public static bool notnull(this MonoBehaviour value)
+	{
+		if (value == null)
+			return false;
+		return Service.GameObj.isObjectNotNull(value);
+	}
+	#endregion
 
 
 	#region Coroutine
@@ -703,16 +836,123 @@ public static class VariableService
 		}
 		return output;
 	}
+	public static List<T> Clone<T>(this List<T> let)
+	{
+		return new List<T>(let);
+	}
+	public static void Modify<T>(this List<T> list, System.Func<T, bool> condition, System.Action<T> action)
+	{
+		foreach (var data in list)
+		{
+			if (condition.Invoke(data))
+			{
+				action.Invoke(data);
+			}
+		}
+	}
 	#endregion
 
 
 
 
 	#region Dict
-	// object =========================================================================================
-	public static bool Update(this Dictionary<string,object> dict , string key , object value)
+	// type =========================================================================================
+	public static bool Update<T>(this Dictionary<string, T> dict, string key, T value, bool replace = true)
 	{
-		if (dict.ContainsKey(key)) { dict[key] = value; return false; } 
+		if (dict.ContainsKey(key))
+		{
+			if (replace)
+				dict[key] = value;
+			return false;
+		}
+		else
+		{
+			dict.Add(key, value);
+			return true;
+		}
+	}
+	public static void UpdateRange<T>(this Dictionary<string, T> origin, Dictionary<string, T> adds, bool replace = true)
+	{
+		foreach (var data in adds)
+		{
+			if (origin.ContainsKey(data.Key))
+			{
+				if (replace)
+					origin[data.Key] = data.Value;
+			}
+			else
+			{
+				origin.Add(data.Key, data.Value);
+			}
+		}
+	}
+	public static bool Modify<T>(this Dictionary<string, T> dict, string key, System.Action<T> action, System.Action notfound = null)
+	{
+		if (dict.ContainsKey(key))
+		{
+			action?.Invoke(dict[key]);
+			return true;
+		}
+		else
+		{
+			notfound?.Invoke();
+			return false;
+		}
+	}
+	public static T Find<T>(this Dictionary<string, T> dict, string key)
+	{
+		if (dict.ContainsKey(key)) { return dict[key]; }
+		else { return default; }
+	}
+	public static List<T> FindAll<T>(this Dictionary<string, T> dict, System.Func<T, bool> condition)
+	{
+		List<T> result = new List<T>();
+		foreach (var data in dict.Values)
+		{
+			if (condition.Invoke(data))
+			{
+				result.Add(data);
+			}
+		}
+		return result;
+	}
+
+	public static int CountByCondition<T>(this Dictionary<string, T> dict, System.Func<T, bool> condition)
+	{
+		int count = 0;
+		foreach (var data in dict.Values)
+		{
+			if (condition.Invoke(data))
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
+
+	public static Dictionary<string, T> Clone<T>(this Dictionary<string, T> dict)
+	{
+		return new Dictionary<string, T>(dict);
+	}
+	public static List<T> ToList<T>(this Dictionary<string, T> dict)
+	{
+		return dict.Values.ToList();
+	}
+	public static Dictionary<string, T> ToDict<T>(this List<T> list, System.Func<T, string> condition)
+	{
+		Dictionary<string, T> result = new Dictionary<string, T>();
+		foreach (var data in list)
+		{
+			var key = condition.Invoke(data);
+			result.Update(key, data);
+		}
+		return result;
+	}
+	// object =========================================================================================
+	public static bool Update(this Dictionary<string, object> dict, string key, object value)
+	{
+		if (dict.ContainsKey(key)) { dict[key] = value; return false; }
 		else { dict.Add(key, value); return true; }
 	}
 	public static object Find(this Dictionary<string, object> dict, string key)
@@ -720,7 +960,7 @@ public static class VariableService
 		if (dict.ContainsKey(key)) { return dict[key]; }
 		else { return null; }
 	}
-	public static List<object> ToList(this Dictionary<string, object> dict )
+	public static List<object> ToList(this Dictionary<string, object> dict)
 	{
 		return dict.Values.ToList();
 	}
@@ -740,10 +980,18 @@ public static class VariableService
 		return dict.Values.ToList();
 	}
 	// int =========================================================================================
-	public static void AddValue(this Dictionary<string, int> dict, string key, int value)
+	public static int AddValue(this Dictionary<string, int> dict, string key, int value)
 	{
-		if (dict.ContainsKey(key)) { dict[key] += value; }
-		else { dict.Add(key, value); }
+		if (dict.ContainsKey(key))
+		{
+			dict[key] += value;
+			return dict[key];
+		}
+		else
+		{
+			dict.Add(key, value);
+			return value;
+		}
 	}
 	public static bool Update(this Dictionary<string, int> dict, string key, int value)
 	{
@@ -760,10 +1008,18 @@ public static class VariableService
 		return dict.Values.ToList();
 	}
 	// double =========================================================================================
-	public static void AddValue(this Dictionary<string, double> dict, string key, double value)
+	public static double AddValue(this Dictionary<string, double> dict, string key, double value)
 	{
-		if (dict.ContainsKey(key)) { dict[key] += value; }
-		else { dict.Add(key, value); }
+		if (dict.ContainsKey(key))
+		{
+			dict[key] += value;
+			return dict[key];
+		}
+		else
+		{
+			dict.Add(key, value);
+			return value;
+		}
 	}
 	public static bool Update(this Dictionary<string, double> dict, string key, double value)
 	{
@@ -780,10 +1036,18 @@ public static class VariableService
 		return dict.Values.ToList();
 	}
 	// long =========================================================================================
-	public static void AddValue(this Dictionary<string, long> dict, string key, long value)
+	public static long AddValue(this Dictionary<string, long> dict, string key, long value)
 	{
-		if (dict.ContainsKey(key)) { dict[key] += value; }
-		else { dict.Add(key, value); }
+		if (dict.ContainsKey(key))
+		{
+			dict[key] += value;
+			return dict[key];
+		}
+		else
+		{
+			dict.Add(key, value);
+			return value;
+		}
 	}
 	public static bool Update(this Dictionary<string, long> dict, string key, long value)
 	{
@@ -833,6 +1097,5 @@ public static class VariableService
 		else { return null; }
 	}
 	#endregion
-
 
 }

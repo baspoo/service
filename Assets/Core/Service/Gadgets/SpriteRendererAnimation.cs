@@ -13,9 +13,9 @@ public class SpriteRendererAnimation : MonoBehaviour
     public EventDelegate onEndAnimation;
 
 
-    Service.Callback.callback m_onFinish;
-    Service.Callback.callback m_onTake;
-    public void PlayStart(Service.Callback.callback onTake = null,Service.Callback.callback onFinish = null)
+    System.Action m_onFinish;
+    System.Action m_onTake;
+    public void PlayStart(System.Action onTake = null, System.Action onFinish = null)
     {
         m_onTake = onTake;
         m_onFinish = onFinish;
@@ -45,8 +45,7 @@ public class SpriteRendererAnimation : MonoBehaviour
                     else { play = false; index--; }
                     if (onceDestory) Destroy(gameObject);
                     if (onEndAnimation != null) onEndAnimation.Execute();
-                    if (m_onFinish != null) 
-                        m_onFinish();
+                    m_onFinish?.Invoke();
                 }
                 if (SpriteRenderer_ == null) 
                     gameObject.GetComponent<SpriteRenderer>().sprite = spr[index];
@@ -58,9 +57,8 @@ public class SpriteRendererAnimation : MonoBehaviour
                 {
                     if ( ((float)index / (float)spr.Length) >= taketime) 
                     {
-                        if (m_onTake != null)
-                            m_onTake();
-                        isTake = true;
+                         m_onTake?.Invoke();
+                         isTake = true;
                     }
                 }
                 

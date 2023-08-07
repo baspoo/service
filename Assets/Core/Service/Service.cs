@@ -25,23 +25,7 @@ public class Service : MonoBehaviour
 	}
 
 
-	public class Callback{
-		public delegate void callback();
-		public delegate void callbackImg( Texture2D img );
-		public delegate void callbackobject( object obj);
-		public delegate void callbackgameobject(GameObject gameobj);
-		public delegate void callback_value( int value );
-		public delegate void callback_fvalue( float value );
-		public delegate void callback_bool( bool boo );
-		public delegate void callback_data( string data );
-		public delegate void callback_formula( Formula f );
-		public delegate int callback_value_return( int value );
-        public delegate double callback_double_return(int value);
-        public delegate string callback_data_return( string data );
-	}
-
 	
-
 
 
 
@@ -544,34 +528,39 @@ public class Service : MonoBehaviour
 
 
 
-		public static class ObjectCopier
+		[System.Serializable]
+		public class Timeout
 		{
-			/// <summary>
-			/// Perform a deep Copy of the object.
-			/// </summary>
-			/// <typeparam name="T">The type of object being copied.</typeparam>
-			/// <param name="source">The object instance to copy.</param>
-			/// <returns>The copied object.</returns>
-			public static T Clone<T>(T source)
-			{
-				if (!typeof(T).IsSerializable)
-				{
-					  Debug.LogError("The type must be serializable." + nameof(source));
-				}
 
-				// Don't serialize a null object, simply return the default for that object
-				if (Object.ReferenceEquals(source, null))
+			public float timeRun { get; private set; }
+			public bool isPause { get; private set; }
+			public bool IsRunTime(float maxTime, float speed = 1.0f)
+			{
+				if (isPause)
+					return false;
+
+				timeRun += UnityEngine.Time.deltaTime * speed;
+				if (timeRun < maxTime)
 				{
-					return default(T);
+					return false;
 				}
-				IFormatter formatter = new BinaryFormatter();
-				Stream stream = new MemoryStream();
-				using (stream)
+				else
 				{
-					formatter.Serialize(stream, source);
-					stream.Seek(0, SeekOrigin.Begin);
-					return (T)formatter.Deserialize(stream);
+					timeRun = 0.0f;
+					return true;
 				}
+			}
+			public void Reset()
+			{
+				timeRun = 0.0f;
+			}
+			public void OnPause()
+			{
+				isPause = true;
+			}
+			public void OnUnpause()
+			{
+				isPause = false;
 			}
 		}
 
@@ -583,13 +572,21 @@ public class Service : MonoBehaviour
 
 		// Addon
 		static AddOn.IEnume IEnume;
-		public static AddOn.IEnume AddIEnume()
+		public static AddOn.IEnume GetGlobalIEnume()
 		{
-			if (IEnume == null) 
+			if (IEnume == null)
 			{
 				IEnume = gameservice.AddComponent<AddOn.IEnume>();
 			}
 			return IEnume;
+		}
+		public static AddOn.IEnume AddIEnume(GameObject addTarget = null)
+		{
+			GameObject target;
+			if (addTarget != null) target = addTarget;
+			else target = gameservice;
+			AddOn.IEnume addOn = target.AddComponent<AddOn.IEnume>();
+			return addOn;
 		}
 		// Addon
 		public static AddOn.Timmer AddTimmer(GameObject addTarget = null){
@@ -602,12 +599,13 @@ public class Service : MonoBehaviour
 
 
 
-		public class DoubleClick : MonoBehaviour {
+		public class DoubleClick : MonoBehaviour 
+		{
 			bool one_click = false;
 			bool timer_running;
 			float timer_for_double_click;
 			float delay = 0.25f;
-			public void OnEnter ( Service.Callback.callback callback )
+			public void OnEnter ( System.Action callback )
 			{
 				if(one_click)
 				{
@@ -624,9 +622,8 @@ public class Service : MonoBehaviour
 				else
 				{
 					//** DoubleClick
-					one_click = false; 
-					if (callback != null)
-						callback ();
+					one_click = false;
+					callback?.Invoke();
 				}
 			}
 
@@ -685,120 +682,7 @@ public class Service : MonoBehaviour
 			}
 		}
 
-		public class FunctionCalling{
-			public delegate void callback(Formula f = null, Service.Callback.callback onfinish = null );
-			public class FunctionCallingData{
-				public callback Function;
-				public string Name;
-				public bool IsCallOnecTime;
-				public string Tag;
-			}
-			public List<FunctionCallingData> 	Functions = new List<FunctionCallingData>();
-			public void Add(FunctionCallingData data)
-			{
-				Functions.Add(data);
-			}
-			public FunctionCallingData Add(string functionName, callback function){
-				return Add(functionName, string.Empty , false, function);
-			}
-			public FunctionCallingData Add(string functionName, string tag ,callback function){
-				return Add(functionName, tag , false , function);
-			}
-			public FunctionCallingData Add(string functionName,bool isOnecTime, callback function){
-				return Add(functionName, string.Empty, isOnecTime , function);
-			}
-			public FunctionCallingData Add(string functionName , string tag, bool isOnecTime ,callback function){
-				FunctionCallingData f = Get(functionName);
-				if (f == null) {
-					f = new FunctionCallingData ();
-					f.Name = functionName;
-					f.Tag = tag;
-					f.IsCallOnecTime = isOnecTime;
-					f.Function = function;
-					Functions.Add (f);
-				}
-				else
-				{
-					f.Function = function;
-				}
-				return f;
-			}
-			FunctionCallingData Get(string functionName){
-				foreach (FunctionCallingData f in Functions) {
-					if (f.Name == functionName)
-						return f;
-				}
-				return null;
-			}
-			public void Call(string functionName , Formula formula = null,Service.Callback.callback onfinish = null){
-				FunctionCallingData f = Get (functionName);
-				if (f != null) 
-				{
-					f.Function(formula, onfinish);
-
-					if (f.IsCallOnecTime)
-					{
-						Des(f.Name);
-					}
-				}
-			}
-			public void CallAll( Formula formula = null,Service.Callback.callback onfinish = null){
-				if (Functions != null && Functions.Count > 0)
-				{
-					foreach (Service.Tools.FunctionCalling.FunctionCallingData f in new ArrayList(Functions))
-						if (f != null)
-						{
-							f.Function(formula, onfinish);
-							if (f.IsCallOnecTime)
-							{
-								Des(f.Name);
-							}
-						}
-				}
-				else 
-				if (onfinish != null)
-					onfinish();
-
-			}
-			public void CallAll(string tag, Formula formula = null, Service.Callback.callback onfinish = null)
-			{
-				if (Functions != null && Functions.Count > 0) 
-				{ 
-					foreach (Service.Tools.FunctionCalling.FunctionCallingData f in new ArrayList(Functions))
-						if (f != null && f.Tag == tag)
-						{
-							f.Function(formula, onfinish);
-							if (f.IsCallOnecTime)
-							{
-								Des(f.Name);
-							}
-						}
-				}
-				else
-				if (onfinish != null)
-					onfinish();
-			}
-			public void Des(string functionName ){
-				FunctionCallingData f = Get (functionName);
-				if (f != null)
-					Functions.Remove (f);
-			}
-            public void Clear(string tag = null)
-            {
-                if (tag == null)
-                    Functions.Clear();
-                else
-                {
-                    foreach (Service.Tools.FunctionCalling.FunctionCallingData f in new ArrayList(Functions))
-                        if (f != null && f.Tag == tag)
-                        {
-                            Des(f.Name);
-
-                        }
-                }
-            }
-        }
-
+	
 
 
 		public class ObjectDefine
@@ -1893,54 +1777,35 @@ public class Service : MonoBehaviour
 		public delegate void IEnumeratorCallbackLoop ( int index);
 		public delegate void IEnumeratorWWWCallback ( WWW www = null );
 
+		public static void Refresh(System.Action action)
+		{
+			Tools.GetGlobalIEnume()._Refresh(action);
+		}
+		public static void While(System.Func<bool> condition, System.Action loop, System.Action done)
+		{
+			Tools.GetGlobalIEnume()._While(condition, loop, done);
+		}
+		public static AddOn.IEnume StartCorotine(IEnumerator corotime, GameObject root = null)
+		{
+			AddOn.IEnume addon = root != null ? Tools.AddIEnume(root) : Tools.GetGlobalIEnume();
+			addon._StartCorotine(corotime);
+			return addon;
+		}
 		public static AddOn.IEnume Wait(float waiting , IEnumeratorCallback callback){
-			AddOn.IEnume addon = Tools.AddIEnume();
+			AddOn.IEnume addon = Tools.GetGlobalIEnume();
 			addon.Waitting (waiting,callback);			
 			return addon;
 		}
-		public static Coroutine StartCorotine( IEnumerator corotime ){
-			AddOn.IEnume addon = Tools.AddIEnume();
-			return addon._StartCorotine (corotime);		
-		}
-		public static void StopCorotine(Coroutine corotime)
-		{
-			AddOn.IEnume addon = Tools.AddIEnume();
-			if (corotime != null) addon.StopCoroutine(corotime);
-		}
-
-		public class CoroutineList { public string name; public Coroutine coro; }
-		public static List<CoroutineList> CoroutineLists = new List<CoroutineList>();
-		public static Coroutine StartCorotine(string name , IEnumerator corotime)
-		{
-			AddOn.IEnume addon = Tools.AddIEnume();
-			StopCorotine(name);
-			var coro = addon._StartCorotine(corotime);
-			CoroutineLists.Add( new CoroutineList() { name = name , coro  = coro } );
-			return coro;
-		}
-		public static void StopCorotine(string corotime)
-		{
-			var find = CoroutineLists.Find(x=>x.name == corotime);
-			if (find!=null) 
-			{
-				StopCorotine(find.coro);
-			}
-			CoroutineLists.RemoveAll(x => x.coro == null);
-		}
-
-
-
-
 		public static AddOn.IEnume WaitLoop(float waiting , int Count , IEnumeratorCallbackLoop callback  ){
 			return WaitLoop (waiting,Count,callback,0.0f);
 		}
 		public static AddOn.IEnume WaitLoop(float waiting , int Count , IEnumeratorCallbackLoop callback , float plusTimePerRound){
-			AddOn.IEnume addon = Tools.AddIEnume();
+			AddOn.IEnume addon = Tools.GetGlobalIEnume();
 			addon.WaittingLoop (waiting,Count,callback,plusTimePerRound);
 			return addon;
 		}
 		public static AddOn.IEnume WWW(string url , IEnumeratorWWWCallback www){
-			AddOn.IEnume addon = Tools.AddIEnume();
+			AddOn.IEnume addon = Tools.GetGlobalIEnume();
 			addon.internetWWW (url,www);
 			return addon;
 		}
@@ -1949,31 +1814,6 @@ public class Service : MonoBehaviour
 
 
 
-
-	//
-	public class Task 
-	{
-		public static void RunJob(System.Action job, System.Action callback) {
-			AddOn.IEnume addon = Tools.AddIEnume();
-			addon.StartCoroutine(runtime(job, callback));
-		}
-		static IEnumerator runtime(System.Action job, System.Action callback) 
-		{
-			bool isDone = false;
-			var threadsave = new System.Threading.Thread(() => {
-				job?.Invoke();
-				isDone = true;
-			});
-			threadsave.Start();
-			while (!isDone)
-			{
-				yield return null;
-			}
-			threadsave.Abort();
-			callback?.Invoke();
-		}
-	}
-	
 
 
 
@@ -2175,17 +2015,16 @@ public class Service : MonoBehaviour
 			public bool isTimeOut(long Timeout) {
 				return UnixTime >= Timeout;
 			}
-			public AddOn.Timmer CountDown(GameObject root, System.DateTime Timeout, Service.Callback.callback_data runtime, Service.Callback.callback timeout = null)
+			public AddOn.Timmer CountDown(GameObject root, System.DateTime Timeout, System.Action<string> runtime, System.Action timeout = null)
 			{
 				var timer = Service.Timmer.WaitInfinity(0.0f, root, (r) => {
 					r.roundRunning = 0;
 					string timetext = Service.Time.DateTimeSubtract(Timeout, Time, WatchType.HMS);
-					runtime(timetext);
+					runtime?.Invoke(timetext);
 					if (isTimeOut(Timeout))
 					{
 						r.StopAndDelete();
-						if (timeout != null)
-							timeout();
+						timeout?.Invoke();
 					}
 				});
 				return timer;
@@ -2322,17 +2161,6 @@ public class Service : MonoBehaviour
 	#endregion
 
 
-	#region Loop
-	public class Loop  {
-		public static void For( int round , Service.Callback.callback_value callback )
-		{
-			for (int i = 0; i < round; i++) 
-			{
-				callback (i);
-			}
-		}
-	}
-	#endregion
 
 
 
@@ -2792,7 +2620,8 @@ public class Service : MonoBehaviour
 
 
 	#region File
-	public class File  {
+	public class File  
+	{
 
 		//** FullPart = /Doc/imagebachup/baspoo 
 		//** filter = ".png"
@@ -2989,68 +2818,6 @@ public class Service : MonoBehaviour
 	
 
 
-
-	public class Dict
-	{
-		public static void Add( Dictionary<string,int> dict , string key , int value)
-		{
-			if (!dict.ContainsKey(key)) dict.Add(key, value);
-			else dict[key]+= value;
-		}
-		public static void Add(Dictionary<string, long> dict, string key, long value)
-		{
-			if (!dict.ContainsKey(key)) dict.Add(key, value);
-			else dict[key] += value;
-		}
-		public static void Set(Dictionary<string, int> dict, string key, int value)
-		{
-			if (!dict.ContainsKey(key)) dict.Add(key, value);
-			else dict[key] = value;
-		}
-		public static void Set(Dictionary<string, long> dict, string key, long value)
-		{
-			if (!dict.ContainsKey(key)) dict.Add(key, value);
-			else dict[key] = value;
-		}
-		public static void Set(Dictionary<string, string> dict, string key, string value)
-		{
-			if (!dict.ContainsKey(key)) dict.Add(key, value);
-			else dict[key] = value;
-		}
-		public static void Set(Dictionary<string, object> dict, string key, object value)
-		{
-			if (!dict.ContainsKey(key)) dict.Add(key, value);
-			else dict[key] = value;
-		}
-
-		public static int Get(Dictionary<string, int> dict, string key)
-		{
-			if (dict.ContainsKey(key)) return dict[key];
-			else return 0;
-		}
-		public static long Get(Dictionary<string, long> dict, string key)
-		{
-			if (dict.ContainsKey(key)) return dict[key];
-			else return 0;
-		}
-		public static string Get(Dictionary<string, string> dict, string key)
-		{
-			if (dict.ContainsKey(key)) return dict[key];
-			else return string.Empty;
-		}
-		public static object Get(Dictionary<string, object> dict, string key)
-		{
-			if (dict.ContainsKey(key)) return dict[key];
-			else return null;
-		}
-
-
-
-
-
-
-
-	}
 }
 
 

@@ -21,26 +21,7 @@ public class FileData{
 }
 
 public class TSVLoaderTools : MonoBehaviour {
-	static TSVLoaderTools m_loader;
-	public  static bool isHave {
-		get
-		{
-			return (m_loader != null);
-		}
-	}
-	public  static TSVLoaderTools loader
-	{
-		get{
-			finish = false;
-			if(m_loader!=null)
-				DestroyImmediate (m_loader.gameObject);
-			m_loader = null;
-			m_loader = Instantiate (loaderData.gameObject).GetComponent<TSVLoaderTools>();
-			if(Application.isPlaying)
-				DontDestroyOnLoad(m_loader);
-			return m_loader;
-		}
-	}
+
 	public static TSVLoaderTools loaderData
 	{
 		get
@@ -101,40 +82,34 @@ public class TSVLoaderTools : MonoBehaviour {
 	
 	[Header("GoogleSheet Id")]
 	public string GoogleSheetID;
-
 	public List<FileData> FileDatas = new List<FileData>();
-	int count ;
-	int maxcount ;
+	//int count ;
+	//int maxcount ;
 
-	public static bool finish;
-	public static bool isLoading;
-	public void Download( Service.Callback.callback onfinish = null )
+	//public static bool finish;
+	//public static bool isLoading;
+	public void Downloads( System.Action onfinish = null )
 	{
-		count = 0;
-		maxcount = FileDatas.Count;
-		foreach (FileData f in FileDatas) {
-			StartCoroutine (load( f , onfinish ));
-		}
+		EditorGUIService.Corotine.Open($"TSV", loaderData.loads(loaderData.FileDatas));
 	}
-	public void Download( FileData fileData , Service.Callback.callback onfinish = null ){
-		count = 0;
-		maxcount = 1;
-		StartCoroutine (load( fileData , onfinish ));
+	public void Download( FileData fileData , System.Action onfinish = null ){
+		EditorGUIService.Corotine.Open($"TSV {fileData.Name}", loaderData.load(fileData));
 	}
-	public void Stop(   ){
-		if (m_loader != null) 
+	
+
+
+	IEnumerator loads(List<FileData> files)
+	{
+		foreach (var file in files)
 		{
-			if (Application.isPlaying)
-				Destroy(m_loader.gameObject);
-			else
-				DestroyImmediate(m_loader.gameObject);
+			var operation = EditorGUIService.Corotine.StartCorotine(loaderData.load(file));
+			yield return new WaitWhile(() => !operation.IsDone);
 		}
-		m_loader = null;
 	}
-	IEnumerator load (FileData file , Service.Callback.callback onfinish = null ){
+	IEnumerator load (FileData file , System.Action onfinish = null ){
 
 		Debug.Log("file name : " + file.Name);
-		isLoading = true;
+		//isLoading = true;
 		file.finish = false;
 		string filePath = FullPath + file.Name + ".txt";
 
@@ -143,7 +118,7 @@ public class TSVLoaderTools : MonoBehaviour {
 		string URL = "https://docs.google.com/spreadsheets/d/" +  GoogleSheetID  +  "/export?gid="+  file.GID  +"&exportFormat=tsv";
 		WWW www = new WWW (URL);
 		yield return www;
-		count++;
+		//count++;
 		if (www.isDone) 
 		{
 			if (www.error == null) 
@@ -160,7 +135,7 @@ public class TSVLoaderTools : MonoBehaviour {
 				{
 					SaveLocal(file.Name, www.text);
 				}
-				Debug.Log (file.Name + " : <color=green> Success </color> [" + count+"/"+ maxcount+"]");
+				//Debug.Log (file.Name + " : <color=green> Success </color> [" + count+"/"+ maxcount+"]");
 				file.finish = true;
 			} 
 			else 
@@ -173,15 +148,14 @@ public class TSVLoaderTools : MonoBehaviour {
 			Debug.Log (  file.Name + " : <color=red> Fail </color>");
 		}
 
-		if (count == maxcount) 
-		{
-			isLoading = false;
-			finish = true;
-			Debug.Log ("<color=yellow> ----------- FINISH -------------</color>" + Application.isPlaying);
-			Stop();
-			if (onfinish!=null)
-				onfinish();
-		}
+		//if (count == maxcount) 
+		//{
+		//	isLoading = false;
+		//	finish = true;
+		//	Debug.Log ("<color=yellow> ----------- FINISH -------------</color>" + Application.isPlaying);
+		//	Stop();
+		//	onfinish?.Invoke();
+		//}
 	}
 
 	static string localkey = "TSVLoaderTools";

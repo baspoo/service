@@ -239,65 +239,22 @@ namespace LogService.Utility
 
             if (IsCanLog)
             {
-                Log.LogData logData = new Log.LogData( true , format , string.Empty );
-
-
-                if (args.Length == 0) 
+                if (args.Length == 1 && args[0] is string && ((string)args[0]).Length > 0 && format == "{0}")
                 {
+
+                    string message = (string)args[0];
+                    string tagName = (message.Length > 0 && message[0] == '<' && Service.String.isStrCropValue(message, "<", ">")) ? Service.String.strCropValue(message, "<", ">") : string.Empty;
+                    if (tagName.notnull()) message = message.Replace($"<{tagName}>", "");
+                    Log.LogData logData = new Log.LogData(true, message , tagName);
+
+                    //Normal
                     if (validate(logData))
                         unitylog(logType, logData, context, args);
                 }
-                else if (args[0] is string)
+                else 
                 {
-                    var tag = ((string)args[0]).ToString();
-                    if (format == "{0}")
-                    {
-                        logData.Message = tag;
-                        if (validate(logData))
-                            unitylog(logType, logData, context, args);
-                    }
-                    else
-                    {
-                        logData.TagName = tag;
-                        if (validate(logData))
-                        {
-                            unitylog(logType, logData, context, args);
-                        }
-                    }
-                }
-                else if (args[0] is bool)
-                {
-                    var tag = string.Empty;
-                    if (args.Length > 1 && args[1] is string)
-                    {
-                        tag = (string)args[1];
-                    }
-
-                    logData.TagName = tag;
-                    if (validate(logData))
-                    {
-                        if ((bool)args[0])
-                        {
-                            unitylog(logType, logData, context, args);
-                        }
-                    }
-
-                   // editorDebug($"bool - {args.Length} {tag} {(bool)args[0]}");
-                }
-                else
-                {
-                    var tag = string.Empty;
-                    if (args.Length > 1 && args[1] is string)
-                    {
-                        tag = (string)args[1];
-                    }
-
-                    logData.TagName = tag;
-                    logData.Object = args[0];
-                    if (validate(logData))
-                    {
-                        unitylog(logType, logData, context, args);
-                    }
+                    //LogFormat
+                    unityLogHandler.LogFormat(logType, context, format, args);
                 }
             }
         }
@@ -320,10 +277,7 @@ namespace LogService.Utility
                 if (logData.Tag == null) message = $"({logData.TagName}) {logData.Message}";
                 else message = $"<color={Service.Colour.ToRGBHex(logData.Tag.Color)}>({logData.Tag.Tag})</color> {logData.Message}";
             }
-            //unityLogHandler.LogFormat(logType, context , message, args);
-            //unityLogHandler.Log(message);
-            //Debug.unityLogger.Log(message);
-            //Debug.Log(message);
+            //message += "-----> " + message;
             unityLogHandler.LogFormat(logType, new UnityEngine.Object(), "{0}", message);
         }
     }

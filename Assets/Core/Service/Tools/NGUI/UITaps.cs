@@ -61,8 +61,8 @@ public class UITaps : MonoBehaviour
         TapObject m_selector;
         public bool isInit => m_isInit;
         bool m_isInit = false;
-        Service.Callback.callback_data m_callback;
-        public void InitTap(  Service.Callback.callback_data callback )
+        System.Action<string> m_callback;
+        public void InitTap(  System.Action<string> callback )
         {
             m_callback = callback;
             foreach (var tap in TapObjects)
@@ -97,8 +97,7 @@ public class UITaps : MonoBehaviour
                 Style(tap.tapObject,false);
             m_selector = selector;
             Style( m_selector , true );
-            if (m_callback != null)
-                m_callback(selector.tapID);
+            m_callback?.Invoke(selector.tapID);
         }
 
 

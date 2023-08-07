@@ -9,6 +9,8 @@ using System.Linq;
 
 public class EditorGUIService 
 {
+	
+
 
 	//Label Style
 	static void DoLableStyle(string text, GUIStyle style, Color? color = null ,TextAnchor anc = TextAnchor.MiddleLeft)
@@ -35,13 +37,9 @@ public class EditorGUIService
 	//		GUI.contentColor = Color.white;
 	//}
 	public static void LableBlod(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, EditorStyles.boldLabel, color, anc); 
-	public static void LableLarge(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, EditorStyles.largeLabel , color, anc);
 	public static void LableHeader(string text , Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, GUIstylePackage.Instant.Header , color, anc);
 	public static void LableHeaderBig(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, GUIstylePackage.Instant.HeaderBig, color, anc);
 	//public static void LableHeaderBigCenter(string text, Color? color = null, TextAnchor anc = TextAnchor.MiddleLeft) => DoLableStyle(text, GUIstylePackage.Instant.HeaderBigCenter, color , anc);
-
-
-
 	public static bool Button(string TextOrImage, Color? color = null) 
 	{
 		bool click = false;
@@ -58,10 +56,6 @@ public class EditorGUIService
 		return click;
 	}
 
-
-
-
-
 	public static string StringBuffer => EditorGUIUtility.systemCopyBuffer;
 
 
@@ -70,9 +64,564 @@ public class EditorGUIService
 
 
 
+	public class GUIData
+	{
+		string dataName;
+		public enum castTime { realTime, castDelay, unclear }
+		public GUIData(string dataName, castTime castTime)
+		{
+			this.dataName = dataName;
+			this.mCastTime = castTime;
+		}
+
+		public List<Data> datas = new List<Data>();
+		public Data Get(string key)
+		{
+			var d = datas.Find(x => x.key == key);
+			if (d == null)
+			{
+				d = new Data(key);
+				datas.Add(d);
+			}
+			return d;
+		}
+
+		public class Data
+		{
+			public string key { get; private set; }
+			public Data(string key)
+			{
+				this.key = key;
+			}
+
+			string mValue;
+			public string value
+			{
+				get
+				{
+					return mValue;
+				}
+				set
+				{
+					mValue = value;
+				}
+			}
+			public bool boo
+			{
+				get
+				{
+					return value != null;
+				}
+				set
+				{
+					this.value = value ? string.Empty : null;
+				}
+			}
+		}
+
+		string getkey(string key) => $"{dataName}-{key}";
+
+		public void ClearCache()
+		{
+			dictJson.Clear();
+			dictListObject.Clear();
+			dictDictObject.Clear();
+		}
+
+		castTime mCastTime;
+		float time = 0.0f;
+
+		bool IsGetRealTime()
+		{
+			if (mCastTime == castTime.realTime)
+			{
+				return true;
+			}
+			else
+			{
+				if (mCastTime == castTime.castDelay)
+				{
+					if (time < Time.time)
+					{
+						ClearCache();
+						time = Time.time + 5.0f;
+					}
+				}
+				return false;
+			}
+		}
+
+		Dictionary<object, string> dictJson = new Dictionary<object, string>();
+		Dictionary<object, List<object>> dictListObject = new Dictionary<object, List<object>>();
+		Dictionary<object, Dictionary<string, object>> dictDictObject = new Dictionary<object, Dictionary<string, object>>();
+		string getJson(object obj)
+		{
+			if (IsGetRealTime())
+			{
+				return obj.SerializeToJson(SerializeHandle.IgnoreReadonly);
+			}
+			else
+			{
+				if (dictJson.ContainsKey(obj))
+				{
+					return dictJson[obj];
+				}
+				else
+				{
+					var json = obj.SerializeToJson(SerializeHandle.IgnoreReadonly);
+					dictJson.Add(obj, json);
+					return json;
+				}
+			}
+		}
+		List<object> getListObject(object obj, string json)
+		{
+			if (IsGetRealTime())
+			{
+				List<object> let = json.DeserializeObject<List<object>>();
+				return let;
+			}
+			else
+			{
+				if (dictListObject.ContainsKey(obj))
+				{
+					return dictListObject[obj];
+				}
+				else
+				{
+					List<object> let = json.DeserializeObject<List<object>>();
+					dictListObject.Add(obj, let);
+					return let;
+				}
+			}
+		}
+		Dictionary<string, object> getDictObject(object obj, string json)
+		{
+			if (IsGetRealTime())
+			{
+				Dictionary<string, object> let = json.DeserializeObject<Dictionary<string, object>>();
+				return let;
+			}
+			else
+			{
+				if (dictDictObject.ContainsKey(obj))
+				{
+					return dictDictObject[obj];
+				}
+				else
+				{
+					Dictionary<string, object> let = json.DeserializeObject<Dictionary<string, object>>();
+					dictDictObject.Add(obj, let);
+					return let;
+				}
+			}
+		}
 
 
-	public class EditorData {
+		Color ccHeader = Color.white;
+		Color ccContent = Color.white;
+		public void SetColorHeader(Color cc)
+		{
+			ccHeader = cc;
+		}
+		public void SetColorContent(Color cc)
+		{
+			ccContent = cc;
+		}
+
+
+		public string TextBox(string key, bool permanence = false)
+		{
+			if (!permanence)
+			{
+				var k = getkey(key);
+				var val = Get(k);
+				GUI.color = ccContent;
+				val.value = EditorGUILayout.TextField(key, val.value);
+				GUI.color = Color.white;
+				return val.value;
+			}
+			else
+			{
+				var k = getkey(key);
+				GUI.color = ccContent;
+				var val = EditorGUILayout.TextField(key, EditorPrefs.GetString(k));
+				GUI.color = Color.white;
+				EditorPrefs.SetString(k, val);
+				return val;
+			}
+		}
+		public string TextOnly(string key)
+		{
+			var k = getkey(key);
+			var val = Get(k);
+			GUI.color = ccContent;
+			val.value = EditorGUILayout.TextField(val.value);
+			GUI.color = Color.white;
+			return val.value;
+		}
+		public string TextArea(string key, bool permanence = false)
+		{
+			if (!permanence)
+			{
+				var k = getkey(key);
+				var val = Get(k);
+				EditorStyles.textField.wordWrap = true;
+				GUI.color = ccContent;
+				val.value = EditorGUILayout.TextArea(val.value, GUILayout.MinHeight(100), GUILayout.MaxHeight(100));
+				GUI.color = Color.white;
+				return val.value;
+			}
+			else
+			{
+				var k = getkey(key);
+				EditorStyles.textField.wordWrap = true;
+				GUI.color = ccContent;
+				var val = EditorGUILayout.TextArea(EditorPrefs.GetString(k), GUILayout.MinHeight(100), GUILayout.MaxHeight(100));
+				GUI.color = Color.white;
+				EditorPrefs.SetString(k, val);
+				return val;
+			}
+		}
+		public double NumberBox(string key, bool permanence = false)
+		{
+			if (!permanence)
+			{
+				var k = getkey(key);
+				var val = Get(k);
+				var num = val.value.ToDouble();
+				GUI.color = ccContent;
+				num = EditorGUILayout.DoubleField(key, num);
+				GUI.color = Color.white;
+				val.value = num.ToString();
+				return num;
+			}
+			else
+			{
+				var k = getkey(key);
+				var num = EditorPrefs.GetString(k).ToDouble();
+				GUI.color = ccContent;
+				num = EditorGUILayout.DoubleField(key, num);
+				GUI.color = Color.white;
+				EditorPrefs.SetString(k, num.ToString());
+				return num;
+			}
+		}
+		public bool Toggle(string key)
+		{
+			var k = getkey(key);
+			var val = Get(k);
+			val.boo = EditorGUILayout.Toggle(key, val.boo);
+			return val.boo;
+		}
+		public void Label(string message, Color? color = null)
+		{
+			GUI.color = color == null ? ccContent : (Color)color;
+			EditorGUILayout.LabelField(message);
+			GUI.color = Color.white;
+		}
+		public void LabelBlod(string message, Color? color = null)
+		{
+			GUI.color = color == null ? ccHeader : (Color)color;
+			EditorGUILayout.LabelField(message, EditorStyles.boldLabel);
+			GUI.color = Color.white;
+		}
+		public bool Button(string BtnName, System.Action action)
+		{
+			if (GUILayout.Button(BtnName))
+			{
+				action?.Invoke();
+				return true;
+			}
+			else return false;
+		}
+		public bool Topic(string header, System.Action action)
+		{
+			bool open = false;
+			var k = getkey(header);
+			EditorGUILayout.Space();
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				open = true;
+				EditorGUIService.BeginContents(false);
+				action?.Invoke();
+				EditorGUIService.EndContents();
+			}
+			EditorGUILayout.Space();
+			return open;
+		}
+		public void SearchBox<T>(string header, Dictionary<string, T> dict, System.Action<T> action)
+		{
+
+			var k = getkey(header);
+			var valbool = Get(k + "bool");
+			EditorGUILayout.Space();
+			if (EditorGUIService.DrawHeader(header, k, true, false, new Option()
+			{
+				Icon = valbool.boo ? "○" : "●",
+				Color = Color.gray,
+				Exe = () => { valbool.boo = !valbool.boo; }
+			}))
+			{
+				EditorGUIService.BeginContents(false);
+				var val = Get(k + "box");
+				val.value = EditorGUILayout.TextField("Search", val.value);
+				int index = 0;
+				if (dict != null)
+				{
+					foreach (var data in dict)
+					{
+						if (val.value.notnull())
+						{
+
+
+							bool match = false;
+							if (val.value == "*")
+							{
+								match = true;
+							}
+							else
+							{
+								if (val.value.Contains(","))
+								{
+									match = val.value.Contains(data.Key);
+								}
+								else
+								{
+									match = data.Key.Contains(val.value);
+								}
+							}
+
+
+
+							if (match)
+							{
+								EditorGUIService.BeginContents(false);
+								EditorGUILayout.LabelField(data.Key);
+								action?.Invoke(data.Value);
+								EditorGUIService.EndContents();
+							}
+						}
+						else
+						{
+							if (!valbool.boo)
+							{
+								EditorGUILayout.TextField(index.ToString(), data.Key);
+								index++;
+							}
+						}
+					}
+				}
+				EditorGUIService.EndContents();
+			}
+			EditorGUILayout.Space();
+		}
+		public int DropDown(string header, List<string> items)
+		{
+			var k = getkey(header);
+			var val = Get(k);
+			var num = val.value.ToInt();
+			num = EditorGUILayout.Popup(header, num, items.ToArray());
+			val.value = num.ToString();
+			return num;
+		}
+		public int DropDown(string header, params string[] items)
+		{
+			var k = getkey(header);
+			var val = Get(k);
+			var num = val.value.ToInt();
+			num = EditorGUILayout.Popup(header, num, items);
+			val.value = num.ToString();
+			return num;
+		}
+		public void Print(string header, int data)
+		{
+			DoObjectList(header, data.ToString());
+		}
+		public void Print(string header, object data)
+		{
+			if (data != null)
+			{
+				var json = getJson(data);
+				DoObjectList(header, json);
+			}
+			else DoObjectList(header, string.Empty);
+		}
+		public void Print(string header, string data)
+		{
+			DoObjectList(header, data);
+		}
+
+		public void PrintList(string header, object data)
+		{
+			if (data != null)
+			{
+
+				var json = getJson(data);
+				if (json.IsJsonArray())
+				{
+					List(header, json, data);
+				}
+				else
+				{
+					Dict(header, json, data);
+				}
+			}
+			else PrintList(header, new List<string>());
+		}
+		void List(string header, string json, object obj)
+		{
+			var k = getkey(header);
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				List<object> let = getListObject(obj, json);// json.DeserializeObject<List<object>>();
+				EditorGUIService.BeginContents(false);
+				int index = 0;
+				foreach (var d in let)
+				{
+					var nJson = getJson(d);
+					DoObjectList(index.ToString(), nJson);
+					index++;
+				}
+				EditorGUIService.EndContents();
+			}
+		}
+		public void PrintList(string header, List<long> list)
+		{
+
+			var k = getkey(header);
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				EditorGUIService.BeginContents(false);
+				int index = 0;
+				if (list != null)
+					foreach (var d in list)
+					{
+						DoObjectList(index.ToString(), d.ToString());
+						index++;
+					}
+				EditorGUIService.EndContents();
+			}
+		}
+		public void PrintList(string header, List<int> list)
+		{
+
+			var k = getkey(header);
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				EditorGUIService.BeginContents(false);
+				int index = 0;
+				if (list != null)
+					foreach (var d in list)
+					{
+						DoObjectList(index.ToString(), d.ToString());
+						index++;
+					}
+				EditorGUIService.EndContents();
+			}
+		}
+		public void PrintList(string header, List<string> list)
+		{
+
+			var k = getkey(header);
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				EditorGUIService.BeginContents(false);
+				int index = 0;
+				if (list != null)
+					foreach (var d in list)
+					{
+						DoObjectList(index.ToString(), d);
+						index++;
+					}
+				EditorGUIService.EndContents();
+			}
+		}
+		void Dict(string header, string json, object obj)
+		{
+			var dict = getDictObject(obj, json);
+			PrintList(header, dict);
+		}
+		public void PrintList(string header, Dictionary<string, object> dict)
+		{
+			var k = getkey(header);
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				EditorGUIService.BeginContents(false);
+				if (dict != null)
+					foreach (var d in dict)
+					{
+						var json = getJson(d.Value);
+						DoObjectList(d.Key, json);
+					}
+				EditorGUIService.EndContents();
+			}
+		}
+		public void PrintList(string header, Dictionary<string, int> dict)
+		{
+			var k = getkey(header);
+			if (EditorGUIService.DrawHeader(header, k, true, false))
+			{
+				EditorGUIService.BeginContents(false);
+				if (dict != null)
+					foreach (var d in dict)
+					{
+						var json = getJson(d.Value);
+						DoObjectList(d.Key, json);
+					}
+				EditorGUIService.EndContents();
+			}
+		}
+
+		void DoObjectList(string key, string value)
+		{
+
+			if (value.isnull())
+			{
+				GUI.color = ccContent;
+				EditorGUILayout.TextField(key, string.Empty);
+				GUI.color = Color.white;
+				return;
+			}
+
+
+			if (value.Length <= 20)
+			{
+				GUI.color = ccContent;
+				EditorGUILayout.TextField(key, value);
+				GUI.color = Color.white;
+			}
+			else
+			{
+				EditorGUILayout.BeginHorizontal();
+				EditorGUILayout.TextField(key, value);
+				if (GUILayout.Button(EditorGUIUtility.FindTexture("ViewToolOrbit"), GUILayout.Width(24.0f)))
+				{
+					string json = value;
+					if (json.IsJson() || json.IsJsonArray())
+					{
+						try
+						{
+							var obj = json.DeserializeObject<object>();
+							json = obj.SerializeToJson(SerializeHandle.FormattingIndented, SerializeHandle.IgnoreReadonly);
+						}
+						catch { }
+					}
+
+
+					Popup.OpenLargeTextAreaBox(key, json);
+
+				}
+				EditorGUILayout.EndHorizontal();
+			}
+		}
+	}
+
+
+
+
+	public class EditorData 
+	{
 		string m_key;
 		public EditorData(string key) {
 			m_key = key;
@@ -112,31 +661,6 @@ public class EditorGUIService
 	{
 		if (EditorUtility.DisplayDialog(header, message, "yes", "no")) action?.Invoke();
 	}
-
-	public class Popup : EditorWindow
-	{
-		Vector2 ScrollView;
-		public static System.Action Delegate = null;
-		public static EditorWindow ShowWindow(string popupname, System.Action data)
-		{
-			Delegate = data;
-			return EditorWindow.GetWindow(typeof(Popup), true, popupname);
-		}
-		void OnGUI()
-		{
-			if (Delegate != null)
-			{
-				ScrollView = EditorGUILayout.BeginScrollView(ScrollView);
-				Delegate();
-				EditorGUILayout.EndScrollView();
-			}
-		}
-	}
-
-
-
-
-
 	public static void NativeFilePath(string filter, string oldpath, System.Action<string> done)
 	{
 		//string path = EditorUtility.OpenFilePanel("Path", "", "png,jpg");
@@ -154,6 +678,161 @@ public class EditorGUIService
 		}
 		else done(null);
 	}
+
+
+
+
+	public class Popup : EditorWindow
+	{
+
+		Vector2 ScrollView;
+		public System.Action Delegate = null;
+
+		public static EditorWindow OpenLargeTextAreaBox(string popupname, string message)
+		{
+			Vector2 sc = Vector2.zero;
+			var pop = new Popup(popupname, () => {
+				sc = EditorGUILayout.BeginScrollView(sc);
+				EditorStyles.textField.wordWrap = true;
+				EditorGUILayout.TextArea(message, GUILayout.MinWidth(580));
+				EditorGUILayout.EndScrollView();
+			});
+			pop.title = popupname;
+			pop.minSize = new Vector2(600, 600);
+			pop.maxSize = new Vector2(600, 600);
+			return pop;
+		}
+		public static EditorWindow ShowWindow(string popupname, System.Action action)
+		{
+			var pop = new Popup(popupname, action);
+			pop.title = popupname;
+			return pop;
+		}
+		public Popup(string popupname, System.Action action)
+		{
+			var pop = EditorWindow.GetWindow(typeof(Popup), true, popupname);
+			((Popup)pop).Delegate = action;
+		}
+		void OnGUI()
+		{
+			if (Delegate != null)
+			{
+				ScrollView = EditorGUILayout.BeginScrollView(ScrollView);
+				Delegate?.Invoke();
+				EditorGUILayout.EndScrollView();
+			}
+		}
+	}
+	public class Corotine : EditorWindow
+	{
+
+		public EditorService.EditorCoroutine EditorCoroutine;
+		public static EditorWindow Open(string popupname, IEnumerator action, bool autoClose = false)
+		{
+			var pop = new Corotine("StartCorotine");
+			pop.title = "StartCorotine";
+			pop.header = popupname;
+			pop.autoClose = autoClose;
+			pop.minSize = new Vector2(320, 90);
+			pop.maxSize = new Vector2(320, 90);
+			pop.DoStartCorotine(action);
+			return pop;
+		}
+		public static EditorService.EditorCoroutine StartCorotine(IEnumerator action)
+		{
+			return new EditorService.EditorCoroutine(action);
+		}
+		public Corotine(string popupname)
+		{
+			var pop = EditorWindow.GetWindow(typeof(Corotine), true, popupname);
+		}
+		void Update()
+		{
+			Repaint();
+		}
+		bool autoClose = false;
+		string header;
+		int index = 0;
+		int maxIndex = 35;
+		double speed = 50;
+		double timeStamp = 0.0f;
+		string timeDisplay = "";
+		void updateTime()
+		{
+			var timeSpan = System.DateTime.Now - startTime;
+			var time = timeSpan.TotalMilliseconds - timeStamp;
+			if (time > speed)
+			{
+				timeStamp = timeSpan.TotalMilliseconds;
+				time = 0.0f;
+				index++;
+				if (index >= maxIndex)
+					index = 0;
+			}
+			timeDisplay = Service.Time.UnixTimeStampToWatch((long)timeSpan.TotalSeconds, Service.Time.WatchType.HMS);
+		}
+
+
+
+		void OnGUI()
+		{
+
+
+			EditorGUIService.BeginContents(false);
+			EditorGUILayout.Space();
+			//EditorGUILayout.LabelField(header);
+			if (runing) EditorGUILayout.LabelField($"{header}  -> Runing...  ({timeDisplay})");
+			else EditorGUILayout.LabelField($"{header}  -> Complete");
+			EditorGUILayout.Space();
+			EditorGUIService.EndContents();
+
+			EditorGUILayout.BeginHorizontal();
+			for (int i = 0; i < maxIndex; i++)
+			{
+				GUI.color = (i == index || !runing) ? Color.green : Color.gray;
+				EditorGUILayout.LabelField("▉", GUILayout.Width(6));
+				GUI.color = Color.white;
+			}
+			EditorGUILayout.EndHorizontal();
+
+			if (runing)
+			{
+				updateTime();
+			}
+
+
+			GUI.backgroundColor = runing ? Color.red : Color.white;
+			if (GUILayout.Button(runing ? "Stop" : "Close"))
+			{
+				Stop();
+				Close();
+			}
+			GUI.backgroundColor = Color.white;
+		}
+		bool runing = false;
+		System.DateTime startTime;
+		void DoStartCorotine(IEnumerator action)
+		{
+			startTime = System.DateTime.Now;
+			runing = true;
+
+			EditorCoroutine = new EditorService.EditorCoroutine(action, this, () => {
+				runing = false;
+				if (autoClose)
+					Stop();
+			});
+		}
+		void Stop()
+		{
+			runing = false;
+			if (EditorCoroutine != null)
+				EditorCoroutine.Stop();
+			EditorCoroutine = null;
+		}
+	}
+
+
+
 
 
 
@@ -887,7 +1566,15 @@ public class EditorGUIService
 		return Popuplist(header, defaultdata, str);
 	}
 
+	public static void RefreshMonitor()
+	{
 
+		Canvas.ForceUpdateCanvases();
+		EditorWindow.GetWindow(System.Type.GetType("UnityEditor.GameView,UnityEditor")).Repaint();
+		SceneView.RepaintAll();
+		EditorWindow.GetWindow<SceneView>().Repaint();
+		HandleUtility.Repaint();
+	}
 
 }
 

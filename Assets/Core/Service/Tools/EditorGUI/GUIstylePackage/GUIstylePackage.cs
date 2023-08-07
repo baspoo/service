@@ -14,18 +14,7 @@ public class GUIstylePackage : MonoBehaviour {
 		}
 	}
 	public GUIStyle Header;
-	//public GUIStyle HeaderHigtlight;
-	//public GUIStyle HeaderBigBack;
 	public GUIStyle HeaderBig;
-	//public GUIStyle HeaderBigCenter;
-	//public GUIStyle Normal;
-
-
-	//public GUIStyle FindTextBox;
-	//public GUIStyle FindBtn;
-
-
-	//public Material MaterialDefalut;
 	public float size;
 	public List<string> iconsName;
 

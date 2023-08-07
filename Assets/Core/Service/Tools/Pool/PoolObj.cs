@@ -40,8 +40,8 @@ public class PoolObj : MonoBehaviour {
 	public int refID;
 	public int ID;
 	public bool isActive;
-	public Service.Callback.callback onActive;
-	public Service.Callback.callback onDeactive;
+	public System.Action onActive;
+	public System.Action onDeactive;
 	PoolGroup m_group;
 	public List<PoolObj> PoolObjs => m_group.PoolObjs;
 	public void init(  PoolGroup group )
@@ -60,8 +60,7 @@ public class PoolObj : MonoBehaviour {
 		gameObject.SetActive (isActive);
 		m_destime = destime;
 		m_runtime = 0.0f;
-		if (onActive != null)
-			onActive ();
+		onActive?.Invoke();
 	}
 	public void Deactive(){
 		isActive = false;
@@ -72,8 +71,7 @@ public class PoolObj : MonoBehaviour {
 			ReturnToOrigin();
 		}
 
-		if (onDeactive != null)
-			onDeactive ();
+		onDeactive?.Invoke();
 	}
 
 	public void ReturnToOrigin() 

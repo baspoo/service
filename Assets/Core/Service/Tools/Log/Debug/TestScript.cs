@@ -53,6 +53,12 @@ namespace LogService.Test
         public void TestLog() 
         {
 
+            Debug.Log("1.message");
+            Debug.Log("<tag>message");
+            Debug.LogFormat("2.message");
+            Debug.LogFormat("3.message", "tag");
+            return;
+
 
 
 
